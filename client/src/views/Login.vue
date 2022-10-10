@@ -7,7 +7,7 @@
           id="carouselExampleSlidesOnly"
           class="carousel slide"
           data-bs-ride="carousel"
-          data-bs-interval="1000"
+          data-bs-interval="1500"
         >
           <div class="carousel-inner">
             <div class="carousel-item active">
