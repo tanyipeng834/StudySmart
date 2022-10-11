@@ -38,8 +38,8 @@
         </div>
       </div>
 
-      <div class="col-md-6 right-side">
-        <div class="mt-4 text-center">
+      <div class="col-md-6 right-side mb-4">
+        <div class="text-center">
           <img src ="../assets/logo.svg" class="animate__animated animate__bounce" />
             <TypeEffect/>
            
@@ -79,6 +79,12 @@ export default {
 <style scoped>
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+html,body{
+  height:100%;
+  margin:0;
+
+}
+
 .login {
   margin: 0;
   padding: 0;
@@ -87,7 +93,7 @@ export default {
 
 .left-side{
 
-    height:100%;
+    height:100vh;
     background-color:lightskyblue ;
     display:flex;
     text-align: center;
