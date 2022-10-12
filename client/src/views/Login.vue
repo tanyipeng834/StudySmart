@@ -61,8 +61,8 @@
 
 <script>
 import 'animate.css';
-import TypeEffect from"../components/TypeEffect.vue";
-import LoginForm from"../components/LoginForm.vue";
+import TypeEffect from"../components/LoginPage/TypeEffect.vue";
+import LoginForm from"../components/LoginPage/LoginForm.vue";
 
 
 
@@ -79,11 +79,7 @@ export default {
 <style scoped>
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
-html,body{
-  height:100%;
-  margin:0;
 
-}
 
 .login {
   margin: 0;
