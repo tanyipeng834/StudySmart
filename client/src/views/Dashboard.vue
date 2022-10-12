@@ -5,7 +5,10 @@
 
         <div class="row">
             <div class="col-8">
-
+                <div class="row"></div>
+                <div class="row">
+                    <TimeTable/>
+                </div>
             </div>
             <div class="col-4">
                 <CountDown v-bind:tests="tests" @add-test="addTest" @delete-test="deleteTest" />
@@ -20,13 +23,15 @@
 <script>
     import Sidebar from "../components/HomePage/Sidebar.vue"
     import CountDown from "../components/HomePage/CountDown.vue"
+    import TimeTable from "../components/HomePage/TimeTable.vue"
 
 
     export default {
         name: "Dashboard",
         components: {
             Sidebar,
-            CountDown
+            CountDown,
+            TimeTable
         },
         data() {
             return {
