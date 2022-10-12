@@ -33,28 +33,35 @@
                 tests: []
             }
         },
-    created() {
-            //this is preferably stored in backend and is sorted before stored
-            this.tests = [{
-                id: 1,
-                testName: 'CA1 Paper',
-                date: '11/25/2022',
-                subject: 'Maths'
-            },
-            {
-                id: 2,
-                testName: 'CA2 Paper',
-                date: '01/25/2023',
-                subject: 'Maths'
+       
+        created() {
+            //this is preferably stored in backend 
+            this.tests  = [{
+                    id: 1,
+                    testName: 'CA1 Paper',
+                    date: '11/25/2022',
+                    subject: 'Maths'
                 },
-            {
-                id: 3,
-                testName: 'SA1 Paper',
-                date: '02/25/2023',
-                subject: 'English'
-            }]
-    }
-        
+                {
+                    id: 2,
+                    testName: 'CA2 Paper',
+                    date: '01/25/2023',
+                    subject: 'Maths'
+                },
+                {
+                    id: 3,
+                    testName: 'SA1 Paper',
+                    date: '02/25/2023',
+                    subject: 'English'
+                }
+            ].sort(function (a, b) {
+                    var c = new Date(a.date);
+                    var d = new Date(b.date);                 
+                    return c - d;
+                });
+           
+        }
+
 
 
 
