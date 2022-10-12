@@ -4,11 +4,11 @@
 
 
         <div class="row">
-            <div class="col-9">
+            <div class="col-8">
 
             </div>
-            <div class="col-3">
-                <CountDown :tests="tests" />
+            <div class="col-4">
+                <CountDown v-bind:tests="tests" @add-test="addTest" @delete-test="deleteTest" />
             </div>
         </div>
     </div>
@@ -31,6 +31,15 @@
         data() {
             return {
                 tests: []
+            }
+    },
+    methods: {
+        deleteTest(id) {
+            console.log('task', id)
+                this.tests=this.tests.filter((test) => test.id !==id)
+        },
+        addTest(test) {
+                this.tests=[...this.tests,test]
             }
         },
        
