@@ -1,8 +1,9 @@
 <template>
-  <div class="container-fluid login">
-    <Sidebar profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
+  <div class="container-fluid login wrapper w-100">
     <div class="row">
-      <div class="col-4"></div>
+      <div class="col-4">
+          <Sidebar profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
+      </div>
       <div class="col-4">
         <CountDown
           v-bind:tests="tests"
@@ -22,7 +23,7 @@
 </template>
 
 <script>
-import Sidebar from "../components/HomePage/Sidebar.vue";
+import Sidebar from "../components/Navigation/Sidebar.vue";
 import CountDown from "../components/HomePage/CountDown.vue";
 import TimeTable from "../components/HomePage/TimeTable.vue";
 import gsap from "gsap";
@@ -89,4 +90,5 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 </style>
