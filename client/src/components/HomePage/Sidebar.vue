@@ -79,6 +79,8 @@
 </template>
 
 <script>
+
+
 export default {
   name: "Sidebar",
   props: {

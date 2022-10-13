@@ -27,6 +27,7 @@
 import Sidebar from "../components/HomePage/Sidebar.vue";
 import CountDown from "../components/HomePage/CountDown.vue";
 import TimeTable from "../components/HomePage/TimeTable.vue";
+import gsap from "gsap";
 
 export default {
   name: "Dashboard",
