@@ -282,7 +282,7 @@ body {
   flex-direction: column;
   position: fixed;
   left: 0;
-  top: 0;
+ 
   height: 100%;
   min-height: min-content;
   /* overflow-y: auto; */
