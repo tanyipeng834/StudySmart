@@ -1,7 +1,8 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Login from "../views/Login.vue";
 import Dashboard from "../views/Dashboard.vue";
-
+import Progress from "../views/Progress.vue";
+import Quiz from "../views/Quiz.vue";
 const routes = [
   {
     path: "/login",

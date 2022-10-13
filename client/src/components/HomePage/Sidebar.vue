@@ -134,7 +134,7 @@ export default {
           icon: "bx-chat",
         },
         {
-          link: "#progress",
+          link: "/#/progress",
           name: "Progress",
           tooltip: "Progress",
           icon: "bx-pie-chart-alt-2",
