@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Login from "../views/Login.vue";
 import Dashboard from "../views/Dashboard.vue";
+import Progress from "../views/Progress.vue";
 
 const routes = [
   {
@@ -13,6 +14,11 @@ const routes = [
     path: "/home",
     name: "Dashboard",
     component: Dashboard,
+  },
+  {
+    path: "/progress",
+    name: "ProgressTracker",
+    component: Progress,
   },
 ];
 
