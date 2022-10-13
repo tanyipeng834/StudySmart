@@ -1,7 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Login from "../views/Login.vue";
 import Dashboard from "../views/Dashboard.vue";
-import Quiz from "../views/Quiz.vue";
 
 const routes = [
   {
@@ -19,6 +18,11 @@ const routes = [
     path: "/quiz",
     name: "Quiz",
     component: Quiz,
+  },
+  {
+    path: "/progress",
+    name: "ProgressTracker",
+    component: Progress,
   },
 ];
 
