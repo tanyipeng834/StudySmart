@@ -1,23 +1,49 @@
 <template>
-  <div class="card">
-    <div class="card-header">Featured</div>
-    <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">
-        With supporting text below as a natural lead-in to additional content.
-      </p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+  <div class="card mt-4">
+    <div class="card-header">{{ cardNumber }}</div>
+    <div class="card-body d-flex">
+      <input v-model="term" placeholder="Term" type="text" class="ml-4" />
+      <input
+        v-model="defination"
+        placeholder="Defination"
+        type="text"
+        class="ml-4"
+      />
     </div>
   </div>
 </template>
 
 <script>
-export default{
+export default {
+  name: "Flashcard",
+  mounted() {
+    let object = { term: this.term, defination: this.defination };
+    console.log(object);
+    this.$emit("add-Card", object);
+  },
 
-    name:"Flashcard"
-}
-
-
+  data() {
+    return {
+      term: "",
+      defination: "",
+    };
+  },
+  props: {
+    cardNumber: Number,
+  },
+};
 </script>
 
-<style scoped></style>
+<style scoped>
+input {
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: blue;
+}
+input:focus {
+  border-color: green;
+}
+.card-body {
+  justify-content: space-around;
+}
+</style>

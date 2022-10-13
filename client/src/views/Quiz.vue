@@ -16,28 +16,32 @@
       </div>
     </div>
     <div v-else>
-      <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6"><h1>Create a new Study Set</h1></div>
-      </div>
+      <AddCard @add-Card="addFlashCards" />
     </div>
   </div>
 </template>
 
 <script>
 import Sidebar from "../components/Navigation/Sidebar.vue";
+import Flashcard from "../components/QuizPage/Flashcard.vue";
+import AddCard from "../components/QuizPage/AddCard.vue";
 
 export default {
   name: "Quiz",
   data() {
     return {
       modal: false,
+      flashcards: [],
     };
   },
-  components: { Sidebar },
+  components: { Sidebar, Flashcard, AddCard },
   methods: {
     addCard() {
       this.modal = true;
+    },
+    addFlashCards(term) {
+      this.flashcards.push(term);
+      console.log(this.flashcards);
     },
   },
 };
