@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import Sidebar from "../components/HomePage/Sidebar.vue";
+import Sidebar from "../components/Navigation/Sidebar.vue";
 
 export default {
   name: "Quiz",
