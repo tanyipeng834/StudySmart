@@ -4,8 +4,11 @@
             <div class="col-4">
                 <Sidebar profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
             </div>
-            <div class="col-4"></div>
-            <div class="col-4">
+            <div class="col-4 ">
+            
+            </div>
+            <div class="col-4 ">
+                
 
             </div>
         </div>
@@ -14,7 +17,7 @@
     </div>
 </template>
 <script>
-    import Sidebar from "../components/HomePage/Sidebar.vue";
+    import Sidebar from "../components/Navigation/Sidebar.vue";
     export default {
     name: "Progress",
     components: {
@@ -22,3 +25,7 @@
         }
     }
 </script>
+
+<style>
+
+</style>

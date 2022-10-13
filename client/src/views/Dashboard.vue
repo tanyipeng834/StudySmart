@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid login w-100">
+  <div class="container-fluid login wrapper w-100">
     <div class="row">
       <div class="col-4">
         <Sidebar profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import Sidebar from "../components/HomePage/Sidebar.vue";
+import Sidebar from "../components/Navigation/Sidebar.vue";
 import CountDown from "../components/HomePage/CountDown.vue";
 import TimeTable from "../components/HomePage/TimeTable.vue";
 import gsap from "gsap";
@@ -91,4 +91,5 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 </style>
