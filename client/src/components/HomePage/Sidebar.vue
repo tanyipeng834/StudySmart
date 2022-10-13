@@ -79,8 +79,6 @@
 </template>
 
 <script>
-
-
 export default {
   name: "Sidebar",
   props: {
@@ -142,7 +140,7 @@ export default {
           icon: "bx-pie-chart-alt-2",
         },
         {
-          link: "#",
+          link: "/#/quiz",
           name: "Quizzes",
           tooltip: "Quizzes",
           icon: "bx bxs-edit-alt",
