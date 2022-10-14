@@ -58,7 +58,7 @@
         </div>
       </li>
       <li
-        v-for="test in tests"
+        v-for="(test,index) in tests" :key="index"
         class="list-group-item d-flex justify-content-around align-items-start"
       >
         <div class="ms-2 me-auto col-7">

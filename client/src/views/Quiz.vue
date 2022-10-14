@@ -25,7 +25,7 @@
           <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
-              <div v-for="(card, index) in this.flashCards">
+              <div v-for="(card, index) in this.flashCards" :key="index">
                 <Flashcard
                   :cardNumber="card.id"
                   :key="card.id"
