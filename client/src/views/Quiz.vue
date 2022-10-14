@@ -1,55 +1,57 @@
 <template>
-  <div class="container-fluid quiz">
-    <Sidebar></Sidebar>
-
-    <div v-if="modal == false">
-      <div class="row">
-        <div class="col-3"></div>
-        <div class="col-3 mt-5"><h3 id="flash-cards">Flashcards</h3></div>
-      </div>
-      <div class="row cards"></div>
-      <div class="button">
-        <button class="btn add" @click="addCard()">
-          <i class="fa-regular fa-pen-to-square fa-lg text-right"></i>Add Flash
-          Card
-        </button>
-      </div>
-    </div>
-    <div v-else>
-      <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
-          <h1>Create a new Study Set</h1>
-        </div>
+   <div>
+     <Topbar :tabs='tabs'/>
+       <div class="container-fluid quiz">
+      <Sidebar :haveTopbar="true"></Sidebar>
+      <div v-if="modal == false">
         <div class="row">
           <div class="col-3"></div>
-
-          <div class="col-6">
-            <div v-for="(card, index) in this.flashCards">
-              <Flashcard
-                :cardNumber="card.id"
-                :key="card.id"
-                @update-card="updateCard"
-                :card="card"
-              ></Flashcard>
-            </div>
-          </div>
+          <div class="col-3 mt-5"><h3 id="flash-cards">Flashcards</h3></div>
         </div>
-        <div class="d-flex add-card pt-3">
-          <button
-            class="btn btn-primary"
-            @click="addFlashCards({ term: '', defination: '' })"
-          >
-            Add
+        <div class="row cards"></div>
+        <div class="button">
+          <button class="btn add" @click="addCard()">
+            <i class="fa-regular fa-pen-to-square fa-lg text-right"></i>Add Flash
+            Card
           </button>
         </div>
       </div>
-    </div>
-  </div>
+      <div v-else>
+        <div class="row">
+          <div class="col-3"></div>
+          <div class="col-6">
+            <h1>Create a new Study Set</h1>
+          </div>
+          <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+              <div v-for="(card, index) in this.flashCards">
+                <Flashcard
+                  :cardNumber="card.id"
+                  :key="card.id"
+                  @update-card="updateCard"
+                  :card="card"
+                ></Flashcard>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex add-card pt-3">
+            <button
+              class="btn btn-primary"
+              @click="addFlashCards({ term: '', defination: '' })"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+       </div>
+   </div>
 </template>
 
 <script>
 import Sidebar from "../components/Navigation/Sidebar.vue";
+import Topbar from "../components/Navigation/Topbar.vue";
 import Flashcard from "../components/QuizPage/Flashcard.vue";
 
 export default {
@@ -65,9 +67,35 @@ export default {
     return {
       modal: false,
       flashCards: [],
+      tabs: [// example on how to implement the tabs
+                    {
+                        link:'',
+                        name: "subject",
+                        dropdown: true,
+                        dropdownTabs: [
+                            {
+                                name: 'math',
+                                link:'#'
+                            },
+                               {
+                                name: 'science',
+                                link:'#'
+                            },
+                        ]
+                        
+                    },
+                    {
+                        link:'#',
+                        name: "test",
+                        dropdown: false,
+                        dropdownTabs:[]
+                        
+                    },
+                ]
+
     };
   },
-  components: { Sidebar, Flashcard },
+  components: { Sidebar, Flashcard ,Topbar},
   methods: {
     addCard() {
       this.modal = true;
