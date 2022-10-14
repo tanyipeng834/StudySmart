@@ -27,9 +27,9 @@
           <div class="col-6">
             <div v-for="(card, index) in this.flashCards">
               <Flashcard
-                :cardNumber="index"
-                :key="index"
-                @add-Card="addCard"
+                :cardNumber="card.id"
+                :key="card.id"
+                @update-card="updateCard"
                 :card="card"
               ></Flashcard>
             </div>
@@ -51,15 +51,14 @@
 <script>
 import Sidebar from "../components/Navigation/Sidebar.vue";
 import Flashcard from "../components/QuizPage/Flashcard.vue";
-import AddCard from "../components/QuizPage/AddCard.vue";
 
 export default {
   name: "Quiz",
   created() {
     this.flashCards = [
-      { term: "", defination: "" },
-      { term: "", defination: "" },
-      { term: "", defination: "" },
+      { id: 1, term: "", defination: "" },
+      { id: 2, term: "", defination: "" },
+      { id: 3, term: "", defination: "" },
     ];
   },
   data() {
@@ -68,15 +67,25 @@ export default {
       flashCards: [],
     };
   },
-  components: { Sidebar, Flashcard, AddCard },
+  components: { Sidebar, Flashcard },
   methods: {
     addCard() {
       this.modal = true;
     },
     addFlashCards(term) {
+      let lastId = this.flashCards[this.flashCards.length - 1].id;
+      let newId = lastId + 1;
+      this.flashCards.push({ id: newId, ...term });
+    },
+    updateCard(term) {
       console.log(term);
-      console.log(this.flashCards);
-      this.flashCards.push(term);
+      this.flashCards.forEach((item) => {
+        if (item.id == term[0]) {
+          item.term = term[1];
+          item.defination = term[2];
+          console.log(this.flashCards);
+        }
+      });
     },
   },
 };

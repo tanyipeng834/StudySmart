@@ -1,20 +1,20 @@
 <template>
   <div class="card mt-4">
-    <div class="card-header">{{ card }}</div>
+    <div class="card-header">{{ cardNumber }}</div>
     <div class="card-body d-flex">
       <input
         v-model="term"
         placeholder="Term"
         type="text"
         class="ml-4"
-        @input="changeProps"
+        @input="changeProps()"
       />
       <input
         v-model="defination"
         placeholder="Defination"
         type="text"
         class="ml-4"
-        @input="changeProps"
+        @input="changeProps()"
       />
     </div>
   </div>
@@ -25,7 +25,7 @@ export default {
   name: "Flashcard",
   data() {
     return {
-      card: card,
+      id: cardNumber,
     };
   },
   mounted() {
@@ -34,7 +34,7 @@ export default {
     console.log(this.card);
   },
   props: {
-    card: Object,
+    cardNumber: Number,
   },
 
   data() {
@@ -43,10 +43,9 @@ export default {
       defination: "",
     };
   },
-  method: {
+  methods: {
     changeProps() {
-      console.log("change");
-      this.card = { ...card, term: this.term, defination: this.defination };
+      this.$emit("update-card", [this.cardNumber, this.term, this.defination]);
     },
   },
 };
