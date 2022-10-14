@@ -11,3 +11,6 @@ import { gsap } from "gsap";
 createApp(App).use(router).mount("#app");
 
 import "bootstrap/dist/js/bootstrap.min.js";
+import axios from "axios";
+Vue.prototype.$http = axios;
+

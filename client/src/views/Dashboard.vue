@@ -14,7 +14,9 @@
     </div>
 
     <div class="row">
-      <div class="col-4"></div>
+      <div class="col-4">
+        <Quote/>
+      </div>
       <div class="col-8">
         <TimeTable />
       </div>
@@ -23,10 +25,12 @@
 </template>
 
 <script>
+
 import Sidebar from "../components/Navigation/Sidebar.vue";
 import CountDown from "../components/HomePage/CountDown.vue";
 import TimeTable from "../components/HomePage/TimeTable.vue";
 import gsap from "gsap";
+import Quote from "../components/HomePage/Quote.vue"
 
 export default {
   name: "Dashboard",
@@ -34,6 +38,7 @@ export default {
     Sidebar,
     CountDown,
     TimeTable,
+    Quote
   },
   data() {
     return {
