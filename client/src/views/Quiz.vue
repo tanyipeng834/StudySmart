@@ -16,7 +16,34 @@
       </div>
     </div>
     <div v-else>
-      <AddCard @add-Card="addFlashCards" />
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+          <h1>Create a new Study Set</h1>
+        </div>
+        <div class="row">
+          <div class="col-3"></div>
+
+          <div class="col-6">
+            <div v-for="(card, index) in this.flashCards">
+              <Flashcard
+                :cardNumber="index"
+                :key="index"
+                @add-Card="addCard"
+                :card="card"
+              ></Flashcard>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex add-card pt-3">
+          <button
+            class="btn btn-primary"
+            @click="addFlashCards({ term: '', defination: '' })"
+          >
+            Add
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -28,10 +55,17 @@ import AddCard from "../components/QuizPage/AddCard.vue";
 
 export default {
   name: "Quiz",
+  created() {
+    this.flashCards = [
+      { term: "", defination: "" },
+      { term: "", defination: "" },
+      { term: "", defination: "" },
+    ];
+  },
   data() {
     return {
       modal: false,
-      flashcards: [],
+      flashCards: [],
     };
   },
   components: { Sidebar, Flashcard, AddCard },
@@ -40,8 +74,9 @@ export default {
       this.modal = true;
     },
     addFlashCards(term) {
-      this.flashcards.push(term);
-      console.log(this.flashcards);
+      console.log(term);
+      console.log(this.flashCards);
+      this.flashCards.push(term);
     },
   },
 };
@@ -63,5 +98,8 @@ export default {
 }
 .add {
   float: right;
+}
+.add-card {
+  justify-content: center;
 }
 </style>
