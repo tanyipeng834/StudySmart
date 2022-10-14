@@ -1,14 +1,43 @@
 <template>
-      <nav class="navbar navbar-dark bg-dark" aria-label="First navbar example">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Never expand</a>
-   
-      
-    </div>
-  </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+
+
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <!-- <a href="#" class="nav-item nav-link active">Home</a>
+                <a href="#" class="nav-item nav-link">Profile</a>
+                <a href="#" class="nav-item nav-link">Messages</a>
+                <a href="#" class="nav-item nav-link disabled" tabindex="-1">Reports</a> -->
+                    <a :href='tab.link' class="nav-item nav-link"
+                        v-for="(tab, index) in tabs.filter((tab)=> tab.dropdown===false)" :key="index">
+                        {{tab.name}}
+                    </a>
+
+                    <DropdownMenu v-for="(tab, index) in tabs.filter((tab)=> tab.dropdown===true)" :key="index"
+                        :tab="tab" />
+
+                </div>
+
+                <div class="navbar-nav ms-auto">
+                    <a href="#" class="nav-item nav-link">Login</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 </template>
 <script>
-export default {
-    name:"Topbar"
-}
+    import DropdownMenu from "./DropdownMenu.vue";
+
+    export default {
+        name: "Topbar",
+        props: {
+            tabs: Array
+        },
+        components: {
+            DropdownMenu,
+
+        }
+
+    }
 </script>

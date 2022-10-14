@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar " :class="isOpened ? 'open' : ''" :style="cssVars">
+  <div class="sidebar " :class="isOpened ? 'open' : ''"   :style="[haveTopbar? 'height:92.5%' : '', cssVars]">
     <div class="logo-details" style="margin: 6px 14px 0 14px">
       <img
         v-if="menuLogo"
@@ -79,13 +79,18 @@
 </template>
 
 <script>
+
 export default {
   name: "Sidebar",
   props: {
     //! Menu settings
+     haveTopbar: {
+      type: Boolean,
+      default: false,
+    },
     isMenuOpen: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     menuTitle: {
       type: String,
@@ -226,6 +231,7 @@ export default {
   data() {
     return {
       isOpened: false,
+      // haveTopbar:false
     };
   },
   mounted() {
@@ -282,8 +288,8 @@ body {
   flex-direction: column;
   position: fixed;
   left: 0;
- 
-  height: 100%;
+ height: 100%;
+  /* height: 92.5%; */
   min-height: min-content;
   /* overflow-y: auto; */
   width: 78px;
