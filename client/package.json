@@ -10,6 +10,7 @@
     "@popperjs/core": "^2.11.6",
     "animate.css": "^4.1.1",
     "bootstrap": "^5.2.2",
+    "chart.js": "^3.9.1",
     "core-js": "^3.8.3",
     "sass-loader": "^13.1.0",
     "vue": "^3.2.13",
@@ -23,5 +24,4 @@
     "@vue/cli-service": "~5.0.0",
     "sass": "^1.55.0"
   }
-  
 }

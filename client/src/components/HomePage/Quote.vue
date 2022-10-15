@@ -24,13 +24,7 @@ export default {
   methods: {
     
     loadQuote(){
-        axios.get("https://zenquotes.io/api/quotes")
-        .then(res => {
-            this.quote=res.data[0].q
-        })
-        .catch(err => {
-            console.error(err); 
-        })
+      
     }
 
 }
