@@ -14,8 +14,8 @@
 
                 </div>
             </div>
-            
-        
+
+
             <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -24,7 +24,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form>
+                           
                                 <div class="row">
                                     <div class="mb-3 col-6">
                                         <label class="form-label">Score</label>
@@ -55,7 +55,7 @@
                                     <button type="submit" data-bs-dismiss="modal" class="btn btn-warning float-end"
                                         @click="addResult">Submit</button>
                                 </div>
-                            </form>
+                    
                         </div>
                     </div>
 
@@ -64,11 +64,11 @@
 
             <div class="row justify-content-center">
                 <div class="col-6">
-                       
-            <button type="button" class="btn float-end mx-auto d-block mt-5" data-bs-toggle="modal"
-                data-bs-target="#modalForm">
-               <i class="fa-solid fa-circle-plus fa-lg"></i>
-            </button>
+
+                    <button type="button" class="btn float-end mx-auto d-block mt-5" data-bs-toggle="modal"
+                        data-bs-target="#modalForm">
+                        <i class="fa-solid fa-circle-plus fa-lg"></i>
+                    </button>
 
                     <ChartTest :data="data" :title='title' />
                 </div>
@@ -98,13 +98,15 @@
                     this.existingSubjects.push(this.subject)
                     console.log(this.subject)
                     const newData = {
-                        data: [this.score, 54, 43],
+                        data: [this.score],
                         label: this.subject,
                         borderColor: this.colors[count],
                         fill: false
                     }
                     this.data.datasets.push(newData)
                     console.log(this.data.datasets)
+                   
+                    
 
                 } else {
                     //TBC
@@ -126,12 +128,13 @@
                 data: {
                     labels: ['CA1', 'SA1', 'CA2', 'SA2'],
                     datasets: [
-                        { 
-        data: [86,114,106,106,107,111,133,221,783,2478],
-        label: "Africa",
-        borderColor: "#3e95cd",
-        fill: false
-      },
+
+                        // {
+                        //     data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
+                        //     label: "Africa",
+                        //     borderColor: "#3e95cd",
+                        //     fill: false
+                        // },
                         //dynamically add data here
                     ]
                 },

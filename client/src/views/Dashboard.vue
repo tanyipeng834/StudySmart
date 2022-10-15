@@ -2,7 +2,7 @@
   <div class="container-fluid login wrapper w-100">
     <div class="row">
       <div class="col-4">
-          <Sidebar profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
+          <Sidebar :haveTopbar="false"  profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
       </div>
       <div class="col-4">
         <CountDown
@@ -29,7 +29,6 @@
 import Sidebar from "../components/Navigation/Sidebar.vue";
 import CountDown from "../components/HomePage/CountDown.vue";
 import TimeTable from "../components/HomePage/TimeTable.vue";
-import gsap from "gsap";
 import Quote from "../components/HomePage/Quote.vue"
 
 export default {

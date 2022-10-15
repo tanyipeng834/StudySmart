@@ -61,6 +61,7 @@
 
 <script>
 import 'animate.css';
+
 import TypeEffect from"../components/LoginPage/TypeEffect.vue";
 import LoginForm from"../components/LoginPage/LoginForm.vue";
 

@@ -8,11 +8,18 @@
         name: 'ChartTest',
         props: {
             data: Object,
-            title: String
+            title: String,
 
-        },
+
+    },
+    watch: {
+        data:function() {
+            this.progressChart.update()
+        }
+    },
+        
         mounted() {
-            new Chart(document.getElementById("progress-chart"), {
+            const progressChart=new Chart(document.getElementById("progress-chart"), {
                 type: 'line',
                 data: this.data,
                 options: {
@@ -37,6 +44,8 @@
                     }
                 }
             });
-        }
+    
+    }
+      
     }
 </script>

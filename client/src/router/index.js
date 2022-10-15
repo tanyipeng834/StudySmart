@@ -25,6 +25,11 @@ const routes = [
     name: "ProgressTracker",
     component: Progress,
   },
+  {
+    path: "/signup",
+
+    component: () => import("../views/SignUp.vue"),
+  },
 ];
 
 const router = createRouter({

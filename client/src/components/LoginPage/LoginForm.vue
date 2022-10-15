@@ -52,12 +52,13 @@
             name="password"
           />
         </div>
-        <router-link to="/home">
+        <router-link to="/">
           <button type="button" class="login-button">LOGIN</button>
         </router-link>
         <div className="message">
           <div>
-            <a> New user? Sign up </a>
+            New user?
+            <a href="#/SignUp">  Sign up </a>
           </div>
         </div>
       </form>
