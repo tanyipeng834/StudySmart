@@ -79,20 +79,52 @@
     </div>
 </template>
 <script>
+ import { auth, db } from "../../src/main";
     import Sidebar from "../components/Navigation/Sidebar.vue";
     import Topbar from "../components/Navigation/Topbar.vue";
-    import ChartTest from "../components/ProgressPage/ChartTest.vue";
+import ChartTest from "../components/ProgressPage/ChartTest.vue";
+    import {
+    getFirestore,
+    doc,
+    updateDoc,
+    getDoc,
+    setDoc,
+    collection,
+    addDoc,
+    deleteDoc,
+    deleteField,arrayUnion, arrayRemove
+  } from "firebase/firestore";
     export default {
         name: "Progress",
         components: {
             Sidebar,
             Topbar,
             ChartTest
+    },
+    mounted() {
+       this.getData()
+            
         },
-        methods: {
-            addResult() {
+    methods: {
+        async  getData() {
+                 var email = localStorage.getItem("email");
+            var ref = doc(db, 'users', email);
+            const docSnap=await getDoc(ref)
+            if (docSnap.exists()) {
+                this.data.datasets = docSnap.data().progressResults
+                    console.log( this.data.datasets)
+                    console.log( this.data)
+            } else {
+                    console.log('does not exist')
+                }
+
+        },
+            async  addResult() {
 
                 let count = this.existingSubjects.length
+                var email = localStorage.getItem("email");
+                var ref = doc(db, 'users', email);
+             
 
                 if (!this.existingSubjects.includes(this.subject)) {
                     this.existingSubjects.push(this.subject)
@@ -103,8 +135,17 @@
                         borderColor: this.colors[count],
                         fill: false
                     }
-                    this.data.datasets.push(newData)
-                    console.log(this.data.datasets)
+                    // this.data.datasets.push(newData)
+                    // console.log(this.data.datasets)
+                       await updateDoc(
+                    ref, {
+                        progressResults: arrayUnion(newData)
+                    
+                       }
+        
+                    
+                    )
+                        console.log(newData)
                    
                     
 

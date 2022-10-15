@@ -28,10 +28,10 @@
     createUserWithEmailAndPassword
   } from "firebase/auth"
 
-
-  const db = getFirestore();
+ import { auth, db } from "../main";
+ 
   const email = ref('')
-  const auth = getAuth()
+
   const password = ref('')
   const name = ref('')
   const grade = ref('')
@@ -41,8 +41,6 @@
     createUserWithEmailAndPassword(auth, email.value, password.value) // need .value because ref()
       .then(async (data) => {
         console.log('Successfully registered!');
-
-
         try {
           const docRef = await setDoc(doc(db, "users", email.value), {
             profile: {
@@ -50,24 +48,16 @@
               schoolGrade: grade.value
             },
             countDown: [],
-            progresResults: [],
-
-
-
+            progressResults: [],
           });
 
           localStorage.setItem("email", email.value);
-          localStorage.setItem("db", JSON.stringify(db));
-          //           var retrievedObject = localStorage.getItem('testObject');
 
-          // console.log('retrievedObject: ', JSON.parse(retrievedObject));
-          window.location.href = '/';
+          window.location.href = '/#';
 
         } catch (e) {
           console.error("Error adding document: ", e);
         }
-
-
       })
       .catch(error => {
         console.log(error.code)

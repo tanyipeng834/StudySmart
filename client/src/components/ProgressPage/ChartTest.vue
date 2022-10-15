@@ -19,7 +19,7 @@
     },
         
         mounted() {
-            const progressChart=new Chart(document.getElementById("progress-chart"), {
+           const progressChart=new Chart(document.getElementById("progress-chart"), {
                 type: 'line',
                 data: this.data,
                 options: {
