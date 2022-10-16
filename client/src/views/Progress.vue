@@ -158,12 +158,15 @@
 
             var email = localStorage.getItem("email");
             const q = query(collection(db, "users", email, 'progressResults'))
-
+const data=[]
             const unsubscribe = onSnapshot(q, (querySnapshot) => {
             
                 querySnapshot.docs.forEach((docSnapshot) => {
-                  console.log(docSnapshot.data())
+                    data.push(docSnapshot.data())
+                    console.log(docSnapshot.id)
+                //   console.log(docSnapshot.data())
                 });
+                console.log(data)
                 
             });
             // const snapshotData = onSnapshot(collection(db, "users", email, 'progressResults'), (snapshot) => {
