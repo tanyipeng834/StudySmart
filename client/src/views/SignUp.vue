@@ -2,7 +2,16 @@
   <div>
     <h1>Create an Account</h1>
     <p><input type="text" placeholder="Name" v-model="name" /></p>
-    <p><input type="text" placeholder="School Grade" v-model="grade" /></p>
+    <p>
+      <select v-model="grade" required>
+        <option value='' disabled selected class="">Your school grade</option>
+        <option value="Secondary 1">Secondary 1</option>
+        <option value="Secondary 2">Secondary 2</option>
+        <option value="Secondary 3">Secondary 3</option>
+        <option value="Secondary 4">Secondary 4</option>
+        <option value="Secondary 5">Secondary 5</option>
+        </select>
+    </p>
     <p><input type="text" placeholder="Email" v-model="email" /></p>
     <p><input type="password" placeholder="Password" v-model="password" /></p>
     <p><button @click="register">Submit</button></p>
@@ -65,3 +74,7 @@
       });
   }
 </script>
+
+<style scoped>
+select:invalid { color: gray; }
+</style>
