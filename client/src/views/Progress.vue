@@ -72,6 +72,7 @@
                     <!-- 
                     <ChartTest :data="data" :title='title' /> -->
                     <canvas id="progress-chart" width="600" height="450"></canvas>
+                    <button @click="test">Test</button>
                 </div>
             </div>
 
@@ -99,7 +100,7 @@
         deleteDoc,
         deleteField,
         arrayUnion,
-        arrayRemove
+        arrayRemove, onSnapshot
     } from "firebase/firestore";
     export default {
         name: "Progress",
@@ -110,9 +111,9 @@
         },
         mounted() {
 
-
             const progressChart = new Chart(document.getElementById("progress-chart"), {
                 type: 'line',
+                // title:"Sec 1 Progress",
                 data: {
                     labels: ['CA1', 'SA1', 'CA2', 'SA2'],
                     datasets: [
@@ -135,9 +136,13 @@
 
                         y: {
                             display: true,
-                            stacked: true,
-                            // max: 0,
-                            // min: 200,
+                            stacked: false,
+                            max: 0,
+                            min: 100,
+                            ticks: {
+
+                                stepSize: 10
+                            },
                             title: {
                                 display: true,
                                 text: 'Your Score (%)'
@@ -147,58 +152,56 @@
                 }
             });
 
+            // this.getData().then((dataArray) => {
+            //     progressChart.data.datasets = dataArray[0]
+            //     this.getCount(dataArray[0])
+            //     this.data = dataArray[0]
+            //     console.log(dataArray[1])
+            //     this.existingSubjects=dataArray[1]
+            //     progressChart.update()
 
-            this.getData().then((data) => {
-                console.log(data)
-                console.log(typeof (data))
-                let liste = []
-        
-                // let test = [
-                //      {
-                //         data: [{ x:"SA1",y:86},{ x:"CA1",y:23}],
-                //             label: "Africa",
-                //             borderColor: "#3e95cd",
-                //             fill: false
-                //         }
-                // ]
-                progressChart.data.datasets=data
-                // console.log(progressChart.data)
-                // console.log(progressChart.data.datasets)
-                console.log(data[0].data)
-                console.log(typeof(data[0].data))
-                console.log(typeof(data[0].data[0]))
-                this.getCount(data)
-                 progressChart.update()
+            // })
+               var email = localStorage.getItem("email");
+ const snapshotData= onSnapshot(doc(db, "users", email), (doc) => {
+                console.log("Current data: ", doc.data());
+     console.log('hello')
+     this.snapshotData = doc.data()
+     this.snapShotprogress = doc.data().progressResults
+     let test=[]
+     for (let item in doc.data().progressResults) {
+         console.log(doc.data().progressResults[item])
+        test.push(doc.data().progressResults[item])
+     }
+     console.log(test)
 
-            })
+     progressChart.data.datasets = test
+    
+     progressChart.update()
+                
 
-
-            //this.getData()
-            // console.log(typeof (chartData))
-            // console.log(chartData)
-            // progressChart.data.datasets.push(chartData)
-
-
-
+            });
 
 
         },
+        
     methods: {
-        getCount(data) {
-                 this.count= data.length
+        test() {
+                  console.log(this.snapShotprogress)
+            },
+
+            getCount(data) {
+                this.count = data.length
             },
             async getData() {
                 var email = localStorage.getItem("email");
                 var ref = doc(db, 'users', email);
                 const docSnap = await getDoc(ref)
                 if (docSnap.exists()) {
-                    // this.data.datasets = docSnap.data().progressResults
-                    //     console.log( this.data.datasets)
-                    // console.log( this.data)
-                    // console.log(docSnap.data().progressResults)
                     var data = docSnap.data().progressResults
-                    return data
-
+                    var existingSubjects = docSnap.data().existingSubjects
+              
+             
+                    return [data,existingSubjects]
 
 
                 } else {
@@ -208,39 +211,60 @@
 
             },
             async addResult() {
-
-
-                let count = this.existingSubjects.length
+              
+                let count = this.count
                 var email = localStorage.getItem("email");
                 var ref = doc(db, 'users', email);
-
-
+                console.log(this.data)
+                console.log(this.existingSubjects)
                 if (!this.existingSubjects.includes(this.subject)) {
                     this.existingSubjects.push(this.subject)
-                  
                     const newData = {
-                        data: [{ x: this.examType,y:this.score}],
+                        data: [{
+                            x: this.examType,
+                            y: this.score
+                        }],
                         label: this.subject,
-                        borderColor: this.colors[this.count],
+                        borderColor: this.colors[count],
                         fill: false
                     }
-                    // this.data.datasets.push(newData)
-                    // console.log(this.data.datasets)
                     await updateDoc(
                         ref, {
-                            progressResults: arrayUnion(newData)
-
+                            progressResults: arrayUnion(newData),
+                            existingSubjects: arrayUnion(this.subject),
+                        
                         }
-
-
                     )
-                    console.log(newData)
-                    
-
 
 
                 } else {
                     //TBC
+                    progressResults= [
+                        {
+                            English: {
+                                data: [{
+                                    x: this.examType,
+                                    y: this.score
+                                }],
+                                borderColor: this.colors[count],
+                                fill: false
+                            }
+                        },
+                        {
+                            Math: {
+                                data: [{
+                                    x: this.examType,
+                                    y: this.score
+                                }],
+                                borderColor: this.colors[count],
+                                fill: false
+                            }
+                        },
+
+
+                    
+                    ]
+                     
                 }
 
 
@@ -250,26 +274,25 @@
 
         data() {
             return {
-                score: '',
+                score: 0,
                 examType: '',
                 subject: '',
-                count:0,
+                count: 0,
+                data: [],
                 existingSubjects: [],
-                colors: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850","#21c095","#bbc021","#1a993a","##904b23","#a01359","#a04913","#534270"],
-                title: '',
-                data: {
-                    labels: ['CA1', 'SA1', 'CA2', 'SA2'],
-                    datasets: [
+                snapshotData: '',
+                snapShotprogress: '',
+                // existingSubjects: [],
+                colors: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#21c095", "#bbc021", "#1a993a",
+                    "##904b23", "#a01359", "#a04913", "#534270"
+                ],
+                // title: '',
+                // data: {
+                //     labels: ['CA1', 'SA1', 'CA2', 'SA2'],
+                //     datasets: [
 
-                        // {
-                        //     data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
-                        //     label: "Africa",
-                        //     borderColor: "#3e95cd",
-                        //     fill: false
-                        // },
-                        //dynamically add data here
-                    ]
-                },
+                //     ]
+                // },
                 tabs: [{
                         link: '',
                         name: "subject",
