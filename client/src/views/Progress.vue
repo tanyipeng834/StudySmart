@@ -117,7 +117,7 @@
                     labels: ['CA1', 'SA1', 'CA2', 'SA2'],
                     datasets: [
                         // {
-                        //     data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
+                        //     data: [{y:86,x:CA1},86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
                         //     label: "Africa",
                         //     borderColor: "#3e95cd",
                         //     fill: false
@@ -136,8 +136,8 @@
                         y: {
                             display: true,
                             stacked: true,
-                            max: 0,
-                            min: 100,
+                            // max: 0,
+                            // min: 200,
                             title: {
                                 display: true,
                                 text: 'Your Score (%)'
@@ -152,30 +152,22 @@
                 console.log(data)
                 console.log(typeof (data))
                 let liste = []
-                //                 for (let item in data) {
-                //                     console.log(item)
-                //                 }
-                //               let i = 0;
-
-                // while (i < data.length) {
-                //     console.log(data[i]);
-                //     liste.push(data[i])
-                //     i++;
-
-                // }
-                let test = [
-                     {
-                            data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
-                            label: "Africa",
-                            borderColor: "#3e95cd",
-                            fill: false
-                        }
-                ]
+        
+                // let test = [
+                //      {
+                //         data: [{ x:"SA1",y:86},{ x:"CA1",y:23}],
+                //             label: "Africa",
+                //             borderColor: "#3e95cd",
+                //             fill: false
+                //         }
+                // ]
                 progressChart.data.datasets=data
-                console.log(progressChart.data)
-                console.log(progressChart.data.datasets)
-
-
+                // console.log(progressChart.data)
+                // console.log(progressChart.data.datasets)
+                console.log(data[0].data)
+                console.log(typeof(data[0].data))
+                console.log(typeof(data[0].data[0]))
+                this.getCount(data)
                  progressChart.update()
 
             })
@@ -191,7 +183,10 @@
 
 
         },
-        methods: {
+    methods: {
+        getCount(data) {
+                 this.count= data.length
+            },
             async getData() {
                 var email = localStorage.getItem("email");
                 var ref = doc(db, 'users', email);
@@ -222,11 +217,11 @@
 
                 if (!this.existingSubjects.includes(this.subject)) {
                     this.existingSubjects.push(this.subject)
-                    console.log(this.subject)
+                  
                     const newData = {
-                        data: [this.score],
+                        data: [{ x: this.examType,y:this.score}],
                         label: this.subject,
-                        borderColor: this.colors[count],
+                        borderColor: this.colors[this.count],
                         fill: false
                     }
                     // this.data.datasets.push(newData)
@@ -258,8 +253,9 @@
                 score: '',
                 examType: '',
                 subject: '',
+                count:0,
                 existingSubjects: [],
-                colors: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                colors: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850","#21c095","#bbc021","#1a993a","##904b23","#a01359","#a04913","#534270"],
                 title: '',
                 data: {
                     labels: ['CA1', 'SA1', 'CA2', 'SA2'],

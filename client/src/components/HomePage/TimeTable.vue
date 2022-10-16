@@ -63,11 +63,11 @@ export default {
 
   },
   methods: {
-    loadEvents() {
-      // placeholder for an HTTP call
+    // loadEvents() {
+    //   // placeholder for an HTTP call
       
-      this.calendar.update({events});
-    },
+    //   this.calendar.update({events});
+    // },
     loadResources() {
       const columns = [
         {name: "Monday", id: "R1"},
@@ -115,7 +115,7 @@ export default {
   },
   mounted() {
     this.loadResources();
-    this.loadEvents();
+    // this.loadEvents();
   }
 }
 </script>
