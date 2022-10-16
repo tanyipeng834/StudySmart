@@ -10,7 +10,7 @@
         <option value="Secondary 3">Secondary 3</option>
         <option value="Secondary 4">Secondary 4</option>
         <option value="Secondary 5">Secondary 5</option>
-        </select>
+      </select>
     </p>
     <p><input type="text" placeholder="Email" v-model="email" /></p>
     <p><input type="password" placeholder="Password" v-model="password" /></p>
@@ -37,8 +37,11 @@
     createUserWithEmailAndPassword
   } from "firebase/auth"
 
- import { auth, db } from "../main";
- 
+  import {
+    auth,
+    db
+  } from "../main";
+
   const email = ref('')
 
   const password = ref('')
@@ -57,8 +60,10 @@
               schoolGrade: grade.value
             },
             countDown: [],
-            progressResults: [],
+       
           });
+         const col= doc(collection(db, "users", email.value, 'progressResults'));
+          await setDoc(col, {});
 
           localStorage.setItem("email", email.value);
 
@@ -76,5 +81,7 @@
 </script>
 
 <style scoped>
-select:invalid { color: gray; }
+  select:invalid {
+    color: gray;
+  }
 </style>

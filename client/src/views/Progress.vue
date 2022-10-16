@@ -100,7 +100,10 @@
         deleteDoc,
         deleteField,
         arrayUnion,
-        arrayRemove, onSnapshot
+        arrayRemove,
+    onSnapshot,
+    query,
+        where
     } from "firebase/firestore";
     export default {
         name: "Progress",
@@ -152,66 +155,43 @@
                 }
             });
 
-            // this.getData().then((dataArray) => {
-            //     progressChart.data.datasets = dataArray[0]
-            //     this.getCount(dataArray[0])
-            //     this.data = dataArray[0]
-            //     console.log(dataArray[1])
-            //     this.existingSubjects=dataArray[1]
-            //     progressChart.update()
 
-            // })
-               var email = localStorage.getItem("email");
- const snapshotData= onSnapshot(doc(db, "users", email), (doc) => {
-                console.log("Current data: ", doc.data());
-     console.log('hello')
-     this.snapshotData = doc.data()
-     this.snapShotprogress = doc.data().progressResults
-     let test=[]
-     for (let item in doc.data().progressResults) {
-         console.log(doc.data().progressResults[item])
-        test.push(doc.data().progressResults[item])
-     }
-     console.log(test)
+            var email = localStorage.getItem("email");
+            const q = query(collection(db, "users", email, 'progressResults'))
 
-     progressChart.data.datasets = test
-    
-     progressChart.update()
+            const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            
+                querySnapshot.docs.forEach((docSnapshot) => {
+                  console.log(docSnapshot.data())
+                });
                 
-
             });
+            // const snapshotData = onSnapshot(collection(db, "users", email, 'progressResults'), (snapshot) => {
+
+            //     let progressResults = doc.data()
+            //     console.log(progressResults)
+
+                // this.count = progressResults.length
+
+                // progressChart.data.datasets = progressResults
+
+                // progressChart.update()
 
 
-        },
-        
-    methods: {
-        test() {
-                  console.log(this.snapShotprogress)
+        //     });
+
+
+         },
+
+        methods: {
+            test() {
+                console.log(this.snapShotprogress)
             },
 
-            getCount(data) {
-                this.count = data.length
-            },
-            async getData() {
-                var email = localStorage.getItem("email");
-                var ref = doc(db, 'users', email);
-                const docSnap = await getDoc(ref)
-                if (docSnap.exists()) {
-                    var data = docSnap.data().progressResults
-                    var existingSubjects = docSnap.data().existingSubjects
-              
-             
-                    return [data,existingSubjects]
 
 
-                } else {
-                    console.log('does not exist')
-                }
-
-
-            },
             async addResult() {
-              
+
                 let count = this.count
                 var email = localStorage.getItem("email");
                 var ref = doc(db, 'users', email);
@@ -219,28 +199,46 @@
                 console.log(this.existingSubjects)
                 if (!this.existingSubjects.includes(this.subject)) {
                     this.existingSubjects.push(this.subject)
-                    const newData = {
+                    const newData = [{
+
                         data: [{
                             x: this.examType,
                             y: this.score
                         }],
-                        label: this.subject,
                         borderColor: this.colors[count],
-                        fill: false
-                    }
+                        fill: false,
+                        label: this.subject,
+
+                    }]
+
+
+                    console.log(newData)
+                    // newData[0][0].key=this.subject
+                    //{
+                    //     data: [{
+                    //         x: this.examType,
+                    //         y: this.score
+                    //     }],
+                    //     label: this.subject,
+                    //     borderColor: this.colors[count],
+                    //     fill: false
+                    // }
+
                     await updateDoc(
                         ref, {
-                            progressResults: arrayUnion(newData),
+                            progressResults: arrayUnion(this.subject),
                             existingSubjects: arrayUnion(this.subject),
-                        
+
+
+                        }, doc(db, '/users/', email, '/progressResults'), {
+                            [this.subject]: newData
                         }
                     )
 
 
                 } else {
                     //TBC
-                    progressResults= [
-                        {
+                    progressResults = [{
                             English: {
                                 data: [{
                                     x: this.examType,
@@ -262,9 +260,9 @@
                         },
 
 
-                    
+
                     ]
-                     
+
                 }
 
 
@@ -280,19 +278,12 @@
                 count: 0,
                 data: [],
                 existingSubjects: [],
-                snapshotData: '',
-                snapShotprogress: '',
+
                 // existingSubjects: [],
                 colors: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#21c095", "#bbc021", "#1a993a",
                     "##904b23", "#a01359", "#a04913", "#534270"
                 ],
-                // title: '',
-                // data: {
-                //     labels: ['CA1', 'SA1', 'CA2', 'SA2'],
-                //     datasets: [
 
-                //     ]
-                // },
                 tabs: [{
                         link: '',
                         name: "subject",
