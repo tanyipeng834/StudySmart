@@ -163,12 +163,20 @@
                 //     i++;
 
                 // }
-                progressChart.data.datasets.push(data)
+                let test = [
+                     {
+                            data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
+                            label: "Africa",
+                            borderColor: "#3e95cd",
+                            fill: false
+                        }
+                ]
+                progressChart.data.datasets=data
                 console.log(progressChart.data)
                 console.log(progressChart.data.datasets)
 
 
-                // progressChart.update()
+                 progressChart.update()
 
             })
 
