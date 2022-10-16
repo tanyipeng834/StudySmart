@@ -20,7 +20,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Bootstrap 5 Modal Form</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Add Result</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -72,7 +72,7 @@
                     <!-- 
                     <ChartTest :data="data" :title='title' /> -->
                     <canvas id="progress-chart" width="600" height="450"></canvas>
-                    <button @click="test">Test</button>
+                  
                 </div>
             </div>
 
@@ -101,8 +101,8 @@
         deleteField,
         arrayUnion,
         arrayRemove,
-    onSnapshot,
-    query,
+        onSnapshot,
+        query,
         where
     } from "firebase/firestore";
     export default {
@@ -120,12 +120,7 @@
                 data: {
                     labels: ['CA1', 'SA1', 'CA2', 'SA2'],
                     datasets: [
-                        // {
-                        //     data: [{y:86,x:CA1},86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
-                        //     label: "Africa",
-                        //     borderColor: "#3e95cd",
-                        //     fill: false
-                        // },
+        
                     ]
                 },
                 options: {
@@ -158,33 +153,27 @@
 
             var email = localStorage.getItem("email");
             const q = query(collection(db, "users", email, 'progressResults'))
-const data=[]
-            const unsubscribe = onSnapshot(q, (querySnapshot) => {
-            
+
+            onSnapshot(q, (querySnapshot) => {
+                const data = []
+                const existingSubjects = []
                 querySnapshot.docs.forEach((docSnapshot) => {
-                    data.push(docSnapshot.data())
-                    console.log(docSnapshot.id)
-                //   console.log(docSnapshot.data())
+                    if (docSnapshot.id != 'ignore'&& !data.includes(docSnapshot.data())) {
+                        existingSubjects.push(docSnapshot.id)
+                        data.push(docSnapshot.data())
+                    }
+
                 });
-                console.log(data)
-                
+
+                progressChart.data.datasets = data
+                progressChart.update()
+                this.existingSubjects = existingSubjects
+                this.count=existingSubjects.length
+
             });
-            // const snapshotData = onSnapshot(collection(db, "users", email, 'progressResults'), (snapshot) => {
+            console.log(email)
 
-            //     let progressResults = doc.data()
-            //     console.log(progressResults)
-
-                // this.count = progressResults.length
-
-                // progressChart.data.datasets = progressResults
-
-                // progressChart.update()
-
-
-        //     });
-
-
-         },
+        },
 
         methods: {
             test() {
@@ -197,12 +186,12 @@ const data=[]
 
                 let count = this.count
                 var email = localStorage.getItem("email");
-                var ref = doc(db, 'users', email);
-                console.log(this.data)
-                console.log(this.existingSubjects)
+    
+                var colRef = doc(db, 'users', email, 'progressResults', this.subject);
+
                 if (!this.existingSubjects.includes(this.subject)) {
                     this.existingSubjects.push(this.subject)
-                    const newData = [{
+                    const newData = {
 
                         data: [{
                             x: this.examType,
@@ -212,59 +201,27 @@ const data=[]
                         fill: false,
                         label: this.subject,
 
-                    }]
+                    }
 
 
                     console.log(newData)
-                    // newData[0][0].key=this.subject
-                    //{
-                    //     data: [{
-                    //         x: this.examType,
-                    //         y: this.score
-                    //     }],
-                    //     label: this.subject,
-                    //     borderColor: this.colors[count],
-                    //     fill: false
-                    // }
 
+                    await setDoc(doc(db, "users", email, 'progressResults', this.subject), newData);
+
+                } else {
+               
+           
                     await updateDoc(
-                        ref, {
-                            progressResults: arrayUnion(this.subject),
-                            existingSubjects: arrayUnion(this.subject),
+                        colRef, {
 
+                            data: arrayUnion({
+                                x: this.examType,
+                                y: this.score
+                            }),
 
-                        }, doc(db, '/users/', email, '/progressResults'), {
-                            [this.subject]: newData
                         }
                     )
 
-
-                } else {
-                    //TBC
-                    progressResults = [{
-                            English: {
-                                data: [{
-                                    x: this.examType,
-                                    y: this.score
-                                }],
-                                borderColor: this.colors[count],
-                                fill: false
-                            }
-                        },
-                        {
-                            Math: {
-                                data: [{
-                                    x: this.examType,
-                                    y: this.score
-                                }],
-                                borderColor: this.colors[count],
-                                fill: false
-                            }
-                        },
-
-
-
-                    ]
 
                 }
 
@@ -280,9 +237,8 @@ const data=[]
                 subject: '',
                 count: 0,
                 data: [],
+                title:'Sec 3 Progress',
                 existingSubjects: [],
-
-                // existingSubjects: [],
                 colors: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#21c095", "#bbc021", "#1a993a",
                     "##904b23", "#a01359", "#a04913", "#534270"
                 ],

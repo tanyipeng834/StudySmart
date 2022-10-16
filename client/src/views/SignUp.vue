@@ -62,8 +62,8 @@
             countDown: [],
        
           });
-         const col= doc(collection(db, "users", email.value, 'progressResults'));
-          await setDoc(col, {});
+          await setDoc(doc(db, "users", email.value, 'progressResults','ignore'), {});
+          // await setDoc(col, { 'ignore' :''});
 
           localStorage.setItem("email", email.value);
 
