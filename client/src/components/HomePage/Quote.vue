@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <h1>{{ quote }}</h1>
-  </div>
+
+    <p>{{ quote }}</p>
 </template>
 
 <script>
@@ -12,7 +11,7 @@ export default {
 
   data() {
     return {
-      quote: "jshadfhflks",
+      quote: "",
     };
   },
 
@@ -33,3 +32,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+.quote{
+  display: flex;
+  margin-left: 50px;
+}
+</style>
