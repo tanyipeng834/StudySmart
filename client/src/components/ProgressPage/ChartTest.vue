@@ -15,6 +15,7 @@
     watch: {
         data:function() {
             this.progressChart.update()
+            console.log(this.data)
         }
     },
         

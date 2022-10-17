@@ -20,42 +20,42 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Bootstrap 5 Modal Form</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Add Result</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                           
-                                <div class="row">
-                                    <div class="mb-3 col-6">
-                                        <label class="form-label">Score</label>
-                                        <input type="number" min="0" max="100" class="form-control" id="score"
-                                            name="score" placeholder="Score in %" v-model='score' />
-                                    </div>
-                                    <div class="mb-3 form-check col-6">
-                                        <label class="form-label">Exam Type</label>
-                                        <select class="form-select form-select" aria-label=".form-select-sm example"
-                                            id="examType" v-model='examType'>
-                                            <option value="CA1">CA1</option>
-                                            <option value="SA1">SA1</option>
-                                            <option value="CA2">CA2</option>
-                                            <option value="SA2">SA2</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="mb-3">
-                                        <label class="form-label">Subject</label>
-                                        <input type="text" class="form-control" id="subject" name="subject"
-                                            placeholder="" v-model='subject' />
-                                    </div>
-                                </div>
 
-                                <div class="modal-footer d-block">
-
-                                    <button type="submit" data-bs-dismiss="modal" class="btn btn-warning float-end"
-                                        @click="addResult">Submit</button>
+                            <div class="row">
+                                <div class="mb-3 col-6">
+                                    <label class="form-label">Score</label>
+                                    <input type="number" min="0" max="100" class="form-control" id="score" name="score"
+                                        placeholder="Score in %" v-model='score' />
                                 </div>
-                    
+                                <div class="mb-3 form-check col-6">
+                                    <label class="form-label">Exam Type</label>
+                                    <select class="form-select form-select" aria-label=".form-select-sm example"
+                                        id="examType" v-model='examType'>
+                                        <option value="CA1">CA1</option>
+                                        <option value="SA1">SA1</option>
+                                        <option value="CA2">CA2</option>
+                                        <option value="SA2">SA2</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label class="form-label">Subject</label>
+                                    <input type="text" class="form-control" id="subject" name="subject" placeholder=""
+                                        v-model='subject' />
+                                </div>
+                            </div>
+
+                            <div class="modal-footer d-block">
+
+                                <button type="submit" data-bs-dismiss="modal" class="btn btn-warning float-end"
+                                    @click="addResult">Submit</button>
+                            </div>
+
                         </div>
                     </div>
 
@@ -69,8 +69,10 @@
                         data-bs-target="#modalForm">
                         <i class="fa-solid fa-circle-plus fa-lg"></i>
                     </button>
-
-                    <ChartTest :data="data" :title='title' />
+                    <!-- 
+                    <ChartTest :data="data" :title='title' /> -->
+                    <canvas id="progress-chart" width="600" height="450"></canvas>
+                  
                 </div>
             </div>
 
@@ -79,78 +81,148 @@
     </div>
 </template>
 <script>
- import { auth, db } from "../../src/main";
+    import {
+        auth,
+        db
+    } from "../../src/main";
     import Sidebar from "../components/Navigation/Sidebar.vue";
     import Topbar from "../components/Navigation/Topbar.vue";
-import ChartTest from "../components/ProgressPage/ChartTest.vue";
+    import ChartTest from "../components/ProgressPage/ChartTest.vue";
+    import Chart from 'chart.js/auto';
     import {
-    getFirestore,
-    doc,
-    updateDoc,
-    getDoc,
-    setDoc,
-    collection,
-    addDoc,
-    deleteDoc,
-    deleteField,arrayUnion, arrayRemove
-  } from "firebase/firestore";
+        getFirestore,
+        doc,
+        updateDoc,
+        getDoc,
+        setDoc,
+        collection,
+        addDoc,
+        deleteDoc,
+        deleteField,
+        arrayUnion,
+        arrayRemove,
+        onSnapshot,
+        query,
+        where
+    } from "firebase/firestore";
     export default {
         name: "Progress",
         components: {
             Sidebar,
             Topbar,
             ChartTest
-    },
-    mounted() {
-       this.getData()
-            
         },
-    methods: {
-        async  getData() {
-                 var email = localStorage.getItem("email");
-            var ref = doc(db, 'users', email);
-            const docSnap=await getDoc(ref)
-            if (docSnap.exists()) {
-                this.data.datasets = docSnap.data().progressResults
-                    console.log( this.data.datasets)
-                    console.log( this.data)
-            } else {
-                    console.log('does not exist')
+        mounted() {
+
+            const progressChart = new Chart(document.getElementById("progress-chart"), {
+                type: 'line',
+                // title:"Sec 1 Progress",
+                data: {
+                    labels: ['CA1', 'SA1', 'CA2', 'SA2'],
+                    datasets: [
+        
+                    ]
+                },
+                options: {
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: this.title
+                        }
+                    },
+                    scales: {
+
+                        y: {
+                            display: true,
+                            stacked: false,
+                            max: 0,
+                            min: 100,
+                            ticks: {
+
+                                stepSize: 10
+                            },
+                            title: {
+                                display: true,
+                                text: 'Your Score (%)'
+                            }
+                        }
+                    }
                 }
+            });
+
+
+            var email = localStorage.getItem("email");
+            const q = query(collection(db, "users", email, 'progressResults'))
+
+            onSnapshot(q, (querySnapshot) => {
+                const data = []
+                const existingSubjects = []
+                querySnapshot.docs.forEach((docSnapshot) => {
+                    if (docSnapshot.id != 'ignore'&& !data.includes(docSnapshot.data())) {
+                        existingSubjects.push(docSnapshot.id)
+                        data.push(docSnapshot.data())
+                    }
+
+                });
+
+                progressChart.data.datasets = data
+                progressChart.update()
+                this.existingSubjects = existingSubjects
+                this.count=existingSubjects.length
+
+            });
+            console.log(email)
 
         },
-            async  addResult() {
 
-                let count = this.existingSubjects.length
+        methods: {
+            test() {
+                console.log(this.snapShotprogress)
+            },
+
+
+
+            async addResult() {
+
+                let count = this.count
                 var email = localStorage.getItem("email");
-                var ref = doc(db, 'users', email);
-             
+    
+                var colRef = doc(db, 'users', email, 'progressResults', this.subject);
 
                 if (!this.existingSubjects.includes(this.subject)) {
                     this.existingSubjects.push(this.subject)
-                    console.log(this.subject)
                     const newData = {
-                        data: [this.score],
-                        label: this.subject,
+
+                        data: [{
+                            x: this.examType,
+                            y: this.score
+                        }],
                         borderColor: this.colors[count],
-                        fill: false
+                        fill: false,
+                        label: this.subject,
+
                     }
-                    // this.data.datasets.push(newData)
-                    // console.log(this.data.datasets)
-                       await updateDoc(
-                    ref, {
-                        progressResults: arrayUnion(newData)
-                    
-                       }
-        
-                    
-                    )
-                        console.log(newData)
-                   
-                    
+
+
+                    console.log(newData)
+
+                    await setDoc(doc(db, "users", email, 'progressResults', this.subject), newData);
 
                 } else {
-                    //TBC
+               
+           
+                    await updateDoc(
+                        colRef, {
+
+                            data: arrayUnion({
+                                x: this.examType,
+                                y: this.score
+                            }),
+
+                        }
+                    )
+
+
                 }
 
 
@@ -160,25 +232,17 @@ import ChartTest from "../components/ProgressPage/ChartTest.vue";
 
         data() {
             return {
-                score: '',
+                score: 0,
                 examType: '',
                 subject: '',
+                count: 0,
+                data: [],
+                title:'Sec 3 Progress',
                 existingSubjects: [],
-                colors: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                title: '',
-                data: {
-                    labels: ['CA1', 'SA1', 'CA2', 'SA2'],
-                    datasets: [
+                colors: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#21c095", "#bbc021", "#1a993a",
+                    "##904b23", "#a01359", "#a04913", "#534270"
+                ],
 
-                        // {
-                        //     data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
-                        //     label: "Africa",
-                        //     borderColor: "#3e95cd",
-                        //     fill: false
-                        // },
-                        //dynamically add data here
-                    ]
-                },
                 tabs: [{
                         link: '',
                         name: "subject",

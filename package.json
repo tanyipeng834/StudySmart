@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@daypilot/daypilot-lite-vue": "^3.10.1",
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-brands-svg-icons": "^6.2.0",
     "@fortawesome/free-regular-svg-icons": "^6.2.0",
