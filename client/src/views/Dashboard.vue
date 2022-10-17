@@ -2,7 +2,11 @@
   <div class="container-fluid login wrapper w-100">
     <div class="row">
       <div class="col-4">
-          <Sidebar :haveTopbar="false"  profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
+        <Sidebar
+          :haveTopbar="false"
+          profileName="Tan Yi Peng"
+          profileRole="Secondary 3 Student"
+        />
       </div>
       <div class="col-4">
         <CountDown
@@ -15,7 +19,7 @@
 
     <div class="row">
       <div class="col-4">
-        <Quote/>
+        <Quote />
       </div>
       <div class="col-8">
         <TimeTable />
@@ -25,11 +29,10 @@
 </template>
 
 <script>
-
 import Sidebar from "../components/Navigation/Sidebar.vue";
 import CountDown from "../components/HomePage/CountDown.vue";
 import TimeTable from "../components/HomePage/TimeTable.vue";
-import Quote from "../components/HomePage/Quote.vue"
+import Quote from "../components/HomePage/Quote.vue";
 
 export default {
   name: "Dashboard",
@@ -37,7 +40,7 @@ export default {
     Sidebar,
     CountDown,
     TimeTable,
-    Quote
+    Quote,
   },
   data() {
     return {
@@ -94,5 +97,4 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 </style>
