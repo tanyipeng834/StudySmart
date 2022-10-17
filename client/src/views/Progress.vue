@@ -127,10 +127,19 @@
             Sidebar,
             Topbar,
             ChartTest
-        },
+        },  watch: {
+        level:function() {
+           this.init()
+        }
+    },
         mounted() {
+this.init()
+        
+        },
 
-            const progressChart = new Chart(document.getElementById("progress-chart"), {
+    methods: {
+        init() {
+                    const progressChart = new Chart(document.getElementById("progress-chart"), {
                 type: 'line',
                 // title:"Sec 1 Progress",
                 data: {
@@ -195,9 +204,7 @@
             });
             console.log(email)
 
-        },
-
-        methods: {
+            },
             test() {
                 console.log(this.snapShotprogress)
             },
