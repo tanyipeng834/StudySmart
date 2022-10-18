@@ -173,6 +173,7 @@
             });
             let level = this.getLevel()
             var email = localStorage.getItem("email");
+            console.log(email)
             progressChart.options.plugins.title['text'] = `Secondary ${level} Progress`
             const q = query(collection(db, "users", email, 'progressResults' + level))
             onSnapshot(q, (querySnapshot) => {
