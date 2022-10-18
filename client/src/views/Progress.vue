@@ -85,8 +85,6 @@
                             </button>
                         </div>
                     </div>
-                    <!-- 
-                    <ChartTest :data="data" :title='title' /> -->
                     <canvas id="progress-chart" width="600" height="450"></canvas>
 
                 </div>
@@ -131,103 +129,96 @@
         watch: {
             level: function () {
                 // this.progressChart.destroy()
-                this.init()
-               
+                console.log(this.level)
+                localStorage.setItem("level", this.level);
+                location.reload()
+
             }
         },
         mounted() {
-            this.init()
+
+            const progressChart = new Chart(document.getElementById("progress-chart"), {
+                type: 'line',
+                data: {
+                    labels: ['CA1', 'SA1', 'CA2', 'SA2'],
+                    datasets: [
+
+                    ]
+                },
+                options: {
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: ''
+                        }
+                    },
+                    scales: {
+
+                        y: {
+                            display: true,
+                            stacked: false,
+                            max: 0,
+                            min: 100,
+                            ticks: {
+
+                                stepSize: 10
+                            },
+                            title: {
+                                display: true,
+                                text: 'Your Score (%)'
+                            }
+                        }
+                    }
+                }
+            });
+            let level = this.getLevel()
+            var email = localStorage.getItem("email");
+            progressChart.options.plugins.title['text'] = `Secondary ${level} Progress`
+            const q = query(collection(db, "users", email, 'progressResults' + level))
+            onSnapshot(q, (querySnapshot) => {
+                const data = []
+                const existingSubjects = []
+                querySnapshot.docs.forEach((docSnapshot) => {
+                    if (docSnapshot.id != 'ignore' && !data.includes(docSnapshot.data())) {
+                        existingSubjects.push(docSnapshot.id)
+                    //  console.log(docSnapshot.id)
+                    //  console.log(docSnapshot.data())
+                    //     data.push([docSnapshot.id, docSnapshot.data()])
+                    }
+
+                });
+                if (data.length != 0) {
+                    progressChart.data.datasets = data
+                    this.data = data
+                    console.log(data)
+                    progressChart.update()
+                }
+                this.existingSubjects = existingSubjects
+                this.count = existingSubjects.length
+
+            });
+            console.log(email)
+
 
         },
 
         methods: {
-            init() {
-                // let i = document.getElementById("progress-chart")
-                // console.log(i)
-                // var grapharea = document.getElementById("progress-chart").getContext("2d");
-                // console.log(grapharea)
-                //     grapharea.destroy()
+            checkXaxis() {
 
-                
-                const progressChart = new Chart(document.getElementById("progress-chart"), {
-                    type: 'line',
-                    // title:"Sec 1 Progress",
-                    data: {
-                        labels: ['CA1', 'SA1', 'CA2', 'SA2'],
-                        datasets: [
-
-                        ]
-                    },
-                    options: {
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: this.title
-                            }
-                        },
-                        scales: {
-
-                            y: {
-                                display: true,
-                                stacked: false,
-                                max: 0,
-                                min: 100,
-                                ticks: {
-
-                                    stepSize: 10
-                                },
-                                title: {
-                                    display: true,
-                                    text: 'Your Score (%)'
-                                }
-                            }
-                        }
-                    }
-                });
-
-
-                var email = localStorage.getItem("email");
+            },
+            getLevel() {
                 let level = this.level
-                this.title = `Secondart ${level} Progress Chart`
-                const q = query(collection(db, "users", email, 'progressResults' + level))
-                console.log(level)
+                if (localStorage.getItem("level") != null) {
+                    level = localStorage.getItem("level")
 
-                onSnapshot(q, (querySnapshot) => {
-                    const data = []
-                    const existingSubjects = []
-                    querySnapshot.docs.forEach((docSnapshot) => {
-                        if (docSnapshot.id != 'ignore' && !data.includes(docSnapshot.data())) {
-                            existingSubjects.push(docSnapshot.id)
-                            data.push(docSnapshot.data())
-                        }
-
-                    });
-                    console.log(data)
-                    console.log(level)
-                    if (data.length == 0) {
-                        progressChart.data.datasets = data
-                        progressChart.update()
-                    }
-                    this.existingSubjects = existingSubjects
-                    this.count = existingSubjects.length
-
-                });
-                console.log(email)
-
+                }
+                return level
             },
-            test() {
-                console.log(this.snapShotprogress)
-            },
-
-
-
             async addResult() {
-
+                let level = this.getLevel()
                 let count = this.count
                 var email = localStorage.getItem("email");
-
-                var colRef = doc(db, 'users', email, 'progressResults', this.subject);
-
+                var colRef = doc(db, 'users', email, 'progressResults' + level, this.subject);
                 if (!this.existingSubjects.includes(this.subject)) {
                     this.existingSubjects.push(this.subject)
                     const newData = {
@@ -241,14 +232,10 @@
                         label: this.subject,
 
                     }
-
-
-                    console.log(newData)
-
-                    await setDoc(doc(db, "users", email, 'progressResults', this.subject), newData);
+                    await setDoc(doc(db, "users", email, 'progressResults' + level, this.subject), newData);
 
                 } else {
-
+                    this.checkXaxis()
 
                     await updateDoc(
                         colRef, {
@@ -260,12 +247,7 @@
 
                         }
                     )
-
-
                 }
-
-
-
             }
         },
 
@@ -275,10 +257,10 @@
                 examType: '',
                 subject: '',
                 count: 0,
-                data: [],
-                title: 'Sec 3 Progress',
                 existingSubjects: [],
-                level: '1',
+                level: '',
+                data: [],
+                x: [],
                 colors: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#21c095", "#bbc021", "#1a993a",
                     "##904b23", "#a01359", "#a04913", "#534270"
                 ],
