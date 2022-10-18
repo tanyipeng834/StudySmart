@@ -1,7 +1,6 @@
 <template>
-  <div class="text-center">
-    <h1>{{ quote }}</h1>
-  </div>
+
+    <p>{{ quote }}</p>
 </template>
 
 <script>
@@ -33,3 +32,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+.quote{
+  display: flex;
+  margin-left: 50px;
+}
+</style>
