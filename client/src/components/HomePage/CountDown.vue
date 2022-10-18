@@ -160,7 +160,7 @@ button {
   background-color: transparent;
   padding-right: 0px;
 
-  /* margin-right: -8px; */
+  margin-right: -8px;
 }
 
 .hide {

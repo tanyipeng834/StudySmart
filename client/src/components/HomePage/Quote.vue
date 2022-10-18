@@ -1,34 +1,40 @@
-<template>
-    <div>
-        <h1>{{quote}}</h1>
-    </div>
+<!-- <template>
+
+    <p>{{ quote }}</p>
 </template>
 
-<script >
-
-
+<script>
+import axios from "axios";
 
 export default {
   name: "Quote",
-  mounted() {
-    this.loadQuote()
-    
-  },
 
   data() {
     return {
-        quote:''
-
+      quote: "",
     };
   },
-  methods: {
-    
-    loadQuote(){
-      
-    }
 
-}
-}
-    
+  mounted() {
+    axios
+      .get("https://api.api-ninjas.com/v1/quotes?category=happiness", {
+        headers: {
+          "X-Api-Key": "fjsi9Ri0Wh4IBEwwIdlqRg==vIg0o3IgilQ5HVJi",
+        },
+      })
+      .then((res) => {
+        var data = res.data[0]["quote"];
+        this.quote = data;
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  },
+};
 </script>
-
+<style scoped>
+.quote{
+  display: flex;
+  margin-left: 50px;
+}
+</style> -->

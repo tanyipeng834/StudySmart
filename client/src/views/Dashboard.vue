@@ -1,8 +1,12 @@
 <template>
   <div class="container-fluid login wrapper w-100">
     <div class="row">
-      <div class="col-4">
-          <Sidebar :haveTopbar="false"  profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
+      <div class="col-2">
+        <Sidebar
+          :haveTopbar="false"
+          profileName="Tan Yi Peng"
+          profileRole="Secondary 3 Student"
+        />
       </div>
       <div class="col-4">
         <CountDown
@@ -11,25 +15,32 @@
           @delete-test="deleteTest"
         />
       </div>
+      <div class="col-4 quote">
+        <div class="text"><Quote/></div>
+        
+      
+    </div>
+    <div class="col-2">
+
+    </div>
     </div>
 
     <div class="row">
-      <div class="col-4">
-        <Quote/>
-      </div>
-      <div class="col-8">
+      <div class="col-2"></div>
+      <div class="col-9 timetable">
         <TimeTable />
       </div>
+      <div class="col-1"></div>
+
     </div>
   </div>
 </template>
 
 <script>
-
 import Sidebar from "../components/Navigation/Sidebar.vue";
 import CountDown from "../components/HomePage/CountDown.vue";
 import TimeTable from "../components/HomePage/TimeTable.vue";
-import Quote from "../components/HomePage/Quote.vue"
+import Quote from "../components/HomePage/Quote.vue";
 
 export default {
   name: "Dashboard",
@@ -37,7 +48,7 @@ export default {
     Sidebar,
     CountDown,
     TimeTable,
-    Quote
+    Quote,
   },
   data() {
     return {
@@ -85,14 +96,40 @@ export default {
 </script>
 
 <style scoped>
+.quote{
+  position: relative;
+  margin-left: 50px;
+  background-image: url("../assets/2-21362_png-file-size-blue-watercolor-stain-png.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* img{
+  width: auto;
+  height: 600px;
+} */
+body,html{
+  height: 100%;
+}
 .login {
   background-image: url("@/assets/cloud.jpg");
-  height: 100vh;
+
+  height: 100%;
 
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-
+.timetable{
+  display: flex;
+  justify-content: center;
+}
+.text{
+  position: absolute;
+  top: 120px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
 </style>
