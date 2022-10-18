@@ -65,25 +65,25 @@
             <div class="row justify-content-center">
                 <div class="col-6">
                     <div class="row">
-              <div class="col-6">
-           
-                                    <select class="form-select form-select float-bottom mt-5" aria-label=".form-select-sm "
-                                        id="examType" v-model='level'>
-                                     
-                                        <option value="1" >Sec 1</option>
-                                        <option value="2">Sec 2</option>
-                                        <option value="3">Sec 3</option>
-                                        <option value="4">Sec 4</option>
-                                        <option value="5">Sec 5</option>
-                                    </select>
-                                    </div>
-                                <div class="col-6">
+                        <div class="col-6">
 
-                    <button type="button" class="btn float-end mx-auto mt-5" data-bs-toggle="modal"
-                        data-bs-target="#modalForm">
-                        <i class="fa-solid fa-circle-plus fa-lg"></i>
-                    </button>
-                    </div>
+                            <select class="form-select form-select float-bottom mt-5" aria-label=".form-select-sm "
+                                id="examType" v-model='level'>
+
+                                <option value="1">Sec 1</option>
+                                <option value="2">Sec 2</option>
+                                <option value="3">Sec 3</option>
+                                <option value="4">Sec 4</option>
+                                <option value="5">Sec 5</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+
+                            <button type="button" class="btn float-end mx-auto mt-5" data-bs-toggle="modal"
+                                data-bs-target="#modalForm">
+                                <i class="fa-solid fa-circle-plus fa-lg"></i>
+                            </button>
+                        </div>
                     </div>
                     <!-- 
                     <ChartTest :data="data" :title='title' /> -->
@@ -127,82 +127,92 @@
             Sidebar,
             Topbar,
             ChartTest
-        },  watch: {
-        level:function() {
-           this.init()
-        }
-    },
+        },
+        watch: {
+            level: function () {
+                // this.progressChart.destroy()
+                this.init()
+               
+            }
+        },
         mounted() {
-this.init()
-        
+            this.init()
+
         },
 
-    methods: {
-        init() {
-                    const progressChart = new Chart(document.getElementById("progress-chart"), {
-                type: 'line',
-                // title:"Sec 1 Progress",
-                data: {
-                    labels: ['CA1', 'SA1', 'CA2', 'SA2'],
-                    datasets: [
+        methods: {
+            init() {
+                // let i = document.getElementById("progress-chart")
+                // console.log(i)
+                // var grapharea = document.getElementById("progress-chart").getContext("2d");
+                // console.log(grapharea)
+                //     grapharea.destroy()
 
-                    ]
-                },
-                options: {
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: this.title
-                        }
+                
+                const progressChart = new Chart(document.getElementById("progress-chart"), {
+                    type: 'line',
+                    // title:"Sec 1 Progress",
+                    data: {
+                        labels: ['CA1', 'SA1', 'CA2', 'SA2'],
+                        datasets: [
+
+                        ]
                     },
-                    scales: {
-
-                        y: {
-                            display: true,
-                            stacked: false,
-                            max: 0,
-                            min: 100,
-                            ticks: {
-
-                                stepSize: 10
-                            },
+                    options: {
+                        plugins: {
                             title: {
                                 display: true,
-                                text: 'Your Score (%)'
+                                text: this.title
+                            }
+                        },
+                        scales: {
+
+                            y: {
+                                display: true,
+                                stacked: false,
+                                max: 0,
+                                min: 100,
+                                ticks: {
+
+                                    stepSize: 10
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Your Score (%)'
+                                }
                             }
                         }
                     }
-                }
-            });
+                });
 
 
-            var email = localStorage.getItem("email");
-            let level = this.level
-            this.title=`Secondart ${level} Progress Chart`
-            const q = query(collection(db, "users", email, 'progressResults' + level))
-            console.log(level)
+                var email = localStorage.getItem("email");
+                let level = this.level
+                this.title = `Secondart ${level} Progress Chart`
+                const q = query(collection(db, "users", email, 'progressResults' + level))
+                console.log(level)
 
-            onSnapshot(q, (querySnapshot) => {
-                const data = []
-                const existingSubjects = []
-                querySnapshot.docs.forEach((docSnapshot) => {
-                    if (docSnapshot.id != 'ignore' && !data.includes(docSnapshot.data())) {
-                        existingSubjects.push(docSnapshot.id)
-                        data.push(docSnapshot.data())
+                onSnapshot(q, (querySnapshot) => {
+                    const data = []
+                    const existingSubjects = []
+                    querySnapshot.docs.forEach((docSnapshot) => {
+                        if (docSnapshot.id != 'ignore' && !data.includes(docSnapshot.data())) {
+                            existingSubjects.push(docSnapshot.id)
+                            data.push(docSnapshot.data())
+                        }
+
+                    });
+                    console.log(data)
+                    console.log(level)
+                    if (data.length == 0) {
+                        progressChart.data.datasets = data
+                        progressChart.update()
                     }
+                    this.existingSubjects = existingSubjects
+                    this.count = existingSubjects.length
 
                 });
-                console.log(data)
-                console.log(level)
-                if (data.length ==0) {
-                    progressChart.data.datasets = data
-                    progressChart.update()
-                }
-                this.existingSubjects = existingSubjects
-                this.count = existingSubjects.length
-
-            });
-            console.log(email)
+                console.log(email)
 
             },
             test() {
@@ -268,10 +278,10 @@ this.init()
                 data: [],
                 title: 'Sec 3 Progress',
                 existingSubjects: [],
-                level:'1',
+                level: '1',
                 colors: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#21c095", "#bbc021", "#1a993a",
                     "##904b23", "#a01359", "#a04913", "#534270"
-                 ],
+                ],
 
                 // tabs: [{
                 //         link: '',
