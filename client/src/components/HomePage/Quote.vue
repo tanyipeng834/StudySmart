@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="text-center">
     <h1>{{ quote }}</h1>
   </div>
 </template>
@@ -12,7 +12,7 @@ export default {
 
   data() {
     return {
-      quote: "jshadfhflks",
+      quote: "",
     };
   },
 
