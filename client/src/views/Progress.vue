@@ -182,12 +182,14 @@
                 querySnapshot.docs.forEach((docSnapshot) => {
                     if (docSnapshot.id != 'ignore' && !data.includes(docSnapshot.data())) {
                         existingSubjects.push(docSnapshot.id)
-                    //  console.log(docSnapshot.id)
-                    //  console.log(docSnapshot.data())
+                      console.log(docSnapshot.id)
+                        console.log(docSnapshot.data())
+                     data.push(docSnapshot.data())
                     //     data.push([docSnapshot.id, docSnapshot.data()])
                     }
 
                 });
+                console.log(data)
                 if (data.length != 0) {
                     progressChart.data.datasets = data
                     this.data = data
@@ -234,9 +236,10 @@
 
                     }
                     await setDoc(doc(db, "users", email, 'progressResults' + level, this.subject), newData);
+                    console.log(newData)
 
                 } else {
-                    this.checkXaxis()
+                   
 
                     await updateDoc(
                         colRef, {
