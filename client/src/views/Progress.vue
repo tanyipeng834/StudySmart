@@ -61,13 +61,13 @@
 
                 </div>
             </div>
-
+ 
             <div class="row justify-content-center">
-                <div class="col-6">
+                <div class="col-md-8 col-12">
                     <div class="row">
                         <div class="col-6">
 
-                            <select class="form-select form-select float-bottom mt-5" aria-label=".form-select-sm "
+                            <select class="form-select form-select float-bottom mt-5 selectLevel" aria-label=".form-select-sm "
                                 id="examType" v-model='level' @change="change">
 
                                 <option value="1" :selected="level === 1">Sec 1</option>
@@ -77,7 +77,7 @@
                                 <option value="5" :selected="level === 5">Sec 5</option>
                             </select>
                         </div>
-                        <div class="col-6">
+                        <div class="col-2">
 
                             <button type="button" class="btn float-end mx-auto mt-5" data-bs-toggle="modal"
                                 data-bs-target="#modalForm">
@@ -87,10 +87,21 @@
                     </div>
                     <div class="line-chart">
                         <div class="aspect-ratio">
-                            <canvas id="progress-chart" width="600" height="450"></canvas>
+                            <canvas id="progress-chart" class="shadow chart" width="600" height="450"></canvas>
                         </div>
                     </div>
 
+                </div>
+                <div class="col-md-2 col-12 d-flex flex-column justify-content-center">
+                    <div >
+                        ds
+                    </div>
+                    <div >
+ds
+                    </div>
+                    <div >
+ds
+                    </div>
                 </div>
             </div>
 
@@ -357,16 +368,37 @@
 </script>
 
 <style scoped>
-
+*{
+ font-size: medium;
+}
 .line-chart {
 	animation: fadeIn 600ms cubic-bezier(.57,.25,.65,1) 1 forwards;
   opacity: 0;
 	max-width: 640px;
 	width: 100%;
+    
 }
 
 .aspect-ratio {
   height: 0;
   padding-bottom: 50%; 
+   position: relative;
+}
+/* .selectLevel{
+     position:absolute;
+     width:15vw;
+     /* width: 10%; */
+     /* left:27vw;
+     top: 6vh; */
+  /* left:26%;
+  top:6% 
+} */
+.chart{
+    padding: 2vw;
+      position: absolute;
+}
+.shadow{
+
+    box-shadow: 3px 3px 5px 6px #ccc;
 }
 </style>
