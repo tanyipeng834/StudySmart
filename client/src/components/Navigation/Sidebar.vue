@@ -292,7 +292,7 @@ body {
   /* height: 92.5%; */
   min-height: min-content;
   /* overflow-y: auto; */
-  width: 78px;
+  width: 95px;
   background: var(--bg-color);
   /* padding: 6px 14px 0 14px; */
   z-index: 99;
@@ -342,7 +342,7 @@ body {
   height: 60px;
   min-width: 50px;
   font-size: 28px;
-  text-align: center;
+  text-align: left;
   line-height: 60px;
 }
 .sidebar .nav-list {
@@ -456,7 +456,7 @@ body {
 .sidebar div.profile {
   position: relative;
   height: 60px;
-  width: 78px;
+  width: 95px;
   /* left: 0;
       bottom: 0; */
   padding: 10px 14px;
