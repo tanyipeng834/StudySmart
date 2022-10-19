@@ -85,7 +85,11 @@
                             </button>
                         </div>
                     </div>
-                    <canvas id="progress-chart" width="600" height="450"></canvas>
+                    <div class="line-chart">
+                        <div class="aspect-ratio">
+                            <canvas id="progress-chart" width="600" height="450"></canvas>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -137,6 +141,7 @@
         },
         mounted() {
 
+
             const progressChart = new Chart(document.getElementById("progress-chart"), {
                 type: 'line',
                 data: {
@@ -146,11 +151,31 @@
                     ]
                 },
                 options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    animation: {
+                        easing: 'easeInOutQuad',
+                        duration: 520
+                    },
                     plugins: {
                         title: {
                             display: true,
                             text: ''
-                        }
+                        },
+                        tooltip: {
+                            displayColors: false,
+                            yAlign: 'bottom',
+                            backgroundColor: this.colorItems,
+                                titleFontFamily: 'Open Sans',
+              
+                            titleColor: 'black',
+                        bodyColor:'black',
+                        caretSize: 5,
+                        cornerRadius: 5,
+                        boxPadding: 10,
+                   
+                        },
+                        
                     },
                     scales: {
 
@@ -166,10 +191,23 @@
                             title: {
                                 display: true,
                                 text: 'Your Score (%)'
-                            }
+                            },
+                            gridLines: {
+                                color: 'rgba(200, 200, 200, 0.05)',
+                                lineWidth: 1
+                            },
+                        },
+                        x: {
+                            gridLines: {
+                                color: 'rgba(200, 200, 200, 0.05)',
+                                lineWidth: 1
+                            },
+
                         }
-                    }
+                    },
+                   
                 }
+
             });
             let level = this.getLevel()
             console.log(level)
@@ -183,10 +221,10 @@
                 querySnapshot.docs.forEach((docSnapshot) => {
                     if (docSnapshot.id != 'ignore' && !data.includes(docSnapshot.data())) {
                         existingSubjects.push(docSnapshot.id)
-                      console.log(docSnapshot.id)
+                        console.log(docSnapshot.id)
                         console.log(docSnapshot.data())
-                     data.push(docSnapshot.data())
-                    //     data.push([docSnapshot.id, docSnapshot.data()])
+                        data.push(docSnapshot.data())
+                        //     data.push([docSnapshot.id, docSnapshot.data()])
                     }
 
                 });
@@ -198,7 +236,7 @@
                     progressChart.update()
                 }
                 this.existingSubjects = existingSubjects
-                this.count = existingSubjects.length
+                // this.count = existingSubjects.length
 
             });
             console.log(email)
@@ -206,28 +244,33 @@
 
         },
 
-        methods: {
+    methods: {
+        colorItems(tooltipItem) {
+            // console.log(tooltipItem.tooltip.labelColors[0].borderColor)
+            const tooltipBg=tooltipItem.tooltip.labelColors[0].borderColor
+                return tooltipBg
+            },
             change() {
                 console.log(this.level)
                 localStorage.setItem("level", this.level);
-          
+
                 location.reload()
-         }
-           , getLevel() {
+            },
+            getLevel() {
                 let level = this.level
                 if (localStorage.getItem("level") != null) {
                     level = localStorage.getItem("level")
                     this.level = level
-                    
+
                     //  document.getElementById('level').options[localStorage.getItem('level')].selected = true;
 
-               }
+                }
                 // this.title=`Secondary ${level} Progress Chart`
                 return level
             },
             async addResult() {
                 let level = this.getLevel()
-                let count = this.count
+                // let count = this.count
                 var email = localStorage.getItem("email");
                 var colRef = doc(db, 'users', email, 'progressResults' + level, this.subject);
                 if (!this.existingSubjects.includes(this.subject)) {
@@ -238,16 +281,21 @@
                             x: this.examType,
                             y: this.score
                         }],
-                        borderColor: this.colors[count],
-                        fill: false,
+                        borderColor: "hsla(" + ~~(360 * Math.random()) + "," +
+                    "70%,"+
+                    "80%,1)",
+
                         label: this.subject,
+                        tension:0.4
+            
+			   
 
                     }
                     await setDoc(doc(db, "users", email, 'progressResults' + level, this.subject), newData);
                     console.log(newData)
 
                 } else {
-                   
+
 
                     await updateDoc(
                         colRef, {
@@ -268,15 +316,16 @@
                 score: 0,
                 examType: '',
                 subject: '',
-                count: 0,
+              
                 existingSubjects: [],
                 level: 1,
                 data: [],
                 x: [],
 
-                colors: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#21c095", "#bbc021", "#1a993a",
-                    "##904b23", "#a01359", "#a04913", "#534270"
-                ],
+
+                // colors: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#bbc021", "#1a993a",
+                //     "##904b23", "#a01359", "#a04913", "#534270"
+                // ],
 
                 // tabs: [{
                 //         link: '',
@@ -307,7 +356,17 @@
     }
 </script>
 
-<style>
+<style scoped>
 
+.line-chart {
+	animation: fadeIn 600ms cubic-bezier(.57,.25,.65,1) 1 forwards;
+  opacity: 0;
+	max-width: 640px;
+	width: 100%;
+}
 
+.aspect-ratio {
+  height: 0;
+  padding-bottom: 50%; 
+}
 </style>
