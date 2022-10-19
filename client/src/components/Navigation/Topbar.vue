@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark topbar">
         <div class="container-fluid">
 
 
@@ -19,9 +19,6 @@
 
                 </div>
 
-                <div class="navbar-nav ms-auto">
-                    <a href="#" class="nav-item nav-link">Login</a>
-                </div>
             </div>
         </div>
     </nav>
@@ -41,3 +38,10 @@
 
     }
 </script>
+<style scoped>
+
+.topbar{
+    position: sticky;
+    top:0;
+}
+</style>
