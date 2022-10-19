@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <!-- <Topbar :tabs='tabs' /> -->
+    <div :style="{'background-image':'url(../assets/cloud.jpg)'}">
+
         <div class="container-fluid  w-100">
 
             <div class="row">
@@ -35,7 +35,7 @@
                                     <label class="form-label">Exam Type</label>
                                     <select class="form-select form-select" aria-label=".form-select-sm example"
                                         id="examType" v-model='examType'>
-                                        <option value="CA1">CA1</option>
+                                        <option value="CA1" selected>CA1</option>
                                         <option value="SA1">SA1</option>
                                         <option value="CA2">CA2</option>
                                         <option value="SA2">SA2</option>
@@ -61,14 +61,58 @@
 
                 </div>
             </div>
- 
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-12">
-                    <div class="row">
+            <div class="row">
+
+                <div class="col-1"></div>
+                <div class="col-7 d-flex flex-column justify-content-center">
+                    <div class="d-flex flex-row justify-content-around">
+                        <div>
+                            <select class="form-select form-select  mt-4 selectLevel mb-1" aria-label=".form-select-sm "
+                                id="examType" v-model='level' @change="change">
+                                <option value="1" :selected="level === 1">Sec 1</option>
+                                <option value="2" :selected="level === 2">Sec 2</option>
+                                <option value="3" :selected="level === 3">Sec 3</option>
+                                <option value="4" :selected="level === 4">Sec 4</option>
+                                <option value="5" :selected="level === 5">Sec 5</option>
+                            </select>
+                        </div>
+                        <div class="">
+                            <button type="button" class="btn  mx-auto mt-4 float-end " data-bs-toggle="modal"
+                                data-bs-target="#modalForm">
+                                <i class="fa-solid fa-circle-plus fa-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="line-chart ">
+                        <div class="aspect-ratio chart">
+                            <canvas id="progress-chart" class="shadow chart" width="650" height="500"></canvas>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="col-4 d-flex flex-column justify-content-evenly">
+                    <div class="shadow box">
+
+                    </div>
+                    <div class="shadow box">
+
+                    </div>
+                    <div class="shadow box">
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- <div class="row justify-content-end">
+                <div class="col-md-7 col-12">
+                    <div class="row justify-content-end">
                         <div class="col-6">
 
-                            <select class="form-select form-select float-bottom mt-5 selectLevel" aria-label=".form-select-sm "
-                                id="examType" v-model='level' @change="change">
+                            <select class="form-select form-select float-bottom mt-4 selectLevel mb-1"
+                                aria-label=".form-select-sm " id="examType" v-model='level' @change="change">
 
                                 <option value="1" :selected="level === 1">Sec 1</option>
                                 <option value="2" :selected="level === 2">Sec 2</option>
@@ -77,33 +121,57 @@
                                 <option value="5" :selected="level === 5">Sec 5</option>
                             </select>
                         </div>
-                        <div class="col-2">
+                        <div class="col-4 addBtn text-center">
 
-                            <button type="button" class="btn float-end mx-auto mt-5" data-bs-toggle="modal"
+                            <button type="button" class="btn  mx-auto mt-4 " data-bs-toggle="modal"
                                 data-bs-target="#modalForm">
                                 <i class="fa-solid fa-circle-plus fa-lg"></i>
                             </button>
                         </div>
                     </div>
-                    <div class="line-chart">
-                        <div class="aspect-ratio">
+                    <div class="line-chart col-6 justify-content-end">
+                        <div class="aspect-ratio chart">
                             <canvas id="progress-chart" class="shadow chart" width="600" height="450"></canvas>
                         </div>
                     </div>
 
                 </div>
-                <div class="col-md-2 col-12 d-flex flex-column justify-content-center">
-                    <div >
-                        ds
+                <div class="col-md-5 col-12 d-flex flex-column justify-content-center">
+                    <div class="card">
+                        <div class="card-header">
+                            Featured
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                            </p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
                     </div>
-                    <div >
-ds
+                    <div class="card">
+                        <div class="card-header">
+                            Featured
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                            </p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
                     </div>
-                    <div >
-ds
+                    <div class="card">
+                        <div class="card-header">
+                            Featured
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                            </p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
 
         </div>
@@ -118,6 +186,7 @@ ds
     import Topbar from "../components/Navigation/Topbar.vue";
     import ChartTest from "../components/ProgressPage/ChartTest.vue";
     import Chart from 'chart.js/auto';
+
     import {
         getFirestore,
         doc,
@@ -177,16 +246,16 @@ ds
                             displayColors: false,
                             yAlign: 'bottom',
                             backgroundColor: this.colorItems,
-                                titleFontFamily: 'Open Sans',
-              
+                            titleFontFamily: 'Open Sans',
+
                             titleColor: 'black',
-                        bodyColor:'black',
-                        caretSize: 5,
-                        cornerRadius: 5,
-                        boxPadding: 10,
-                   
+                            bodyColor: 'black',
+                            caretSize: 5,
+                            cornerRadius: 5,
+                            boxPadding: 10,
+
                         },
-                        
+
                     },
                     scales: {
 
@@ -216,7 +285,7 @@ ds
 
                         }
                     },
-                   
+
                 }
 
             });
@@ -225,40 +294,167 @@ ds
             var email = localStorage.getItem("email");
             console.log(email)
             progressChart.options.plugins.title['text'] = `Secondary ${level} Progress`
+            progressChart.update()
             const q = query(collection(db, "users", email, 'progressResults' + level))
             onSnapshot(q, (querySnapshot) => {
                 const data = []
                 const existingSubjects = []
+                const cardData = []
                 querySnapshot.docs.forEach((docSnapshot) => {
                     if (docSnapshot.id != 'ignore' && !data.includes(docSnapshot.data())) {
                         existingSubjects.push(docSnapshot.id)
-                        console.log(docSnapshot.id)
-                        console.log(docSnapshot.data())
+                        // console.log(docSnapshot.id)
+                        // console.log(docSnapshot.data())
                         data.push(docSnapshot.data())
+                        cardData.push({
+                            [docSnapshot.id]: docSnapshot.data().data
+                        })
                         //     data.push([docSnapshot.id, docSnapshot.data()])
                     }
 
                 });
-                console.log(data)
+                // console.log(data)
+                // console.log(cardData)
+                this.cardData = cardData
+                this.getMin(cardData)
+                this.getMax(cardData)
+                this.getStd(cardData)
                 if (data.length != 0) {
                     progressChart.data.datasets = data
-                    this.data = data
-                    console.log(data)
                     progressChart.update()
                 }
                 this.existingSubjects = existingSubjects
                 // this.count = existingSubjects.length
 
             });
+
             console.log(email)
 
 
         },
 
     methods: {
-        colorItems(tooltipItem) {
-            // console.log(tooltipItem.tooltip.labelColors[0].borderColor)
-            const tooltipBg=tooltipItem.tooltip.labelColors[0].borderColor
+
+        calStd(arr) {
+             let mean = arr.reduce((acc, curr)=>{
+	return acc + curr
+}, 0) / arr.length;
+
+
+arr = arr.map((el)=>{
+	return (el - mean) ** 2
+})
+
+let total = arr.reduce((acc, curr)=> acc + curr, 0);
+
+return Math.sqrt(total / arr.length)
+        },
+        getStd(cardData) {
+            let std = 0
+            let conSub = ''
+            let conData = 10000
+            
+             cardData.forEach(data => {
+                    for (let key in data) {
+                                          
+                        let scores = data[key]
+                       const scoresList=[]
+                    scores.forEach(score => {
+                        for (let axis in score) {
+                            if (axis == 'y') {
+                                scoresList.push(score[axis])
+
+                               
+
+                            }
+                        }
+                    })
+                   
+                        if (scoresList.length > 1) {
+                            std = this.calStd(scoresList)
+                             if (std < conData) {
+                                    conData = std
+                                    conSub = key
+                                }
+                        
+                    }
+
+                
+                    }
+                })
+                console.log(`most consistent is ${conSub} at ${conData}`)
+            },
+            getMin(cardData) {
+                let minSubject = ''
+                let minScore = 1000           
+                cardData.forEach(data => {
+                    for (let key in data) {
+                                          
+                        let scores = data[key]
+                        let count = 0
+                        let avg = 0
+                         let total=0
+                    scores.forEach(score => {
+                        for (let axis in score) {
+                            if (axis == 'y') {
+
+                       count++
+                            total+=score[axis]
+                            }
+                           
+                    
+                    }
+                    })
+                 avg=total/count
+                            if (avg < minScore) {
+                                minScore = avg
+                            minSubject =key
+                        }
+                    }
+                })
+                console.log(`${minSubject} has score of ${minScore}`)
+                this.minSub = minSubject
+                this.minSubScore=minScore
+
+            },
+
+
+            getMax(cardData) {
+
+                  let maxSubject = ''
+                let maxScore = 0
+                cardData.forEach(data => {
+                    for (let key in data) {
+                    
+                        let scores = data[key]
+                        let count = 0
+                        let avg = 0
+                         let total=0
+                    scores.forEach(score => {
+                        for (let axis in score) {
+                            if (axis == 'y') {
+                      
+                       count++
+                            total+=score[axis]
+                            }
+                           
+                    
+                    }
+                    })
+                 avg=total/count
+                            if (avg > maxScore) {
+                                maxScore = avg
+                            maxSubject =key
+                        }
+                    }
+                })
+                console.log(`${maxSubject} has score of ${maxScore}`)
+                this.maxSub = maxSubject
+                this.maxSubScore=maxScore
+            },
+            colorItems(tooltipItem) {
+                // console.log(tooltipItem.tooltip.labelColors[0].borderColor)
+                const tooltipBg = tooltipItem.tooltip.labelColors[0].borderColor
                 return tooltipBg
             },
             change() {
@@ -293,13 +489,13 @@ ds
                             y: this.score
                         }],
                         borderColor: "hsla(" + ~~(360 * Math.random()) + "," +
-                    "70%,"+
-                    "80%,1)",
+                            "70%," +
+                            "80%,1)",
 
                         label: this.subject,
-                        tension:0.4
-            
-			   
+                        tension: 0.4
+
+
 
                     }
                     await setDoc(doc(db, "users", email, 'progressResults' + level, this.subject), newData);
@@ -327,11 +523,17 @@ ds
                 score: 0,
                 examType: '',
                 subject: '',
-              
+
                 existingSubjects: [],
                 level: 1,
-                data: [],
-                x: [],
+                cardData: [],
+                minSub: '',
+                minSubScore: '',
+                maxSub: '',
+                maxSubScore: '',
+                conSub: '',
+                conData:'',
+
 
 
                 // colors: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#bbc021", "#1a993a",
@@ -368,37 +570,57 @@ ds
 </script>
 
 <style scoped>
-*{
- font-size: medium;
-}
-.line-chart {
-	animation: fadeIn 600ms cubic-bezier(.57,.25,.65,1) 1 forwards;
-  opacity: 0;
-	max-width: 640px;
-	width: 100%;
-    
-}
+    * {
+        font-size: medium;
+    }
 
-.aspect-ratio {
-  height: 0;
-  padding-bottom: 50%; 
-   position: relative;
-}
-/* .selectLevel{
+    .line-chart {
+        animation: fadeIn 600ms cubic-bezier(.57, .25, .65, 1) 1 forwards;
+        opacity: 0;
+        max-width: 640px;
+        width: 100%;
+
+    }
+
+    .aspect-ratio {
+        height: 0;
+        padding-bottom: 50%;
+        position: relative;
+    }
+
+    /* .selectLevel{
      position:absolute;
      width:15vw;
      /* width: 10%; */
-     /* left:27vw;
+    /* left:27vw;
      top: 6vh; */
-  /* left:26%;
+    /* left:26%;
   top:6% 
 } */
-.chart{
-    padding: 2vw;
-      position: absolute;
-}
-.shadow{
+    .chart {
+        padding: 2vw;
+        position: relative;
+        width: 650px;
+        height: 500px
+    }
 
-    box-shadow: 3px 3px 5px 6px #ccc;
-}
+    /* .addBtn{
+      position: absolute;
+      top: 3em;
+      right: 4em;
+} */
+    .shadow {
+
+        box-shadow: 3px 3px 5px 6px #ccc;
+    }
+
+    .box {
+        height: 150px;
+    }
+
+    body {
+        background-image: url("../assets/cloud.jpg") repeat 0 0;
+        ;
+
+    }
 </style>
