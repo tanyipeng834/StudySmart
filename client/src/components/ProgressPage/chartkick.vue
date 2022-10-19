@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
   //Importing Line class from the vue-chartjs wrapper
   import { Line } from 'vue-chartjs'
 
@@ -52,4 +52,4 @@
       this.renderChart(this.datacollection, this.options)
     }
   }
-</script>
+</script> -->

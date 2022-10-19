@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Login from "../views/Login.vue";
 import Dashboard from "../views/Dashboard.vue";
 import Progress from "../views/Progress.vue";
-import Progress2 from "../views/Progress2.vue";
+// git 
 import Quiz from "../views/Quiz.vue";
 const routes = [
   {
@@ -26,11 +26,11 @@ const routes = [
     name: "ProgressTracker",
     component: Progress,
   },
-  {
-    path: "/progress2",
-    name: "ProgressTracker2",
-    component: Progress2,
-  },
+  // {
+  //   path: "/progress2",
+  //   name: "ProgressTracker2",
+  //   component: Progress2,
+  // },
   {
     path: "/signup",
 
