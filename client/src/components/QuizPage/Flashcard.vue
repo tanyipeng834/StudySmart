@@ -2,6 +2,7 @@
   <div class="card mt-4">
     <div class="card-header">{{ cardNumber }}</div>
     <div class="card-body d-flex">
+      
       <input v-model="term" placeholder="Term" type="text" class="ml-4" />
       <input
         v-model="defination"

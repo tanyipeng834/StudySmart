@@ -1,8 +1,12 @@
 <template>
+  <div class="row header">
+    <div class="text-center">
+      <h1>Create a new Study Set</h1>
+    </div>
+  </div>
   <div class="row">
     <div class="col-3"></div>
     <div class="col-6">
-      <h1>Create a new Study Set</h1>
       <div class="input-group mb-3">
         <input
           type="text"
@@ -38,10 +42,10 @@
         class="btn btn-primary"
         @click="addFlashCards({ term: '', defination: '' })"
       >
-        Add
+        Create
       </button>
-      <button type="button" class="btn btn-primary" @click="updateCard()">
-        Submit
+      <button type="button" class="btn btn-primary add" @click="updateCard()">
+        +
       </button>
     </div>
   </div>
@@ -86,9 +90,14 @@ export default {
   font-weight: 600;
 }
 .add {
+  border-radius: 50%;
   float: right;
 }
 .add-card {
   justify-content: center;
+}
+.header {
+  z-index: 100;
+  font-family: "Courier New", Courier, monospace;
 }
 </style>

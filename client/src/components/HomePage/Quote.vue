@@ -1,6 +1,5 @@
 <template>
-
-    <p>{{ quote }}</p>
+  <p>{{ quote }}</p>
 </template>
 
 <script>
@@ -17,7 +16,7 @@ export default {
 
   mounted() {
     axios
-      .get("https://api.api-ninjas.com/v1/quotes?category=happiness", {
+      .get("https://api.api-ninjas.com/v1/quotes?category=education", {
         headers: {
           "X-Api-Key": "fjsi9Ri0Wh4IBEwwIdlqRg==vIg0o3IgilQ5HVJi",
         },
@@ -33,7 +32,7 @@ export default {
 };
 </script>
 <style scoped>
-.quote{
+.quote {
   display: flex;
   margin-left: 50px;
 }
