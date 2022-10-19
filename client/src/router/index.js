@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Login from "../views/Login.vue";
 import Dashboard from "../views/Dashboard.vue";
 import Progress from "../views/Progress.vue";
+
 // git 
 import Quiz from "../views/Quiz.vue";
 const routes = [
@@ -36,6 +37,7 @@ const routes = [
 
     component: () => import("../views/SignUp.vue"),
   },
+
 ];
 
 const router = createRouter({

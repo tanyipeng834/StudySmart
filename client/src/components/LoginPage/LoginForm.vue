@@ -66,7 +66,7 @@
         console.log(email)
         console.log(pass)
         signInWithEmailAndPassword(auth, email, pass).then(() => {
-       
+        localStorage.setItem('email', email);
           console.log('signed in')
                 window.location.href = '/#';
         

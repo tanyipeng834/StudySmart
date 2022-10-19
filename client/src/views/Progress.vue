@@ -68,13 +68,13 @@
                         <div class="col-6">
 
                             <select class="form-select form-select float-bottom mt-5" aria-label=".form-select-sm "
-                                id="examType" v-model='level'>
+                                id="examType" v-model='level' @change="change">
 
-                                <option value="1">Sec 1</option>
-                                <option value="2">Sec 2</option>
-                                <option value="3">Sec 3</option>
-                                <option value="4">Sec 4</option>
-                                <option value="5">Sec 5</option>
+                                <option value="1" :selected="level === 1">Sec 1</option>
+                                <option value="2" :selected="level === 2">Sec 2</option>
+                                <option value="3" :selected="level === 3">Sec 3</option>
+                                <option value="4" :selected="level === 4">Sec 4</option>
+                                <option value="5" :selected="level === 5">Sec 5</option>
                             </select>
                         </div>
                         <div class="col-6">
@@ -127,13 +127,13 @@
             ChartTest
         },
         watch: {
-            level: function () {
-                // this.progressChart.destroy()
-                console.log(this.level)
-                localStorage.setItem("level", this.level);
-                location.reload()
+            // level: function () {
+            //     // this.progressChart.destroy()
+            //     console.log(this.level)
+            //     localStorage.setItem("level", this.level);
+            //     location.reload()
 
-            }
+            // }
         },
         mounted() {
 
@@ -172,6 +172,7 @@
                 }
             });
             let level = this.getLevel()
+            console.log(level)
             var email = localStorage.getItem("email");
             console.log(email)
             progressChart.options.plugins.title['text'] = `Secondary ${level} Progress`
@@ -206,15 +207,22 @@
         },
 
         methods: {
-            checkXaxis() {
-
-            },
-            getLevel() {
+            change() {
+                console.log(this.level)
+                localStorage.setItem("level", this.level);
+          
+                location.reload()
+         }
+           , getLevel() {
                 let level = this.level
                 if (localStorage.getItem("level") != null) {
                     level = localStorage.getItem("level")
+                    this.level = level
+                    
+                    //  document.getElementById('level').options[localStorage.getItem('level')].selected = true;
 
-                }
+               }
+                // this.title=`Secondary ${level} Progress Chart`
                 return level
             },
             async addResult() {
@@ -262,9 +270,10 @@
                 subject: '',
                 count: 0,
                 existingSubjects: [],
-                level: '',
+                level: 1,
                 data: [],
                 x: [],
+
                 colors: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#21c095", "#bbc021", "#1a993a",
                     "##904b23", "#a01359", "#a04913", "#534270"
                 ],
