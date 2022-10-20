@@ -63,6 +63,7 @@ export default {
     addTest(test) {
       this.tests = [...this.tests, test];
     },
+
   },
 
   created() {
