@@ -64,7 +64,7 @@
             <div class="row">
 
                 <div class="col-1"></div>
-                <div class="col-7 d-flex flex-column justify-content-center">
+                <div class="col-6 d-flex flex-column justify-content-center">
                     <div class="d-flex flex-row justify-content-around">
                         <div>
                             <select class="form-select form-select  mt-4 selectLevel mb-1" aria-label=".form-select-sm "
@@ -92,16 +92,24 @@
 
 
                 </div>
-                <div class="col-4 d-flex flex-column justify-content-evenly">
-                    <div class="shadow box">
+                <div class="col-lg-5 col-12  d-flex flex-column justify-content-evenly">
 
+                    <div class="shadow box ">
+                       <div class="p-1">
+                           <p class="small"><span class="text-danger h5">Alert!</span> Your {{minSub}} has the lowest average of {{minSubScore}}%</p>
+                           <p class="small"><span class="text-success h5">Good Work!</span> Your {{maxSub}} has the highest average of {{maxSubScore}}%</p>
+                           <p class="small"><span class="text-info h5">Keeup it up!</span> Your {{conSub}} scores are the most consistent at {{conData}} standard deviation!</p>
+                       </div>
+                        <!-- <canvas id="bar-chart" width="700" height="550" class="p-4"></canvas> -->
                     </div>
-                    <div class="shadow box">
+                    <div class="line-chart">
+                        <div class=" aspect-ratio " >
+                            <canvas id="bar-chart" width="600" height="400" class="p-4 shadow"></canvas>
+                        </div>
+                    </div>
+                    <!-- <div class="shadow box">
 
-                    </div>
-                    <div class="shadow box">
-
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
@@ -289,6 +297,32 @@
                 }
 
             });
+            const BarChart = new Chart(document.getElementById("bar-chart"), {
+                type: 'bar',
+                data: {
+                    labels: '',
+                    datasets: [{
+                        label: "Avg Score (%)",
+                        backgroundColor:'grey',
+                        data: []
+                    }]
+                },
+                options: {
+                    plugins: {
+
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Your Average Scores'
+                        }
+                    }
+
+                }
+
+
+            });
             let level = this.getLevel()
             console.log(level)
             var email = localStorage.getItem("email");
@@ -303,154 +337,200 @@
                 querySnapshot.docs.forEach((docSnapshot) => {
                     if (docSnapshot.id != 'ignore' && !data.includes(docSnapshot.data())) {
                         existingSubjects.push(docSnapshot.id)
-                        // console.log(docSnapshot.id)
-                        // console.log(docSnapshot.data())
+           
                         data.push(docSnapshot.data())
                         cardData.push({
                             [docSnapshot.id]: docSnapshot.data().data
                         })
-                        //     data.push([docSnapshot.id, docSnapshot.data()])
+
                     }
+                    console.log(existingSubjects)
+                     BarChart.data.labels=existingSubjects
+      
 
                 });
-                // console.log(data)
-                // console.log(cardData)
+  const colorList=this.getColors(data)
                 this.cardData = cardData
-                this.getMin(cardData)
+                const avgList = this.getAvg(cardData)
+                BarChart.data.datasets[0].data = avgList
+                BarChart.data.datasets[0].backgroundColor = colorList
+                   BarChart.update()
+               
                 this.getMax(cardData)
+                this.getMin(cardData)
                 this.getStd(cardData)
                 if (data.length != 0) {
                     progressChart.data.datasets = data
                     progressChart.update()
                 }
-                this.existingSubjects = existingSubjects
-                // this.count = existingSubjects.length
-
             });
 
-            console.log(email)
 
 
         },
 
     methods: {
+        getColors(data) {
+            // console.log(data)
+            const colorList = []
+            data.forEach(set => {
+                console.log(set.borderColor)
+                    colorList.push(set.borderColor)
 
-        calStd(arr) {
-             let mean = arr.reduce((acc, curr)=>{
-	return acc + curr
-}, 0) / arr.length;
+            })
+                return colorList
+            },
+
+            calStd(arr) {
+                let mean = arr.reduce((acc, curr) => {
+                    return acc + curr
+                }, 0) / arr.length;
 
 
-arr = arr.map((el)=>{
-	return (el - mean) ** 2
-})
+                arr = arr.map((el) => {
+                    return (el - mean) ** 2
+                })
 
-let total = arr.reduce((acc, curr)=> acc + curr, 0);
+                let total = arr.reduce((acc, curr) => acc + curr, 0);
 
-return Math.sqrt(total / arr.length)
-        },
-        getStd(cardData) {
-            let std = 0
-            let conSub = ''
-            let conData = 10000
-            
-             cardData.forEach(data => {
+                return Math.sqrt(total / arr.length)
+            },
+            getStd(cardData) {
+                let std = 0
+                let conSub = ''
+                let conData = 10000
+
+                cardData.forEach(data => {
                     for (let key in data) {
-                                          
+
                         let scores = data[key]
-                       const scoresList=[]
-                    scores.forEach(score => {
-                        for (let axis in score) {
-                            if (axis == 'y') {
-                                scoresList.push(score[axis])
+                        const scoresList = []
+                        scores.forEach(score => {
+                            for (let axis in score) {
+                                if (axis == 'y') {
+                                    scoresList.push(score[axis])
 
-                               
 
+                                }
                             }
-                        }
-                    })
-                   
+                        })
+
                         if (scoresList.length > 1) {
                             std = this.calStd(scoresList)
-                             if (std < conData) {
-                                    conData = std
-                                    conSub = key
-                                }
-                        
-                    }
+                            if (std < conData) {
+                                conData = std
+                                conSub = key
+                            }
 
-                
+                        }
+
+
                     }
+                    this.conSub = conSub
+                    this.conData=std.toFixed(1)
                 })
                 console.log(`most consistent is ${conSub} at ${conData}`)
             },
-            getMin(cardData) {
-                let minSubject = ''
-                let minScore = 1000           
+            getAvg(cardData) {
+                // let minSubject = ''
+                // let minScore = 1000
+                
+                const avgList=[]
                 cardData.forEach(data => {
                     for (let key in data) {
-                                          
+
                         let scores = data[key]
                         let count = 0
                         let avg = 0
-                         let total=0
-                    scores.forEach(score => {
-                        for (let axis in score) {
-                            if (axis == 'y') {
+                        let total = 0
+                        scores.forEach(score => {
+                            for (let axis in score) {
+                                if (axis == 'y') {
 
-                       count++
-                            total+=score[axis]
+                                    count++
+                                    total += score[axis]
+                                }
+
+
                             }
-                           
-                    
+                        })
+                        avg = total / count
+                        avgList.push(avg)
+                        // if (avg < minScore) {
+                        //     minScore = avg
+                        //     minSubject = key
+                        // }
                     }
-                    })
-                 avg=total/count
-                            if (avg < minScore) {
-                                minScore = avg
-                            minSubject =key
+                })
+                // console.log(`${minSubject} has score of ${minScore}`)
+                // this.minSub = minSubject
+                // this.minSubScore = minScore
+                return avgList
+
+        },
+             getMin(cardData) {
+
+                let minSubject = ''
+                let minScore = 1000
+                cardData.forEach(data => {
+                    for (let key in data) {
+
+                        let scores = data[key]
+                        let count = 0
+                        let avg = 0
+                        let total = 0
+                        scores.forEach(score => {
+                            for (let axis in score) {
+                                if (axis == 'y') {
+
+                                    count++
+                                    total += score[axis]
+                                }
+
+
+                            }
+                        })
+                        avg = total / count
+                        if (avg < minScore) {
+                            minScore = avg
+                            minSubject = key
                         }
                     }
                 })
                 console.log(`${minSubject} has score of ${minScore}`)
                 this.minSub = minSubject
-                this.minSubScore=minScore
-
+                this.minSubScore = minScore.toFixed(1)
             },
 
-
             getMax(cardData) {
-
-                  let maxSubject = ''
+                let maxSubject = ''
                 let maxScore = 0
                 cardData.forEach(data => {
                     for (let key in data) {
-                    
+
                         let scores = data[key]
                         let count = 0
                         let avg = 0
-                         let total=0
-                    scores.forEach(score => {
-                        for (let axis in score) {
-                            if (axis == 'y') {
-                      
-                       count++
-                            total+=score[axis]
+                        let total = 0
+                        scores.forEach(score => {
+                            for (let axis in score) {
+                                if (axis == 'y') {
+
+                                    count++
+                                    total += score[axis]
+                                }
                             }
-                           
-                    
-                    }
-                    })
-                 avg=total/count
-                            if (avg > maxScore) {
-                                maxScore = avg
-                            maxSubject =key
+                        })
+                        avg = total / count
+                        if (avg > maxScore) {
+                            maxScore = avg
+                            maxSubject = key
                         }
                     }
                 })
                 console.log(`${maxSubject} has score of ${maxScore}`)
                 this.maxSub = maxSubject
-                this.maxSubScore=maxScore
+                this.maxSubScore = maxScore.toFixed(1)
             },
             colorItems(tooltipItem) {
                 // console.log(tooltipItem.tooltip.labelColors[0].borderColor)
@@ -532,7 +612,7 @@ return Math.sqrt(total / arr.length)
                 maxSub: '',
                 maxSubScore: '',
                 conSub: '',
-                conData:'',
+                conData: '',
 
 
 
@@ -615,7 +695,7 @@ return Math.sqrt(total / arr.length)
     }
 
     .box {
-        height: 150px;
+        height: 165px;
     }
 
     body {
