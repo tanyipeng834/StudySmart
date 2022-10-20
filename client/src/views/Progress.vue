@@ -1,7 +1,7 @@
 <template>
-    <div :style="{'background-image':'url(../assets/cloud.jpg)'}">
+    <div class="login container-fluid wrapper w-100">
 
-        <div class="container-fluid  w-100">
+        <!-- <div class="container-fluid "> -->
 
             <div class="row">
                 <div class="col-4">
@@ -91,7 +91,7 @@
                     </div>
                     <div class="line-chart ">
                         <div class="aspect-ratio chart">
-                            <canvas id="progress-chart" class="shadow chart" width="650" height="500"></canvas>
+                            <canvas id="progress-chart" class="shadow chart bg-white rounded" width="650" height="500"></canvas>
                         </div>
                     </div>
 
@@ -121,7 +121,7 @@
                     </div>
                     <div class="line-chart">
                         <div class=" aspect-ratio ">
-                            <canvas id="bar-chart" width="600" height="400" class="p-4 shadow"></canvas>
+                            <canvas id="bar-chart" width="600" height="400" class="p-4 shadow bg-white rounded"></canvas>
                         </div>
                     </div>
                     <!-- <div class="shadow box">
@@ -132,7 +132,7 @@
             </div>
 
 
-        </div>
+        <!-- </div> -->
     </div>
 </template>
 <script>
@@ -633,6 +633,7 @@
         max-width: 640px;
         width: 100%;
 
+
     }
 
     .aspect-ratio {
@@ -664,7 +665,7 @@
 } */
     .shadow {
 
-        box-shadow: 3px 3px 5px 6px #ccc;
+        box-shadow: 5px 5px 6px 7px #ccc;
     }
 
     .box {
@@ -676,4 +677,14 @@
         ;
 
     }
+    .login {
+  background-image: url("@/assets/cloud.jpg");
+
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 </style>
