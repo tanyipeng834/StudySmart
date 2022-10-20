@@ -29,7 +29,9 @@
                                 <div class="mb-3 col-6">
                                     <label class="form-label">Score</label>
                                     <input type="number" min="0" max="100" class="form-control" id="score" name="score"
-                                        placeholder="Score in %" v-model='score' />
+                                        placeholder="Score in %" v-model.trim='score'  />
+                                    <p v-if="score <0||score>100" class="text-danger small">Your score must be between 0
+                                        and 100</p>
                                 </div>
                                 <div class="mb-3  col-6">
                                     <label class="form-label">Exam Type</label>
@@ -46,14 +48,18 @@
                                 <div class="mb-3">
                                     <label class="form-label">Subject</label>
                                     <input type="text" class="form-control" id="subject" name="subject" placeholder=""
-                                        v-model='subject' />
+                                        v-model.trim='subject' />
                                 </div>
                             </div>
 
                             <div class="modal-footer d-block">
 
                                 <button type="submit" data-bs-dismiss="modal" class="btn btn-warning float-end"
-                                    @click="addResult">Submit</button>
+                                    @click="addResult"
+                                    v-if="score <0||score>100||subject.length===0 ||examType==''||score==''"
+                                    disabled>Submit</button>
+                                <button type="submit" data-bs-dismiss="modal" class="btn btn-warning float-end"
+                                    @click="addResult" v-else>Submit</button>
                             </div>
 
                         </div>
@@ -95,15 +101,26 @@
                 <div class="col-lg-5 col-12  d-flex flex-column justify-content-evenly">
 
                     <div class="shadow box ">
-                       <div class="p-1">
-                           <p class="small"><span class="text-danger h5">Alert!</span> Your {{minSub}} has the lowest average of {{minSubScore}}%</p>
-                           <p class="small"><span class="text-success h5">Good Work!</span> Your {{maxSub}} has the highest average of {{maxSubScore}}%</p>
-                           <p class="small"><span class="text-info h5">Keeup it up!</span> Your {{conSub}} scores are the most consistent at {{conData}} standard deviation!</p>
-                       </div>
+                        <div class="p-1" v-if="existingSubjects.length>1">
+                            <p class="small"><span class="text-danger h5">Alert!</span> Your {{minSub}} has the lowest
+                                average of {{minSubScore}}%</p>
+                            <p class="small"><span class="text-success h5">Good Work!</span> Your {{maxSub}} has the
+                                highest average of {{maxSubScore}}%</p>
+                            <p class="small" v-if="conSub!=''"><span class="text-info h5">Keep it up!</span> Your
+                                {{conSub}} scores are the most consistent with {{conData}} standard deviation!</p>
+                            <p class="small" v-else><span class="text-info h5">More data required!</span> Please add
+                                more test scores to see which is your most consistent subject.</p>
+                        </div>
+
+                        <div v-else class="text-center">
+                            <h1 class="display-6 text-primary" v-if="existingSubjects.length==1">Add more subjects</h1>
+                            <h1 class="display-6 text-primary" v-else>Let's Start!</h1>
+                            <h2>Start inputting your test scores using the plus button on the left!</h2>
+                        </div>
                         <!-- <canvas id="bar-chart" width="700" height="550" class="p-4"></canvas> -->
                     </div>
                     <div class="line-chart">
-                        <div class=" aspect-ratio " >
+                        <div class=" aspect-ratio ">
                             <canvas id="bar-chart" width="600" height="400" class="p-4 shadow"></canvas>
                         </div>
                     </div>
@@ -113,73 +130,6 @@
 
                 </div>
             </div>
-
-            <!-- <div class="row justify-content-end">
-                <div class="col-md-7 col-12">
-                    <div class="row justify-content-end">
-                        <div class="col-6">
-
-                            <select class="form-select form-select float-bottom mt-4 selectLevel mb-1"
-                                aria-label=".form-select-sm " id="examType" v-model='level' @change="change">
-
-                                <option value="1" :selected="level === 1">Sec 1</option>
-                                <option value="2" :selected="level === 2">Sec 2</option>
-                                <option value="3" :selected="level === 3">Sec 3</option>
-                                <option value="4" :selected="level === 4">Sec 4</option>
-                                <option value="5" :selected="level === 5">Sec 5</option>
-                            </select>
-                        </div>
-                        <div class="col-4 addBtn text-center">
-
-                            <button type="button" class="btn  mx-auto mt-4 " data-bs-toggle="modal"
-                                data-bs-target="#modalForm">
-                                <i class="fa-solid fa-circle-plus fa-lg"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="line-chart col-6 justify-content-end">
-                        <div class="aspect-ratio chart">
-                            <canvas id="progress-chart" class="shadow chart" width="600" height="450"></canvas>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-md-5 col-12 d-flex flex-column justify-content-center">
-                    <div class="card">
-                        <div class="card-header">
-                            Featured
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                            </p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            Featured
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                            </p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            Featured
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                            </p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
 
 
         </div>
@@ -270,12 +220,12 @@
                         y: {
                             display: true,
                             stacked: false,
-                            max: 0,
-                            min: 100,
-                            ticks: {
+                            max: 100,
+                            min: 0,
+                            // ticks: {
 
-                                stepSize: 10
-                            },
+                            //     stepSize: 10
+                            // },
                             title: {
                                 display: true,
                                 text: 'Your Score (%)'
@@ -303,7 +253,7 @@
                     labels: '',
                     datasets: [{
                         label: "Avg Score (%)",
-                        backgroundColor:'grey',
+                        backgroundColor: 'grey',
                         data: []
                     }]
                 },
@@ -317,9 +267,17 @@
                             display: true,
                             text: 'Your Average Scores'
                         }
+                    },
+                    scales: {
+                        y: {
+
+                            min: 0,
+                            max: 100
+                        }
                     }
 
-                }
+                },
+
 
 
             });
@@ -337,7 +295,7 @@
                 querySnapshot.docs.forEach((docSnapshot) => {
                     if (docSnapshot.id != 'ignore' && !data.includes(docSnapshot.data())) {
                         existingSubjects.push(docSnapshot.id)
-           
+
                         data.push(docSnapshot.data())
                         cardData.push({
                             [docSnapshot.id]: docSnapshot.data().data
@@ -345,17 +303,17 @@
 
                     }
                     console.log(existingSubjects)
-                     BarChart.data.labels=existingSubjects
-      
+                    BarChart.data.labels = existingSubjects
+
 
                 });
-  const colorList=this.getColors(data)
+                const colorList = this.getColors(data)
                 this.cardData = cardData
                 const avgList = this.getAvg(cardData)
                 BarChart.data.datasets[0].data = avgList
                 BarChart.data.datasets[0].backgroundColor = colorList
-                   BarChart.update()
-               
+                BarChart.update()
+
                 this.getMax(cardData)
                 this.getMin(cardData)
                 this.getStd(cardData)
@@ -363,21 +321,28 @@
                     progressChart.data.datasets = data
                     progressChart.update()
                 }
+                this.existingSubjects = existingSubjects
+                this.count = existingSubjects.length
+                console.log(this.existingSubjects)
+                console.log(this.existingSubects)
             });
 
 
 
         },
 
-    methods: {
-        getColors(data) {
-            // console.log(data)
-            const colorList = []
-            data.forEach(set => {
-                console.log(set.borderColor)
+        methods: {
+            checkValid() {
+
+            },
+            getColors(data) {
+                // console.log(data)
+                const colorList = []
+                data.forEach(set => {
+                    console.log(set.borderColor)
                     colorList.push(set.borderColor)
 
-            })
+                })
                 return colorList
             },
 
@@ -427,15 +392,15 @@
 
                     }
                     this.conSub = conSub
-                    this.conData=std.toFixed(1)
+                    this.conData = std.toFixed(1)
                 })
                 console.log(`most consistent is ${conSub} at ${conData}`)
             },
             getAvg(cardData) {
                 // let minSubject = ''
                 // let minScore = 1000
-                
-                const avgList=[]
+
+                const avgList = []
                 cardData.forEach(data => {
                     for (let key in data) {
 
@@ -467,8 +432,8 @@
                 // this.minSubScore = minScore
                 return avgList
 
-        },
-             getMin(cardData) {
+            },
+            getMin(cardData) {
 
                 let minSubject = ''
                 let minScore = 1000
@@ -556,6 +521,7 @@
                 return level
             },
             async addResult() {
+
                 let level = this.getLevel()
                 // let count = this.count
                 var email = localStorage.getItem("email");
@@ -581,6 +547,7 @@
                     await setDoc(doc(db, "users", email, 'progressResults' + level, this.subject), newData);
                     console.log(newData)
 
+
                 } else {
 
 
@@ -595,6 +562,9 @@
                         }
                     )
                 }
+                this.score = 0
+                this.subject = ''
+                this.examType=''
             }
         },
 
@@ -603,6 +573,8 @@
                 score: 0,
                 examType: '',
                 subject: '',
+                count: 0,
+
 
                 existingSubjects: [],
                 level: 1,
@@ -613,6 +585,7 @@
                 maxSubScore: '',
                 conSub: '',
                 conData: '',
+                validity: false
 
 
 
