@@ -8,9 +8,7 @@ import "bootstrap";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "@fortawesome/fontawesome-free/js/all.js";
 import { gsap } from "gsap";
-import VueChartkick from "vue-chartkick";
-import "chartkick/chart.js";
-createApp(App).use(router).use(VueChartkick).mount("#app");
+createApp(App).use(router).mount("#app");
 
 import "bootstrap/dist/js/bootstrap.min.js";
 // import axios from "axios";
