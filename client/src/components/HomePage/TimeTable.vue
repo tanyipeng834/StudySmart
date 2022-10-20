@@ -112,7 +112,19 @@ export default {
 
       const e = modal.result;
       this.calendar.events.add(e);
+      set(ref(db,'timetable'),{
+        start: start,
+        end:end,
+        resource:resource
+      })
+      .then(()=>{
+        alert('data stored successfully')
+      })
+      .catch((error)=>{
+        alert('unsuccessful, error'+error)
+      })
     },
+    
   },
   mounted() {
     this.loadResources();
