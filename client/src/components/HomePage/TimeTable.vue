@@ -70,10 +70,39 @@ export default {
     saveEvent(){
       const db=getFirestore()
 
-     
+      setDoc(doc(db,'timetable',this.scheduleName),{
+        end:this.end,
+        start:this.start,
+        subject:this.subject,
+
+      }).then(()=>{
+        alert('Data stored successfully')
+      })
+      .catch((error)=>{
+        alert('Unsuccessful, error'+error)
+      })
+      
 
     },
     async editData(e){
+      console.log(e)
+      const db=getFirestore()
+    const ref = doc(db, "timetable", this.scheduleName);
+    
+
+// Set the "capital" field of the city 'DC'
+    await updateDoc(ref, {
+      "end": this.end,
+      "start": this.start,
+      "subject":this.subject
+  }).then(()=>{
+        alert('Data stored successfully')
+      })
+      .catch((error)=>{
+        alert('Unsuccessful, error'+error)
+      });
+
+
       
     },
 
