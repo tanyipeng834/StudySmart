@@ -116,7 +116,8 @@
                     <div v-else class="text-center">
                         <h1 class="display-6 text-primary" v-if="existingSubjects.length==1">Add more subjects</h1>
                         <h1 class="display-6 text-primary" v-else>Let's Start!</h1>
-                        <h2>Start inputting your test scores using the plus button on the left!</h2>
+                        <h2 v-if="existingSubjects.length==1">Start inputting your test scores using the plus button on the left!</h2>
+                        <h2 v-else>Add your test scores of other subjects for us to give you more insights!</h2>
                     </div>
                     <!-- <canvas id="bar-chart" width="700" height="550" class="p-4"></canvas> -->
                 </div>
