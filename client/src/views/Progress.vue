@@ -70,7 +70,7 @@
         <div class="row">
 
             <div class="col-1"></div>
-            <div class="col-6 d-flex flex-column justify-content-center">
+            <div class="col-lg-6 col-12 d-flex flex-column justify-content-center">
                 <div class="d-flex flex-row justify-content-around">
                     <div>
                         <select class="form-select form-select  mt-4 selectLevel mb-1" aria-label=".form-select-sm "
@@ -633,7 +633,7 @@
     .line-chart {
         animation: fadeIn 600ms cubic-bezier(.57, .25, .65, 1) 1 forwards;
         opacity: 0;
-        max-width: 640px;
+
         width: 100%;
 
 
@@ -649,8 +649,8 @@
     .chart {
         padding: 2vw;
         position: relative;
-        width: 650px;
-        height: 500px
+       width: 100%;
+       height: auto;
     }
 
     /* .addBtn{
