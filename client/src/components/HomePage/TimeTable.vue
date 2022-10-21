@@ -2,7 +2,7 @@
   <div class="wrap">
     <div class="content">
       <h1>Drag and Hold to add new schedule!</h1>
-      <DayPilotCalendar id="dp" :config="calendarConfig" ref="calendar" />
+      <DayPilotCalendar id="dp" :config="calendarConfig" ref="calendar"/>
     </div>
   </div>
 </template>
@@ -10,23 +10,20 @@
 <script>
 import { DayPilot, DayPilotCalendar } from "@daypilot/daypilot-lite-vue";
 
-var colours = [
-  { name: "Red", id: "red" },
-  { name: "Orange", id: "orange" },
-  { name: "Yellow", id: "yellow" },
-  { name: "Blue", id: "blue" },
-  { name: "Green", id: "green" },
-  { name: "Purple", id: "purple" },
-  { name: "Pink", id: "pink" },
-  { name: "Grey", id: "grey" },
-];
+// Database setup
+import { initializeApp } from "firebase/app";
+import { doc, setDoc, addDoc, collection, getFirestore, getDocs,updateDoc } from "firebase/firestore";
+
+
+
+
 
 export default {
   name: "ResourceCalendar",
   data: function () {
     return {
       calendarConfig: {
-        viewType: "Week",
+        viewType: "Resources",
         timeRangeSelectedHandling: "Enabled",
         onTimeRangeSelected: async (args) => {
           await this.createEvent(args.start, args.end, args.resource);
@@ -37,11 +34,20 @@ export default {
         },
         eventDeleteHandling: "Disabled",
         onEventMoved: (args) => {
-          console.log("Event moved", args.e);
+          this.editEvent(args.e);
+          
+          
+          // console.log("Event moved", args.e);
         },
         onEventResized: (args) => {
           console.log("Event resized", args.e);
         },
+        start: '',
+        end:'',
+        subject:'',
+        scheduleName:''
+
+
       },
     };
   },
@@ -61,6 +67,16 @@ export default {
 
     //   this.calendar.update({events});
     // },
+    saveEvent(){
+      const db=getFirestore()
+
+     
+
+    },
+    async editData(e){
+      
+    },
+
     loadResources() {
       const columns = [
         { name: "Monday", id: "R1" },
@@ -88,6 +104,12 @@ export default {
       } else {
         this.calendar.events.update(modal.result);
       }
+      this.start=data.start.value
+      this.end=data.end.value
+      this.subject=data.text
+      this.scheduleName=data.text+data.start.value
+      this.editData()
+    
     },
     async createEvent(start, end, resource) {
       const form = [
@@ -104,6 +126,7 @@ export default {
         end,
         resource,
         id: DayPilot.guid(),
+        
       };
       const modal = await DayPilot.Modal.form(form, data);
       if (modal.canceled) {
@@ -112,23 +135,34 @@ export default {
 
       const e = modal.result;
       this.calendar.events.add(e);
-      set(ref(db,'timetable'),{
-        start: start,
-        end:end,
-        resource:resource
-      })
-      .then(()=>{
-        alert('data stored successfully')
-      })
-      .catch((error)=>{
-        alert('unsuccessful, error'+error)
-      })
+      this.start=e.start.value
+      this.end=e.end.value
+      this.subject=e.text
+      this.scheduleName=e.text+e.start.value
+      this.saveEvent()
+
+      
+      
+      
+      // set(ref(db,'timetable'),{
+      //   start: start,
+      //   end:end,
+      //   resource:resource
+      // })
+      // .then(()=>{
+      //   alert('data stored successfully')
+      // })
+      // .catch((error)=>{
+      //   alert('unsuccessful, error'+error)
+      // })
     },
     
   },
   mounted() {
     this.loadResources();
     // this.loadEvents();
+    
+
   },
 };
 </script>

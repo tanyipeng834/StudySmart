@@ -58,8 +58,7 @@
             profile: {
               fullName: name.value,
               schoolGrade: grade.value
-            },
-            countDown: [],
+            }
        
           });
           await setDoc(doc(db, "users", email.value, 'progressResults1','ignore'), {});
@@ -67,6 +66,7 @@
           await setDoc(doc(db, "users", email.value, 'progressResults3','ignore'), {});
           await setDoc(doc(db, "users", email.value, 'progressResults4','ignore'), {});
           await setDoc(doc(db, "users", email.value, 'progressResults5','ignore'), {});
+          await setDoc(doc(db,"users",email.value,'countDown','ignore'),{})
           // await setDoc(col, { 'ignore' :''});
 
           localStorage.setItem("email", email.value);

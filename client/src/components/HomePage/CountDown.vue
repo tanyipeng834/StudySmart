@@ -92,7 +92,22 @@
 </template>
 <script>
 import gsap from "gsap";
-
+import {
+        getFirestore,
+        doc,
+        updateDoc,
+        getDoc,
+        setDoc,
+        collection,
+        addDoc,
+        deleteDoc,
+        deleteField,
+        arrayUnion,
+        arrayRemove,
+        onSnapshot,
+        query,
+        where
+    } from "firebase/firestore";
 export default {
   name: "CountDown",
   mounted() {
@@ -136,13 +151,60 @@ export default {
         date: this.date,
         subject: this.subject,
       };
+
       this.$emit("add-test", newTest);
       console.log(newTest);
       this.test = "";
       (this.subject = ""), (this.date = "");
       this.addTest = !this.addTest;
+      
     },
+    
   },
+  async addTestData(){
+    
+
+
+// let count = this.count
+var email = localStorage.getItem("email");
+var colRef = doc(db, 'users', email, 'countDown', this.subject);
+    const newData = {
+
+        data: [{
+            test:this.test,
+            date: this.date,
+        }],
+
+           // let count = this.count
+
+                        label: this.subject,
+                    }
+
+
+
+    
+    await setDoc(doc(db, "users", email, 'countDown', this.subject), newData)
+    .then(()=>{
+      alert('Data stored successfully')
+    }).catch((error)=>alert('failed'))
+    console.log(newData)
+
+
+
+
+    // await updateDoc(
+    //     colRef, {
+
+    //         data: arrayUnion({
+    //             x: this.examType,
+    //             y: this.score
+    //         }),
+
+    //     }
+    // )
+
+},
+  
 };
 </script>
 <style scoped>

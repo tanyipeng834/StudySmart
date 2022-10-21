@@ -11,6 +11,7 @@ import { gsap } from "gsap";
 
 createApp(App).use(router).mount("#app");
 
+
 // import VueChartkick from "vue-chartkick";
 // import "chartkick/chart.js";
 // createApp(App).use(router).use(VueChartkick).mount("#app");
@@ -23,6 +24,7 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -33,7 +35,7 @@ const firebaseConfig = {
   projectId: "wad2-project-625b0",
   storageBucket: "wad2-project-625b0.appspot.com",
   messagingSenderId: "289817400876",
-  appId: "1:289817400876:web:56b20267551e94f2ebe389",
+  appId: "1:289817400876:web:56b20267551e94f2ebe389"
 };
 
 // Initialize Firebase
