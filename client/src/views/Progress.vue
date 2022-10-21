@@ -86,7 +86,7 @@
                         </select>
                     </div>
                     <div class="">
-                        <button type="button" class="btn  mx-auto mt-4 float-end " data-bs-toggle="modal"
+                        <button type="button" class="btn  mx-auto mt-4 float-end addRes" data-bs-toggle="modal"
                             data-bs-target="#modalForm"  >
                             <i class="fa-solid fa-circle-plus fa-lg" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add test results"></i>
                         </button>
@@ -288,6 +288,7 @@
 
 
             });
+          
             let level = this.getLevel()
             console.log(level)
             var email = localStorage.getItem("email");
@@ -666,7 +667,12 @@
 
         box-shadow: 5px 5px 6px 7px #ccc;
     }
-
+.addRes{
+    position: absolute;
+    top:10%;
+    left:49%;
+      z-index: 1;
+}
     .box {
         height: 165px;
     }
@@ -690,7 +696,10 @@
   
 
 
-
+#progres-chart{
+    position:relative;
+    z-index: 0;
+}
 .modal-box .modal-dialog{
     width: 500px;
     margin: 50px auto 0;
@@ -727,5 +736,12 @@
     box-shadow: 0 0 10px rgba(255,255,255,0.5) inset,0 0 10px #959596;
 }
 .modal-box .modal-dialog .modal-content .modal-body .btn:focus{ outline: none; }
-
+@media (max-width: 991px) {
+  .addRes{
+    position: relative;
+    top:10%;
+    left:49%;
+      z-index: 1;
+}
+}
 </style>
