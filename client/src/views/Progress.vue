@@ -3,34 +3,35 @@
 
         <!-- <div class="container-fluid "> -->
 
-            <div class="row">
-                <div class="col-4">
-                    <Sidebar :haveTopbar="false" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
-                </div>
-                <div class="col-4 ">
-
-                </div>
-                <div class="col-4 ">
-
-                </div>
+        <div class="row">
+            <div class="col-4">
+                <Sidebar :haveTopbar="false" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
             </div>
+            <div class="col-4 ">
 
+            </div>
+            <div class="col-4 ">
 
+            </div>
+        </div>
+
+<div class="modal-box">
+    
             <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add Result</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
+                   
+                       
+                            <div class="text-end"><button type="button" class="btn-close me-2 mt-2 " data-bs-dismiss="modal" aria-label="Close"></button></div>
+                      
                         <div class="modal-body">
-
+         <h3 >Add Result</h3>
                             <div class="row">
                                 <div class="mb-3 col-6">
                                     <label class="form-label">Score</label>
-                                    <input type="number" min="0" max="100" class="form-control" id="score" name="score"
-                                        placeholder="Score in %" v-model.trim='score'  />
-                                    <p v-if="score <0||score>100" class="text-danger small">Your score must be between 0
+                                    <input type="number" min="0" max="100" class="form-control mb-0" id="score" name="score"
+                                        placeholder="Score in %" v-model.trim='score' />
+                                    <p v-if="score <0||score>100||score==''||isNaN(score)" class="text-danger small mt-0">Your score must be between 0
                                         and 100</p>
                                 </div>
                                 <div class="mb-3  col-6">
@@ -47,89 +48,95 @@
                             <div class="row">
                                 <div class="mb-3">
                                     <label class="form-label">Subject</label>
-                                    <input type="text" class="form-control" id="subject" name="subject" placeholder=""
+                                    <input type="text" class="form-control mb-0" id="subject" name="subject" placeholder=""
                                         v-model.trim='subject' />
+                                         <p v-if="subject==''" class="text-danger small mt-0">Please input the subject</p>
                                 </div>
                             </div>
-
+    
                             <div class="modal-footer d-block">
-
-                                <button type="submit" data-bs-dismiss="modal" class="btn btn-warning float-end"
+    
+                                <button type="submit" data-bs-dismiss="modal" class="btn  btn-outline-dark float-end"
                                     @click="addResult"
-                                    v-if="score <0||score>100||subject.length===0 ||examType==''||score==''"
+                                    v-if="score <0||score>100||subject.length===0 ||score==''"
                                     disabled>Submit</button>
-                                <button type="submit" data-bs-dismiss="modal" class="btn btn-warning float-end"
+                                <button type="submit" data-bs-dismiss="modal" class="btn btn-outline-info float-end enabled"
                                     @click="addResult" v-else>Submit</button>
                             </div>
-
+    
                         </div>
                     </div>
-
+    
                 </div>
             </div>
-            <div class="row">
+</div>
+        <div class="row">
 
-                <div class="col-1"></div>
-                <div class="col-6 d-flex flex-column justify-content-center">
-                    <div class="d-flex flex-row justify-content-around">
-                        <div>
-                            <select class="form-select form-select  mt-4 selectLevel mb-1" aria-label=".form-select-sm "
-                                id="examType" v-model='level' @change="change">
-                                <option value="1" :selected="level === 1">Sec 1</option>
-                                <option value="2" :selected="level === 2">Sec 2</option>
-                                <option value="3" :selected="level === 3">Sec 3</option>
-                                <option value="4" :selected="level === 4">Sec 4</option>
-                                <option value="5" :selected="level === 5">Sec 5</option>
-                            </select>
-                        </div>
-                        <div class="">
-                            <button type="button" class="btn  mx-auto mt-4 float-end " data-bs-toggle="modal"
-                                data-bs-target="#modalForm">
-                                <i class="fa-solid fa-circle-plus fa-lg"></i>
-                            </button>
-                        </div>
+            <div class="col-1"></div>
+            <div class="col-lg-6 col-12 d-flex flex-column justify-content-center">
+                <div class="d-flex flex-row justify-content-around">
+                    <div>
+                        <select class="form-select form-select  mt-4 selectLevel mb-1 shadow l" aria-label=".form-select-sm "
+                            id="examType" v-model='level' @change="change">
+                            <option value="1" :selected="level === 1">Sec 1</option>
+                            <option value="2" :selected="level === 2">Sec 2</option>
+                            <option value="3" :selected="level === 3">Sec 3</option>
+                            <option value="4" :selected="level === 4">Sec 4</option>
+                            <option value="5" :selected="level === 5">Sec 5</option>
+                        </select>
                     </div>
-                    <div class="line-chart ">
-                        <div class="aspect-ratio chart">
-                            <canvas id="progress-chart" class="shadow chart bg-white rounded" width="650" height="500"></canvas>
-                        </div>
+                    <div class="">
+                        <button type="button" class="btn  mx-auto mt-4 float-end addRes" data-bs-toggle="modal"
+                            data-bs-target="#modalForm"  >
+                            <i class="fa-solid fa-circle-plus fa-lg" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add test results"></i>
+                        </button>
                     </div>
-
-
-
                 </div>
-                <div class="col-lg-5 col-12  d-flex flex-column justify-content-evenly">
-
-                    <div class="shadow box ">
-                        <div class="p-1" v-if="existingSubjects.length>1">
-                            <p class="small"><span class="text-danger h5">Alert!</span> Your {{minSub}} has the lowest
-                                average of {{minSubScore}}%</p>
-                            <p class="small"><span class="text-success h5">Good Work!</span> Your {{maxSub}} has the
-                                highest average of {{maxSubScore}}%</p>
-                            <p class="small" v-if="conSub!=''"><span class="text-info h5">Keep it up!</span> Your
-                                {{conSub}} scores are the most consistent with {{conData}} standard deviation!</p>
-                            <p class="small" v-else><span class="text-info h5">More data required!</span> Please add
-                                more test scores to see which is your most consistent subject.</p>
-                        </div>
-
-                        <div v-else class="text-center">
-                            <h1 class="display-6 text-primary" v-if="existingSubjects.length==1">Add more subjects</h1>
-                            <h1 class="display-6 text-primary" v-else>Let's Start!</h1>
-                            <h2>Start inputting your test scores using the plus button on the left!</h2>
-                        </div>
-                        <!-- <canvas id="bar-chart" width="700" height="550" class="p-4"></canvas> -->
+                <div class="line-chart ">
+                    <div class="aspect-ratio chart">
+                        <canvas id="progress-chart" class="shadow chart bg-white rounded" width="650" height="500"
+                            style="--bs-bg-opacity: .5;"></canvas>
                     </div>
-                    <div class="line-chart">
-                        <div class=" aspect-ratio ">
-                            <canvas id="bar-chart" width="600" height="400" class="p-4 shadow bg-white rounded"></canvas>
-                        </div>
+                </div>
+
+
+
+            </div>
+            <div class="col-lg-5 col-12  d-flex flex-column justify-content-start mt-4">
+
+                <div class="shadow box ">
+                    <div class="p-1" v-if="existingSubjects.length>1">
+                        <p class="small"><span class="text-danger h5">Alert!</span> Your {{minSub}} has the lowest
+                            average of {{minSubScore}}%</p>
+                        <p class="small"><span class="text-success h5">Good Work!</span> Your {{maxSub}} has the
+                            highest average of {{maxSubScore}}%</p>
+                        <p class="small" v-if="conSub!=''"><span class="text-info h5">Keep it up!</span> Your
+                            {{conSub}} scores are the most consistent with {{conData}} standard deviation!</p>
+                        <p class="small" v-else><span class="text-info h5">More data required!</span> Please add
+                            more test scores to see which is your most consistent subject.</p>
                     </div>
-                    <!-- <div class="shadow box">
+
+                    <div v-else class="text-center">
+                        <h1 class="display-6 text-primary" v-if="existingSubjects.length==1">Add more subjects</h1>
+                        <h1 class="display-6 text-primary" v-else>Let's Start!</h1>
+                        <h2 v-if="existingSubjects.length==1">Add your test results of other subjects for us to give you more insights!</h2>
+                        <h2 v-else>Start inputting your test scores using the  <i class="fa-solid fa-circle-plus fa-lg"></i> button</h2>
+                
+                    </div>
+                    <!-- <canvas id="bar-chart" width="700" height="550" class="p-4"></canvas> -->
+                </div>
+                <div class="line-chart">
+                    <div class=" aspect-ratio ">
+                        <canvas id="bar-chart" width="600" height="400" class="p-4 shadow bg-white rounded"
+                            style="--bs-bg-opacity: .5;"> </canvas>
+                    </div>
+                </div>
+                <!-- <div class="shadow box">
 
                     </div> -->
 
-                </div>
             </div>
+        </div>
 
 
         <!-- </div> -->
@@ -281,6 +288,7 @@
 
 
             });
+          
             let level = this.getLevel()
             console.log(level)
             var email = localStorage.getItem("email");
@@ -562,16 +570,16 @@
                         }
                     )
                 }
-                this.score = 0
+                this.score = ''
                 this.subject = ''
-                this.examType=''
+                this.examType = ''
             }
         },
 
         data() {
             return {
-                score: 0,
-                examType: '',
+                score: '',
+                examType: 'CA1',
                 subject: '',
                 count: 0,
 
@@ -630,7 +638,7 @@
     .line-chart {
         animation: fadeIn 600ms cubic-bezier(.57, .25, .65, 1) 1 forwards;
         opacity: 0;
-        max-width: 640px;
+
         width: 100%;
 
 
@@ -642,20 +650,12 @@
         position: relative;
     }
 
-    /* .selectLevel{
-     position:absolute;
-     width:15vw;
-     /* width: 10%; */
-    /* left:27vw;
-     top: 6vh; */
-    /* left:26%;
-  top:6% 
-} */
+
     .chart {
         padding: 2vw;
         position: relative;
-        width: 650px;
-        height: 500px
+       width: 100%;
+       height: auto;
     }
 
     /* .addBtn{
@@ -667,7 +667,12 @@
 
         box-shadow: 5px 5px 6px 7px #ccc;
     }
-
+.addRes{
+    position: absolute;
+    top:10%;
+    left:49%;
+      z-index: 1;
+}
     .box {
         height: 165px;
     }
@@ -677,14 +682,66 @@
         ;
 
     }
+
     .login {
-  background-image: url("@/assets/cloud.jpg");
+        background-image: url("@/assets/cloud.jpg");
 
-  height: 100%;
+        height: 100vh;
 
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+  
+
+
+#progres-chart{
+    position:relative;
+    z-index: 0;
+}
+.modal-box .modal-dialog{
+    width: 500px;
+    margin: 50px auto 0;
+}
+
+
+.modal-box .modal-dialog .modal-content{
+    text-align: center;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+}
+
+.modal-body{ 
+    padding: 40px 
+ }
+
+ .modal-body .form-control,.modal-body .form-select {
+    background: #cceaf6;
+    font-size: 22px;
+    height: 50px;
+    margin: 0 0 30px;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+}
+.modal-body p{
+    text-align: left;
+}
+
+.enabled:hover{
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 10px rgba(255,255,255,0.5) inset,0 0 10px #959596;
+}
+.modal-box .modal-dialog .modal-content .modal-body .btn:focus{ outline: none; }
+@media (max-width: 991px) {
+  .addRes{
+    position: relative;
+    top:10%;
+    left:49%;
+      z-index: 1;
+}
 }
 </style>

@@ -105,19 +105,10 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
 }
-/* img{
-  width: auto;
-  height: 600px;
-} */
-body,html{
-  height: 100%;
-}
+
 .login {
   background-image: url("@/assets/cloud.jpg");
-
-  height: 100%;
-
-  /* Center and scale the image nicely */
+   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
