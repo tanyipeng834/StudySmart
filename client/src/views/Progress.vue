@@ -15,65 +15,68 @@
             </div>
         </div>
 
-
-        <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add Result</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="modal-box">
+    
+            <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                   
+                       
+                            <div class="text-end"><button type="button" class="btn-close me-2 mt-2 " data-bs-dismiss="modal" aria-label="Close"></button></div>
+                      
+                        <div class="modal-body">
+         <h3 >Add Result</h3>
+                            <div class="row">
+                                <div class="mb-3 col-6">
+                                    <label class="form-label">Score</label>
+                                    <input type="number" min="0" max="100" class="form-control mb-0" id="score" name="score"
+                                        placeholder="Score in %" v-model.trim='score' />
+                                    <p v-if="score <0||score>100||score==''||isNaN(score)" class="text-danger small mt-0">Your score must be between 0
+                                        and 100</p>
+                                </div>
+                                <div class="mb-3  col-6">
+                                    <label class="form-label">Exam Type</label>
+                                    <select class="form-select form-select" aria-label=".form-select-sm example"
+                                        id="examType" v-model='examType'>
+                                        <option value="CA1" selected>CA1</option>
+                                        <option value="SA1">SA1</option>
+                                        <option value="CA2">CA2</option>
+                                        <option value="SA2">SA2</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label class="form-label">Subject</label>
+                                    <input type="text" class="form-control mb-0" id="subject" name="subject" placeholder=""
+                                        v-model.trim='subject' />
+                                         <p v-if="subject==''" class="text-danger small mt-0">Please input the subject</p>
+                                </div>
+                            </div>
+    
+                            <div class="modal-footer d-block">
+    
+                                <button type="submit" data-bs-dismiss="modal" class="btn  btn-outline-dark float-end"
+                                    @click="addResult"
+                                    v-if="score <0||score>100||subject.length===0 ||score==''"
+                                    disabled>Submit</button>
+                                <button type="submit" data-bs-dismiss="modal" class="btn btn-outline-info float-end enabled"
+                                    @click="addResult" v-else>Submit</button>
+                            </div>
+    
+                        </div>
                     </div>
-                    <div class="modal-body">
-
-                        <div class="row">
-                            <div class="mb-3 col-6">
-                                <label class="form-label">Score</label>
-                                <input type="number" min="0" max="100" class="form-control" id="score" name="score"
-                                    placeholder="Score in %" v-model.trim='score' />
-                                <p v-if="score <0||score>100" class="text-danger small">Your score must be between 0
-                                    and 100</p>
-                            </div>
-                            <div class="mb-3  col-6">
-                                <label class="form-label">Exam Type</label>
-                                <select class="form-select form-select" aria-label=".form-select-sm example"
-                                    id="examType" v-model='examType'>
-                                    <option value="CA1" selected>CA1</option>
-                                    <option value="SA1">SA1</option>
-                                    <option value="CA2">CA2</option>
-                                    <option value="SA2">SA2</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="mb-3">
-                                <label class="form-label">Subject</label>
-                                <input type="text" class="form-control" id="subject" name="subject" placeholder=""
-                                    v-model.trim='subject' />
-                            </div>
-                        </div>
-
-                        <div class="modal-footer d-block">
-
-                            <button type="submit" data-bs-dismiss="modal" class="btn btn-warning float-end"
-                                @click="addResult"
-                                v-if="score <0||score>100||subject.length===0 ||examType==''||score==''"
-                                disabled>Submit</button>
-                            <button type="submit" data-bs-dismiss="modal" class="btn btn-warning float-end"
-                                @click="addResult" v-else>Submit</button>
-                        </div>
-
-                    </div>
+    
                 </div>
-
             </div>
-        </div>
+</div>
         <div class="row">
 
             <div class="col-1"></div>
             <div class="col-lg-6 col-12 d-flex flex-column justify-content-center">
                 <div class="d-flex flex-row justify-content-around">
                     <div>
-                        <select class="form-select form-select  mt-4 selectLevel mb-1" aria-label=".form-select-sm "
+                        <select class="form-select form-select  mt-4 selectLevel mb-1 shadow l" aria-label=".form-select-sm "
                             id="examType" v-model='level' @change="change">
                             <option value="1" :selected="level === 1">Sec 1</option>
                             <option value="2" :selected="level === 2">Sec 2</option>
@@ -84,8 +87,8 @@
                     </div>
                     <div class="">
                         <button type="button" class="btn  mx-auto mt-4 float-end " data-bs-toggle="modal"
-                            data-bs-target="#modalForm">
-                            <i class="fa-solid fa-circle-plus fa-lg"></i>
+                            data-bs-target="#modalForm"  >
+                            <i class="fa-solid fa-circle-plus fa-lg" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add test results"></i>
                         </button>
                     </div>
                 </div>
@@ -116,7 +119,7 @@
                     <div v-else class="text-center">
                         <h1 class="display-6 text-primary" v-if="existingSubjects.length==1">Add more subjects</h1>
                         <h1 class="display-6 text-primary" v-else>Let's Start!</h1>
-                        <h2 v-if="existingSubjects.length==1">Add your test scores of other subjects for us to give you more insights!</h2>
+                        <h2 v-if="existingSubjects.length==1">Add your test results of other subjects for us to give you more insights!</h2>
                         <h2 v-else>Start inputting your test scores using the  <i class="fa-solid fa-circle-plus fa-lg"></i> button</h2>
                 
                     </div>
@@ -566,7 +569,7 @@
                         }
                     )
                 }
-                this.score = 0
+                this.score = ''
                 this.subject = ''
                 this.examType = ''
             }
@@ -574,8 +577,8 @@
 
         data() {
             return {
-                score: 0,
-                examType: '',
+                score: '',
+                examType: 'CA1',
                 subject: '',
                 count: 0,
 
@@ -684,4 +687,45 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
+  
+
+
+
+.modal-box .modal-dialog{
+    width: 500px;
+    margin: 50px auto 0;
+}
+
+
+.modal-box .modal-dialog .modal-content{
+    text-align: center;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+}
+
+.modal-body{ 
+    padding: 40px 
+ }
+
+ .modal-body .form-control,.modal-body .form-select {
+    background: #cceaf6;
+    font-size: 22px;
+    height: 50px;
+    margin: 0 0 30px;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+}
+.modal-body p{
+    text-align: left;
+}
+
+.enabled:hover{
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 10px rgba(255,255,255,0.5) inset,0 0 10px #959596;
+}
+.modal-box .modal-dialog .modal-content .modal-body .btn:focus{ outline: none; }
+
 </style>
