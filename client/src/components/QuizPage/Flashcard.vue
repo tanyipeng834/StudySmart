@@ -2,10 +2,9 @@
   <div class="card mt-4">
     <div class="card-header">{{ cardNumber }}</div>
     <div class="card-body d-flex">
-      
-      <input v-model="term" placeholder="Term" type="text" class="ml-4" />
+      <input v-model="this.term" placeholder="Term" type="text" class="ml-4" />
       <input
-        v-model="defination"
+        v-model="this.defination"
         placeholder="Defination"
         type="text"
         class="ml-4"
@@ -17,11 +16,25 @@
 <script>
 export default {
   name: "Flashcard",
+
   data() {
-    return {};
+    return {
+      term: "",
+      defination: "",
+    };
   },
   props: {
     cardNumber: Number,
+  },
+  methods: {},
+  updated() {
+    console.log(this.term);
+    console.log(this.defination);
+    this.$emit("update-flash-card", [
+      this.cardNumber,
+      this.term,
+      this.defination,
+    ]);
   },
 };
 </script>

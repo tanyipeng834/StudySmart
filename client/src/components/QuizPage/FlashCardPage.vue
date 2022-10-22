@@ -33,7 +33,12 @@
       <div class="col-3"></div>
       <div class="col-6">
         <div v-for="(card, index) in this.flashCards" :key="index">
-          <FlashCard :cardNumber="card.id" :key="card.id" />
+          <FlashCard
+            v-if="this.submit != null"
+            :cardNumber="card.id"
+            :key="card.id"
+            @update-flash-card="updateFlashCards"
+          />
         </div>
       </div>
     </div>
@@ -42,10 +47,10 @@
         class="btn btn-primary"
         @click="addFlashCards({ term: '', defination: '' })"
       >
-        Create
+        +
       </button>
       <button type="button" class="btn btn-primary add" @click="updateCard()">
-        +
+        Create
       </button>
     </div>
   </div>
@@ -60,12 +65,11 @@ export default {
       { id: 2, term: "", defination: "" },
       { id: 3, term: "", defination: "" },
     ];
+    this.submit = false;
   },
   data() {
     return {
       flashCards: [],
-      title: "",
-      description: "",
     };
   },
   components: {
@@ -79,6 +83,15 @@ export default {
     },
     updateCard() {
       this.$emit("add-summary-card", [this.title, this.description]);
+      this.submit = true;
+    },
+
+    updateFlashCards(array) {
+      console.log(array[0]);
+      let card = this.flashCards.find((x) => x.id == array[0]);
+      card.term = array[1];
+      card.defination = array[2];
+      console.log(this.flashCards);
     },
   },
 };
