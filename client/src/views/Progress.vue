@@ -147,6 +147,8 @@
         <!-- </div> -->
     </div>
 </template>
+
+
 <script>
     import {
         auth,
@@ -331,15 +333,15 @@
                 this.getMax(cardData)
                 this.getMin(cardData)
                 this.getStd(cardData)
-           
+
                 if (data.length != 0) {
                     progressChart.data.datasets = data
                     progressChart.update()
                 }
                 this.existingSubjects = existingSubjects
-                 this.count = existingSubjects.length
-     
-                     
+                this.count = existingSubjects.length
+
+
             });
 
 
@@ -351,31 +353,31 @@
                 // console.log(subject)
                 // console.log(examType)
                 var allAreTruthy = false;
-                      
-       this.cardData.forEach( data =>  {
-                for (let key in data) {
-                      
-                    if (key == subject) {
-                    
-                        let sets = data[key]
-                  
-                        sets.forEach(set => {
-                            //  console.log(set)
-                            if (set.x == examType) {
-                                // console.log(set.x==examType)
-                         
-                                allAreTruthy = true;
-                         }
-                        })
-                       }
-                    
-                }
-               
+                let oldScore=0
+
+
+                this.cardData.forEach(data => {
+                    for (let key in data) {
+
+
+                        if (key == subject) {
+
+                            let sets = data[key]
+
+                            sets.forEach(set => {
+                                //  console.log(set)
+                                if (set.x == examType) {
+                                    // console.log(set.x==examType)
+                                    oldScore=set.y
+
+                                    allAreTruthy = true;
+                                }                           
+                            })
+                        }
+                    }
+
                 })
-                return allAreTruthy
-            
-            
-           
+                return [allAreTruthy, oldScore]
 
             },
             getColors(data) {
@@ -561,6 +563,8 @@
                 // let count = this.count
                 var email = localStorage.getItem("email");
                 var colRef = doc(db, 'users', email, 'progressResults' + level, this.subject);
+                let exam=this.examType
+                let score=this.score
                 if (!this.existingSubjects.includes(this.subject)) {
                     this.existingSubjects.push(this.subject)
                     const newData = {
@@ -586,31 +590,82 @@
 
 
                 } else {
-               
-                   
-                    if (this.checkExist(this.examType, this.subject)) {
-                       
-                        alert(`${this.examType} already exists for ${this.subject}`)
-                        return
+
+
+                    if (this.checkExist(this.examType, this.subject)[0]) {
+                        let oldScore = this.checkExist(this.examType, this.subject)[1]
+
+                        // alert(`${this.examType} already exists for ${this.subject}`)
+                        asgar({
+                                title: `${this.examType} already exists for ${this.subject}`,
+                                message: "Do you want to overwrite the existing result?",
+                                // details: "You will not able to recover this action",
+                                left: "Cancel",
+                                right: "Overwrite",
+                            })
+                            .then(() => {
+                                console.log("overwrite");
+                                this.removed(exam, oldScore, colRef).then(() => {
+                                    console.log('data deleted')
+                                }).catch((e)=>{
+                                    console.log(e)
+                                })
+                                this.update(colRef, exam, score).then(() => {
+                                    console.log("overwritten")
+                                })
+
+                            })
+                            .catch(() => {
+                                console.log("cancel overwrite");
+                                return
+
+                            });
+
                     } else {
-                        await updateDoc(
-                            colRef, {
-
-                                data: arrayUnion({
-                                    x: this.examType,
-                                    y: this.score
-                                }),
-
-                            }
-                        )
+                        this.update(colRef, this.examType, this.score).then(() => {
+                            console.log("updated")
+                        })
 
                     }
+
+                    //     await updateDoc(
+                    //     colRef, {
+
+                    //         data: arrayUnion({
+                    //             x: this.examType,
+                    //             y: this.score
+                    //         }),
+
+                    //     }
+                    // )
+
+
+
 
 
                 }
                 this.score = ''
                 this.subject = ''
                 this.examType = ''
+            },
+            async removed(exam, score, ref) {
+                await updateDoc(ref, {
+                    data: arrayRemove({x:exam,y:score})
+                });
+            },
+            async update(ref, exam, score) {
+                await updateDoc(
+                    ref, {
+
+                        data: arrayUnion({
+                            x: exam,
+                            y: score
+                        }),
+
+                    }
+                )
+
+
             }
         },
 
