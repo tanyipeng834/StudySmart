@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { DayPilot, DayPilotCalendar } from "@daypilot/daypilot-lite-vue";
+import { DayPilot, DayPilotCalendar, DayPilotNavigator } from "@daypilot/daypilot-lite-vue";
 
 // Database setup
 import { initializeApp } from "firebase/app";
@@ -22,6 +22,12 @@ export default {
   name: "ResourceCalendar",
   data: function () {
     return {
+        navigatorConfig: {
+        
+        onTimeRangeSelected: args => {
+          this.calendarConfig.startDate = args.day;
+        }
+      },
       calendarConfig: {
         viewType: "Resources",
         timeRangeSelectedHandling: "Enabled",
@@ -107,6 +113,9 @@ export default {
     },
 
     loadResources() {
+       var dp = document.getElementById('dp')
+  dp.dayBeginsHour = 9;
+  dp.dayEndsHour = 10;
       const columns = [
         { name: "Monday", id: "R1" },
         { name: "Tuesday", id: "R2" },
@@ -114,6 +123,7 @@ export default {
         { name: "Thursday", id: "R4" },
         { name: "Friday", id: "R5" },
       ];
+      
       this.calendar.update({ columns });
     },
     async editEvent(e) {

@@ -41,6 +41,26 @@ import Sidebar from "../components/Navigation/Sidebar.vue";
 import CountDown from "../components/HomePage/CountDown.vue";
 import TimeTable from "../components/HomePage/TimeTable.vue";
 import Quote from "../components/HomePage/Quote.vue";
+ import {
+        auth,
+        db
+} from "../../src/main";
+     import {
+        getFirestore,
+        doc,
+        updateDoc,
+        getDoc,
+        setDoc,
+        collection,
+        addDoc,
+        deleteDoc,
+        deleteField,
+        arrayUnion,
+        arrayRemove,
+        onSnapshot,
+        query,
+        where
+    } from "firebase/firestore";
 
 export default {
   name: "Dashboard",
@@ -65,9 +85,27 @@ export default {
     },
 
   },
+  mounted() {
+
+
+   },
+  
 
   created() {
     //this is preferably stored in backend
+      var email = localStorage.getItem("email");
+    const q = query(collection(db, "users", email, 'countDown'))
+    // const data=[]
+    onSnapshot(q, (querySnapshot) => {
+      querySnapshot.docs.forEach((docSnapshot) => {
+
+              if (docSnapshot.id != 'ignore') {
+                       
+console.log(docSnapshot.id,docSnapshot.data())
+                    }
+      });
+
+    });
     this.tests = [
       {
         id: 1,
