@@ -76,29 +76,6 @@
 
             <div class="col-1"></div>
             <div class="col-lg-6 col-12 d-flex flex-column justify-content-center">
-                 <div class="shadow box row show ">
-                    <div class="p-1 insights" v-if="existingSubjects.length>1">
-                        <p class="small"><span class="text-danger h5">Alert!</span> Your {{minSub}} has the lowest
-                            average of {{minSubScore}}%</p>
-                        <p class="small"><span class="text-success h5">Good Work!</span> Your {{maxSub}} has the
-                            highest average of {{maxSubScore}}%</p>
-                        <p class="small" v-if="conSub!=''"><span class="text-info h5">Keep it up!</span> Your
-                            {{conSub}} scores are the most consistent with {{conData}} standard deviation!</p>
-                        <p class="small" v-else><span class="text-info h5">More data required!</span> Please add
-                            more test scores to see which is your most consistent subject.</p>
-                    </div>
-
-                    <div v-else class="text-center">
-                        <h1 class="display-6 text-primary" v-if="existingSubjects.length==1">Add more subjects</h1>
-                        <h1 class="display-6 text-primary" v-else>Let's Start!</h1>
-                        <h2 v-if="existingSubjects.length==1">Add your test results of other subjects for us to give you
-                            more insights!</h2>
-                        <h2 v-else>Start inputting your test scores using the <i
-                                class="fa-solid fa-circle-plus fa-lg"></i> button</h2>
-
-                    </div>
-                    <!-- <canvas id="bar-chart" width="700" height="550" class="p-4"></canvas> -->
-                </div>
                 <div class="d-flex flex-row justify-content-around">
                     <div>
                         <select class="form-select form-select  mt-4 selectLevel mb-1 shadow l"
@@ -128,9 +105,9 @@
 
 
             </div>
-            <div class="col-lg-5 col-12   mt-4">
+            <div class="col-lg-5 col-12  d-flex flex-column justify-content-start mt-4">
 
-                <div class="shadow box row hidden">
+                <div class="shadow box ">
                     <div class="p-1 insights" v-if="existingSubjects.length>1">
                         <p class="small"><span class="text-danger h5">Alert!</span> Your {{minSub}} has the lowest
                             average of {{minSubScore}}%</p>
@@ -153,7 +130,7 @@
                     </div>
                     <!-- <canvas id="bar-chart" width="700" height="550" class="p-4"></canvas> -->
                 </div>
-                <div class="line-chart row">
+                <div class="line-chart">
                     <div class=" aspect-ratio ">
                         <canvas id="bar-chart" width="600" height="400" class="p-4 shadow bg-white rounded"
                             style="--bs-bg-opacity: .6;"> </canvas>
@@ -320,7 +297,7 @@
             });
 
             let level = this.getLevel()
-            // console.log(level)
+
             var email = localStorage.getItem("email");
             console.log(email)
             progressChart.options.plugins.title['text'] = `Secondary ${level} Progress`
@@ -378,11 +355,8 @@
                 var allAreTruthy = false;
                 let oldScore=0
 
-
                 this.cardData.forEach(data => {
                     for (let key in data) {
-
-
                         if (key == subject) {
 
                             let sets = data[key]
@@ -404,7 +378,6 @@
 
             },
             getColors(data) {
-                // console.log(data)
                 const colorList = []
                 data.forEach(set => {
                     console.log(set.borderColor)
@@ -465,8 +438,6 @@
                 console.log(`most consistent is ${conSub} at ${conData}`)
             },
             getAvg(cardData) {
-                // let minSubject = ''
-                // let minScore = 1000
 
                 const avgList = []
                 cardData.forEach(data => {
@@ -558,7 +529,6 @@
                 this.maxSubScore = maxScore.toFixed(1)
             },
             colorItems(tooltipItem) {
-                // console.log(tooltipItem.tooltip.labelColors[0].borderColor)
                 const tooltipBg = tooltipItem.tooltip.labelColors[0].borderColor
                 return tooltipBg
             },
@@ -574,10 +544,9 @@
                     level = localStorage.getItem("level")
                     this.level = level
 
-                    //  document.getElementById('level').options[localStorage.getItem('level')].selected = true;
+               
 
                 }
-                // this.title=`Secondary ${level} Progress Chart`
                 return level
             },
             async addResult() {
@@ -651,19 +620,6 @@
 
                     }
 
-                    //     await updateDoc(
-                    //     colRef, {
-
-                    //         data: arrayUnion({
-                    //             x: this.examType,
-                    //             y: this.score
-                    //         }),
-
-                    //     }
-                    // )
-
-
-
 
 
                 }
@@ -713,33 +669,6 @@
 
 
 
-                // colors: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#bbc021", "#1a993a",
-                //     "##904b23", "#a01359", "#a04913", "#534270"
-                // ],
-
-                // tabs: [{
-                //         link: '',
-                //         name: "subject",
-                //         dropdown: true,
-                //         dropdownTabs: [{
-                //                 name: 'math',
-                //                 link: '#'
-                //             },
-                //             {
-                //                 name: 'science',
-                //                 link: '#'
-                //             },
-                //         ]
-
-                //     },
-                //     {
-                //         link: '#',
-                //         name: "test",
-                //         dropdown: false,
-                //         dropdownTabs: []
-
-                //     },
-                // ]
 
             }
         }
@@ -774,11 +703,7 @@
         height: auto;
     }
 
-    /* .addBtn{
-      position: absolute;
-      top: 3em;
-      right: 4em;
-} */
+
     .shadow {
 
         box-shadow: 5px 5px 6px 7px #ccc;
@@ -786,15 +711,13 @@
 
     .addRes {
         position: absolute;
-        top: 12%;
-        left: 50%;
+        top: 10%;
+        left: 49%;
         z-index: 1;
     }
 
     .box {
-        width: 100%;
-        height: auto;
-
+        height: 165px;
     }
 
     body {
@@ -862,13 +785,6 @@
     .modal-box .modal-dialog .modal-content .modal-body .btn:focus {
         outline: none;
     }
-    .hidden{
-        display: block;
-    }
-    .show{
-        display:none
-
-    }
 
     @media (max-width: 991px) {
         .addRes {
@@ -876,16 +792,13 @@
             top: 10%;
             left: 49%;
             z-index: 1;
-        }.hidden{
-            display:none;
-        }.show{
-            display:block;
-            margin-top: 30px;
         }
        
     }
     @media (max-width: 1200px) {
-     
+         .insights{
+            font-size: 13px;
+        }
 
     }
 </style>
