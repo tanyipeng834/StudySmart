@@ -76,6 +76,29 @@
 
             <div class="col-1"></div>
             <div class="col-lg-6 col-12 d-flex flex-column justify-content-center">
+                 <div class="shadow box row show ">
+                    <div class="p-1 insights" v-if="existingSubjects.length>1">
+                        <p class="small"><span class="text-danger h5">Alert!</span> Your {{minSub}} has the lowest
+                            average of {{minSubScore}}%</p>
+                        <p class="small"><span class="text-success h5">Good Work!</span> Your {{maxSub}} has the
+                            highest average of {{maxSubScore}}%</p>
+                        <p class="small" v-if="conSub!=''"><span class="text-info h5">Keep it up!</span> Your
+                            {{conSub}} scores are the most consistent with {{conData}} standard deviation!</p>
+                        <p class="small" v-else><span class="text-info h5">More data required!</span> Please add
+                            more test scores to see which is your most consistent subject.</p>
+                    </div>
+
+                    <div v-else class="text-center">
+                        <h1 class="display-6 text-primary" v-if="existingSubjects.length==1">Add more subjects</h1>
+                        <h1 class="display-6 text-primary" v-else>Let's Start!</h1>
+                        <h2 v-if="existingSubjects.length==1">Add your test results of other subjects for us to give you
+                            more insights!</h2>
+                        <h2 v-else>Start inputting your test scores using the <i
+                                class="fa-solid fa-circle-plus fa-lg"></i> button</h2>
+
+                    </div>
+                    <!-- <canvas id="bar-chart" width="700" height="550" class="p-4"></canvas> -->
+                </div>
                 <div class="d-flex flex-row justify-content-around">
                     <div>
                         <select class="form-select form-select  mt-4 selectLevel mb-1 shadow l"
@@ -105,9 +128,9 @@
 
 
             </div>
-            <div class="col-lg-5 col-12  d-flex flex-column justify-content-start mt-4">
+            <div class="col-lg-5 col-12   mt-4">
 
-                <div class="shadow box ">
+                <div class="shadow box row hidden">
                     <div class="p-1 insights" v-if="existingSubjects.length>1">
                         <p class="small"><span class="text-danger h5">Alert!</span> Your {{minSub}} has the lowest
                             average of {{minSubScore}}%</p>
@@ -130,7 +153,7 @@
                     </div>
                     <!-- <canvas id="bar-chart" width="700" height="550" class="p-4"></canvas> -->
                 </div>
-                <div class="line-chart">
+                <div class="line-chart row">
                     <div class=" aspect-ratio ">
                         <canvas id="bar-chart" width="600" height="400" class="p-4 shadow bg-white rounded"
                             style="--bs-bg-opacity: .6;"> </canvas>
@@ -763,13 +786,15 @@
 
     .addRes {
         position: absolute;
-        top: 10%;
-        left: 49%;
+        top: 12%;
+        left: 50%;
         z-index: 1;
     }
 
     .box {
-        height: 165px;
+        width: 100%;
+        height: auto;
+
     }
 
     body {
@@ -837,6 +862,13 @@
     .modal-box .modal-dialog .modal-content .modal-body .btn:focus {
         outline: none;
     }
+    .hidden{
+        display: block;
+    }
+    .show{
+        display:none
+
+    }
 
     @media (max-width: 991px) {
         .addRes {
@@ -844,13 +876,16 @@
             top: 10%;
             left: 49%;
             z-index: 1;
+        }.hidden{
+            display:none;
+        }.show{
+            display:block;
+            margin-top: 30px;
         }
        
     }
     @media (max-width: 1200px) {
-         .insights{
-            font-size: 13px;
-        }
+     
 
     }
 </style>
