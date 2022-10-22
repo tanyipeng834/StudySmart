@@ -108,7 +108,7 @@
             <div class="col-lg-5 col-12  d-flex flex-column justify-content-start mt-4">
 
                 <div class="shadow box ">
-                    <div class="p-1" v-if="existingSubjects.length>1">
+                    <div class="p-1 insights" v-if="existingSubjects.length>1">
                         <p class="small"><span class="text-danger h5">Alert!</span> Your {{minSub}} has the lowest
                             average of {{minSubScore}}%</p>
                         <p class="small"><span class="text-success h5">Good Work!</span> Your {{maxSub}} has the
@@ -845,5 +845,12 @@
             left: 49%;
             z-index: 1;
         }
+       
+    }
+    @media (max-width: 1200px) {
+         .insights{
+            font-size: 13px;
+        }
+
     }
 </style>
