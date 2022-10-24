@@ -58,7 +58,14 @@
 <script>
 import FlashCard from "@/components/QuizPage/Flashcard.vue";
 import { db } from "@/main.js";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  setDoc,
+  query,
+  orderBy,
+} from "firebase/firestore";
 export default {
   name: "FlashCardPage",
   created() {
@@ -72,8 +79,8 @@ export default {
   data() {
     return {
       flashCards: [],
-      title:'',
-      description:''
+      title: "",
+      description: "",
     };
   },
   components: {
@@ -93,11 +100,11 @@ export default {
     async addToDataBase() {
       let email = localStorage.getItem("email");
       console.log(email);
-      let ref = doc(db, "users", email, "Flashcards", "1");
+      let collectionRef = collection(db, "users", email, "Flashcards");
 
-      const docref = await setDoc(ref, {
-        term:this.term,
-        
+      const docref = await addDoc(collectionRef, {
+        title: this.title,
+        description: this.description,
         data: this.flashCards,
       })
         .then(() => {
@@ -107,7 +114,6 @@ export default {
           alert("Unsuccessful operation,error" + error);
         });
     },
-
     updateFlashCards(array) {
       console.log(array[0]);
       let card = this.flashCards.find((x) => x.id == array[0]);
