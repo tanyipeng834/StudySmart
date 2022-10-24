@@ -78,7 +78,7 @@ export default {
   },
   mounted() {},
 
-  /*
+
   created() {
     //this is preferably stored in backend
     if (localStorage.getItem("email")) {
@@ -119,15 +119,15 @@ console.log(docSnapshot.id,docSnapshot.data())
       var d = new Date(b.date);
       return c - d;
     });
-      
+
     } else {
       window.location.href='#/login'
     }
 
   },
 };
-*/
-};
+
+
 </script>
 
 <style scoped>
