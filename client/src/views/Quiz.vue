@@ -49,7 +49,7 @@ import { db } from "@/main.js";
 
 export default {
   name: "Quiz",
-  created() {
+  mounted() {
     let email = localStorage.getItem("email");
     console.log(email);
     const q = query(collection(db, "users", email, "Flashcards"));
