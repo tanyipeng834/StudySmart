@@ -16,13 +16,9 @@
         />
       </div>
       <div class="col-4 quote">
-        <div class="text"><Quote/></div>
-        
-      
-    </div>
-    <div class="col-2">
-
-    </div>
+        <div class="text"><Quote /></div>
+      </div>
+      <div class="col-2"></div>
     </div>
 
     <div class="row">
@@ -31,7 +27,6 @@
         <TimeTable />
       </div>
       <div class="col-1"></div>
-
     </div>
   </div>
 </template>
@@ -41,26 +36,23 @@ import Sidebar from "../components/Navigation/Sidebar.vue";
 import CountDown from "../components/HomePage/CountDown.vue";
 import TimeTable from "../components/HomePage/TimeTable.vue";
 import Quote from "../components/HomePage/Quote.vue";
- import {
-        auth,
-        db
-} from "../../src/main";
-     import {
-        getFirestore,
-        doc,
-        updateDoc,
-        getDoc,
-        setDoc,
-        collection,
-        addDoc,
-        deleteDoc,
-        deleteField,
-        arrayUnion,
-        arrayRemove,
-        onSnapshot,
-        query,
-        where
-    } from "firebase/firestore";
+import { auth, db } from "../../src/main";
+import {
+  getFirestore,
+  doc,
+  updateDoc,
+  getDoc,
+  setDoc,
+  collection,
+  addDoc,
+  deleteDoc,
+  deleteField,
+  arrayUnion,
+  arrayRemove,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
 
 export default {
   name: "Dashboard",
@@ -83,14 +75,10 @@ export default {
     addTest(test) {
       this.tests = [...this.tests, test];
     },
-
   },
-  mounted() {
+  mounted() {},
 
-
-   },
-  
-
+  /*
   created() {
     //this is preferably stored in backend
       var email = localStorage.getItem("email");
@@ -100,7 +88,7 @@ export default {
       querySnapshot.docs.forEach((docSnapshot) => {
 
               if (docSnapshot.id != 'ignore') {
-                       
+
 console.log(docSnapshot.id,docSnapshot.data())
                     }
       });
@@ -132,10 +120,12 @@ console.log(docSnapshot.id,docSnapshot.data())
     });
   },
 };
+*/
+};
 </script>
 
 <style scoped>
-.quote{
+.quote {
   position: relative;
   margin-left: 50px;
   background-image: url("../assets/2-21362_png-file-size-blue-watercolor-stain-png.png");
@@ -146,16 +136,16 @@ console.log(docSnapshot.id,docSnapshot.data())
 
 .login {
   background-image: url("@/assets/cloud.jpg");
-   height: 100%;
+  height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-.timetable{
+.timetable {
   display: flex;
   justify-content: center;
 }
-.text{
+.text {
   position: absolute;
   top: 120px;
   text-align: center;

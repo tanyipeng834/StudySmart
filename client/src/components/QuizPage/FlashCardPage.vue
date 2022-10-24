@@ -57,6 +57,8 @@
 </template>
 <script>
 import FlashCard from "@/components/QuizPage/Flashcard.vue";
+import { db } from "@/main.js";
+import { addDoc, collection, doc } from "firebase/firestore";
 export default {
   name: "FlashCardPage",
   created() {
@@ -84,6 +86,26 @@ export default {
     updateCard() {
       this.$emit("add-summary-card", [this.title, this.description]);
       this.submit = true;
+      this.addToDataBase();
+    },
+    async addToDataBase() {
+      let email = localStorage.getItem("email");
+      console.log(email);
+      let ref = doc(db, "users", email, "Flashcards","1");
+      this.flashCards.forEach(async (element) => {
+        console.log(typeof element.id);
+
+        const docref = await setDoc(ref, {
+          term: element.term,
+          defination: element.defination,
+        })
+          .then(() => {
+            alert("data have been added successfully");
+          })
+          .catch((error) => {
+            alert("Unsuccessful operation,error" + error);
+          });
+      });
     },
 
     updateFlashCards(array) {
