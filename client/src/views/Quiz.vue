@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Topbar :tabs="tabs" />
+    <Topbar :tabs="tabs"></Topbar>
     <div class="container-fluid quiz">
       <Sidebar :haveTopbar="true"></Sidebar>
       <div v-if="modal == false">
@@ -24,16 +24,17 @@
           <div class="col-8">
             <div class="row gx-2">
               <SummaryCard
-                v-for="item in this.summaryCards"
+                v-for="item in summaryCards"
                 :title="item.title"
                 :description="item.description"
-              />
+              >
+              </SummaryCard>
             </div>
           </div>
         </div>
       </div>
       <div v-else>
-        <FlashcardPage @add-summary-card="addSummaryCard" />
+        <FlashcardPage @add-summary-card="addSummaryCard"></FlashcardPage>
       </div>
     </div>
   </div>
@@ -49,25 +50,11 @@ import { db } from "@/main.js";
 
 export default {
   name: "Quiz",
-  mounted() {
-    let email = localStorage.getItem("email");
-    console.log(email);
-    const q = query(collection(db, "users", email, "Flashcards"));
-    this.summaryCards = [];
-    const flashCards = onSnapshot(q, (querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        this.summaryCards.push({
-          title: doc.data().title,
-          description: doc.data().description,
-        });
-        console.log(this.summaryCards);
-      });
-    });
-  },
 
   data() {
     return {
       modal: false,
+      summaryCards: [],
       tabs: [
         // example on how to implement the tabs
         {
@@ -94,6 +81,21 @@ export default {
       ],
     };
   },
+  created() {
+    let email = localStorage.getItem("email");
+    console.log(email);
+    const q = query(collection(db, "users", email, "Flashcards"));
+
+    console.log(this.summaryCards);
+    const flashCards = onSnapshot(q, (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.summaryCards.push({
+          title: doc.data().title,
+          description: doc.data().description,
+        });
+      });
+    });
+  },
   components: { Sidebar, Topbar, FlashcardPage, SummaryCard },
 
   methods: {
@@ -102,6 +104,7 @@ export default {
     },
     addSummaryCard(item) {
       this.modal = false;
+      this.summaryCards = [];
     },
   },
 };
