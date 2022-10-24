@@ -181,168 +181,163 @@
             Sidebar,
             Topbar,
             ChartTest
-        },
-        watch: {
-            // level: function () {
-            //     // this.progressChart.destroy()
-            //     console.log(this.level)
-            //     localStorage.setItem("level", this.level);
-            //     location.reload()
+    },
 
-            // }
-        },
         mounted() {
+            if (localStorage.getItem("email")) {
 
+                const progressChart = new Chart(document.getElementById("progress-chart"), {
+                    type: 'line',
+                    data: {
+                        labels: ['CA1', 'SA1', 'CA2', 'SA2'],
+                        datasets: [
 
-            const progressChart = new Chart(document.getElementById("progress-chart"), {
-                type: 'line',
-                data: {
-                    labels: ['CA1', 'SA1', 'CA2', 'SA2'],
-                    datasets: [
-
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    animation: {
-                        easing: 'easeInOutQuad',
-                        duration: 520
+                        ]
                     },
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: ''
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        animation: {
+                            easing: 'easeInOutQuad',
+                            duration: 520
                         },
-                        tooltip: {
-                            displayColors: false,
-                            yAlign: 'bottom',
-                            backgroundColor: this.colorItems,
-                            titleFontFamily: 'Open Sans',
-
-                            titleColor: 'black',
-                            bodyColor: 'black',
-                            caretSize: 5,
-                            cornerRadius: 5,
-                            boxPadding: 10,
-
-                        },
-
-                    },
-                    scales: {
-
-                        y: {
-                            display: true,
-                            stacked: false,
-                            max: 100,
-                            min: 0,
-                            // ticks: {
-
-                            //     stepSize: 10
-                            // },
+                        plugins: {
                             title: {
                                 display: true,
-                                text: 'Your Score (%)'
+                                text: ''
                             },
-                            gridLines: {
-                                color: 'rgba(200, 200, 200, 0.05)',
-                                lineWidth: 1
+                            tooltip: {
+                                displayColors: false,
+                                yAlign: 'bottom',
+                                backgroundColor: this.colorItems,
+                                titleFontFamily: 'Open Sans',
+
+                                titleColor: 'black',
+                                bodyColor: 'black',
+                                caretSize: 5,
+                                cornerRadius: 5,
+                                boxPadding: 10,
+
                             },
+
                         },
-                        x: {
-                            gridLines: {
-                                color: 'rgba(200, 200, 200, 0.05)',
-                                lineWidth: 1
+                        scales: {
+
+                            y: {
+                                display: true,
+                                stacked: false,
+                                max: 100,
+                                min: 0,
+                                // ticks: {
+
+                                //     stepSize: 10
+                                // },
+                                title: {
+                                    display: true,
+                                    text: 'Your Score (%)'
+                                },
+                                gridLines: {
+                                    color: 'rgba(200, 200, 200, 0.05)',
+                                    lineWidth: 1
+                                },
                             },
+                            x: {
+                                gridLines: {
+                                    color: 'rgba(200, 200, 200, 0.05)',
+                                    lineWidth: 1
+                                },
 
-                        }
-                    },
-
-                }
-
-            });
-            const BarChart = new Chart(document.getElementById("bar-chart"), {
-                type: 'bar',
-                data: {
-                    labels: '',
-                    datasets: [{
-                        label: "Avg Score (%)",
-                        backgroundColor: 'grey',
-                        data: []
-                    }]
-                },
-                options: {
-                    plugins: {
-
-                        legend: {
-                            display: false
+                            }
                         },
-                        title: {
-                            display: true,
-                            text: 'Your Average Scores'
-                        }
-                    },
-                    scales: {
-                        y: {
 
-                            min: 0,
-                            max: 100
-                        }
                     }
 
-                },
+                });
+                const BarChart = new Chart(document.getElementById("bar-chart"), {
+                    type: 'bar',
+                    data: {
+                        labels: '',
+                        datasets: [{
+                            label: "Avg Score (%)",
+                            backgroundColor: 'grey',
+                            data: []
+                        }]
+                    },
+                    options: {
+                        plugins: {
 
+                            legend: {
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: 'Your Average Scores'
+                            }
+                        },
+                        scales: {
+                            y: {
 
+                                min: 0,
+                                max: 100
+                            }
+                        }
 
-            });
+                    },
 
-            let level = this.getLevel()
-
-            var email = localStorage.getItem("email");
-            console.log(email)
-            progressChart.options.plugins.title['text'] = `Secondary ${level} Progress`
-            progressChart.update()
-            const q = query(collection(db, "users", email, 'progressResults' + level))
-            onSnapshot(q, (querySnapshot) => {
-                const data = []
-                const existingSubjects = []
-                const cardData = []
-                querySnapshot.docs.forEach((docSnapshot) => {
-                    if (docSnapshot.id != 'ignore' && !data.includes(docSnapshot.data())) {
-                        existingSubjects.push(docSnapshot.id)
-
-                        data.push(docSnapshot.data())
-                        cardData.push({
-                            [docSnapshot.id]: docSnapshot.data().data
-                        })
-
-                    }
-                    // console.log(existingSubjects)
-                    BarChart.data.labels = existingSubjects
 
 
                 });
-                const colorList = this.getColors(data)
-                this.cardData = cardData
-                const avgList = this.getAvg(cardData)
-                BarChart.data.datasets[0].data = avgList
-                BarChart.data.datasets[0].backgroundColor = colorList
-                BarChart.update()
-                //  console.log(cardData)
 
-                this.getMax(cardData)
-                this.getMin(cardData)
-                this.getStd(cardData)
+                let level = this.getLevel()
 
-                if (data.length != 0) {
-                    progressChart.data.datasets = data
-                    progressChart.update()
-                }
-                this.existingSubjects = existingSubjects
-                this.count = existingSubjects.length
+                var email = localStorage.getItem("email");
+                console.log(email)
+                progressChart.options.plugins.title['text'] = `Secondary ${level} Progress`
+                progressChart.update()
+                const q = query(collection(db, "users", email, 'progressResults' + level))
+                onSnapshot(q, (querySnapshot) => {
+                    const data = []
+                    const existingSubjects = []
+                    const cardData = []
+                    querySnapshot.docs.forEach((docSnapshot) => {
+                        if (docSnapshot.id != 'ignore' && !data.includes(docSnapshot.data())) {
+                            existingSubjects.push(docSnapshot.id)
+
+                            data.push(docSnapshot.data())
+                            cardData.push({
+                                [docSnapshot.id]: docSnapshot.data().data
+                            })
+
+                        }
+                        // console.log(existingSubjects)
+                        BarChart.data.labels = existingSubjects
+
+                    });
+                    const colorList = this.getColors(data)
+                    this.cardData = cardData
+                    const avgList = this.getAvg(cardData)
+                    BarChart.data.datasets[0].data = avgList
+                    BarChart.data.datasets[0].backgroundColor = colorList
+                    BarChart.update()
+                    //  console.log(cardData)
+
+                    this.getMax(cardData)
+                    this.getMin(cardData)
+                    this.getStd(cardData)
+
+                    if (data.length != 0) {
+                        progressChart.data.datasets = data
+                        progressChart.update()
+                    }
+                    this.existingSubjects = existingSubjects
+                    this.count = existingSubjects.length
 
 
-            });
+                });
+            }
+            else {
+                  window.location.href='#/login'
+            }
 
 
 
@@ -589,7 +584,7 @@
 
                         // alert(`${this.examType} already exists for ${this.subject}`)
                         asgar({
-                                title: `${this.examType} already exists for ${this.subject}`,
+                                title: `${this.examType} result already exists for ${this.subject}`,
                                 message: "Do you want to overwrite the existing result?",
                                 // details: "You will not able to recover this action",
                                 left: "Cancel",
@@ -629,6 +624,7 @@
             },
             async removed(exam, score, ref) {
                 await updateDoc(ref, {
+                
                     data: arrayRemove({x:exam,y:score})
                 });
             },

@@ -93,7 +93,8 @@ export default {
 
   created() {
     //this is preferably stored in backend
-      var email = localStorage.getItem("email");
+    if (localStorage.getItem("email")) {
+            var email = localStorage.getItem("email");
     const q = query(collection(db, "users", email, 'countDown'))
     // const data=[]
     onSnapshot(q, (querySnapshot) => {
@@ -130,6 +131,11 @@ console.log(docSnapshot.id,docSnapshot.data())
       var d = new Date(b.date);
       return c - d;
     });
+      
+    } else {
+      window.location.href='#/login'
+    }
+
   },
 };
 </script>
