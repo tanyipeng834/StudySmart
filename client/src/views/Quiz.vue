@@ -49,7 +49,6 @@ import Topbar from "../components/Navigation/Topbar.vue";
 import FlashcardPage from "../components/QuizPage/FlashCardPage.vue";
 import SummaryCard from "../components/QuizPage/SummaryCard.vue";
 import { db } from "@/main.js";
-import { RouterLink } from "vue-router";
 
 export default {
   name: "Quiz",
