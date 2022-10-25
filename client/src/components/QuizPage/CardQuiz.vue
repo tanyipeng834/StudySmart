@@ -1,7 +1,6 @@
 <template>
   <vue-flip active-click>
     <template v-slot:front>
-      {{ this.cards }}
       <div class="progress w-50 mx-auto mt-5">
         <div
           class="progress-bar"
