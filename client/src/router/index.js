@@ -2,8 +2,9 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Login from "../views/Login.vue";
 import Dashboard from "../views/Dashboard.vue";
 import Progress from "../views/Progress.vue";
+import QuizTest from "../views/QuizTest.vue";
 
-// git 
+// git
 import Quiz from "../views/Quiz.vue";
 const routes = [
   {
@@ -23,6 +24,11 @@ const routes = [
     component: Quiz,
   },
   {
+    path: "/quiz/:id",
+    name: "QuizTest",
+    component: QuizTest,
+  },
+  {
     path: "/progress",
     name: "ProgressTracker",
     component: Progress,
@@ -37,7 +43,6 @@ const routes = [
 
     component: () => import("../views/SignUp.vue"),
   },
-
 ];
 
 const router = createRouter({

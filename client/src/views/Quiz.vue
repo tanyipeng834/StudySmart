@@ -27,6 +27,8 @@
                 v-for="item in summaryCards"
                 :title="item.title"
                 :description="item.description"
+                :id="item.id"
+                @click="redirect(item.id)"
               >
               </SummaryCard>
             </div>
@@ -47,6 +49,7 @@ import Topbar from "../components/Navigation/Topbar.vue";
 import FlashcardPage from "../components/QuizPage/FlashCardPage.vue";
 import SummaryCard from "../components/QuizPage/SummaryCard.vue";
 import { db } from "@/main.js";
+import { RouterLink } from "vue-router";
 
 export default {
   name: "Quiz",
@@ -90,6 +93,7 @@ export default {
     const flashCards = onSnapshot(q, (querySnapshot) => {
       querySnapshot.forEach((doc) => {
         this.summaryCards.push({
+          id: doc.id,
           title: doc.data().title,
           description: doc.data().description,
         });
@@ -105,6 +109,9 @@ export default {
     addSummaryCard(item) {
       this.modal = false;
       this.summaryCards = [];
+    },
+    redirect(id) {
+      window.location.href = `/#/quiz/${id}`;
     },
   },
 };
