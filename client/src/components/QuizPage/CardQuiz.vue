@@ -1,6 +1,7 @@
 <template>
   <vue-flip active-click>
     <template v-slot:front>
+      {{ this.cards }}
       <div class="progress w-50 mx-auto mt-5">
         <div
           class="progress-bar"
@@ -14,23 +15,11 @@
         </div>
       </div>
       <div class="card">
-        Term
+        <h3>Term</h3>
         <div class="card-body d-flex">
-          <div class="content text-center">Hello</div>
-        </div>
-        <div class="d-flex w-100 button-div">
-          <button
-            type="button "
-            class="btn btn-outline-primary card-button-back"
-          >
-            Back
-          </button>
-          <button
-            type="button"
-            class="btn btn-outline-primary card-button-front"
-          >
-            Next
-          </button>
+          <div v-if="this.cards[this.count - 1]" class="content text-center">
+            {{ this.cards[this.count - 1]["term"] }}
+          </div>
         </div>
       </div>
     </template>
@@ -48,27 +37,31 @@
         </div>
       </div>
       <div class="card">
-        Definition
+        <h3>Definition</h3>
         <div class="card-body d-flex">
-          <div class="content text-center">Definataion</div>
-        </div>
-        <div class="d-flex w-100 button-div">
-          <button
-            type="button "
-            class="btn btn-outline-primary card-button-back"
-          >
-            Back
-          </button>
-          <button
-            type="button"
-            class="btn btn-outline-primary card-button-front"
-          >
-            Next
-          </button>
+          <div v-if="this.cards[this.count - 1]" class="content text-center">
+            {{ this.cards[this.count - 1]["defination"] }}
+          </div>
         </div>
       </div>
     </template>
   </vue-flip>
+  <div class="d-flex button-div">
+    <button
+      type="button "
+      class="btn btn-outline-primary card-button-back"
+      @click="beforeCard()"
+    >
+      Back
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-primary card-button-front"
+      @click="nextCard()"
+    >
+      Next
+    </button>
+  </div>
 </template>
 
 <script>
@@ -77,14 +70,31 @@ export default {
   name: "CardQuiz",
   data() {
     return {
-      progress: 25,
       cards: this.cards,
-      count: 0,
+      count: 1,
     };
+  },
+  computed: {
+    progress() {
+      return Math.floor((this.count / this.cards.length) * 100);
+    },
   },
   components: { VueFlip },
   props: {
     cards: Array,
+  },
+
+  methods: {
+    nextCard() {
+      if (this.count <= this.cards.length - 1) {
+        this.count += 1;
+      }
+    },
+    beforeCard() {
+      if (this.count > 1) {
+        this.count -= 1;
+      }
+    },
   },
 };
 </script>
@@ -106,12 +116,12 @@ export default {
 }
 .card-button-back {
   border-radius: 50%;
-  width: 15%;
-  height: auto;
+  width: 100px;
+  height: 100px;
 }
 .card-button-front {
   border-radius: 50%;
-  width: 15%;
-  height: auto;
+  width: 100px;
+  height: 100px;
 }
 </style>
