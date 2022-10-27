@@ -76,70 +76,47 @@ export default {
       this.tests = [...this.tests, test];
     },
   },
-  mounted() {},
-
-  /*
-  created() {
-    //this is preferably stored in backend
-    if (localStorage.getItem("email")) {
+  mounted() {
+       if (localStorage.getItem("email")) {
             var email = localStorage.getItem("email");
     const q = query(collection(db, "users", email, 'countDown'))
-    // const data=[]
-    onSnapshot(q, (querySnapshot) => {
+
+         onSnapshot(q, (querySnapshot) => {
+         const data=[]
       querySnapshot.docs.forEach((docSnapshot) => {
 
               if (docSnapshot.id != 'ignore') {
-
-console.log(docSnapshot.id,docSnapshot.data())
-                    }
+                let newdata = docSnapshot.data()
+newdata.id=docSnapshot.id
+        
+                data.push(newdata)
+    }
       });
-
-    });
-    this.tests = [
-      {
-        id: 1,
-        testName: "CA1 Paper",
-        date: "11/25/2022",
-        subject: "Maths",
-      },
-      {
-        id: 2,
-        testName: "CA2 Paper",
-        date: "01/25/2023",
-        subject: "Maths",
-      },
-      {
-        id: 3,
-        testName: "SA1 Paper",
-        date: "02/25/2023",
-        subject: "English",
-      },
-      {
-        id: 4,
-        testName: "SA1 Paper",
-        date: "02/25/2023",
-        subject: "English",
-      },
-      {
-        id: 5,
-        testName: "SA1 Paper",
-        date: "02/25/2023",
-        subject: "English",
-      },
-    ].sort(function (a, b) {
+      this.tests=data.sort(function (a, b) {
       var c = new Date(a.date);
       var d = new Date(b.date);
       return c - d;
+      });
+
+    
+
     });
+     
 
     } else {
       window.location.href='#/login'
     }
+  },
+
+
+  created() {
+    //this is preferably stored in backend
+ 
 
   },
 };
-*/
-};
+
+
 </script>
 
 <style scoped>

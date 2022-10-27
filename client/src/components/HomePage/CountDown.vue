@@ -14,7 +14,7 @@
       </div>
     </div>
     <!-- <AddTest /> -->
-    <ul class="list-group">
+    <ul class="list-group" id="example">
       <li class="list-group-item d-flex justify-content-around align-items-start header bg-dark">
         <div class="col-7">
           <h6 class="text-white">Exam Count Down</h6>
@@ -37,7 +37,7 @@
           <input v-model="date" type="text" class="form-control form-control-sm" placeholder="mm/dd/yyyy" />
         </div>
       </li>
-      <li v-for="index in 3" :key="index"
+      <!-- <li v-for="index in 3" :key="index"
         class="list-group-item d-flex justify-content-around align-items-start" :class="danger( daysLeft(test.date))">
    
        <div class="ms-2 me-auto col-7">
@@ -58,8 +58,11 @@
             <i class="fa-regular fa-trash-can"></i>
           </button>
         </div>
+           </li> -->
+           <li  v-if='tests.length==0' class="list-group-item">
+          <div>Add Your Upcoming Exams Here!</div>
            </li>
-      <!-- <li v-for="(test,index) in tests" :key="index"
+           <li v-else-if="tests.length<4" v-for="(test,index) in tests" :key="index"
         class="list-group-item d-flex justify-content-around align-items-start" :class="danger( daysLeft(test.date))">
         <div class="ms-2 me-auto col-7">
           <div class="fw-bold">{{ test.testName }}</div>
@@ -79,7 +82,30 @@
             <i v-on:click="deleteTest($event)" class="fa-regular fa-trash-can"></i>
           </button>
         </div>
-      </li> -->
+      </li>
+      
+      <li v-else v-for="(test,i) in tests"  :key="i"
+        class="list-group-item d-flex justify-content-around align-items-start" :class="danger( daysLeft(test.date))">
+      
+        <div class="ms-2 me-auto col-7">
+          <div class="fw-bold">{{ test.testName }}</div>
+          <p>
+            <small>{{ test.subject }} . {{ test.date }}</small>
+          </p>
+        </div>
+
+        <div class="col-4 d-flex justify-content-center">
+          <span class="p-2 badge bg-primary rounded-pill mx-auto" >{{
+            daysLeft(test.date)
+          }}</span>
+        </div>
+
+        <div class="col-1">
+          <button type="button" class="btn position-absolute top-0 end-2" v-on:click="deleteTest(test.id)">
+            <i v-on:click="deleteTest($event)" class="fa-regular fa-trash-can"></i>
+          </button>
+        </div>
+      </li>
     </ul>
   </div>
 </template>
@@ -107,12 +133,18 @@
   } from "firebase/firestore";
   export default {
     name: "CountDown",
-    mounted() {
+  mounted() {
+    $(document).ready(function () {
+    $('#example').DataTable();
+});
+    var email = localStorage.getItem("email");
+         this.email=email
       gsap.from(".main", {
         opacity: 0,
         x: -200,
         duration: 1.5
       });
+   
     },
 
     props: {
@@ -124,10 +156,16 @@
         subject: "",
         date: "",
         addTest: false,
+        data: '',
+        count: 0,
+        email:''
      
       };
     },
   methods: {
+    getData() {
+      
+    },
     danger(daysleft) {
       if (daysleft < 8) {
         
@@ -141,9 +179,10 @@
         let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
         return TotalDays;
       },
-      deleteTest(id) {
-         console.log(id)
-        this.$emit("delete-test", id);
+      async deleteTest(id) {
+        console.log(id)
+         var ref=doc(db, 'users', this.email, 'countDown',id);
+       await deleteDoc(ref);
  
       },
     
@@ -152,10 +191,10 @@
           alert("Please add a test");
           return;
         }
-         var email = localStorage.getItem("email");
+      
         const newData = {
 
-          id: Math.floor(Math.random() * 100000),
+        
 
           subject: this.subject,
           date:this.date,
@@ -167,7 +206,7 @@
         }
 
 
-       await setDoc(doc(db, "users", email, 'countDown', this.date), newData)
+       await addDoc(collection(db, "users", email, 'countDown'), newData)
        this.test = ''
 
        this.subject = ''
@@ -175,15 +214,7 @@
        this.addTest = !this.addTest
        console.log(this.addTest)
 
-        // const newTest = {
-        //   id: Math.floor(Math.random() * 100000), //have to edit
-        //   testName: this.test,
-        //   date: this.date,
-        //   subject: this.subject,
-        // };
 
-        // this.$emit("add-test", newTest);
-        // console.log(newTest);
      
     
    
