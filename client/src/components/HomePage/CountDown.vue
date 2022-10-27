@@ -2,7 +2,7 @@
   <div class="main" @click="fadeIn">
     <div class="d-flex justify-content-end mt-4">
       <button class="btn" v-if="addTest === false" @click="addTest = !addTest">
-        <i class="fa-regular fa-pen-to-square fa-lg text-right"></i>Add Test
+        <i class="fa-regular fa-pen-to-square fa-lg text-right"></i>Add Upcoming Exam
       </button>
       <div v-else>
         <button class="btn" @click="addTest = !addTest">
@@ -17,10 +17,10 @@
     <ul class="list-group">
       <li class="list-group-item d-flex justify-content-around align-items-start header bg-dark">
         <div class="col-7">
-          <h6 class="text-white">Test Name</h6>
+          <h6 class="text-white">Exam Count Down</h6>
         </div>
         <div class="col-4">
-          <h6 class="float-start text-white">Days Left</h6>
+          <h6 class="float-start text-white"> Days Left</h6>
         </div>
       </li>
       <!-- class="list-group-item d-flex justify-content-around align-items-center" -->
@@ -37,8 +37,30 @@
           <input v-model="date" type="text" class="form-control form-control-sm" placeholder="mm/dd/yyyy" />
         </div>
       </li>
-      <li v-for="(test,index) in tests" :key="index"
-        class="list-group-item d-flex justify-content-around align-items-start">
+      <li v-for="index in 3" :key="index"
+        class="list-group-item d-flex justify-content-around align-items-start" :class="danger( daysLeft(test.date))">
+   
+       <div class="ms-2 me-auto col-7">
+          <div class="fw-bold">{{ tests[index-1].testName }}</div>
+          <p>
+            <small>{{ tests[index-1].subject }} . {{ tests[index-1].date }}</small>
+          </p>
+        </div>
+
+        <div class="col-4 d-flex justify-content-center">
+          <span class="p-2 badge bg-primary rounded-pill mx-auto" >{{
+            daysLeft(tests[index-1].date)
+          }}</span>
+        </div>
+
+        <div class="col-1">
+          <button type="button" class="btn position-absolute top-0 end-2" v-on:click="deleteTest(tests[index-1].id)">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
+        </div>
+           </li>
+      <!-- <li v-for="(test,index) in tests" :key="index"
+        class="list-group-item d-flex justify-content-around align-items-start" :class="danger( daysLeft(test.date))">
         <div class="ms-2 me-auto col-7">
           <div class="fw-bold">{{ test.testName }}</div>
           <p>
@@ -47,7 +69,7 @@
         </div>
 
         <div class="col-4 d-flex justify-content-center">
-          <span class="p-2 badge bg-primary rounded-pill mx-auto">{{
+          <span class="p-2 badge bg-primary rounded-pill mx-auto" >{{
             daysLeft(test.date)
           }}</span>
         </div>
@@ -57,7 +79,7 @@
             <i v-on:click="deleteTest($event)" class="fa-regular fa-trash-can"></i>
           </button>
         </div>
-      </li>
+      </li> -->
     </ul>
   </div>
 </template>
@@ -102,9 +124,16 @@
         subject: "",
         date: "",
         addTest: false,
+     
       };
     },
-    methods: {
+  methods: {
+    danger(daysleft) {
+      if (daysleft < 8) {
+        
+          return 'list-group-item-danger'
+        }
+      },
       daysLeft(date) {
         let testDate = new Date(date);
         let currentDate = new Date();
@@ -113,51 +142,11 @@
         return TotalDays;
       },
       deleteTest(id) {
-        // console.log(id)
+         console.log(id)
         this.$emit("delete-test", id);
  
       },
-      async addTestData() {
-
-        if (!this.test) {
-          alert("Please add a test");
-          return;
-        }
-
-        // let count = this.count
-        var email = localStorage.getItem("email");
-        const newData = {
-
-          id: Math.floor(Math.random() * 100000),
-
-          subject: this.subject,
-
-
-          // let count = this.count
-
-          test: this.test,
-        }
-
-
-
-
-        await setDoc(doc(db, "users", email, 'countDown', this.date), newData)
-
-
-
-
-        // await updateDoc(
-        //     colRef, {
-
-        //         data: arrayUnion({
-        //             x: this.examType,
-        //             y: this.score
-        //         }),
-
-        //     }
-        // )
-
-      },
+    
      async  onSubmit(e) {
         if (!this.test) {
           alert("Please add a test");
@@ -178,14 +167,12 @@
         }
 
 
-
-
-       await addDoc(doc(db, "users", email, 'countDown', this.date), newData)
+       await setDoc(doc(db, "users", email, 'countDown', this.date), newData)
        this.test = ''
 
        this.subject = ''
        this.date = ''
-       this.addTest = !addTest
+       this.addTest = !this.addTest
        console.log(this.addTest)
 
         // const newTest = {

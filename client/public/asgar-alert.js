@@ -241,6 +241,7 @@ const mainStyle = `
   border-radius: 0.3em;
   color: black;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5) inset, 0 0 10px #959596;
+  
   font-weight: bold;
   cursor: pointer;
   -webkit-box-shadow: 0px 3px 3px white;

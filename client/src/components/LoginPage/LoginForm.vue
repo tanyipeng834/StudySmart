@@ -1,14 +1,14 @@
 <template>
-  <div className="formBox py-3 mx-3">
-    <div className="mt-4">
-      <h4 className="text-primary text-center"></h4>
-      <div className="image"></div>
+  <div class="formBox py-3 mx-3">
+    <div class="mt-4">
+      <h4 class="text-primary text-center"></h4>
+      <div class="image"></div>
     </div>
-    <div className="body-form">
+    <div class="body-form">
       <form>
-        <div className="input-group mb-3">
-          <div className="input-group-prepend">
-            <span className="input-group-text">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                 style="fill: rgba(0, 0, 0, 1); transform: ; msfilter: ">
                 <path
@@ -17,11 +17,11 @@
               </svg>
             </span>
           </div>
-          <input type="text" className="form-control" placeholder="Email" name="email" v-model="email" />
+          <input type="text" class="form-control" placeholder="Email" name="email" v-model="email" />
         </div>
-        <div className="input-group mb-3">
-          <div className="input-group-prepend">
-            <span className="input-group-text">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                 style="fill: rgba(0, 0, 0, 1); transform: ; msfilter: ">
                 <path
@@ -30,14 +30,16 @@
               </svg>
             </span>
           </div>
-          <input type="password" className="form-control" placeholder="Password" name="password" v-model="password" />
+          <input type="password" class="form-control" placeholder="Password" name="password" v-model="password" />
         </div>
-        <button type="button" class="login-button" @click="login()">LOGIN</button>
+      
+          <button type="button" class="login-button" @click="login()">LOGIN</button>
+      
 
-        <div className="message">
+        <div class="">
           <div>
             New user?
-            <a href="#/SignUp"> Sign up </a>
+            <a href="#/SignUp" > Sign up </a>
           </div>
         </div>
       </form>
@@ -107,12 +109,31 @@
     font-family: Montserrat, sans-serif;
     font-weight: 700;
     width: 65%;
-    height: 50%;
+    height: 50%; 
+ ;
+  
   }
+
 
   .message {
     text-decoration: none;
+    background-color:none;
 
     font-weight: 800;
   }
+  a:link{
+text-decoration: none;
+  }
+  a:hover{
+    text-shadow: 1px 1px 2px rgb(130, 130, 130);
+   transition: 0.4s;
+  }
+  .login-button:hover,
+.login-button:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em rgb(141, 140, 140);
+  transform: translateY(-0.25em);
+      transition: 0.4s;
+}
+
+
 </style>

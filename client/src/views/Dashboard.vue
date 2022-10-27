@@ -8,17 +8,17 @@
           profileRole="Secondary 3 Student"
         />
       </div>
-      <div class="col-4">
+      <div class="col-md-4 col-12">
         <CountDown
           v-bind:tests="tests"
           @add-test="addTest"
           @delete-test="deleteTest"
         />
       </div>
-      <div class="col-4 quote">
+      <div class="col-md-4 col-12 quote">
         <div class="text"><Quote /></div>
       </div>
-      <div class="col-2"></div>
+      <div class="col-md-2"></div>
     </div>
 
     <div class="row">
@@ -78,7 +78,7 @@ export default {
   },
   mounted() {},
 
-  /*
+  
   created() {
     //this is preferably stored in backend
     if (localStorage.getItem("email")) {
@@ -114,6 +114,18 @@ console.log(docSnapshot.id,docSnapshot.data())
         date: "02/25/2023",
         subject: "English",
       },
+      {
+        id: 4,
+        testName: "SA1 Paper",
+        date: "02/25/2023",
+        subject: "English",
+      },
+      {
+        id: 5,
+        testName: "SA1 Paper",
+        date: "02/25/2023",
+        subject: "English",
+      },
     ].sort(function (a, b) {
       var c = new Date(a.date);
       var d = new Date(b.date);
@@ -125,8 +137,8 @@ console.log(docSnapshot.id,docSnapshot.data())
     }
 
   },
-};
-*/
+
+
 };
 </script>
 
