@@ -1,9 +1,9 @@
 <template>
   <div>
-    <Topbar :tabs="tabs" />
+    <Topbar :tabs="tabs"></Topbar>
     <div class="container-fluid quiz">
       <Sidebar :haveTopbar="true"></Sidebar>
-      <div v-if="modal == false">
+      <div v-if="flashCards == false && this.multiChoiceQuiz == false">
         <div class="row">
           <div class="col-md-4"></div>
         </div>
@@ -24,33 +24,43 @@
           <div class="col-8">
             <div class="row gx-2">
               <SummaryCard
-                v-for="item in this.summaryCards"
+                v-for="item in summaryCards"
                 :title="item.title"
                 :description="item.description"
-              />
+                :id="item.id"
+                @click="redirect(item.id)"
+              >
+              </SummaryCard>
             </div>
           </div>
         </div>
       </div>
-      <div v-else>
-        <FlashcardPage @add-summary-card="addSummaryCard" />
+      <div v-else-if="flashCards == true">
+        <FlashcardPage @add-summary-card="addSummaryCard"></FlashcardPage>
+      </div>
+      <div v-else-if="multiChoiceQuiz == true">
+        <MutipleChoice />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { collection, onSnapshot, query } from "@firebase/firestore";
 import Sidebar from "../components/Navigation/Sidebar.vue";
 import Topbar from "../components/Navigation/Topbar.vue";
 import FlashcardPage from "../components/QuizPage/FlashCardPage.vue";
 import SummaryCard from "../components/QuizPage/SummaryCard.vue";
+import { db } from "@/main.js";
+import MutipleChoice from "@/components/QuizPage/MutipleChoice.vue";
 
 export default {
   name: "Quiz",
 
   data() {
     return {
-      modal: false,
+      flashCards: false,
+      multiChoiceQuiz: true,
       summaryCards: [],
       tabs: [
         // example on how to implement the tabs
@@ -78,14 +88,34 @@ export default {
       ],
     };
   },
-  components: { Sidebar, Topbar, FlashcardPage, SummaryCard },
+  created() {
+    let email = localStorage.getItem("email");
+    console.log(email);
+    const q = query(collection(db, "users", email, "Flashcards"));
+
+    console.log(this.summaryCards);
+    const flashCards = onSnapshot(q, (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.summaryCards.push({
+          id: doc.id,
+          title: doc.data().title,
+          description: doc.data().description,
+        });
+      });
+    });
+  },
+  components: { Sidebar, Topbar, FlashcardPage, SummaryCard, MutipleChoice },
+
   methods: {
     addFlashCard() {
-      this.modal = true;
+      this.flashCards = true;
     },
     addSummaryCard(item) {
-      this.summaryCards.push({ title: item[0], description: item[1] });
       this.modal = false;
+      this.summaryCards = [];
+    },
+    redirect(id) {
+      window.location.href = `/#/quiz/${id}`;
     },
   },
 };

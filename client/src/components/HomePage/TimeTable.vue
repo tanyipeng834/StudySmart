@@ -12,7 +12,22 @@ import { DayPilot, DayPilotCalendar, DayPilotNavigator } from "@daypilot/daypilo
 
 // Database setup
 import { initializeApp } from "firebase/app";
-import { doc, setDoc, addDoc, collection, getFirestore, getDocs,updateDoc } from "firebase/firestore";
+import {
+        getFirestore,
+        doc,
+        updateDoc,
+        getDoc,
+        setDoc,
+        collection,
+        addDoc,
+        deleteDoc,
+        deleteField,
+        arrayUnion,
+        arrayRemove,
+        onSnapshot,
+        query,
+        where
+    } from "firebase/firestore";
 
 
 
@@ -22,15 +37,18 @@ export default {
   name: "ResourceCalendar",
   data: function () {
     return {
-        navigatorConfig: {
         
-        onTimeRangeSelected: args => {
-          this.calendarConfig.startDate = args.day;
-        }
-      },
       calendarConfig: {
         viewType: "Resources",
+        durationBarVisible : false,
         timeRangeSelectedHandling: "Enabled",
+        columns : [
+        { name: "Monday", id: "R1" },
+        { name: "Tuesday", id: "R2" },
+        { name: "Wednesday", id: "R3" },
+        { name: "Thursday", id: "R4" },
+        { name: "Friday", id: "R5" },
+      ],
         onTimeRangeSelected: async (args) => {
           await this.createEvent(args.start, args.end, args.resource);
           this.calendar.clearSelection();
@@ -48,14 +66,28 @@ export default {
         onEventResized: (args) => {
           console.log("Event resized", args.e);
         },
-        start: '',
-        end:'',
-        subject:'',
-        scheduleName:''
+
+  
 
 
       },
-    };
+      
+      eventlist:[{
+    start: DayPilot.Date.today().addHours(10),
+    end: DayPilot.Date.today().addHours(11),
+    id: '1',
+    text: "Event 1",
+    resource: "R5",
+    backColor: "#f57542",
+  },  {
+    start:DayPilot.Date.today().addHours(10), 
+    end:DayPilot.Date.today().addHours(10), 
+    id: 1, 
+    text: "Meeting",
+    resource: "R3"
+  } ]
+      
+    }
   },
   props: {},
   components: {
@@ -68,67 +100,25 @@ export default {
     },
   },
   methods: {
-    // loadEvents() {
-    //   // placeholder for an HTTP call
-
-    //   this.calendar.update({events});
-    // },
-    saveEvent(){
-      const db=getFirestore()
-
-      setDoc(doc(db,'timetable',this.scheduleName),{
-        end:this.end,
-        start:this.start,
-        subject:this.subject,
-
-      }).then(()=>{
-        alert('Data stored successfully')
-      })
-      .catch((error)=>{
-        alert('Unsuccessful, error'+error)
-      })
-      
-
+    loadEvents() {
+      // placeholder for an HTTP call
+      const events = this.eventlist
+      this.calendar.update({events});
     },
-    async editData(e){
-      console.log(e)
-      const db=getFirestore()
-    const ref = doc(db, "timetable", this.scheduleName);
-    
 
-// Set the "capital" field of the city 'DC'
-    await updateDoc(ref, {
-      "end": this.end,
-      "start": this.start,
-      "subject":this.subject
-  }).then(()=>{
-        alert('Data stored successfully')
-      })
-      .catch((error)=>{
-        alert('Unsuccessful, error'+error)
-      });
-
-
-      
-    },
 
     loadResources() {
        var dp = document.getElementById('dp')
   dp.dayBeginsHour = 9;
-  dp.dayEndsHour = 10;
-      const columns = [
-        { name: "Monday", id: "R1" },
-        { name: "Tuesday", id: "R2" },
-        { name: "Wednesday", id: "R3" },
-        { name: "Thursday", id: "R4" },
-        { name: "Friday", id: "R5" },
-      ];
+  dp.dayEndsHour = 6;
       
-      this.calendar.update({ columns });
+      
+
     },
     async editEvent(e) {
       const form = [
         { name: "Subject", id: "text" },
+        
         {
           name: "Day",
           id: "resource",
@@ -143,16 +133,13 @@ export default {
       } else {
         this.calendar.events.update(modal.result);
       }
-      this.start=data.start.value
-      this.end=data.end.value
-      this.subject=data.text
-      this.scheduleName=data.text+data.start.value
-      this.editData()
+
     
     },
     async createEvent(start, end, resource) {
       const form = [
         { name: "Subject", id: "text" },
+        {name:'Color',id:'Color',type:'select',options:[{name:'Red',id:'#FFADAD'},{name:'Orange',id:'#FFD6A5'},{name:'Yellow',id:'#FDFFB6'},{name:'Green',id:'#CAFFBF'},{name:'Blue',ID:'#9BF6FF'},{name:'Purple',id:'#BDB2FF'},{name:'Pink',id:'#FFC6FF'}]},
         {
           name: "Day",
           id: "resource",
@@ -164,42 +151,35 @@ export default {
         start,
         end,
         resource,
-        id: DayPilot.guid(),
+        id: DayPilot.guid()
+      
         
       };
       const modal = await DayPilot.Modal.form(form, data);
       if (modal.canceled) {
         return;
       }
-
+ 
+      
       const e = modal.result;
+      e.backColor=modal.result.Color
+     
+     
       this.calendar.events.add(e);
-      this.start=e.start.value
-      this.end=e.end.value
-      this.subject=e.text
-      this.scheduleName=e.text+e.start.value
-      this.saveEvent()
+      await setDoc(doc(db, "users", email, 'countDown'), this.eventlist)
+      
+      
 
       
       
-      
-      // set(ref(db,'timetable'),{
-      //   start: start,
-      //   end:end,
-      //   resource:resource
-      // })
-      // .then(()=>{
-      //   alert('data stored successfully')
-      // })
-      // .catch((error)=>{
-      //   alert('unsuccessful, error'+error)
-      // })
+
     },
     
   },
   mounted() {
     this.loadResources();
-    // this.loadEvents();
+    this.loadEvents();
+    console.log(this)
     
 
   },
@@ -219,14 +199,13 @@ export default {
   flex-grow: 1;
 }
 
-.navigator_default_busy.navigator_default_cell {
-  border-bottom: 4px solid #ee4f2ecc;
-  box-sizing: border-box;
-}
+
 .calendar_default_event_inner {
   background: #2e78d6;
-  color: white;
-  border-radius: 5px;
-  opacity: 0.9;
+  color: black;
+  text-decoration: solid;
+  text-align: center;
+  border-radius: 6px;
+ 
 }
 </style>
