@@ -59,54 +59,74 @@
           </button>
         </div>
            </li> -->
-           <li  v-if='tests.length==0' class="list-group-item">
-          <div>Add Your Upcoming Exams Here!</div>
-           </li>
-           <li v-else-if="tests.length<4" v-for="(test,index) in tests" :key="index"
+      <li v-if='currentPageData.length==0' class="list-group-item">
+        <div>Add Your Upcoming Exams Here!</div>
+      </li>
+      <li v-else-if="currentPageData.length<4" v-for="(test,index) in currentPageData" :key="index"
         class="list-group-item d-flex justify-content-around align-items-start" :class="danger( daysLeft(test.date))">
         <div class="ms-2 me-auto col-7">
-          <div class="fw-bold">{{ test.testName }}</div>
+          <div class="fw-bold">{{ test.test }}</div>
           <p>
             <small>{{ test.subject }} . {{ test.date }}</small>
           </p>
         </div>
 
         <div class="col-4 d-flex justify-content-center">
-          <span class="p-2 badge bg-primary rounded-pill mx-auto" >{{
+          <span class="p-2 badge bg-primary rounded-pill mx-auto">{{
             daysLeft(test.date)
           }}</span>
         </div>
 
         <div class="col-1">
-          <button type="button" class="btn position-absolute top-0 end-2" v-on:click="deleteTest(test.id)">
+          <button type="button" class="btn position-absolute top-0 end-2" v-on:click="deleteTest(currentPageData.id)">
             <i v-on:click="deleteTest($event)" class="fa-regular fa-trash-can"></i>
           </button>
         </div>
       </li>
-      
-      <li v-else v-for="(test,i) in tests"  :key="i"
-        class="list-group-item d-flex justify-content-around align-items-start" :class="danger( daysLeft(test.date))">
-      
-        <div class="ms-2 me-auto col-7">
-          <div class="fw-bold">{{ test.testName }}</div>
+
+    <li v-else v-for="index in 4" 
+        class="list-group-item d-flex justify-content-around align-items-start" :class="danger( daysLeft(currentPageData[index-1].date))">
+   
+       <div class="ms-2 me-auto col-7">
+          <div class="fw-bold">{{ currentPageData[index-1].test }}</div>
           <p>
-            <small>{{ test.subject }} . {{ test.date }}</small>
+            <small>{{ currentPageData[index-1].subject }} . {{ currentPageData[index-1].date }}</small>
           </p>
         </div>
 
         <div class="col-4 d-flex justify-content-center">
           <span class="p-2 badge bg-primary rounded-pill mx-auto" >{{
-            daysLeft(test.date)
+            daysLeft(currentPageData[index-1].date)
           }}</span>
         </div>
 
         <div class="col-1">
-          <button type="button" class="btn position-absolute top-0 end-2" v-on:click="deleteTest(test.id)">
-            <i v-on:click="deleteTest($event)" class="fa-regular fa-trash-can"></i>
+          <button type="button" class="btn position-absolute top-0 end-2" v-on:click="deleteTest(currentPageData[index-1].id)">
+            <i class="fa-regular fa-trash-can"></i>
           </button>
         </div>
+           </li>
+      <li v-if="count>4" class="bg-white">
+        <p class="d-inline-block p-2 small">Page {{currentPage}}</p>
+        <nav aria-label="Page navigation example" class="float-end">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous" @click="previous()">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item" v-for="i in pages"><a class="page-link" @click="getPageData(i)">{{i}}</a></li>
+
+            <li class="page-item">
+              <a class="page-link" aria-label="Next" @click="next()">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </li>
     </ul>
+
   </div>
 </template>
 <script>
@@ -133,23 +153,39 @@
   } from "firebase/firestore";
   export default {
     name: "CountDown",
-  mounted() {
-    $(document).ready(function () {
-    $('#example').DataTable();
-});
-    var email = localStorage.getItem("email");
-         this.email=email
+    mounted() {
+
+      var email = localStorage.getItem("email");
+      this.email = email
       gsap.from(".main", {
         opacity: 0,
         x: -200,
         duration: 1.5
       });
-   
+      this.getData()
+
+
     },
 
     props: {
       tests: Array,
     },
+    watch: {
+      tests: function (newVal, oldVal) {
+        // productData.forEach((item) => {
+        //   console.log(item)
+        // })
+        console.log('Prop changed: ', newVal, ' | was: ', oldVal)
+        this.getData()
+        this.getPageData(this.currentPage)
+        console.log(this.currentPageData)
+        for (let item of this.currentPageData) {
+            console.log(item)
+          }
+      }
+    
+    },
+
     data() {
       return {
         test: "",
@@ -158,19 +194,48 @@
         addTest: false,
         data: '',
         count: 0,
-        email:''
-     
+        email: '',
+        pages: 0,
+        currentPage: 1,
+        currentPageData:[]
+        
+
       };
     },
   methods: {
-    getData() {
-      
-    },
-    danger(daysleft) {
-      if (daysleft < 8) {
+    previous() {
+      if (this.currentPage != 1) {
+        this.currentPage = this.currentPage - 1
+         this.getPageData(this.currentPage)
+      }
         
+    },
+    next() {
+          if (this.pages != this.currentPage) {
+            this.currentPage = this.currentPage + 1
+        this.getPageData(this.currentPage)
+      }
+
+      },
+      async getData() {
+        console.log(this.tests)
+        this.count = this.tests.length
+        console.log(this.count)
+        this.pages = Math.ceil(this.count / 4)
+        console.log(this.pages)
+      },
+      danger(daysleft) {
+        if (daysleft < 8) {
           return 'list-group-item-danger'
         }
+      },
+      getPageData(i) {
+        this.currentPage=i
+        console.log('hi')
+        var unnecData = (i - 1) * 4
+        this.currentPageData = this.tests.slice(unnecData, unnecData + 5)
+        console.log( this.currentPageData)
+        
       },
       daysLeft(date) {
         let testDate = new Date(date);
@@ -181,23 +246,23 @@
       },
       async deleteTest(id) {
         console.log(id)
-         var ref=doc(db, 'users', this.email, 'countDown',id);
-       await deleteDoc(ref);
- 
+        var ref = doc(db, 'users', this.email, 'countDown', id);
+        await deleteDoc(ref);
+
       },
-    
-     async  onSubmit(e) {
+
+      async onSubmit(e) {
         if (!this.test) {
           alert("Please add a test");
           return;
         }
-      
+
         const newData = {
 
-        
+
 
           subject: this.subject,
-          date:this.date,
+          date: this.date,
 
 
           // let count = this.count
@@ -206,18 +271,18 @@
         }
 
 
-       await addDoc(collection(db, "users", email, 'countDown'), newData)
-       this.test = ''
+        await addDoc(collection(db, "users", this.email, 'countDown'), newData)
+        this.test = ''
 
-       this.subject = ''
-       this.date = ''
-       this.addTest = !this.addTest
-       console.log(this.addTest)
+        this.subject = ''
+        this.date = ''
+        this.addTest = !this.addTest
+        console.log(this.addTest)
 
 
-     
-    
-   
+
+
+
       },
 
     },
