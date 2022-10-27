@@ -21,6 +21,7 @@ import {
   getFirestore,
   doc,
   updateDoc,
+  getDoc,
   getDocs,
   setDoc,
   collection,
@@ -57,33 +58,27 @@ export default {
         onEventClick: (args) => {
           this.editEvent(args.e);
         },
-        eventDeleteHandling: "Disabled",
+        eventDeleteHandling: "Update",
         onEventMoved: (args) => {
-          this.editEvent(args.e);
-
-          // console.log("Event moved", args.e);
+          this.editEventDrag(args.e);
+          console.log("Event resized", args.e);
+        },
+        onEventDelete :args => {
+    if (!confirm("Do you really want to delete this event?")) {
+      args.preventDefault();
+    }},
+    onEventDeleted: (args) => {
+          this.deleteEvent(args.e);
+  
         },
         onEventResized: (args) => {
+        
           console.log("Event resized", args.e);
         },
       },
 
       eventlist: [
-        {
-          start: DayPilot.Date.today().addHours(10),
-          end: DayPilot.Date.today().addHours(11),
-          id: "1",
-          text: "Event 1",
-          resource: "R5",
-          backColor: "#f57542",
-        },
-        {
-          start: DayPilot.Date.today().addHours(10),
-          end: DayPilot.Date.today().addHours(10),
-          id: 1,
-          text: "Meeting",
-          resource: "R3",
-        },
+        
       ],
       eventid: [],
     };
@@ -99,6 +94,11 @@ export default {
     },
   },
   methods: {
+    async deleteEvent(e){
+      var email = localStorage.getItem("email");
+
+await deleteDoc(doc(db, "users", email,'timetable',e.data.id));
+    },
     async loadEvents() {
       // placeholder for an HTTP call
       var email = localStorage.getItem("email");
@@ -149,6 +149,55 @@ export default {
       } else {
         this.calendar.events.update(modal.result);
       }
+      console.log(modal.result)
+      var email = localStorage.getItem("email");
+      const eventRef = doc(db, "users", email,'timetable',modal.result.id);
+      var f=modal.result
+      console.log(f.start.value)
+
+await updateDoc(eventRef, {
+  resource: modal.result.resource,
+  startHour: f.start.value.slice(11, 13),
+        endHour: f.end.value.slice(11, 13),
+        startMinute: f.start.value.slice(14, 16),
+        endMinute: f.end.value.slice(14, 16),
+
+});
+
+    
+    },
+    async editEventDrag(e) {
+      const form = [
+        { name: "Subject", id: "text" },
+
+        {
+          name: "Day",
+          id: "resource",
+          type: "select",
+          options: this.calendar.columns.list,
+        },
+      ];
+      const data = e.data;
+      const modal = await DayPilot.Modal.form(form, data);
+      if (modal.canceled) {
+        return;
+      } else {
+        this.calendar.events.update(modal.result);
+      }
+      console.log(modal.result)
+      var email = localStorage.getItem("email");
+      const eventRef = doc(db, "users", email,'timetable',modal.result.id);
+      var f=modal.result
+
+await updateDoc(eventRef, {
+  resource: modal.result.resource,
+  startHour: f.start.value.slice(11, 13),
+        endHour: f.end.value.slice(11, 13),
+        startMinute: f.start.value.slice(14, 16),
+        endMinute: f.end.value.slice(14, 16),
+
+});
+    
     },
     async createEvent(start, end, resource) {
       const form = [
@@ -189,20 +238,20 @@ export default {
       const e = modal.result;
       e.backColor = modal.result.Color;
       var color = e.Color;
-
+      var id=DayPilot.guid()
       const eventData = {
         startHour: e.start.slice(11, 13),
         endHour: e.end.slice(11, 13),
         startMinute: e.start.slice(14, 16),
         endMinute: e.end.slice(14, 16),
         resource: e.resource,
-        id: e.id,
+        id: id,
         backColor: color,
         subject: e.text,
       };
       this.calendar.events.add(e);
 
-      await setDoc(doc(db, "users", email, "timetable", eventData.subject), eventData);
+      await setDoc(doc(db, "users", email, "timetable", id), eventData);
 
       this.eventid.push(eventData.subject);
     },
