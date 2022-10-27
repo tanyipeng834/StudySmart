@@ -1,7 +1,10 @@
 <template>
   <div class="wrap">
     <div class="content">
-      <h1>Drag and Hold to add new schedule!</h1>
+      <h1 class="text-center">Drag and Hold to add a new class! <br>
+        Try dragging, hovering, clicking the classes to customise them! 
+        
+      </h1>
       <DayPilotCalendar id="dp" :config="calendarConfig" ref="calendar" />
     </div>
   </div>
