@@ -12,7 +12,22 @@ import { DayPilot, DayPilotCalendar, DayPilotNavigator } from "@daypilot/daypilo
 
 // Database setup
 import { initializeApp } from "firebase/app";
-import { doc, setDoc, addDoc, collection, getFirestore, getDocs,updateDoc } from "firebase/firestore";
+import {
+        getFirestore,
+        doc,
+        updateDoc,
+        getDoc,
+        setDoc,
+        collection,
+        addDoc,
+        deleteDoc,
+        deleteField,
+        arrayUnion,
+        arrayRemove,
+        onSnapshot,
+        query,
+        where
+    } from "firebase/firestore";
 
 
 
@@ -51,11 +66,28 @@ export default {
         onEventResized: (args) => {
           console.log("Event resized", args.e);
         },
-        eventList:[],
+
+  
 
 
       },
-    };
+      
+      eventlist:[{
+    start: DayPilot.Date.today().addHours(10),
+    end: DayPilot.Date.today().addHours(11),
+    id: '1',
+    text: "Event 1",
+    resource: "R5",
+    backColor: "#f57542",
+  },  {
+    start:DayPilot.Date.today().addHours(10), 
+    end:DayPilot.Date.today().addHours(10), 
+    id: 1, 
+    text: "Meeting",
+    resource: "R3"
+  } ]
+      
+    }
   },
   props: {},
   components: {
@@ -70,10 +102,9 @@ export default {
   methods: {
     loadEvents() {
       // placeholder for an HTTP call
-
+      const events = this.eventlist
       this.calendar.update({events});
     },
-  
 
 
     loadResources() {
@@ -128,33 +159,27 @@ export default {
       if (modal.canceled) {
         return;
       }
-      console.log(modal.result)
+ 
       
       const e = modal.result;
       e.backColor=modal.result.Color
      
+     
       this.calendar.events.add(e);
+      await setDoc(doc(db, "users", email, 'countDown'), this.eventlist)
+      
+      
 
       
       
-      
-      // set(ref(db,'timetable'),{
-      //   start: start,
-      //   end:end,
-      //   resource:resource
-      // })
-      // .then(()=>{
-      //   alert('data stored successfully')
-      // })
-      // .catch((error)=>{
-      //   alert('unsuccessful, error'+error)
-      // })
+
     },
     
   },
   mounted() {
     this.loadResources();
-    // this.loadEvents();
+    this.loadEvents();
+    console.log(this)
     
 
   },

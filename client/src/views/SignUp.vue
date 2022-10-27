@@ -1,92 +1,190 @@
 <template>
   <div>
-    <h1>Create an Account</h1>
-    <p><input type="text" placeholder="Name" v-model="name" /></p>
-    <p>
-      <select v-model="grade" required>
-        <option value='' disabled selected class="">Your school grade</option>
-        <option value="Secondary 1">Secondary 1</option>
-        <option value="Secondary 2">Secondary 2</option>
-        <option value="Secondary 3">Secondary 3</option>
-        <option value="Secondary 4">Secondary 4</option>
-        <option value="Secondary 5">Secondary 5</option>
-      </select>
-    </p>
-    <p><input type="text" placeholder="Email" v-model="email" /></p>
-    <p><input type="password" placeholder="Password" v-model="password" /></p>
-    <p><button @click="register">Submit</button></p>
+    <section class="vh-100" style="background-color: #eee">
+      <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-lg-12 col-xl-11">
+            <div class="card text-black" style="border-radius: 25px">
+              <div class="card-body p-md-5">
+                <div class="row justify-content-center">
+                  <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
+                      Create an Account
+                    </p>
+
+                    <form class="mx-1 mx-md-4">
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                          <input
+                            type="text" v-model="name"
+                            
+                            class="form-control"
+                          />
+                          <label class="form-label" for="form3Example1c"
+                            >Your Name</label
+                          >
+                        </div>
+                      </div>
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                        
+                        <div class="form-outline flex-fill mb-0">
+                          <input
+                            type="text"
+                            v-model="email" 
+                            class="form-control"
+                          />
+                          <label class="form-label" for="form3Example4cd"
+                            >Your email</label
+                          >
+                        </div>
+                      </div>
+
+
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-solid fa-lg fa-school me-3 fa-fw"></i> 
+                        <div class="form-outline flex-fill mb-0">
+                          <select v-model="grade" required class="form-control">
+                          <option value="" disabled selected class="">
+                            Please select your school grade
+                          </option>
+                          <option value="Secondary 1">Secondary 1</option>
+                          <option value="Secondary 2">Secondary 2</option>
+                          <option value="Secondary 3">Secondary 3</option>
+                          <option value="Secondary 4">Secondary 4</option>
+                          <option value="Secondary 5">Secondary 5</option>
+                        </select>
+                          <label class="form-label" for="form3Example3c"
+                            >Your School Grade</label
+                          >
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                          <input
+                            type="password"
+                            class="form-control"
+                           v-model="password" 
+                          />
+                          <label class="form-label" for="form3Example4c"
+                            >Password</label
+                          >
+                        </div>
+                      </div>
+
+                      
+                      <div
+                        class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
+                      >
+                        <button type="button" @click="register" class="btn btn-primary btn-lg">
+                          Register
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  <div
+                    class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2"
+                  >
+                    <img
+                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                      class="img-fluid"
+                      alt="Sample image"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
   </div>
 </template>
 <script setup>
-  import {
-    getFirestore,
-    doc,
-    updateDoc,
-    getDoc,
-    setDoc,
-    collection,
-    addDoc,
-    deleteDoc,
-    deleteField
-  } from "firebase/firestore";
-  import {
-    ref
-  } from 'vue';
-  import {
-    getAuth,
-    createUserWithEmailAndPassword
-  } from "firebase/auth"
+import {
+  getFirestore,
+  doc,
+  updateDoc,
+  getDoc,
+  setDoc,
+  collection,
+  addDoc,
+  deleteDoc,
+  deleteField,
+} from "firebase/firestore";
+import { ref } from "vue";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
-  import {
-    auth,
-    db
-  } from "../main";
+import { auth, db } from "../main";
 
-  const email = ref('')
+const email = ref("");
 
-const password = ref('')
-  const name = ref('')
-  const grade = ref('')
+const password = ref("");
+const name = ref("");
+const grade = ref("");
 
-  // const router = useRouter() // get a reference to our vue router
-  const register = () => {
-    createUserWithEmailAndPassword(auth, email.value, password.value) // need .value because ref()
-      .then(async (data) => {
-        console.log('Successfully registered!');
-        try {
-          const docRef = await setDoc(doc(db, "users", email.value), {
-            profile: {
-              fullName: name.value,
-              schoolGrade: grade.value
+// const router = useRouter() // get a reference to our vue router
+const register = () => {
+  createUserWithEmailAndPassword(auth, email.value, password.value) // need .value because ref()
+    .then(async (data) => {
+      console.log("Successfully registered!");
+      try {
+        const docRef = await setDoc(doc(db, "users", email.value), {
+          profile: {
+            fullName: name.value,
+            schoolGrade: grade.value,
+          },
+        });
+        await setDoc(
+          doc(db, "users", email.value, "progressResults1", "ignore"),
+          {}
+        );
+        await setDoc(
+          doc(db, "users", email.value, "progressResults2", "ignore"),
+          {}
+        );
+        await setDoc(
+          doc(db, "users", email.value, "progressResults3", "ignore"),
+          {}
+        );
+        await setDoc(
+          doc(db, "users", email.value, "progressResults4", "ignore"),
+          {}
+        );
+        await setDoc(
+          doc(db, "users", email.value, "progressResults5", "ignore"),
+          {}
+        );
 
-            }});
-          await setDoc(doc(db, "users", email.value, 'progressResults1','ignore'), {});
-          await setDoc(doc(db, "users", email.value, 'progressResults2','ignore'), {});
-          await setDoc(doc(db, "users", email.value, 'progressResults3','ignore'), {});
-          await setDoc(doc(db, "users", email.value, 'progressResults4','ignore'), {});
-          await setDoc(doc(db, "users", email.value, 'progressResults5','ignore'), {});
+        await setDoc(doc(db, "users", email.value, "countDown", "ignore"), {});
+        await setDoc(doc(db, "users", email.value, "timetable", "ignore"), {});
 
-          await setDoc(doc(db,"users",email.value,'countDown','ignore'),{})
-  
-          // await setDoc(col, { 'ignore' :''});
+        // await setDoc(col, { 'ignore' :''});
 
-          localStorage.setItem("email", email.value);
+        localStorage.setItem("email", email.value);
 
-          window.location.href = '/#';
-
-        } catch (e) {
-          console.error("Error adding document: ", e);
-        }
-      })
-      .catch(error => {
-        console.log(error.code)
-        alert(error.message);
-      });
-  }
+        window.location.href = "/#";
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
+    })
+    .catch((error) => {
+      console.log(error.code);
+      alert(error.message);
+    });
+};
 </script>
 
 <style scoped>
-  select:invalid {
-    color: gray;
-  }
+div {
+  background-color: lightblue;
+}
+select:invalid {
+  color: gray;
+}
 </style>
