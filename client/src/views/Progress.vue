@@ -88,6 +88,7 @@
                         </select>
                     </div>
                     <div class="">
+                        
                         <button type="button" class="btn  mx-auto mt-4 float-end addRes" data-bs-toggle="modal"
                             data-bs-target="#modalForm">
                             <i class="fa-solid fa-circle-plus fa-lg" data-bs-toggle="tooltip" data-bs-placement="bottom"
@@ -707,8 +708,8 @@
 
     .addRes {
         position: absolute;
-        top: 10%;
-        left: 49%;
+        top: 12%;
+        left: 50%;
         z-index: 1;
     }
 

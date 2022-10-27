@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <vue-flip active-click>
     <template v-slot:front>
       <div class="progress w-50 mx-auto mt-5">
@@ -123,4 +123,4 @@ export default {
   width: 100px;
   height: 100px;
 }
-</style>
+</style> -->
