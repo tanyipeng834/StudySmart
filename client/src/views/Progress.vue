@@ -17,7 +17,8 @@
 
         <div class="modal-box">
 
-            <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="modalFormAdd" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
 
@@ -72,13 +73,66 @@
                 </div>
             </div>
         </div>
+        <div class="modal-box">
+
+            <div class="modal fade" id="modalFormDel" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+
+                        <div class="text-end"><button type="button" class="btn-close me-2 mt-2 " data-bs-dismiss="modal"
+                                aria-label="Close"></button></div>
+
+                        <div class="modal-body">
+                            <h3>Delete Result</h3>
+                            <div class="row">
+                                <div class="mb-3 col-6">
+                                    <label class="form-label">Subject</label>
+                                    <input type="text" class="form-control mb-0" id="score" v-model.trim='delSubject' />
+                                    <p v-if="delSubject==''" class="text-danger small mt-0">Please input the subject</p>
+                                </div>
+                                <div class="mb-0  col-6">
+                                    <label class="form-label">Exam Type</label>
+                                    <select class="form-select form-select mb-0 " aria-label=".form-select-sm example"
+                                        id="examType" v-model='examTypeDel'>
+                                        <option value="CA1" selected>CA1</option>
+                                        <option value="SA1">SA1</option>
+                                        <option value="CA2">CA2</option>
+                                        <option value="SA2">SA2</option>
+                                    </select>
+                                    <p v-if="examTypeDel==''" class="text-danger small mt-0">Please input the exam type
+                                    </p>
+                                </div>
+                                <p v-if="checkExist(examTypeDel,delSubject)[0]===false"
+                                    class="text-center small text-danger">This result does not exist</p>
+                            </div>
+
+
+                            <div class="modal-footer d-block">
+
+                                <button type="submit" data-bs-dismiss="modal" class="btn  btn-outline-dark float-end"
+                                    @click="delResult"
+                                    v-if="examTypeDel==''||delSubject==''||checkExist(examTypeDel,delSubject)[0]===false"
+                                    disabled>Submit</button>
+                                <button type="submit" data-bs-dismiss="modal"
+                                    class="btn btn-outline-info float-end enabled" @click="delResult"
+                                    v-else>Submit</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
         <div class="row">
 
             <div class="col-1"></div>
             <div class="col-lg-6 col-12 d-flex flex-column justify-content-center">
-                <div class="d-flex flex-row justify-content-around">
-                    <div>
-                        <select class="form-select form-select  mt-4 selectLevel mb-1 shadow l"
+                <div class="">
+                    <div class="float-start ps-4">
+                        <select class="form-select form-select  mt-4 selectLevel mb-1 shadow"
                             aria-label=".form-select-sm " id="examType" v-model='level' @change="change">
                             <option value="1" :selected="level === 1">Sec 1</option>
                             <option value="2" :selected="level === 2">Sec 2</option>
@@ -87,13 +141,30 @@
                             <option value="5" :selected="level === 5">Sec 5</option>
                         </select>
                     </div>
-                    <div class="">
-                        
-                        <button type="button" class="btn  mx-auto mt-4 float-end addRes" data-bs-toggle="modal"
+                   
+                        <div class="dotdropdown">
+                            <button class="btn dropdown-toggle other" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                    <path
+                                        d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                </svg>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalFormAdd">Add
+                                        Test Result</a></li>
+                                <li><a class="dropdown-item " data-bs-toggle="modal"
+                                        data-bs-target="#modalFormDel">Delete Test Result</a></li>
+
+                            </ul>
+                 
+
+                        <!-- <button type="button" class="btn  mx-auto mt-4 float-end addRes" data-bs-toggle="modal"
                             data-bs-target="#modalForm">
                             <i class="fa-solid fa-circle-plus fa-lg" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                 title="Add test results"></i>
-                        </button>
+                        </button> -->
                     </div>
                 </div>
                 <div class="line-chart ">
@@ -182,7 +253,7 @@
             Sidebar,
             Topbar,
             ChartTest
-    },
+        },
 
         mounted() {
             if (localStorage.getItem("email")) {
@@ -292,7 +363,10 @@
                 let level = this.getLevel()
 
                 var email = localStorage.getItem("email");
+                this.email = email
                 console.log(email)
+
+
                 progressChart.options.plugins.title['text'] = `Secondary ${level} Progress`
                 progressChart.update()
                 const q = query(collection(db, "users", email, 'progressResults' + level))
@@ -335,9 +409,8 @@
 
 
                 });
-            }
-            else {
-                  window.location.href='#/login'
+            } else {
+                window.location.href = '#/login'
             }
 
 
@@ -345,11 +418,69 @@
         },
 
         methods: {
+
+            async delResult(e) {
+                e.preventDefault();
+                var ref = doc(db, 'users', this.email, 'progressResults' + this.level, this.delSubject);
+
+                let score = 0
+                this.cardData.forEach(data => {
+                    for (let key in data) {
+                        if (key == this.delSubject) {
+                            let count = 0
+                            let sets = data[key]
+                            sets.forEach(set => {
+                                count++
+                                console.log(set)
+                                console.log(count)
+                                if (count == 1) {
+                                    this.delDoc(ref).then(() => {
+                                        console.log(hi)
+                                    });
+                                } else if (set.x == this.examTypeDel) {
+                                    // console.log(set.x==examType)
+                                    score = set.y
+
+                                }
+
+                            })
+                        }
+                    }
+
+                })
+
+
+                await updateDoc(ref, {
+
+                    data: arrayRemove({
+                        x: this.examTypeDel,
+                        y: score
+                    })
+
+                }).then(() => {
+
+                    this.examTypeDel = ''
+                    this.delSubject = ''
+
+
+                }).catch((e) => {
+                    console.log(e)
+                })
+
+
+
+            },
+            async delDoc(ref) {
+
+                await deleteDoc(ref);
+                console.log('delete')
+
+            },
             checkExist(examType, subject) {
                 // console.log(subject)
                 // console.log(examType)
                 var allAreTruthy = false;
-                let oldScore=0
+                let oldScore = 0
 
                 this.cardData.forEach(data => {
                     for (let key in data) {
@@ -361,10 +492,10 @@
                                 //  console.log(set)
                                 if (set.x == examType) {
                                     // console.log(set.x==examType)
-                                    oldScore=set.y
+                                    oldScore = set.y
 
                                     allAreTruthy = true;
-                                }                           
+                                }
                             })
                         }
                     }
@@ -540,7 +671,7 @@
                     level = localStorage.getItem("level")
                     this.level = level
 
-               
+
 
                 }
                 return level
@@ -550,9 +681,10 @@
                 let level = this.getLevel()
                 // let count = this.count
                 var email = localStorage.getItem("email");
+
                 var colRef = doc(db, 'users', email, 'progressResults' + level, this.subject);
-                let exam=this.examType
-                let score=this.score
+                let exam = this.examType
+                let score = this.score
                 if (!this.existingSubjects.includes(this.subject)) {
                     this.existingSubjects.push(this.subject)
                     const newData = {
@@ -595,7 +727,7 @@
                                 console.log("overwrite");
                                 this.removed(exam, oldScore, colRef).then(() => {
                                     console.log('data deleted')
-                                }).catch((e)=>{
+                                }).catch((e) => {
                                     console.log(e)
                                 })
                                 this.update(colRef, exam, score).then(() => {
@@ -625,8 +757,11 @@
             },
             async removed(exam, score, ref) {
                 await updateDoc(ref, {
-                
-                    data: arrayRemove({x:exam,y:score})
+
+                    data: arrayRemove({
+                        x: exam,
+                        y: score
+                    })
                 });
             },
             async update(ref, exam, score) {
@@ -651,6 +786,10 @@
                 examType: 'CA1',
                 subject: '',
                 count: 0,
+                delSubject: '',
+                examTypeDel: '',
+
+                email: '',
 
 
                 existingSubjects: [],
@@ -706,10 +845,10 @@
         box-shadow: 5px 5px 6px 7px #ccc;
     }
 
-    .addRes {
+    .dotdropdown {
         position: absolute;
-        top: 12%;
-        left: 50%;
+        top: 15%;
+        left: 51%;
         z-index: 1;
     }
 
@@ -783,17 +922,43 @@
         outline: none;
     }
 
+    .other:after {
+        display: none;
+        border: none
+    }
+
     @media (max-width: 991px) {
-        .addRes {
-            position: relative;
-            top: 10%;
-            left: 49%;
+        .dotdropdown {
+            position: absolute;
+            top: 16%;
+            left: 90%;
             z-index: 1;
         }
-       
+
     }
+    @media (max-width: 578px) {
+        .dotdropdown {
+            position: absolute;
+            top: 15%;
+            left: 87%;
+            z-index: 1;
+        }
+
+    }
+  
+    @media (max-width: 441px) {
+        .dotdropdown {
+            position: absolute;
+            top: 13%;
+            left: 86%;
+            z-index: 1;
+        }
+
+    }
+  
+
     @media (max-width: 1200px) {
-         .insights{
+        .insights {
             font-size: 13px;
         }
 
