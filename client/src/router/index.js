@@ -3,6 +3,8 @@ import Login from "../views/Login.vue";
 import Dashboard from "../views/Dashboard.vue";
 import Progress from "../views/Progress.vue";
 import QuizTest from "../views/QuizTest.vue";
+import Forum from "../views/Forum.vue"
+
 
 // git
 import Quiz from "../views/Quiz.vue";
@@ -32,6 +34,11 @@ const routes = [
     path: "/progress",
     name: "ProgressTracker",
     component: Progress,
+  },
+  {
+    path: "/forum",
+    name:'Forum',
+    component: Forum
   },
   // {
   //   path: "/progress2",
