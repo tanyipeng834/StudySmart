@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-2">
         <Sidebar
-          :haveTopbar="false"
+          :haveTopbar="true"
           profileName="Tan Yi Peng"
           profileRole="Secondary 3 Student"
         />
@@ -33,6 +33,7 @@
 
 <script>
 import Sidebar from "../components/Navigation/Sidebar.vue";
+import Topbar from "../components/Navigation/Topbar.vue";
 import CountDown from "../components/HomePage/CountDown.vue";
 import TimeTable from "../components/HomePage/TimeTable.vue";
 import Quote from "../components/HomePage/Quote.vue";

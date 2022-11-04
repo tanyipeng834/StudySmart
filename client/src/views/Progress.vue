@@ -5,7 +5,7 @@
 
         <div class="row">
             <div class="col-4">
-                <Sidebar :haveTopbar="false" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
+                <Sidebar :haveTopbar="true" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
             </div>
             <div class="col-4 ">
 
