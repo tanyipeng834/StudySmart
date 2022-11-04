@@ -1,29 +1,34 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark topbar">
-        <div class="container-fluid">
+        <div class="container-fluid d-flex">
 
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 
 
                 <div class="navbar-nav">
-                    <div class="logo-details" style="margin: 6px 14px 0 14px">
-                        <img
-                            v-if="menuLogo"
-                            :src="menuLogo"
-                            alt="menu-logo"
-                            class="menu-logo icon"
-                        />
-                        <i v-else class="bx icon" :class="menuIcon" />
-                        <div class="logo_name">
-                            {{ menuTitle }}
+                    <div class="row">
+                        <div class="col">
+                            <div class="logo-details" style="margin: 6px 14px 0 14px">
+                                <img
+                                    v-if="menuLogo"
+                                    :src="menuLogo"
+                                    alt="menu-logo"
+                                    class="menu-logo icon"
+                                />
+                                <i v-else class="bx icon" :class="menuIcon" />
+                                
+                            </div>
                         </div>
-                        <i
-                            class="bx"
-                            :class="isOpened ? 'bx-menu-alt-right' : 'bx-menu'"
-                            id="btn"
-                            @click="isOpened = !isOpened"
-                        />
-                </div>
+
+                        <div class="col">
+                            
+                                <div class="logo_name">
+                                    {{ menuTitle }}
+                                </div>
+                        </div>
+                        
+                    </div>
+                    
 
                     
                     <!-- <a href="#" class="nav-item nav-link active">Home</a>
@@ -60,11 +65,11 @@
             },
             menuLogo: {
                 type: String,
-                default: require("@/assets/logo.svg"),
+                default: require("@/assets/birb_icon.png"),
             },
             menuIcon: {
                 type: String,
-                default: require("@/assets/logo.svg"),
+                default: require("@/assets/birb_icon.png"),
             }
         },
         components: {
@@ -77,7 +82,23 @@
 <style scoped>
 
 .topbar{
-    position: sticky;
-    top:0;
+    position: relative;
+    height: 100%;
+    color: white;
+}
+
+img {
+    justify-content: center;
+    background-color: white;
+    border: 10px;
+    width: 60%;
+    height: auto;
+    padding: 5px;
+    border-radius: 10%;
+}
+
+.logo_name {
+    justify-content: center;
+    align-items: center;
 }
 </style>
