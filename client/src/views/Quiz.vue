@@ -44,7 +44,7 @@
         <FlashcardPage @add-summary-card="addSummaryCard"></FlashcardPage>
       </div>
       <div v-else-if="multiChoiceQuiz == true">
-        <MutipleChoicePage />
+        <MutipleChoicePage @toggle-mutiple="toggleMutiple()" />
       </div>
     </div>
   </div>
@@ -130,6 +130,9 @@ export default {
     },
     addQuiz() {
       this.multiChoiceQuiz = true;
+    },
+    toggleMutiple() {
+      this.multiChoiceQuiz = !this.multiChoiceQuiz;
     },
   },
 };

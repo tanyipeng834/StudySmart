@@ -39,9 +39,6 @@ export default {
   components: {
     Options,
   },
-  props: {
-    doc: String,
-  },
 
   methods: {
     addCards() {
@@ -60,7 +57,6 @@ export default {
     },
     addQuestion() {
       this.$emit("new-question", [this.question, this.options]);
-      
     },
   },
 };

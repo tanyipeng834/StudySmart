@@ -13,6 +13,9 @@
         :doc="this.document"
       />
     </div>
+    <button type="button" class="btn btn-primary finish" @click="addDatabase()">
+      Finish Quiz
+    </button>
   </div>
 </template>
 
@@ -37,10 +40,8 @@ export default {
     };
   },
 
-  created(){
-
-
-
+  created() {
+    this.questions = {};
   },
 
   components: {
@@ -50,7 +51,24 @@ export default {
     addQuestion(array) {
       // force the child component to rerender
       this.questionNumber += 1;
-      console.log(array);
+      this.questions[array[0]] = array[1];
+      console.log(this.questions);
+    },
+    async addDatabase() {
+      let email = localStorage.getItem("email");
+      let collectionRef = collection(db, "users", email, "MutipleChoiceQuiz");
+
+      const docref = await addDoc(collectionRef, {
+        data: this.questions,
+      })
+        .then(() => {
+          alert("data have been added successfully");
+        })
+        .catch((error) => {
+          alert("Unsuccessful operation,error" + error);
+        });
+
+        this.$emit("toggle-mutiple");
     },
   },
 };
@@ -61,5 +79,10 @@ export default {
   position: fixed;
   bottom: 10%;
   right: 10%;
+}
+.finish {
+  position: fixed;
+  bottom: 10%;
+  left: 10%;
 }
 </style>
