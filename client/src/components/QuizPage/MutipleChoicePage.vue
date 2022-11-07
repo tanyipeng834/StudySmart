@@ -7,11 +7,27 @@
   <div class="row">
     <div class="col-3"></div>
     <div class="col-6">
-      <MutipleChoice
-        :key="this.questionNumber"
-        @new-question="addQuestion"
-        :doc="this.document"
-      />
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Quiz Name"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          v-model="title"
+        />
+      </div>
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Description"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          v-model="description"
+        />
+      </div>
+      <MutipleChoice :key="this.questionNumber" @new-question="addQuestion" />
     </div>
     <button type="button" class="btn btn-primary finish" @click="addDatabase()">
       Finish Quiz
@@ -35,8 +51,8 @@ export default {
   data() {
     return {
       questionNumber: 1,
-      collection: null,
-      document: null,
+      title: "",
+      description: "",
     };
   },
 
@@ -59,6 +75,8 @@ export default {
       let collectionRef = collection(db, "users", email, "MutipleChoiceQuiz");
 
       const docref = await addDoc(collectionRef, {
+        title: this.title,
+        description: this.description,
         data: this.questions,
       })
         .then(() => {
@@ -68,7 +86,7 @@ export default {
           alert("Unsuccessful operation,error" + error);
         });
 
-        this.$emit("toggle-mutiple");
+      this.$emit("toggle-mutiple");
     },
   },
 };

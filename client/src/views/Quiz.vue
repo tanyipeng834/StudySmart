@@ -33,7 +33,7 @@
                 :title="item.title"
                 :description="item.description"
                 :id="item.id"
-                @click="redirect(item.id)"
+                @click="redirect(item.id, item.type)"
               >
               </SummaryCard>
             </div>
@@ -96,15 +96,29 @@ export default {
   created() {
     let email = localStorage.getItem("email");
     console.log(email);
-    const q = query(collection(db, "users", email, "Flashcards"));
+    const q_flashcards = query(collection(db, "users", email, "Flashcards"));
+    const q_multiquiz = query(
+      collection(db, "users", email, "MutipleChoiceQuiz")
+    );
 
     console.log(this.summaryCards);
-    const flashCards = onSnapshot(q, (querySnapshot) => {
+    const flashCards = onSnapshot(q_flashcards, (querySnapshot) => {
       querySnapshot.forEach((doc) => {
         this.summaryCards.push({
           id: doc.id,
           title: doc.data().title,
           description: doc.data().description,
+          type: "flashcards",
+        });
+      });
+    });
+    const mulitquiz = onSnapshot(q_multiquiz, (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.summaryCards.push({
+          id: doc.id,
+          title: doc.data().title,
+          description: doc.data().description,
+          type: "multi-choice",
         });
       });
     });
@@ -125,8 +139,12 @@ export default {
       this.modal = false;
       this.summaryCards = [];
     },
-    redirect(id) {
-      window.location.href = `/#/quiz/${id}`;
+    redirect(id, type) {
+      if (type == "flashcards") {
+        window.location.href = `/#/quiz/${id}`;
+      } else {
+        window.location.href = `/#/quiz/multi/${id}`;
+      }
     },
     addQuiz() {
       this.multiChoiceQuiz = true;
