@@ -14,9 +14,14 @@
         </div>
 
         <div class="button">
-          <button class="btn add" @click="addFlashCard()">
+          <button class="btn add d-block" @click="addFlashCard()">
             <i class="fa-regular fa-pen-to-square fa-lg text-right"></i>Add
             Flash Card
+          </button>
+
+          <button class="btn add d-block" @click="addQuiz()">
+            <i class="fa-regular fa-pen-to-square fa-lg text-right"></i>Add
+            Mutiple Choice Quiz
           </button>
         </div>
         <div class="row">
@@ -39,7 +44,7 @@
         <FlashcardPage @add-summary-card="addSummaryCard"></FlashcardPage>
       </div>
       <div v-else-if="multiChoiceQuiz == true">
-        <MutipleChoice />
+        <MutipleChoicePage />
       </div>
     </div>
   </div>
@@ -52,7 +57,7 @@ import Topbar from "../components/Navigation/Topbar.vue";
 import FlashcardPage from "../components/QuizPage/FlashCardPage.vue";
 import SummaryCard from "../components/QuizPage/SummaryCard.vue";
 import { db } from "@/main.js";
-import MutipleChoice from "@/components/QuizPage/MutipleChoice.vue";
+import MutipleChoicePage from "@/components/QuizPage/MutipleChoicePage.vue";
 
 export default {
   name: "Quiz",
@@ -60,7 +65,7 @@ export default {
   data() {
     return {
       flashCards: false,
-      multiChoiceQuiz: true,
+      multiChoiceQuiz: false,
       summaryCards: [],
       tabs: [
         // example on how to implement the tabs
@@ -104,7 +109,13 @@ export default {
       });
     });
   },
-  components: { Sidebar, Topbar, FlashcardPage, SummaryCard, MutipleChoice },
+  components: {
+    Sidebar,
+    Topbar,
+    FlashcardPage,
+    SummaryCard,
+    MutipleChoicePage,
+  },
 
   methods: {
     addFlashCard() {
@@ -116,6 +127,9 @@ export default {
     },
     redirect(id) {
       window.location.href = `/#/quiz/${id}`;
+    },
+    addQuiz() {
+      this.multiChoiceQuiz = true;
     },
   },
 };
