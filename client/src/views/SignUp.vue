@@ -167,6 +167,7 @@ const register = () => {
         // await setDoc(col, { 'ignore' :''});
 
         localStorage.setItem("email", email.value);
+        
 
         window.location.href = "/#";
       } catch (e) {
