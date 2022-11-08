@@ -27,11 +27,12 @@
           v-model="description"
         />
       </div>
-      <MutipleChoice :key="this.questionNumber" @new-question="addQuestion" />
+      <MutipleChoice
+        :key="this.questionNumber"
+        @new-question="addQuestion"
+        @add-database="addDatabase()"
+      />
     </div>
-    <button type="button" class="btn btn-primary finish" @click="addDatabase()">
-      Finish Quiz
-    </button>
   </div>
 </template>
 
@@ -68,11 +69,13 @@ export default {
       // force the child component to rerender
       this.questionNumber += 1;
       this.questions[array[0]] = array[1];
+
       console.log(this.questions);
     },
     async addDatabase() {
       let email = localStorage.getItem("email");
       let collectionRef = collection(db, "users", email, "MutipleChoiceQuiz");
+      
 
       const docref = await addDoc(collectionRef, {
         title: this.title,

@@ -23,6 +23,9 @@
   <button type="button" class="btn btn-primary" @click="addQuestion()">
     New Question
   </button>
+  <button type="button" class="btn btn-primary finish" @click="addDatabase()">
+    Finish Quiz
+  </button>
 </template>
 
 <script>
@@ -57,6 +60,11 @@ export default {
     },
     addQuestion() {
       this.$emit("new-question", [this.question, this.options]);
+    },
+    addDatabase() {
+      //First i will add the question to the questions object
+      this.addQuestion();
+      this.$emit("add-database");
     },
   },
 };
