@@ -11,10 +11,20 @@
           <h3>The big knowledge test!</h3>
           <p>How good is your general knowledge?</p>
         </div>
-        <MutipleChoiceQuestion />
+        <MutipleChoiceQuestion
+          :question="this.questions[this.questionIndex]"
+          :key="this.questionIndex"
+          :number="this.questionIndex"
+        />
       </div>
     </div>
-    
+    <button
+      type="button"
+      class="btn btn-primary question"
+      @click="nextQuestion()"
+    >
+      Next Question
+    </button>
   </div>
 </template>
 
@@ -81,6 +91,13 @@ export default {
       ],
     };
   },
+  methods: {
+    nextQuestion() {
+      if (this.questionIndex < this.questions.length - 1) {
+        this.questionIndex += 1;
+      }
+    },
+  },
 };
 </script>
 <style scoped>
@@ -96,5 +113,11 @@ export default {
 .cards {
   justify-content: center;
   height: 100vh;
+}
+
+.question {
+  position: fixed;
+  bottom: 10%;
+  right: 10%;
 }
 </style>
