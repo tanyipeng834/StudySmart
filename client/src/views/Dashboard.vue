@@ -136,6 +136,7 @@ newdata.id=docSnapshot.id
 }
 
 .login {
+      overflow: hidden;
   background-image: url("@/assets/cloud.jpg");
   height: 100%;
   background-position: center;

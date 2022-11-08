@@ -1,18 +1,8 @@
 <template>
     <div>
-        <div class="login container-fluid wrapper ">
+        <div class="container-fluid login wrapper w-100 ">
             <!-- <div class="container-fluid "> -->
-            <Topbar :tabs="tabs" />
-            <div class="row">
-                <div class="col-4">
-                    <Sidebar :haveTopbar="false" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
-                </div>
-                <div class="col-4 ">
-                </div>
-                <div class="col-4 ">
-                </div>
-            </div>
-            <div class="modal-box">
+                 <div class="modal-box">
                 <div class="modal fade" id="modalFormAdd" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
@@ -111,11 +101,22 @@
                     </div>
                 </div>
             </div>
+            <Topbar :tabs="tabs" />
             <div class="row">
-                <div class="col-1"></div>
-                <div class="col-lg-6 col-12 d-flex flex-column justify-content-center">
+                <div class="col-4">
+                    <Sidebar :haveTopbar="false" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
+                </div>
+                <div class="col-4 ">
+                </div>
+                <div class="col-4 ">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-5 section col-12 d-flex flex-column justify-content-center">
                     <div class="">
-                        <div class="float-start ps-4">
+                        <div class="float-start ">
                             <select class="form-select form-select  mt-4 selectLevel mb-1 shadow"
                                 aria-label=".form-select-sm " id="examType" v-model='level' @change="change">
                                 <option value="1" :selected="level === 1">Sec 1</option>
@@ -130,9 +131,9 @@
                     </div>
 
                     <div class="line-chart ">
-                        <div class="aspect-ratio chart">
+                        <div class="aspect-ratio chart shadow  bg-white rounded">
 
-                            <canvas id="progress-chart" class="shadow chart bg-white rounded" width="650"
+                            <canvas id="progress-chart" class=" chart" width="650"
                                 height="500"></canvas>
                             <div class="dotdropdown">
                                 <button class="btn dropdown-toggle other" type="button" data-bs-toggle="dropdown"
@@ -157,7 +158,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5 col-12  d-flex flex-column justify-content-start mt-4">
+
+                <div class="col-lg-4 col-12 section d-flex flex-column justify-content-start mt-4">
                     <div class="shadow box ">
                         <div class="p-1 insights" v-if="existingSubjects.length>1">
                             <p class="small"><span class="text-danger h5">Alert!</span> Your {{minSub}} has the lowest
@@ -785,36 +787,36 @@
                 conData: '',
                 validity: false,
                 tabs: [
-                    {
-                        name: 'Secondary 1',
-                        link: '/',
-                        dropdown: false,
+                    // {
+                    //     name: 'Secondary 1',
+                    //     link: '/',
+                    //     dropdown: false,
 
-                    },
-                    {
-                        name: 'Secondary 2',
-                        link: '/',
-                        dropdown: false,
+                    // },
+                    // {
+                    //     name: 'Secondary 2',
+                    //     link: '/',
+                    //     dropdown: false,
 
-                    },
-                    {
-                        name: 'Secondary 3',
-                        link: '/',
-                        dropdown: false,
+                    // },
+                    // {
+                    //     name: 'Secondary 3',
+                    //     link: '/',
+                    //     dropdown: false,
 
-                    },
-                    {
-                        name: 'Secondary 4',
-                        link: '/',
-                        dropdown: false,
+                    // },
+                    // {
+                    //     name: 'Secondary 4',
+                    //     link: '/',
+                    //     dropdown: false,
 
-                    },
-                    {
-                        name: 'Secondary 5',
-                        link: '/',
-                        dropdown: false,
+                    // },
+                    // {
+                    //     name: 'Secondary 5',
+                    //     link: '/',
+                    //     dropdown: false,
 
-                    },
+                    // },
 
 
 
@@ -855,7 +857,7 @@
 
 
     .chart {
-        padding: 2vw;
+        padding: 2rem;
         position: relative;
         width: 100%;
         height: auto;
@@ -878,16 +880,12 @@
         height: 165px;
     }
 
-    body {
-        background-image: url("../assets/cloud.jpg") repeat 0 0;
-        ;
-
-    }
 
     .login {
         background-image: url("@/assets/cloud.jpg");
 
-        height: 100vh;
+      width: 100%;
+      height: auto;
         padding: 0;
         /* Center and scale the image nicely */
         background-position: center;
@@ -956,6 +954,10 @@
             left: 90%;
             z-index: 1;
         }
+        .section{
+            margin:0 1rem;
+        }
+
 
 
     }

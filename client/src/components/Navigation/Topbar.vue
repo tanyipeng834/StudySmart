@@ -120,7 +120,7 @@
     .topbar {
         position: sticky;
         top: 0;
-        width: 100vw;
+        width: 100%;
         height: 4em;
         color: white;
         padding: 1rem;
