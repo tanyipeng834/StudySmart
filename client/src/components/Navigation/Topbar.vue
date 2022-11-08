@@ -1,11 +1,11 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark topbar">
-        <div class="container-fluid">
+        <div class="d-flex justify-content-evenly">
 
-            <div class="collapse navbar-collapse" id="navbarCollapse">
+            <!-- <div class="collapse navbar-collapse" id="navbarCollapse"> -->
 
 
-                <div class="navbar-nav">
+                <!-- <div class="navbar-nav">
                     <div class="logo-details" style="margin: 4px 4px 0 4px">
                         <img
                             v-if="menuLogo"
@@ -23,25 +23,25 @@
                             id="btn"
                             @click="isOpened = !isOpened"
                         />
-                </div>
+                </div> -->
 
 
-                    <!-- <a href="#" class="nav-item nav-link active">Home</a>
+                 <!-- <a href="#" class="nav-item nav-link active">Home</a>
                 <a href="#" class="nav-item nav-link">Profile</a>
                 <a href="#" class="nav-item nav-link">Messages</a>
                 <a href="#" class="nav-item nav-link disabled" tabindex="-1">Reports</a> -->
 
-                <!-- <a :href='tab.link' class="nav-item nav-link"
+                 <a :href='tab.link' class="nav-item nav-link"
                         v-for="(tab, index) in tabs.filter((tab)=> tab.dropdown===false)" :key="index">
                         {{tab.name}}
                     </a>
 
                     <DropdownMenu v-for="(tab, index) in tabs.filter((tab)=> tab.dropdown===true)" :key="index"
-                        :tab="tab" /> -->
+                        :tab="tab" />
 
-                </div>
+                <!-- </div>
 
-            </div>
+            </div> -->
 
 
         </div>
@@ -54,18 +54,18 @@
         name: "Topbar",
         props: {
             tabs: Array,
-            menuTitle: {
-                type: String,
-                default: "StudySmart",
-            },
-            menuLogo: {
-                type: String,
-                default: require("@/assets/logo.svg"),
-            },
-            menuIcon: {
-                type: String,
-                default: require("@/assets/logo.svg"),
-            }
+            // menuTitle: {
+            //     type: String,
+            //     default: "StudySmart",
+            // },
+            // menuLogo: {
+            //     type: String,
+            //     default: require("@/assets/logo.svg"),
+            // },
+            // menuIcon: {
+            //     type: String,
+            //     default: require("@/assets/logo.svg"),
+            // }
         },
         components: {
             DropdownMenu,
@@ -81,6 +81,11 @@
     top:0;
     width:100vw;
     height: 4em;
+    color: white;
+    padding:1rem;
 
+}
+a:has(+a){
+    margin-right:2rem
 }
 </style>

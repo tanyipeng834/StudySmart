@@ -2,7 +2,7 @@
     <div>
         <div class="login container-fluid wrapper ">
             <!-- <div class="container-fluid "> -->
-            <Topbar />
+            <Topbar :tabs="tabs" />
             <div class="row">
                 <div class="col-4">
                     <Sidebar :haveTopbar="false" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
@@ -134,7 +134,7 @@
 
                             <canvas id="progress-chart" class="shadow chart bg-white rounded" width="650"
                                 height="500"></canvas>
-                                <div class="dotdropdown">
+                            <div class="dotdropdown">
                                 <button class="btn dropdown-toggle other" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="true">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -783,7 +783,46 @@
                 maxSubScore: '',
                 conSub: '',
                 conData: '',
-                validity: false
+                validity: false,
+                tabs: [
+                    {
+                        name: 'Secondary 1',
+                        link: '/',
+                        dropdown: false,
+
+                    },
+                    {
+                        name: 'Secondary 2',
+                        link: '/',
+                        dropdown: false,
+
+                    },
+                    {
+                        name: 'Secondary 3',
+                        link: '/',
+                        dropdown: false,
+
+                    },
+                    {
+                        name: 'Secondary 4',
+                        link: '/',
+                        dropdown: false,
+
+                    },
+                    {
+                        name: 'Secondary 5',
+                        link: '/',
+                        dropdown: false,
+
+                    },
+
+
+
+
+                ],
+
+
+
 
 
 
