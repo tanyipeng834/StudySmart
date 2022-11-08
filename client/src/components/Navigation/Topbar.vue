@@ -26,7 +26,7 @@
 
             <DropdownMenu v-for="(tab, index) in tabs.filter((tab)=> tab.dropdown===true)" :key="index" :tab="tab" />
         </div>
-        <div class="d-flex  align-items-center">
+        <div class="d-flex ">
 
 <img v-if="menuIcon" :src="menuIcon" class="menuIcon" />
             <div class="d-flex flex-column align-items-center align-content-start">

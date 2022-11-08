@@ -37,7 +37,7 @@
             bottom: 0;
             width: 100%;
             font-size:10px;
-        padding:2px 0;
+        padding:0px 0;
 
 
         }

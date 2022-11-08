@@ -2,7 +2,7 @@
     <div>
         <div class="container-fluid login wrapper w-100 ">
             <!-- <div class="container-fluid "> -->
-                 <div class="modal-box">
+            <div class="modal-box">
                 <div class="modal fade" id="modalFormAdd" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
@@ -113,28 +113,27 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-5 section col-12 d-flex flex-column justify-content-center">
-                    <div class="">
+                <div class="col-lg-2 col-"></div>
+                <div class="col-lg-5 section col-11 d-flex flex-column justify-content-center mt-3">
+
                         <div class="float-start ">
-                            <select class="form-select form-select  mt-4 selectLevel mb-1 shadow"
+                            <select class="form-select form-select w-50 mt-4 selectLevel mb-1 shadow"
                                 aria-label=".form-select-sm " id="examType" v-model='level' @change="change">
-                                <option value="1" :selected="level === 1">Sec 1</option>
-                                <option value="2" :selected="level === 2">Sec 2</option>
-                                <option value="3" :selected="level === 3">Sec 3</option>
-                                <option value="4" :selected="level === 4">Sec 4</option>
-                                <option value="5" :selected="level === 5">Sec 5</option>
+                                <option value="1" :selected="level === 1">Secondary 1</option>
+                                <option value="2" :selected="level === 2">Secondary 2</option>
+                                <option value="3" :selected="level === 3">Secondary 3</option>
+                                <option value="4" :selected="level === 4">Secondary 4</option>
+                                <option value="5" :selected="level === 5">Secondary 5</option>
                             </select>
                         </div>
 
 
-                    </div>
+
 
                     <div class="line-chart ">
                         <div class="aspect-ratio chart shadow  bg-white rounded">
 
-                            <canvas id="progress-chart" class=" chart" width="650"
-                                height="500"></canvas>
+                            <canvas id="progress-chart" class=" chart" width="650" height="500"></canvas>
                             <div class="dotdropdown">
                                 <button class="btn dropdown-toggle other" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="true">
@@ -159,16 +158,16 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-12 section d-flex flex-column justify-content-start mt-4">
+                <div class="col-lg-4 col-11 section d-flex flex-column justify-content-start mt-3">
                     <div class="shadow box ">
                         <div class="p-1 insights" v-if="existingSubjects.length>1">
-                            <p class="small"><span class="text-danger h5">Alert!</span> Your {{minSub}} has the lowest
+                            <p class="small"><span class="text-danger h6">Alert!</span> {{minSub}} has the lowest
                                 average of {{minSubScore}}%</p>
-                            <p class="small"><span class="text-success h5">Good Work!</span> Your {{maxSub}} has the
+                            <p class="small"><span class="text-success h6">Good Work!</span>  {{maxSub}} has the
                                 highest average of {{maxSubScore}}%</p>
-                            <p class="small" v-if="conSub!=''"><span class="text-info h5">Keep it up!</span> Your
+                            <p class="small" v-if="conSub!=''"><span class="text-info h6">Keep it up!</span> Your
                                 {{conSub}} scores are the most consistent with {{conData}} standard deviation!</p>
-                            <p class="small" v-else><span class="text-info h5">More data required!</span> Please add
+                            <p class="small" v-else><span class="text-info h6">More data required!</span> Please add
                                 more test scores to see which is your most consistent subject.</p>
                         </div>
                         <div v-else class="text-center">
@@ -857,7 +856,7 @@
 
 
     .chart {
-        padding: 2rem;
+        padding: 1rem;
         position: relative;
         width: 100%;
         height: auto;
@@ -884,8 +883,8 @@
     .login {
         background-image: url("@/assets/cloud.jpg");
 
-      width: 100%;
-      height: auto;
+        width: 100vw;
+        height: 100vh;
         padding: 0;
         /* Center and scale the image nicely */
         background-position: center;
@@ -932,7 +931,9 @@
     .modal-body p {
         text-align: left;
     }
-
+div .row{
+    margin:0px 0px;
+}
     .enabled:hover {
         text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
         box-shadow: 0 0 10px rgba(255, 255, 255, 0.5) inset, 0 0 10px #959596;
@@ -954,8 +955,10 @@
             left: 90%;
             z-index: 1;
         }
-        .section{
-            margin:0 1rem;
+
+        .section {
+            margin: 0 1rem;
+            padding: 0;
         }
 
 
@@ -969,6 +972,10 @@
             left: 87%;
             z-index: 1;
         }
+        .line-chart{
+            margin-bottom:10rem
+        }
+
 
 
 
