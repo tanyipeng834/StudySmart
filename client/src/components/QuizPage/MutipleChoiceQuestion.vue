@@ -45,9 +45,10 @@ export default {
       correct: null,
     };
   },
-  beforeUpdate() {
+
+  mounted() {
     let current_state = [];
-    console.log(this.options);
+
     for (let option of this.options) {
       console.log(option);
       if (option.answer) {
@@ -57,13 +58,16 @@ export default {
       }
     }
     this.state = current_state;
+    console.log(this.state);
   },
   computed: {
     question_value() {
       for (let key in this.question) return key;
     },
     options() {
+      console.log("i am here");
       for (let key in this.question) {
+        this.options = this.question[key];
         return this.question[key];
       }
     },
@@ -82,6 +86,7 @@ export default {
       console.log(this.correct);
     },
     updateArray(array) {
+      console.log(this.state);
       console.log(array);
       this.state[array[0]] = array[1];
       console.log(this.state);

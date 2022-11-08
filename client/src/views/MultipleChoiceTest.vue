@@ -15,6 +15,7 @@
           :question="this.questions[this.questionIndex]"
           :key="this.questionIndex"
           :number="this.questionIndex"
+          v-if="this.questions[this.questionIndex]"
         />
       </div>
     </div>
@@ -25,7 +26,6 @@
     >
       Next Question
     </button>
-    
   </div>
 </template>
 
@@ -96,6 +96,8 @@ export default {
     nextQuestion() {
       if (this.questionIndex < this.questions.length - 1) {
         this.questionIndex += 1;
+      } else {
+        alert("You have done the quiz");
       }
     },
   },
