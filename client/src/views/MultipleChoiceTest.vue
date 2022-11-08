@@ -3,7 +3,6 @@
   <div class="container-fluid quiz">
     <Sidebar :haveTopbar="true"></Sidebar>
   </div>
-  {{ this.questions }}
 </template>
 
 <script>
@@ -28,13 +27,13 @@ export default {
       const multiChoiceQuiz = onSnapshot(q, (doc) => {
         const results = doc.data().data;
         console.log(results);
-        Object.keys(results).forEach((key) => {
-          this.questions.push({ key: results[key] });
-        });
+        for (let key in results) {
+          const obj = {};
+          obj[key] = results[key];
+          this.questions.push(obj);
+        }
       });
     });
-
-    console.log(this.questions);
   },
   data() {
     return {
