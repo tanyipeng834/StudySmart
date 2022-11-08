@@ -3,6 +3,8 @@ import Login from "../views/Login.vue";
 import Dashboard from "../views/Dashboard.vue";
 import Progress from "../views/Progress.vue";
 import QuizTest from "../views/QuizTest.vue";
+import Forum from "../views/Forum.vue";
+import MutipleChoiceTest from "@/views/MultipleChoiceTest.vue";
 
 // git
 import Quiz from "../views/Quiz.vue";
@@ -29,9 +31,20 @@ const routes = [
     component: QuizTest,
   },
   {
+    path: "/quiz/multi/:id",
+    name: "QuizTest",
+    component: MutipleChoiceTest,
+  },
+
+  {
     path: "/progress",
     name: "ProgressTracker",
     component: Progress,
+  },
+  {
+    path: "/forum",
+    name: "Forum",
+    component: Forum,
   },
   // {
   //   path: "/progress2",

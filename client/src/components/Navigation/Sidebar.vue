@@ -128,14 +128,8 @@ export default {
         },
         {
           link: "#",
-          name: "Mentor",
-          tooltip: "Mentor",
-          icon: "bx-user",
-        },
-        {
-          link: "#",
-          name: "Classroom",
-          tooltip: "Messages",
+          name: "Forum",
+          tooltip: "Forum",
           icon: "bx-chat",
         },
         {
@@ -288,7 +282,7 @@ body {
   flex-direction: column;
   position: fixed;
   left: 0;
- height: 100%;
+  height: 100vh;
   /* height: 92.5%; */
   min-height: min-content;
   /* overflow-y: auto; */

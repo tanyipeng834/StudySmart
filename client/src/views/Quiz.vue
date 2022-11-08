@@ -14,9 +14,14 @@
         </div>
 
         <div class="button">
-          <button class="btn add" @click="addFlashCard()">
+          <button class="btn add d-block" @click="addFlashCard()">
             <i class="fa-regular fa-pen-to-square fa-lg text-right"></i>Add
             Flash Card
+          </button>
+
+          <button class="btn add d-block" @click="addQuiz()">
+            <i class="fa-regular fa-pen-to-square fa-lg text-right"></i>Add
+            Mutiple Choice Quiz
           </button>
         </div>
         <div class="row">
@@ -28,7 +33,7 @@
                 :title="item.title"
                 :description="item.description"
                 :id="item.id"
-                @click="redirect(item.id)"
+                @click="redirect(item.id, item.type)"
               >
               </SummaryCard>
             </div>
@@ -39,7 +44,7 @@
         <FlashcardPage @add-summary-card="addSummaryCard"></FlashcardPage>
       </div>
       <div v-else-if="multiChoiceQuiz == true">
-        <MutipleChoice />
+        <MutipleChoicePage @toggle-mutiple="toggleMutiple()" />
       </div>
     </div>
   </div>
@@ -52,7 +57,7 @@ import Topbar from "../components/Navigation/Topbar.vue";
 import FlashcardPage from "../components/QuizPage/FlashCardPage.vue";
 import SummaryCard from "../components/QuizPage/SummaryCard.vue";
 import { db } from "@/main.js";
-import MutipleChoice from "@/components/QuizPage/MutipleChoice.vue";
+import MutipleChoicePage from "@/components/QuizPage/MutipleChoicePage.vue";
 
 export default {
   name: "Quiz",
@@ -60,7 +65,7 @@ export default {
   data() {
     return {
       flashCards: false,
-      multiChoiceQuiz: true,
+      multiChoiceQuiz: false,
       summaryCards: [],
       tabs: [
         // example on how to implement the tabs
@@ -91,20 +96,40 @@ export default {
   created() {
     let email = localStorage.getItem("email");
     console.log(email);
-    const q = query(collection(db, "users", email, "Flashcards"));
+    const q_flashcards = query(collection(db, "users", email, "Flashcards"));
+    const q_multiquiz = query(
+      collection(db, "users", email, "MutipleChoiceQuiz")
+    );
 
     console.log(this.summaryCards);
-    const flashCards = onSnapshot(q, (querySnapshot) => {
+    const flashCards = onSnapshot(q_flashcards, (querySnapshot) => {
       querySnapshot.forEach((doc) => {
         this.summaryCards.push({
           id: doc.id,
           title: doc.data().title,
           description: doc.data().description,
+          type: "flashcards",
+        });
+      });
+    });
+    const mulitquiz = onSnapshot(q_multiquiz, (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.summaryCards.push({
+          id: doc.id,
+          title: doc.data().title,
+          description: doc.data().description,
+          type: "multi-choice",
         });
       });
     });
   },
-  components: { Sidebar, Topbar, FlashcardPage, SummaryCard, MutipleChoice },
+  components: {
+    Sidebar,
+    Topbar,
+    FlashcardPage,
+    SummaryCard,
+    MutipleChoicePage,
+  },
 
   methods: {
     addFlashCard() {
@@ -114,8 +139,18 @@ export default {
       this.modal = false;
       this.summaryCards = [];
     },
-    redirect(id) {
-      window.location.href = `/#/quiz/${id}`;
+    redirect(id, type) {
+      if (type == "flashcards") {
+        window.location.href = `/#/quiz/${id}`;
+      } else {
+        window.location.href = `/#/quiz/multi/${id}`;
+      }
+    },
+    addQuiz() {
+      this.multiChoiceQuiz = true;
+    },
+    toggleMutiple() {
+      this.multiChoiceQuiz = !this.multiChoiceQuiz;
     },
   },
 };

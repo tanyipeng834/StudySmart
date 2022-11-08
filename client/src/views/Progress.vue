@@ -1,7 +1,8 @@
 <template>
     <div>
-        <div class="login container-fluid wrapper w-100">
+        <div class="login container-fluid wrapper ">
             <!-- <div class="container-fluid "> -->
+            <Topbar />
             <div class="row">
                 <div class="col-4">
                     <Sidebar :haveTopbar="false" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
@@ -16,8 +17,8 @@
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="text-end"><button type="button" class="btn-close me-2 mt-2 " data-bs-dismiss="modal"
-                                    aria-label="Close"></button></div>
+                            <div class="text-end"><button type="button" class="btn-close me-2 mt-2 "
+                                    data-bs-dismiss="modal" aria-label="Close"></button></div>
                             <div class="modal-body">
                                 <h3>Add Result</h3>
                                 <div class="row">
@@ -45,12 +46,14 @@
                                         <label class="form-label">Subject</label>
                                         <input type="text" class="form-control mb-0" id="subject" name="subject"
                                             placeholder="" v-model.trim='subject' />
-                                        <p v-if="subject==''" class="text-danger small mt-0">Please input the subject</p>
+                                        <p v-if="subject==''" class="text-danger small mt-0">Please input the subject
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="modal-footer d-block">
-                                    <button type="submit" data-bs-dismiss="modal" class="btn  btn-outline-dark float-end"
-                                        @click="addResult" v-if="score <0||score>100||subject.length===0 ||score==''"
+                                    <button type="submit" data-bs-dismiss="modal"
+                                        class="btn  btn-outline-dark float-end" @click="addResult"
+                                        v-if="score <0||score>100||subject.length===0 ||score==''"
                                         disabled>Submit</button>
                                     <button type="submit" data-bs-dismiss="modal"
                                         class="btn btn-outline-info float-end enabled" @click="addResult"
@@ -66,34 +69,37 @@
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="text-end"><button type="button" class="btn-close me-2 mt-2 " data-bs-dismiss="modal"
-                                    aria-label="Close"></button></div>
+                            <div class="text-end"><button type="button" class="btn-close me-2 mt-2 "
+                                    data-bs-dismiss="modal" aria-label="Close"></button></div>
                             <div class="modal-body">
                                 <h3>Delete Result</h3>
                                 <div class="row">
                                     <div class="mb-3 col-6">
                                         <label class="form-label">Subject</label>
-                                        <input type="text" class="form-control mb-0" id="score" v-model.trim='delSubject' />
-                                        <p v-if="delSubject==''" class="text-danger small mt-0">Please input the subject</p>
+                                        <input type="text" class="form-control mb-0" id="score"
+                                            v-model.trim='delSubject' />
+                                        <p v-if="delSubject==''" class="text-danger small mt-0">Please input the subject
+                                        </p>
                                     </div>
                                     <div class="mb-0  col-6">
                                         <label class="form-label">Exam Type</label>
-                                        <select class="form-select form-select mb-0 " aria-label=".form-select-sm example"
-                                            id="examType" v-model='examTypeDel'>
+                                        <select class="form-select form-select mb-0 "
+                                            aria-label=".form-select-sm example" id="examType" v-model='examTypeDel'>
                                             <option value="CA1" selected>CA1</option>
                                             <option value="SA1">SA1</option>
                                             <option value="CA2">CA2</option>
                                             <option value="SA2">SA2</option>
                                         </select>
-                                        <p v-if="examTypeDel==''" class="text-danger small mt-0">Please input the exam type
+                                        <p v-if="examTypeDel==''" class="text-danger small mt-0">Please input the exam
+                                            type
                                         </p>
                                     </div>
                                     <p v-if="checkExist(examTypeDel,delSubject)[0]===false"
                                         class="text-center small text-danger">This result does not exist</p>
                                 </div>
                                 <div class="modal-footer d-block">
-                                    <button type="submit" data-bs-dismiss="modal" class="btn  btn-outline-dark float-end"
-                                        @click="delResult"
+                                    <button type="submit" data-bs-dismiss="modal"
+                                        class="btn  btn-outline-dark float-end" @click="delResult"
                                         v-if="examTypeDel==''||delSubject==''||checkExist(examTypeDel,delSubject)[0]===false"
                                         disabled>Submit</button>
                                     <button type="submit" data-bs-dismiss="modal"
@@ -120,7 +126,15 @@
                             </select>
                         </div>
 
-                            <div class="dotdropdown">
+
+                    </div>
+
+                    <div class="line-chart ">
+                        <div class="aspect-ratio chart">
+
+                            <canvas id="progress-chart" class="shadow chart bg-white rounded" width="650"
+                                height="500"></canvas>
+                                <div class="dotdropdown">
                                 <button class="btn dropdown-toggle other" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="true">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -130,23 +144,16 @@
                                     </svg>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalFormAdd">Add
+                                    <li><a class="dropdown-item" data-bs-toggle="modal"
+                                            data-bs-target="#modalFormAdd">Add
                                             Test Result</a></li>
                                     <li><a class="dropdown-item " data-bs-toggle="modal"
-                                            data-bs-target="#modalFormDel">Delete Test Result</a></li>
+                                            data-bs-target="#modalFormDel">Delete
+                                            Test Result</a></li>
                                 </ul>
 
-                            <!-- <button type="button" class="btn  mx-auto mt-4 float-end addRes" data-bs-toggle="modal"
-                                data-bs-target="#modalForm">
-                                <i class="fa-solid fa-circle-plus fa-lg" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                    title="Add test results"></i>
-                            </button> -->
-                        </div>
-                    </div>
-                    <div class="line-chart ">
-                        <div class="aspect-ratio chart">
-                            <canvas id="progress-chart" class="shadow chart bg-white rounded" width="650" height="500"
-                               ></canvas>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -165,20 +172,22 @@
                         <div v-else class="text-center">
                             <h1 class="display-6 text-primary" v-if="existingSubjects.length==1">Add more subjects</h1>
                             <h1 class="display-6 text-primary" v-else>Let's Start!</h1>
-                            <h2 v-if="existingSubjects.length==1">Add your test results of other subjects for us to give you
+                            <h2 v-if="existingSubjects.length==1">Add your test results of other subjects for us to give
+                                you
                                 more insights!</h2>
-                            <h2 v-else>Start inputting your test scores using the  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                                        <path
-                                            d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                                    </svg> button</h2>
+                            <h2 v-else>Start inputting your test scores using the <svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                    <path
+                                        d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                </svg> button</h2>
                         </div>
                         <!-- <canvas id="bar-chart" width="700" height="550" class="p-4"></canvas> -->
                     </div>
                     <div class="line-chart">
                         <div class=" aspect-ratio ">
-                            <canvas id="bar-chart" width="600" height="400" class="p-4 shadow bg-white rounded"
-                                > </canvas>
+                            <canvas id="bar-chart" width="600" height="400" class="p-4 shadow bg-white rounded">
+                            </canvas>
                         </div>
                     </div>
                     <!-- <div class="shadow box">
@@ -187,7 +196,7 @@
             </div>
             <!-- </div> -->
         </div>
-         <BottomBar class= "bottomnav"/>
+        <BottomBar class="bottomnav" />
     </div>
 </template>
 
@@ -225,7 +234,7 @@
             Sidebar,
             Topbar,
             ChartTest,
-               BottomBar
+            BottomBar
         },
 
         mounted() {
@@ -787,6 +796,7 @@
 <style scoped>
     * {
         font-size: medium;
+
     }
 
     .line-chart {
@@ -814,15 +824,15 @@
 
 
     .shadow {
-
         box-shadow: 5px 5px 6px 7px #ccc;
     }
 
     .dotdropdown {
         position: absolute;
-        top: 15%;
-        left: 51%;
+        top: 5%;
+        right: 5%;
         z-index: 1;
+
     }
 
     .box {
@@ -839,7 +849,7 @@
         background-image: url("@/assets/cloud.jpg");
 
         height: 100vh;
-
+        padding: 0;
         /* Center and scale the image nicely */
         background-position: center;
         background-repeat: no-repeat;
@@ -910,6 +920,7 @@
 
 
     }
+
     @media (max-width: 578px) {
         .dotdropdown {
             position: absolute;
