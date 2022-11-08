@@ -2,12 +2,26 @@
   <Topbar :tabs="tabs"></Topbar>
   <div class="container-fluid quiz">
     <Sidebar :haveTopbar="true"></Sidebar>
+
+    <div class="row">
+      <div class="col-3"></div>
+
+      <div class="col-6">
+        <div class="jumbotron">
+          <h3>The big knowledge test!</h3>
+          <p>How good is your general knowledge?</p>
+        </div>
+        <MutipleChoiceQuestion />
+      </div>
+    </div>
+    
   </div>
 </template>
 
 <script>
 import Topbar from "../components/Navigation/Topbar.vue";
 import Sidebar from "../components/Navigation/Sidebar.vue";
+import MutipleChoiceQuestion from "../components/QuizPage/MutipleChoiceQuestion.vue";
 import { db } from "@/main.js";
 import { onSnapshot, query, doc, QuerySnapshot } from "@firebase/firestore";
 
@@ -16,6 +30,7 @@ export default {
   components: {
     Sidebar,
     Topbar,
+    MutipleChoiceQuestion,
   },
 
   created() {
@@ -38,6 +53,8 @@ export default {
   data() {
     return {
       questions: [],
+      questionIndex: 0,
+
       tabs: [
         // example on how to implement the tabs
         {
