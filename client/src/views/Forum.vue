@@ -19,16 +19,19 @@
             <div class="col">
               <div class="input-group rounded">
                 <input
-                  type="search"
+                  v-model="search"
                   class="form-control rounded mb-3"
-                  placeholder="Search"
+                  placeholder="Search post by username!"
                   aria-label="Search"
                   aria-describedby="search-addon"
                 />
-                <span class="input-group-text border-0 mb-3" id="search-addon">
+                <button @click="searchUserPost()" class="input-group-text border-0 mb-3" id="search-addon">
                   <i class="fas fa-search"></i>
-                </span>
+                </button>
               </div>
+              <!-- <div v-if="search!=''">
+                See all posts
+              </div> -->
             </div>
           </div>
 
@@ -49,8 +52,10 @@
             <div class="col text-center mb-3">
               <p>Choose a subject!</p>
               <div class="dropdown">
-               
-                <select  class="rounded bg-secondary text-white" v-model="subject">
+                <select
+                  class="rounded bg-secondary text-white"
+                  v-model="subject"
+                >
                   <option value="English">English</option>
                   <option value="Chinese">Chinese</option>
                   <option value="Elementary Math">Elementary Math</option>
@@ -61,23 +66,23 @@
                   <option value="History">History</option>
                   <option value="Geography">Geography</option>
                   <option value="Social Studies">Social Studies</option>
-                  <option value="Principles of Account">Principles of Account</option>
+                  <option value="Principles of Account">
+                    Principles of Account
+                  </option>
                   <option value="Literature">Literature</option>
-
-                  
                 </select>
               </div>
             </div>
             <div class="col text-center">
               <p>Choose a stream!</p>
-             <div>
-                  
-                <select class="bg-secondary rounded text-white mb-3" v-model="stream">
+              <div>
+                <select
+                  class="bg-secondary rounded text-white mb-3"
+                  v-model="stream"
+                >
                   <option value="Express">Express</option>
                   <option value="Normal Academic">Normal Academic</option>
-                  <option value="Normal Technical">
-                    Normal Technical
-                  </option>
+                  <option value="Normal Technical">Normal Technical</option>
                 </select>
               </div>
             </div>
@@ -85,7 +90,9 @@
           <div class="row">
             <div class="col d-flex justify-content-center mb-3">
               <div>
-                <button class="btn btn-primary px-4" @click="addPost()">Post</button>
+                <button class="btn btn-primary px-4" @click="addPost()">
+                  Post
+                </button>
               </div>
             </div>
           </div>
@@ -108,6 +115,14 @@
                             <span class="badge rounded-pill text-bg-info me-1"
                               >{{ post.stream }}
                             </span>
+                            <div class="row">
+                              <div class="col justify-content-end">
+                                <span @click="deletePost(post)" v-if="post.username==name" class="badge pill text-bg-secondary p-2 justify-content-end m-2"
+                              > Delete
+                            </span>
+                              </div>
+                            </div>
+                           
                           </div>
                         </div>
                       </div>
@@ -176,13 +191,7 @@
                           </div>
                         </div>
 
-                        <!-- <div class="row">
-                              <ul>
-    
-                                  <li v-for="comment in comments">{{comment}}</li>
-                                
-                              </ul>
-                            </div> -->
+               
                       </div>
                     </div>
                   </div>
@@ -485,7 +494,9 @@
                     </div>
                   </li>
                   <li class="list-group-item text-center">
-                    <button class="btn btn-primary" @click="filter()">Submit</button>
+                    <button class="btn btn-primary" @click="filter()">
+                      Submit
+                    </button>
                   </li>
                 </ul>
               </div>
@@ -498,26 +509,24 @@
 </template>
 <script>
 import Sidebar from "../components/Navigation/Sidebar.vue";
+import { auth, db } from "../main";
 import {
-        auth,
-        db
-    } from "../../src/main";
-    import {
-        getFirestore,
-        doc,
-        updateDoc,
-        getDoc,
-        setDoc,
-        collection,
-        addDoc,
-        deleteDoc,
-        deleteField,
-        arrayUnion,
-        arrayRemove,
-        onSnapshot,
-        query,
-        where
-    } from "firebase/firestore";
+  getFirestore,
+  doc,
+  updateDoc,
+  getDoc,
+  getDocs,
+  setDoc,
+  collection,
+  addDoc,
+  deleteDoc,
+  deleteField,
+  arrayUnion,
+  arrayRemove,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
 export default {
   name: "Forum",
   components: {
@@ -525,6 +534,7 @@ export default {
   },
   data() {
     return {
+  
       posts: [
         {
           postContent: "someone help me in ionic equations",
@@ -542,12 +552,12 @@ export default {
             },
           ],
           numLikes: 445,
-          likedBefore: false
+        
         },
         {
           postContent: "someone help me ",
           username: "jay",
-          date_added: '10/30/22',
+          date_added: "10/30/22",
           subject: "English",
           level: "Secondary 4",
           stream: "Normal Academic",
@@ -558,6 +568,7 @@ export default {
       postContent: "",
       subject: "",
       stream: "",
+      name:'',
       commentContent: "",
       search: "",
       yearChosen: [],
@@ -567,15 +578,24 @@ export default {
   },
 
   methods: {
+    searchUserPost(){
+      var resultPosts=[]
+      for(let post of this.posts){
+        if(post.username==this.search){
+          resultPosts.push(post)
+        }
+      }
+      this.posts=resultPosts
+      
+
+    },
     addLike(post) {
       var index = this.posts.indexOf(post);
-      
-      
-      if(!this.posts[index].likedBefore){
+
+      if (!this.posts[index].likedBefore) {
         this.posts[index].numLikes++;
-        this.posts[index].likedBefore=true
+        this.posts[index].likedBefore = true;
       }
-      
     },
     addComment(post) {
       // need to retrieve current's user username
@@ -585,21 +605,98 @@ export default {
       this.posts[index].comments.push(newComment);
       this.commentContent = "";
     },
-    addPost() {
-      var newPost={}
-      newPost.postContent=this.postContent
-      newPost.subject=this.subject
-      newPost.stream=this.stream
-      var date=new Date().toLocaleDateString()
+    async addPost() {
+     
+
+
+      var email = localStorage.getItem("email");
+      var newPost = {};
+      var errorMsg=''
+      if(this.postContent==''){
+        errorMsg=errorMsg+'Please enter a question! \n'
+      }
+      if(this.subject==''){
+        errorMsg=errorMsg+'Please choose a subject! \n'
+      }
+      if(this.stream==''){
+        errorMsg=errorMsg+'Please choose a stream! \n'
+      }
+      if(this.stream=='' || this.subject=='' ||this.postContent==''){
+        alert(errorMsg)
+      }
+      else{
+
       
-      var day=date.slice(0,2)
-      var month=date.slice(3,5)
-      date=month+'/'+day+date.slice(5)
-      newPost.date_added=date
+      newPost.postContent = this.postContent;
+      newPost.subject = this.subject;
+      newPost.stream = this.stream;
+      var date = new Date().toLocaleDateString();
+
+      var day = date.slice(0, 2);
+      var month = date.slice(3, 5);
+      date = month + "/" + day + date.slice(5);
+      newPost.date_added = date;
+      newPost.comments = [];
+
       
+
+      const docRef = doc(db, "users", email);
+      const docSnap = await getDoc(docRef);
+
+     
+      var grade= docSnap.data().profile.schoolGrade
+      var name=docSnap.data().profile.fullName
+      this.name=name
+      newPost.numLikes=0
+
+      newPost.username=name
+      newPost.level=grade
+      this.posts.unshift(newPost);
+
+     //Add post to databa
+
       
-  
+      this.postContent=''
+      this.subject=''
+      this.stream=''
+      // Add a new document in collection "cities"
+
+    }
     },
+
+    deletePost(post){
+      var index= this.posts.indexOf(post)
+      var posts=this.posts
+      posts.splice(index,1)
+    },
+
+    filter(){
+      var resultPosts=[]
+
+      for(let post of this.posts){
+        console.log(post)
+        for(let subject of this.subjectChosen){
+          if(post.subject==subject &&resultPosts.indexOf(post)==-1){
+            
+            resultPosts.push(post)
+
+          }
+
+        }
+        for(let year of this.yearChosen){
+            if(year==post.level &&resultPosts.indexOf(post)==-1){
+              resultPosts.push(post)
+            }
+          }
+        if(post.stream==this.streamChosen &&resultPosts.indexOf(post)==-1){
+          resultPosts.push(post)
+          
+        }
+      }
+      this.posts=resultPosts
+
+    },
+
     daysDifference(post) {
       var index = this.posts.indexOf(post);
 
@@ -613,9 +710,7 @@ export default {
 
       return parseInt(daysDifference) + " days ago";
     },
-    filter(){
-      
-    }
+    
   },
 };
 </script>
