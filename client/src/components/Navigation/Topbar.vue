@@ -108,7 +108,7 @@
        
             menuLogo: {
                 type: String,
-                default: require("@/assets/birb_svg.svg"),
+                default: require("@/assets/birb_logo.svg"),
             },
             menuIcon: {
                 type: String,
@@ -131,7 +131,7 @@
         position: sticky;
         top: 0;
         width: 100%;
-        height: 4em;
+        height: 75px;
         color: white;
         padding: 1rem;
         background-color: #253F63;
@@ -158,9 +158,9 @@
         background-color: white;
         border-width: 5px;
         border-radius: 9px;
-        border-width: 5px;
+        border-width: 4px;
         border-style: solid;
-        height: 46px;
+        height: 60px;
         width: auto;
     }
 
