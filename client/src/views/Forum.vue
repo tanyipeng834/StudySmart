@@ -91,13 +91,17 @@
                       <div v-for="post in posts" :key="post" class="card mb-4">
                         <div class="card-header d-flex justify-content-between ">
 
-                          <div class="d-flex align-items-center">
+                          <div class="row d-flex align-items-center">
+                            <div class="col">
+
+                            
                             <span class="badge rounded-pill text-bg-info me-1">{{ post.subject }}
                             </span>
                             <span class="badge rounded-pill text-bg-info me-1">{{ post.level }}
                             </span>
                             <span class="badge rounded-pill text-bg-info me-1">{{ post.stream }}
                             </span>
+                            </div>
                           </div>
 
 
@@ -176,7 +180,9 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-4 col-sm-4 order-md-last order-2">
+          
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4  order-2">
             <div class="row">
               <div class="col d-flex justify-content-center">
                 <div class="card" style="width: 18rem; margin-top: 110px">
@@ -249,7 +255,6 @@
               </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
     <BottomBar class="bottomnav" />
@@ -534,7 +539,7 @@
 
   .main {
     background-color: #eaf1f5;
-    height: 2000px;
+    height: 100%;
     /* overflow-x: hidden; */
   }
 
