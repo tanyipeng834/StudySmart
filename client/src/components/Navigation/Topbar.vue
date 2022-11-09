@@ -151,12 +151,11 @@
         margin-right: 2rem;
     }
 
-    img,
-    i {
+    img {
         margin-right: 1rem;
         background-color: white;
         border-width: 5px;
-        border-radius: 12%;
+        border-radius: 9px;
         border-width: 5px;
         border-style: solid;
         height: 46px;
@@ -169,6 +168,15 @@
         top: 50%;
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
+    }
+
+    span {
+        background-color: #aac1ce ;
+        border-width: 4px;
+        border-style: solid;
+        border-radius: 9px;
+        border-color: #aac1ce ;
+        color: #253F63;
     }
 
 
