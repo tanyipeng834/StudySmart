@@ -179,7 +179,7 @@
         border-radius: 9px;
         border-color: #aac1ce ;
         color: #253F63;
-        
+        margin-right: 13px;
     }
 
     @media(max-width:576px) {
