@@ -4,6 +4,7 @@ import Dashboard from "../views/Dashboard.vue";
 import Progress from "../views/Progress.vue";
 import QuizTest from "../views/QuizTest.vue";
 import Forum from "../views/Forum.vue";
+import CareerQuiz from "../views/CareerQuiz.vue";
 import MutipleChoiceTest from "@/views/MultipleChoiceTest.vue";
 
 // git
@@ -46,11 +47,11 @@ const routes = [
     name: "Forum",
     component: Forum,
   },
-  // {
-  //   path: "/progress2",
-  //   name: "ProgressTracker2",
-  //   component: Progress2,
-  // },
+  {
+    path: "/careerQuiz",
+    name: "CareerQuiz",
+    component: CareerQuiz,
+  },
   {
     path: "/signup",
 

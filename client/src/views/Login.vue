@@ -7,20 +7,20 @@
           id="carouselExampleSlidesOnly"
           class="carousel slide"
           data-bs-ride="carousel"
-          data-bs-interval="1500"
+          data-bs-interval="3000"
         >
           <div class="carousel-inner">
             <div class="carousel-item active">
               <img
-                src="../assets/collaboration.jpg"
+                src="../assets/study2.jpg"
                 class="d-block w-100 h-100"
                 alt="..."
               />
-              <h3 class="carousel-text mt-4">Need Study Buddys?</h3>
+              <h3 class="carousel-text mt-4">Want to track your grades?</h3>
             </div>
             <div class="carousel-item">
               <img
-                src="../assets/graduation.jpg"
+                src="../assets/study3.jpg"
                 class="d-block w-100 h-100"
                 alt="..."
               />
@@ -28,7 +28,7 @@
             </div>
             <div class="carousel-item">
               <img
-                src="../assets/teacher.jpg"
+                src="../assets/study1.jpg"
                 class="d-block w-100 h-100"
                 alt="..."
               />
@@ -38,9 +38,9 @@
         </div>
       </div>
 
-      <div class="col-md-6 right-side mb-4">
+      <div class="col-md-6 right-side mb-4 d-flex flex-column justify-content-center">
         <div class="text-center">
-          <img src ="../assets/logo.svg" class="animate__animated animate__bounce" />
+          <img src ="../assets/birb_logo.svg" class="animate__animated animate__bounce" style="height: 200px; width: auto;"/>
             <TypeEffect/>
            
 
@@ -91,7 +91,7 @@ export default {
 .left-side{
 
     height:100vh;
-    background-color:lightskyblue ;
+    background-color:#253F63 ;
     display:flex;
     text-align: center;
     align-items: center;
@@ -100,7 +100,7 @@ export default {
 .right-side{
     position:relative;
     height:100%;
-
+    background-color: white;
 }
 #hero{
     font-family:'Courier New', Courier, monospace;
@@ -117,7 +117,5 @@ export default {
 
 
 }
-
-
 
 </style>

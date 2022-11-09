@@ -1,21 +1,18 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark topbar d-flex justify-content-between">
+    <nav class="navbar navbar-expand-lg navbar-dark topbar d-flex justify-content-between">
 
 
         <!-- <div class="collapse navbar-collapse" id="navbarCollapse"> -->
 
 
         <div class="d-flex">
-
-
-            <img v-if="menuLogo" :src="menuLogo" alt="menu-logo" class="menu-logo icon" />
+            <img v-if="menuLogo" :src="menuLogo" alt="menu_logo" class="menu_logo" />
             <i v-else class="bx icon" :class="menuIcon" />
             <div class="logo_name">
-                {{ menuTitle }}
+                <h4 class="menuTitle"> {{ menuTitle }} </h4>
+                
             </div>
         </div>
-
-
 
         <div class="d-flex justify-content-evenly">
 
@@ -28,20 +25,23 @@
         </div>
         <div class="d-flex ">
 
-<img v-if="menuIcon" :src="menuIcon" class="menuIcon" />
-            <div class="d-flex flex-column align-items-center align-content-start">
+        <img v-if="menuIcon" :src="menuIcon" class="menuIcon"/>
+            <div class="d-flex flex-column align-items-center align-content-start align-items justify-content-center">
 
                 {{ StudentName }}
 
-                <p class="small text-muted mb-0">{{StudentLevel}}</p>
+                <p class="small mb-0">{{StudentLevel}}</p>
             </div>
+            <div class="d-flex align-items-center ms-4">
+            <span @click="logout">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </span>
+                
         </div>
-        <!-- </div>
+        </div>
 
-            </div> -->
-
-
-
+        
+        
     </nav>
 
 </template>
@@ -92,19 +92,27 @@
 
             }
         },
+        methods:{
+            logout() {
+                localStorage.removeItem("email");
+                window.location.href = "#/login"
+            }
+
+        },
         props: {
             tabs: Array,
             menuTitle: {
                 type: String,
-                default: "StudySmart",
+                default: "",
             },
+       
             menuLogo: {
                 type: String,
-                default: require("@/assets/logo.svg"),
+                default: require("@/assets/birb_logo.svg"),
             },
             menuIcon: {
                 type: String,
-                default: require("@/assets/owllogo.png"),
+                default: require("@/assets/owl_face_svg.svg"),
             }
 
         },
@@ -114,6 +122,8 @@
         }
 
     }
+
+
 </script>
 <style scoped>
 
@@ -121,24 +131,55 @@
         position: sticky;
         top: 0;
         width: 100%;
-        height: 4em;
+        height: 75px;
         color: white;
         padding: 1rem;
+        background-color: #253F63;
+        /* animation: 1s sinkIn ease-in; */
 
     }
+    /* @keyframes sinkIn{
+        0%{
+            transform: translateY(-200%);
+            opacity: 0;
+        }
+        100%{
+            transform: translateY(0%);
+            opacity: 1;
+        }
+    } */
 
     a:has(+a) {
         margin-right: 2rem;
     }
 
-    img,
-    i {
+    img {
         margin-right: 1rem;
+        background-color: white;
+        border-width: 5px;
+        border-radius: 9px;
+        border-width: 4px;
+        border-style: solid;
+        height: 60px;
+        width: auto;
     }
 
-    .menuIcon {
-        width: 14%;
-
-
+    .menuTitle {
+        margin-bottom: 10px;
+        position: relative;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
     }
+
+    span {
+        background-color: #aac1ce ;
+        border-width: 4px;
+        border-style: solid;
+        border-radius: 9px;
+        border-color: #aac1ce ;
+        color: #253F63;
+        
+    }
+
 </style>

@@ -8,6 +8,9 @@
               <div class="card-body p-md-5">
                 <div class="row justify-content-center">
                   <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                    <span @click="back">
+                      <i class="fa-solid fa-arrow-left fa-2xl"></i>
+                    </span>
                     <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
                       Create an Account
                     </p>
@@ -17,47 +20,43 @@
                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
                           <input
-                            type="text" v-model="name"
-                            
+                            type="text"
+                            v-model="name"
                             class="form-control"
+                            placeholder="Your Name"
                           />
-                          <label class="form-label" for="form3Example1c"
-                            >Your Name</label
-                          >
+
                         </div>
                       </div>
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                        
+
                         <div class="form-outline flex-fill mb-0">
                           <input
                             type="text"
-                            v-model="email" 
+                            v-model="email"
                             class="form-control"
+                            placeholder="Your Email"
                           />
-                          <label class="form-label" for="form3Example4cd"
-                            >Your email</label
-                          >
+
                         </div>
                       </div>
 
-
                       <div class="d-flex flex-row align-items-center mb-4">
-                        <i class="fas fa-solid fa-lg fa-school me-3 fa-fw"></i> 
+                        <i class="fas fa-solid fa-lg fa-school me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
+
                           <select v-model="grade" required class="form-control">
-                          <option value="" disabled selected class="">
-                            Please select your school grade
-                          </option>
-                          <option value="Secondary 1">Secondary 1</option>
-                          <option value="Secondary 2">Secondary 2</option>
-                          <option value="Secondary 3">Secondary 3</option>
-                          <option value="Secondary 4">Secondary 4</option>
-                          <option value="Secondary 5">Secondary 5</option>
-                        </select>
-                          <label class="form-label" for="form3Example3c"
-                            >Your School Grade</label
-                          >
+                            <option value="" disabled selected class="">
+                              Please select your school grade
+                            </option>
+                            <option value="Secondary 1" selected>Secondary 1</option>
+                            <option value="Secondary 2">Secondary 2</option>
+                            <option value="Secondary 3">Secondary 3</option>
+                            <option value="Secondary 4">Secondary 4</option>
+                            <option value="Secondary 5">Secondary 5</option>
+                          </select>
+
                         </div>
                       </div>
 
@@ -67,19 +66,21 @@
                           <input
                             type="password"
                             class="form-control"
-                           v-model="password" 
+                            v-model="password"
+                            placeholder="Password"
                           />
-                          <label class="form-label" for="form3Example4c"
-                            >Password</label
-                          >
+
                         </div>
                       </div>
 
-                      
                       <div
                         class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
                       >
-                        <button type="button" @click="register" class="btn btn-primary btn-lg">
+                        <button
+                          type="button"
+                          @click="register"
+                          class="btn btn-primary btn-lg"
+                        >
                           Register
                         </button>
                       </div>
@@ -89,7 +90,7 @@
                     class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2"
                   >
                     <img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                      src="../assets/signup.jpg"
                       class="img-fluid"
                       alt="Sample image"
                     />
@@ -101,10 +102,21 @@
         </div>
       </div>
     </section>
-
-    
   </div>
 </template>
+
+<script>
+export default {
+  name: "back",
+
+  methods: {
+    back: () => {
+      window.location.href = "#/login";
+    },
+  },
+};
+</script>
+
 <script setup>
 import {
   getFirestore,
@@ -139,6 +151,7 @@ const register = () => {
             fullName: name.value,
             schoolGrade: grade.value,
           },
+          LikedPost:[],
         });
         await setDoc(
           doc(db, "users", email.value, "progressResults1", "ignore"),
@@ -163,12 +176,11 @@ const register = () => {
 
         await setDoc(doc(db, "users", email.value, "countDown", "ignore"), {});
         await setDoc(doc(db, "users", email.value, "timetable", "ignore"), {});
-        await setDoc(doc(db, 'posts', 'ignore'),{})
+        await setDoc(doc(db, "posts", "ignore"), {});
 
         // await setDoc(col, { 'ignore' :''});
 
         localStorage.setItem("email", email.value);
-        
 
         window.location.href = "/#";
       } catch (e) {
@@ -184,9 +196,16 @@ const register = () => {
 
 <style scoped>
 div {
-  background-color: lightblue;
+  background-color: #d5e3ef;
 }
 select:invalid {
   color: gray;
+}
+.btn-primary {
+  background-color: #253F63 !important;
+}
+img {
+  height: 400px;
+  width: auto;
 }
 </style>

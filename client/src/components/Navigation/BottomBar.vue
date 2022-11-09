@@ -3,7 +3,7 @@
 <div class="container-fluid">
 
     <a class="navbar-brand " href="#">Dashboard</a>
-    <a class="navbar-brand " href="#">Forum</a>
+    <a class="navbar-brand " href="#forum">Forum</a>
     <a class="navbar-brand " href="#progress">Progress</a>
     <a class="navbar-brand " href="#quiz">Quiz</a>
 
@@ -27,7 +27,7 @@
         display: none;
 
     }
-@media(max-width:577px) {
+@media(max-width:992px) {
         .navbar {
             display: block;
 

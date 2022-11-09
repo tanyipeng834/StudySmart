@@ -5,16 +5,16 @@
     :style="[haveTopbar ? 'height:92.5%' : '', cssVars]"
   >
     <div class="logo-details" style="margin: 6px 14px 0 14px">
-      <img
+      <!-- <img
         v-if="menuLogo"
         :src="menuLogo"
         alt="menu-logo"
         class="menu-logo icon"
-      />
-      <i v-else class="bx icon" :class="menuIcon" />
+      /> -->
+      <!-- <i v-else class="bx icon" :class="menuIcon" />
       <div class="logo_name">
         {{ menuTitle }}
-      </div>
+      </div> -->
       <i
         class="bx"
         :class="isOpened ? 'bx-menu-alt-right' : 'bx-menu'"
@@ -59,7 +59,7 @@
       </div>
 
       <div v-if="isLoggedIn" class="profile">
-        <div class="profile-details">
+        <!-- <div class="profile-details">
           <img v-if="profileImg" :src="profileImg" alt="profileImg" />
           <i v-else class="bx bxs-user-rectangle" />
           <div class="name_job">
@@ -70,13 +70,13 @@
               {{ profileRole }}
             </div>
           </div>
-        </div>
-        <i
+        </div> -->
+        <!-- <i
           v-if="isExitButton"
           class="bx bx-log-out"
           id="log_out"
           @click.stop="$emit('button-exit-clicked')"
-        />
+        /> -->
       </div>
     </div>
   </div>
@@ -186,11 +186,11 @@ export default {
     //! Styles
     bgColor: {
       type: String,
-      default: "#ADD8E6",
+      default: "#FAFCFF",
     },
     secondaryColor: {
       type: String,
-      default: "#528AAE",
+      default: "#FAFCFF",
     },
     homeSectionColor: {
       type: String,
@@ -275,26 +275,39 @@ export default {
 body {
   transition: all 0.5s ease;
 }
-.menu-logo {
+/* .menu-logo {
   width: 30px;
   margin: 0 10px 0 10px;
-}
+} */
 .sidebar {
   position: relative;
   display: flex;
   flex-direction: column;
   position: fixed;
   left: 0;
-  height: 100vh;
+  height: 100%;
   /* height: 92.5%; */
   min-height: min-content;
   /* overflow-y: auto; */
   width: 95px;
-  background: var(--bg-color);
+  background-color: #FAFCFF ;
+  /* background: var(--bg-color); */
   /* padding: 6px 14px 0 14px; */
   z-index: 99;
   transition: all 0.5s ease;
+  /* animation: slideRight 1s ease-in; */
 }
+/* @keyframes slideRight{
+  0%{
+    transform: translateX(-200%);
+    opacity: 0;
+  }
+  100%{
+    transform: translateX(0%);
+    opacity: 1;
+
+  }
+} */
 .sidebar.open {
   width: 250px;
 }
@@ -303,6 +316,7 @@ body {
   display: flex;
   align-items: center;
   position: relative;
+
 }
 .sidebar .logo-details .icon {
   opacity: 0;
@@ -318,6 +332,7 @@ body {
 .sidebar.open .logo-details .icon,
 .sidebar.open .logo-details .logo_name {
   opacity: 1;
+  align-items: center;
 }
 .sidebar .logo-details #btn {
   position: absolute;
@@ -562,7 +577,7 @@ body {
     display: none;
   }
 }
-@media (max-width: 577px) {
+@media (max-width: 992px) {
   .sidebar {
     display: none;
   }
