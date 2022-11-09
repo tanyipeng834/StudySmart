@@ -18,7 +18,7 @@
                         <div class="form-outline flex-fill mb-0">
                           <input
                             type="text" v-model="name"
-                            
+
                             class="form-control"
                           />
                           <label class="form-label" for="form3Example1c"
@@ -28,11 +28,11 @@
                       </div>
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                        
+
                         <div class="form-outline flex-fill mb-0">
                           <input
                             type="text"
-                            v-model="email" 
+                            v-model="email"
                             class="form-control"
                           />
                           <label class="form-label" for="form3Example4cd"
@@ -43,7 +43,7 @@
 
 
                       <div class="d-flex flex-row align-items-center mb-4">
-                        <i class="fas fa-solid fa-lg fa-school me-3 fa-fw"></i> 
+                        <i class="fas fa-solid fa-lg fa-school me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
                           <select v-model="grade" required class="form-control">
                           <option value="" disabled selected class="">
@@ -67,7 +67,7 @@
                           <input
                             type="password"
                             class="form-control"
-                           v-model="password" 
+                           v-model="password"
                           />
                           <label class="form-label" for="form3Example4c"
                             >Password</label
@@ -75,7 +75,7 @@
                         </div>
                       </div>
 
-                      
+
                       <div
                         class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
                       >
@@ -102,7 +102,7 @@
       </div>
     </section>
 
-    
+
   </div>
 </template>
 <script setup>
@@ -139,6 +139,7 @@ const register = () => {
             fullName: name.value,
             schoolGrade: grade.value,
           },
+          LikedPost:[],
         });
         await setDoc(
           doc(db, "users", email.value, "progressResults1", "ignore"),
@@ -168,7 +169,7 @@ const register = () => {
         // await setDoc(col, { 'ignore' :''});
 
         localStorage.setItem("email", email.value);
-        
+
 
         window.location.href = "/#";
       } catch (e) {
