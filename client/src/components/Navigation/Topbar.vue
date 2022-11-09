@@ -26,7 +26,7 @@
         <div class="d-flex ">
 
         <img v-if="menuIcon" :src="menuIcon" class="menuIcon"/>
-            <div class="d-flex flex-column align-items-center align-content-start">
+            <div class="d-flex flex-column align-items-center align-content-start align-items justify-content-center">
 
                 {{ StudentName }}
 
