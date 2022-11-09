@@ -1,6 +1,6 @@
 <template>
   <div>    
-
+    <Topbar :tabs="tabs"></Topbar>
     <div class="container-fluid login wrapper w-100">
       <div class="row">
         <div class="col-2">
@@ -73,6 +73,7 @@ export default {
   data() {
     return {
       tests: [],
+      tabs: [],
     };
   },
   methods: {

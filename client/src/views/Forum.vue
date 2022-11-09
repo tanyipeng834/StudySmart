@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Topbar :tabs="tabs"></Topbar>
     <div class="container-fluid ms-5 main">
       <div class="row">
         <div class="col-lg-1 col-md-1 col-sm-1">
@@ -509,6 +510,7 @@
 </template>
 <script>
 import Sidebar from "../components/Navigation/Sidebar.vue";
+import Topbar from "../components/Navigation/Topbar.vue";
 import { auth, db } from "../main";
 import {
   getFirestore,
@@ -531,9 +533,11 @@ export default {
   name: "Forum",
   components: {
     Sidebar,
+    Topbar,
   },
   data() {
     return {
+      tabs: [],
   
       posts: [
         {
