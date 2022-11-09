@@ -124,7 +124,18 @@
         height: 4em;
         color: white;
         padding: 1rem;
+        animation:sinkIn 1.5s ease-in;
 
+    }
+    @keyframes sinkIn{
+        0%{
+            transform: translateY(-200%);
+            opacity: 0;
+        }
+        100%{
+            transform: translateY(0%);
+            opacity: 1;
+        }
     }
 
     a:has(+a) {
