@@ -106,11 +106,11 @@
             },
             menuLogo: {
                 type: String,
-                default: require("@/assets/birb_icon.png"),
+                default: require("@/assets/birb_svg.svg"),
             },
             menuIcon: {
                 type: String,
-                default: require("@/assets/owl_head.png"),
+                default: require("@/assets/owl_face_svg.svg"),
             }
 
         },
