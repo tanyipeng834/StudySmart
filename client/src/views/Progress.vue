@@ -1,5 +1,5 @@
 <template>
-   <div class="login container-fluid wrapper w-100 ">
+   <div class="login container-fluid wrapper w-100">
     <Topbar :tabs="tabs" menuTitle="Progress Tracker"/>
     <div class="row">
 
@@ -9,7 +9,7 @@
        <div class="col">
         
        </div>
-       <div class="row">
+       <div class="row ">
            <div class="col-4">
                <Sidebar :haveTopbar="true" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
            </div>
@@ -20,7 +20,7 @@
 
            </div>
        </div>
-       <div class="row ">
+       <div class="row mx-auto">
 
        
        <div class="modal-box">
@@ -134,7 +134,7 @@
                </div>
            </div>
        </div>
-       <div class="row">
+       <div class="row mx-auto">
 
            <div class="col-1"></div>
            <div class="col-lg-6 col-12 d-flex flex-column justify-content-center p-0">
@@ -193,7 +193,7 @@
            </div>
            <div class="col-lg-5 col-12  d-flex flex-column justify-content-start mt-4 p-0">
 
-               <div class="shadow box me-3">
+               <div class="shadow box">
                    <div class="p-1 insights" v-if="existingSubjects.length>1">
                        <p class="small"><span class="text-danger h5">Alert!</span> Your {{minSub}} has the lowest
                            average of {{minSubScore}}%</p>
@@ -217,7 +217,7 @@
                </div>
                <div class="line-chart2 bar">
                    <div class=" aspect-ratio ">
-                       <canvas id="bar-chart" width="600" height="400" class="p-4 shadow bg-white rounded me-3">
+                       <canvas id="bar-chart" width="600" height="400" class="p-4 shadow bg-white rounded">
                        </canvas>
                    </div>
                </div>
@@ -764,16 +764,20 @@
 
    .login {
        background-color: #EAF1F5;
-       height: 100vh;
-       overflow-y: hidden;
-       overflow-x: hidden;
+
        /* Center and scale the image nicely */
        padding: 0;
        margin-right: 500px;
-       background-position: center;
-       background-repeat: no-repeat;
-       background-size: cover;
+
        margin-top: 60px;
+  
+    height: 150vh;
+    width:100%;
+    overflow-x:hidden;
+    overflow-y:hidden;
+
+
+
    }
 
    #progres-chart {
