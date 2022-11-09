@@ -32,7 +32,7 @@ const routes = [
   },
   {
     path: "/quiz/multi/:id",
-    name: "QuizTest",
+    name: "MultipleChoiceTest",
     component: MutipleChoiceTest,
   },
 
