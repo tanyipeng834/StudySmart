@@ -6,8 +6,6 @@
 
 
         <div class="d-flex">
-
-
             <img v-if="menuLogo" :src="menuLogo" alt="menu_logo" class="menu_logo" />
             <i v-else class="bx icon" :class="menuIcon" />
             <div class="logo_name">
@@ -28,7 +26,7 @@
         </div>
         <div class="d-flex ">
 
-        <img v-if="menuIcon" :src="menuIcon" class="menuIcon" />
+        <img v-if="menuIcon" :src="menuIcon" class="menuIcon" @click="logout" />
             <div class="d-flex flex-column align-items-center align-content-start">
 
                 {{ StudentName }}
@@ -36,12 +34,7 @@
                 <p class="small mb-0">{{StudentLevel}}</p>
             </div>
         </div>
-        <!-- </div>
-
-            </div> -->
-
-
-
+        
     </nav>
 
 </template>
@@ -92,6 +85,13 @@
 
             }
         },
+        methods:{
+             logout() {
+        localStorage.removeItem("email");
+        window.location.href = "#/login"
+    }
+
+        },
         props: {
             tabs: Array,
             menuTitle: {
@@ -114,6 +114,8 @@
         }
 
     }
+
+
 </script>
 <style scoped>
 
@@ -125,9 +127,10 @@
         color: white;
         padding: 1rem;
         background-color: #253F63;
+        /* animation: 1s sinkIn ease-in; */
 
     }
-    @keyframes sinkIn{
+    /* @keyframes sinkIn{
         0%{
             transform: translateY(-200%);
             opacity: 0;
@@ -136,7 +139,7 @@
             transform: translateY(0%);
             opacity: 1;
         }
-    }
+    } */
 
     a:has(+a) {
         margin-right: 2rem;
