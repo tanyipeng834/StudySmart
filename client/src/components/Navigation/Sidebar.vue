@@ -71,12 +71,12 @@
             </div>
           </div>
         </div> -->
-        <i
+        <!-- <i
           v-if="isExitButton"
           class="bx bx-log-out"
           id="log_out"
           @click.stop="$emit('button-exit-clicked')"
-        />
+        /> -->
       </div>
     </div>
   </div>

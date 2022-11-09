@@ -18,10 +18,12 @@
       <div class="row">
         
 
-        
+        <div class="col-2">
+
+        </div>
       
 
-        <div class="col-lg-6 mt-3 col-md-6 col-sm-6 order-5">
+        <div class="col-lg-5 mt-3 col-md-5 col-sm-5 order-5">
           <div class="row">
             <div class="col">
               <div class="input-group rounded">
@@ -207,7 +209,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-5 col-md-5 col-sm-5 order-md-last order-1">
+        <div class="col-lg-4 col-md-4 col-sm-4 order-md-last order-1">
           <div class="row">
             <div class="col d-flex justify-content-center">
               <div class="card" style="width: 18rem; margin-top: 110px">

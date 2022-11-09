@@ -7,7 +7,7 @@
           id="carouselExampleSlidesOnly"
           class="carousel slide"
           data-bs-ride="carousel"
-          data-bs-interval="1500"
+          data-bs-interval="3000"
         >
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -16,7 +16,7 @@
                 class="d-block w-100 h-100"
                 alt="..."
               />
-              <h3 class="carousel-text mt-4">Need Study Buddys?</h3>
+              <h3 class="carousel-text mt-4">Want to track your grades?</h3>
             </div>
             <div class="carousel-item">
               <img
@@ -38,7 +38,7 @@
         </div>
       </div>
 
-      <div class="col-md-6 right-side mb-4">
+      <div class="col-md-6 right-side mb-4 d-flex flex-column  justify-content-center">
         <div class="text-center">
           <img src ="../assets/birb_icon.png" class="animate__animated animate__bounce" />
             <TypeEffect/>
