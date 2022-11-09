@@ -5,7 +5,7 @@
         <!-- <div class="collapse navbar-collapse" id="navbarCollapse"> -->
 
 
-        <div class="d-flex">
+        <div class="d-flex" @click="dashboard">
             <img v-if="menuLogo" :src="menuLogo" alt="menu_logo" class="menu_logo" />
             <i v-else class="bx icon" :class="menuIcon" />
             <div class="logo_name">
@@ -96,7 +96,10 @@
             logout() {
                 localStorage.removeItem("email");
                 window.location.href = "#/login"
-            }
+            },
+            dashboard() {
+                window.location.href = "#/"
+            },
 
         },
         props: {
