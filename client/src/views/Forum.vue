@@ -2,7 +2,7 @@
   <div>
 
     <div class="container-fluid p-0 main">
-      <Topbar :tabs="tabs" />
+      <Topbar :tabs="tabs" menuTitle="Forum"/>
       <div class="row">
         <div class="col-4">
           <Sidebar :haveTopbar="true" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />

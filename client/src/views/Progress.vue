@@ -1,10 +1,11 @@
 <template>
    <div class="login container-fluid wrapper w-100 ">
+    <Topbar :tabs="tabs" menuTitle="Progress Tracker"/>
     <div class="row">
 
     
        <!-- <div class="container-fluid "> -->
-       <Topbar :tabs="tabs" menuTitle="Progress Tracker"/>
+       
        <div class="col">
         
        </div>
@@ -19,7 +20,7 @@
 
            </div>
        </div>
-       <div class="row mx-3">
+       <div class="row ">
 
        
        <div class="modal-box">
