@@ -23,10 +23,10 @@
 
             <DropdownMenu v-for="(tab, index) in tabs.filter((tab)=> tab.dropdown===true)" :key="index" :tab="tab" />
         </div>
-        <div class="d-flex ">
+        <div class="d-flex">
 
-        <img v-if="menuIcon" :src="menuIcon" class="menuIcon"/>
-            <div class="d-flex flex-column align-items-center align-content-start align-items justify-content-center">
+        <img v-if="menuIcon" :src="menuIcon" class="menuIcon mx-auto d-none d-sm-block"/>
+            <div class="d-flex flex-column align-items-center align-content-start align-items justify-content-center mx-auto d-none d-sm-block">
 
                 {{ StudentName }}
 
@@ -180,6 +180,13 @@
         border-color: #aac1ce ;
         color: #253F63;
         
+    }
+
+    @media(max-width:576px) {
+        .profilepic {
+            display: hidden;
+
+        }
     }
 
 </style>
