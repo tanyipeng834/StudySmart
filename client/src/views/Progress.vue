@@ -209,12 +209,7 @@
                        <h1 class="display-6 text-primary" v-else>Let's Start!</h1>
                        <h2 v-if="existingSubjects.length==1">Add your test results of other subjects for us to give you
                            more insights!</h2>
-                       <h2 v-else>Start inputting your test scores using the <svg xmlns="http://www.w3.org/2000/svg"
-                               width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical"
-                               viewBox="0 0 16 16">
-                               <path
-                                   d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                           </svg> button</h2>
+                       <h2 v-else>Start inputting your test scores using the "Add Test Result" button.</h2>
 
                    </div>
                    <!-- <canvas id="bar-chart" width="700" height="550" class="p-4"></canvas> -->
