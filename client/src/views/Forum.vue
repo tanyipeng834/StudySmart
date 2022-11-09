@@ -1,16 +1,24 @@
 <template>
   <div>
-    <Topbar :tabs="tabs"></Topbar>
-    <div class="container-fluid ms-5 main">
-      <div class="row">
-        <div class="col-lg-1 col-md-1 col-sm-1">
-          <Sidebar
-            :haveTopbar="false"
-            profileName="Tan Yi Peng"
-            profileRole="Secondary 3 Student"
-          />
-        </div>
+  
+    <div class="container-fluid p-0 main">
+      <Topbar :tabs="tabs" />
+        <div class="row">
+            <div class="col-4">
+                <Sidebar :haveTopbar="true" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
+            </div>
+            <div class="col-4 ">
 
+            </div>
+            <div class="col-4 ">
+
+            </div>
+        </div>  
+
+      <div class="row">
+        
+
+        
       
 
         <div class="col-lg-6 mt-3 col-md-6 col-sm-6 order-5">
@@ -279,11 +287,14 @@
         </div>
       </div>
     </div>
+    <BottomBar class= "bottomnav"/>
   </div>
 </template>
 <script>
 import Sidebar from "../components/Navigation/Sidebar.vue";
 import Topbar from "../components/Navigation/Topbar.vue";
+import BottomBar from "../components/Navigation/BottomBar.vue"
+
 import { auth, db } from "../main";
 import {
   getFirestore,
@@ -307,6 +318,7 @@ export default {
   components: {
     Sidebar,
     Topbar,
+    BottomBar
   },
   data() {
     return {
@@ -351,6 +363,7 @@ export default {
       yearChosen: [],
       subjectChosen: [],
       streamChosen: "",
+      tabs:[]
     };
   },
 
@@ -499,5 +512,6 @@ export default {
 .main {
   background-color: #eaf1f5;
   height: 2000px;
+  overflow-x:hidden ;
 }
 </style>
