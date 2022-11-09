@@ -105,7 +105,7 @@ export default {
 </script>
 <style scoped>
 .quiz {
-  background-image: url("@/assets/cloud.jpg");
+  
   height: 100vh;
 
   /* Center and scale the image nicely */

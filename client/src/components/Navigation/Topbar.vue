@@ -112,7 +112,7 @@
             },
             menuIcon: {
                 type: String,
-                default: require("@/assets/owl_face_svg.svg"),
+                default: require("@/assets/cat.svg"),
             }
 
         },
