@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark topbar d-flex justify-content-between">
+    <nav class="navbar navbar-expand-lg navbar-dark topbar d-flex justify-content-between">
 
 
         <!-- <div class="collapse navbar-collapse" id="navbarCollapse"> -->
@@ -8,10 +8,10 @@
         <div class="d-flex">
 
 
-            <img v-if="menuLogo" :src="menuLogo" alt="menu-logo" class="menu-logo icon" />
+            <img v-if="menuLogo" :src="menuLogo" alt="menu_logo" class="menu_logo" />
             <i v-else class="bx icon" :class="menuIcon" />
             <div class="logo_name">
-                {{ menuTitle }}
+                <h4 class="menuTitle"> {{ menuTitle }} </h4>
             </div>
         </div>
 
@@ -28,12 +28,12 @@
         </div>
         <div class="d-flex ">
 
-<img v-if="menuIcon" :src="menuIcon" class="menuIcon" />
+        <img v-if="menuIcon" :src="menuIcon" class="menuIcon" />
             <div class="d-flex flex-column align-items-center align-content-start">
 
                 {{ StudentName }}
 
-                <p class="small text-muted mb-0">{{StudentLevel}}</p>
+                <p class="small mb-0">{{StudentLevel}}</p>
             </div>
         </div>
         <!-- </div>
@@ -100,11 +100,11 @@
             },
             menuLogo: {
                 type: String,
-                default: require("@/assets/logo.svg"),
+                default: require("@/assets/birb_icon.png"),
             },
             menuIcon: {
                 type: String,
-                default: require("@/assets/owllogo.png"),
+                default: require("@/assets/owl_head.png"),
             }
 
         },
@@ -124,7 +124,7 @@
         height: 4em;
         color: white;
         padding: 1rem;
-        animation:sinkIn 1.5s ease-in;
+        background-color: #253F63;
 
     }
     @keyframes sinkIn{
@@ -145,11 +145,23 @@
     img,
     i {
         margin-right: 1rem;
+        background-color: white;
+        border-width: 5px;
+        border-radius: 12%;
+        border-width: 5px;
+        border-style: solid;
+        height: 46px;
+        width: auto;
+
     }
 
-    .menuIcon {
-        width: 14%;
-
-
+    .menuTitle {
+        margin: 0;
+        position: relative;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
     }
+
+
 </style>

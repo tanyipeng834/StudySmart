@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div>    
+
     <div class="container-fluid login wrapper w-100">
       <div class="row">
         <div class="col-2">
@@ -63,6 +64,7 @@ export default {
   name: "Dashboard",
   components: {
     Sidebar,
+    Topbar,
     CountDown,
     TimeTable,
     Quote,

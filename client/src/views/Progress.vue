@@ -1,17 +1,19 @@
 <template>
-    <div class="login container-fluid wrapper w-100 p-0">
+    <div class="login container-fluid wrapper w-100">
 
         <!-- <div class="container-fluid "> -->
             <Topbar :tabs="tabs" />
-            <div class="row">
-                <div class="col-4">
-                    <Sidebar :haveTopbar="false" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
-                </div>
-                <div class="col-4 ">
-                </div>
-                <div class="col-4 ">
-                </div>
+        <div class="row">
+            <div class="col-4">
+                <Sidebar :haveTopbar="true" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
             </div>
+            <div class="col-4 ">
+
+            </div>
+            <div class="col-4 ">
+
+            </div>
+        </div>
 
         <div class="modal-box">
 
@@ -128,7 +130,7 @@
 
             <div class="col-1"></div>
             <div class="col-lg-6 col-12 d-flex flex-column justify-content-center">
-                <div class="">
+                <div >
                     <div class="float-start ps-4">
                         <select class="form-select form-select  mt-4 selectLevel mb-1 shadow"
                             aria-label=".form-select-sm " id="examType" v-model='level' @change="change">
@@ -158,17 +160,13 @@
                             </ul>
 
 
-                        <!-- <button type="button" class="btn  mx-auto mt-4 float-end addRes" data-bs-toggle="modal"
-                            data-bs-target="#modalForm">
-                            <i class="fa-solid fa-circle-plus fa-lg" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                title="Add test results"></i>
-                        </button> -->
+
                     </div>
                 </div>
                 <div class="line-chart ">
                     <div class="aspect-ratio chart">
                         <canvas id="progress-chart" class="shadow chart bg-white rounded" width="650" height="500"
-                            ></canvas>
+                           ></canvas>
                     </div>
                 </div>
 
@@ -177,7 +175,7 @@
             </div>
             <div class="col-lg-5 col-12  d-flex flex-column justify-content-start mt-4">
 
-                <div class="shadow box ">
+                <div class="shadow box me-3">
                     <div class="p-1 insights" v-if="existingSubjects.length>1">
                         <p class="small"><span class="text-danger h5">Alert!</span> Your {{minSub}} has the lowest
                             average of {{minSubScore}}%</p>
@@ -194,13 +192,16 @@
                         <h1 class="display-6 text-primary" v-else>Let's Start!</h1>
                         <h2 v-if="existingSubjects.length==1">Add your test results of other subjects for us to give you
                             more insights!</h2>
-                        <h2 v-else>Start inputting your test scores using the <i
-                                class="fa-solid fa-circle-plus fa-lg"></i> button</h2>
+                        <h2 v-else>Start inputting your test scores using the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                    <path
+                                        d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                </svg> button</h2>
 
                     </div>
                     <!-- <canvas id="bar-chart" width="700" height="550" class="p-4"></canvas> -->
                 </div>
-                <div class="line-chart">
+                <div class="line-chart ">
                     <div class=" aspect-ratio ">
                         <canvas id="bar-chart" width="600" height="400" class="p-4 shadow bg-white rounded"
                             > </canvas>
@@ -210,6 +211,7 @@
                     </div> -->
 
             </div>
+
         </div>
 
 
@@ -665,7 +667,6 @@
         },
         data() {
             return {
-                tabs:[],
                 score: '',
                 examType: 'CA1',
                 subject: '',
@@ -682,7 +683,8 @@
                 maxSubScore: '',
                 conSub: '',
                 conData: '',
-                validity: false
+                validity: false,
+                tabs:[]
             }
         }
     }
@@ -713,7 +715,7 @@
     }
     .dotdropdown {
         position: absolute;
-        top: 15%;
+        top: 25%;
         left: 51%;
         z-index: 1;
     }
@@ -728,6 +730,7 @@
         background-image: url("@/assets/cloud.jpg");
         height: 100vh;
         /* Center and scale the image nicely */
+        padding:0;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;

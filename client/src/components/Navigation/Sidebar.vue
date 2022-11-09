@@ -1,5 +1,9 @@
 <template>
-  <div class="sidebar " :class="isOpened ? 'open' : ''"   :style="[haveTopbar? 'height:92.5%' : '', cssVars]">
+  <div
+    class="sidebar"
+    :class="isOpened ? 'open' : ''"
+    :style="[haveTopbar ? 'height:92.5%' : '', cssVars]"
+  >
     <div class="logo-details" style="margin: 6px 14px 0 14px">
       <img
         v-if="menuLogo"
@@ -79,12 +83,11 @@
 </template>
 
 <script>
-
 export default {
   name: "Sidebar",
   props: {
     //! Menu settings
-     haveTopbar: {
+    haveTopbar: {
       type: Boolean,
       default: false,
     },
@@ -127,7 +130,7 @@ export default {
           icon: "bx-grid-alt",
         },
         {
-          link: "#",
+          link: "/#/Forum",
           name: "Forum",
           tooltip: "Forum",
           icon: "bx-chat",
@@ -183,11 +186,11 @@ export default {
     //! Styles
     bgColor: {
       type: String,
-      default: "#ADD8E6",
+      default: "#FAFCFF",
     },
     secondaryColor: {
       type: String,
-      default: "#528AAE",
+      default: "#FAFCFF",
     },
     homeSectionColor: {
       type: String,
@@ -287,7 +290,8 @@ body {
   min-height: min-content;
   /* overflow-y: auto; */
   width: 95px;
-  background: var(--bg-color);
+  background-color: #FAFCFF ;
+  /* background: var(--bg-color); */
   /* padding: 6px 14px 0 14px; */
   z-index: 99;
   transition: all 0.5s ease;
@@ -312,6 +316,7 @@ body {
   display: flex;
   align-items: center;
   position: relative;
+  
 }
 .sidebar .logo-details .icon {
   opacity: 0;
@@ -327,6 +332,7 @@ body {
 .sidebar.open .logo-details .icon,
 .sidebar.open .logo-details .logo_name {
   opacity: 1;
+  align-items: center;
 }
 .sidebar .logo-details #btn {
   position: absolute;
@@ -571,9 +577,9 @@ body {
     display: none;
   }
 }
-@media(max-width:577px){
-  .sidebar{
-    display:none;
+@media (max-width: 577px) {
+  .sidebar {
+    display: none;
   }
 }
 </style>
