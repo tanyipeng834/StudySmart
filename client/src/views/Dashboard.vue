@@ -148,7 +148,7 @@ export default {
 <style scoped>
 .quote {
   position: relative;
-  margin-left: 50px;
+
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

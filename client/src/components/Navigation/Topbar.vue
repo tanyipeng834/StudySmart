@@ -23,16 +23,16 @@
 
             <DropdownMenu v-for="(tab, index) in tabs.filter((tab)=> tab.dropdown===true)" :key="index" :tab="tab" />
         </div>
-        <div class="d-flex">
+        <div class="d-flex align-items-center">
 
-        <img v-if="menuIcon" :src="menuIcon" class="menuIcon mx-auto d-none d-sm-block"/>
-            <div class="d-flex flex-column align-items-center align-content-start align-items justify-content-center mx-auto d-none d-sm-block">
+        <img v-if="menuIcon" :src="menuIcon" class="menuIcon me-2 d-none d-sm-block"/>
+            <div class="d-flex flex-column align-items-center align-content-start  justify-content-center mx-auto d-none d-sm-block">
 
                 {{ StudentName }}
 
                 <p class="small mb-0">{{StudentLevel}}</p>
             </div>
-            <div class="d-flex align-items-center ms-4">
+            <div class="d-flex align-items-center  ms-4">
             <span @click="logout">
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
             </span>

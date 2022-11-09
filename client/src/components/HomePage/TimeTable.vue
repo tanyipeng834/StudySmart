@@ -48,11 +48,11 @@ export default {
         durationBarVisible: false,
         timeRangeSelectedHandling: "Enabled",
         columns: [
-          { name: "Monday", id: "R1" },
-          { name: "Tuesday", id: "R2" },
-          { name: "Wednesday", id: "R3" },
-          { name: "Thursday", id: "R4" },
-          { name: "Friday", id: "R5" },
+          { name: "Mon", id: "R1" },
+          { name: "Tue", id: "R2" },
+          { name: "Wed", id: "R3" },
+          { name: "Thur", id: "R4" },
+          { name: "Fri", id: "R5" },
         ],
         onTimeRangeSelected: async (args) => {
           await this.createEvent(args.start, args.end, args.resource);
