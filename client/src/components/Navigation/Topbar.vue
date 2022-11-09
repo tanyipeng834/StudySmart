@@ -133,7 +133,7 @@
         width: 100%;
         height: 75px;
         color: white;
-        padding: 1rem;
+        padding-left: 1rem;
         background-color: #253F63;
         /* animation: 1s sinkIn ease-in; */
 
