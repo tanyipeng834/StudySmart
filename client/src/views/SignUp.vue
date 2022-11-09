@@ -8,6 +8,9 @@
               <div class="card-body p-md-5">
                 <div class="row justify-content-center">
                   <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                    <span @click="back">
+                      <i class="fa-solid fa-arrow-left fa-2xl"></i>
+                    </span>
                     <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
                       Create an Account
                     </p>
@@ -17,8 +20,8 @@
                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
                           <input
-                            type="text" v-model="name"
-                            
+                            type="text"
+                            v-model="name"
                             class="form-control"
                           />
                           <label class="form-label" for="form3Example1c"
@@ -28,11 +31,11 @@
                       </div>
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                        
+
                         <div class="form-outline flex-fill mb-0">
                           <input
                             type="text"
-                            v-model="email" 
+                            v-model="email"
                             class="form-control"
                           />
                           <label class="form-label" for="form3Example4cd"
@@ -41,20 +44,19 @@
                         </div>
                       </div>
 
-
                       <div class="d-flex flex-row align-items-center mb-4">
-                        <i class="fas fa-solid fa-lg fa-school me-3 fa-fw"></i> 
+                        <i class="fas fa-solid fa-lg fa-school me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
                           <select v-model="grade" required class="form-control">
-                          <option value="" disabled selected class="">
-                            Please select your school grade
-                          </option>
-                          <option value="Secondary 1">Secondary 1</option>
-                          <option value="Secondary 2">Secondary 2</option>
-                          <option value="Secondary 3">Secondary 3</option>
-                          <option value="Secondary 4">Secondary 4</option>
-                          <option value="Secondary 5">Secondary 5</option>
-                        </select>
+                            <option value="" disabled selected class="">
+                              Please select your school grade
+                            </option>
+                            <option value="Secondary 1">Secondary 1</option>
+                            <option value="Secondary 2">Secondary 2</option>
+                            <option value="Secondary 3">Secondary 3</option>
+                            <option value="Secondary 4">Secondary 4</option>
+                            <option value="Secondary 5">Secondary 5</option>
+                          </select>
                           <label class="form-label" for="form3Example3c"
                             >Your School Grade</label
                           >
@@ -67,7 +69,7 @@
                           <input
                             type="password"
                             class="form-control"
-                           v-model="password" 
+                            v-model="password"
                           />
                           <label class="form-label" for="form3Example4c"
                             >Password</label
@@ -75,11 +77,14 @@
                         </div>
                       </div>
 
-                      
                       <div
                         class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
                       >
-                        <button type="button" @click="register" class="btn btn-primary btn-lg">
+                        <button
+                          type="button"
+                          @click="register"
+                          class="btn btn-primary btn-lg"
+                        >
                           Register
                         </button>
                       </div>
@@ -101,10 +106,21 @@
         </div>
       </div>
     </section>
-
-    
   </div>
 </template>
+
+<script>
+export default {
+  name: "back",
+
+  methods: {
+    back: () => {
+      window.location.href = "#/login";
+    },
+  },
+};
+</script>
+
 <script setup>
 import {
   getFirestore,
@@ -163,12 +179,11 @@ const register = () => {
 
         await setDoc(doc(db, "users", email.value, "countDown", "ignore"), {});
         await setDoc(doc(db, "users", email.value, "timetable", "ignore"), {});
-        await setDoc(doc(db, 'posts', 'ignore'),{})
+        await setDoc(doc(db, "posts", "ignore"), {});
 
         // await setDoc(col, { 'ignore' :''});
 
         localStorage.setItem("email", email.value);
-        
 
         window.location.href = "/#";
       } catch (e) {
@@ -184,7 +199,7 @@ const register = () => {
 
 <style scoped>
 div {
-  background-color: #D5E3EF;
+  background-color: #d5e3ef;
 }
 select:invalid {
   color: gray;
