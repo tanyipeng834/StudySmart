@@ -1,5 +1,9 @@
 <template>
-  <div class="sidebar " :class="isOpened ? 'open' : ''"   :style="[haveTopbar? 'height:92.5%' : '', cssVars]">
+  <div
+    class="sidebar"
+    :class="isOpened ? 'open' : ''"
+    :style="[haveTopbar ? 'height:92.5%' : '', cssVars]"
+  >
     <div class="logo-details" style="margin: 6px 14px 0 14px">
       <img
         v-if="menuLogo"
@@ -79,12 +83,11 @@
 </template>
 
 <script>
-
 export default {
   name: "Sidebar",
   props: {
     //! Menu settings
-     haveTopbar: {
+    haveTopbar: {
       type: Boolean,
       default: false,
     },
@@ -127,7 +130,7 @@ export default {
           icon: "bx-grid-alt",
         },
         {
-          link: "#",
+          link: "/#/Forum",
           name: "Forum",
           tooltip: "Forum",
           icon: "bx-chat",
@@ -559,9 +562,9 @@ body {
     display: none;
   }
 }
-@media(max-width:577px){
-  .sidebar{
-    display:none;
+@media (max-width: 577px) {
+  .sidebar {
+    display: none;
   }
 }
 </style>
