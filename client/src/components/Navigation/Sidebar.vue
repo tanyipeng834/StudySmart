@@ -295,6 +295,18 @@ body {
   /* padding: 6px 14px 0 14px; */
   z-index: 99;
   transition: all 0.5s ease;
+  animation: slideRight 1.5s ease-in;
+}
+@keyframes slideRight{
+  0%{
+    transform: translateX(-200%);
+    opacity: 0;
+  }
+  100%{
+    transform: translateX(0%);
+    opacity: 1;
+
+  }
 }
 .sidebar.open {
   width: 250px;

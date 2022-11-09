@@ -127,6 +127,16 @@
         background-color: #253F63;
 
     }
+    @keyframes sinkIn{
+        0%{
+            transform: translateY(-200%);
+            opacity: 0;
+        }
+        100%{
+            transform: translateY(0%);
+            opacity: 1;
+        }
+    }
 
     a:has(+a) {
         margin-right: 2rem;
@@ -153,5 +163,5 @@
         transform: translateY(-50%);
     }
 
-    
+
 </style>
