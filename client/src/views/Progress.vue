@@ -765,6 +765,7 @@
        background-color: #EAF1F5;
        height: 100vh;
        overflow-y: hidden;
+       overflow-x: hidden;
        /* Center and scale the image nicely */
        padding: 0;
        margin-right: 500px;
