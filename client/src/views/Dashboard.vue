@@ -1,6 +1,6 @@
 <template>
   <div>    
-    <Topbar :tabs="tabs"></Topbar>
+    <Topbar :tabs="tabs" menuTitle="Dashboard"></Topbar>
     <div class="container-fluid login wrapper w-100">
       <div class="row">
         <div class="col-2">
