@@ -88,7 +88,7 @@
                 <div class="container-fluid mt-100">
                   <div class="row">
                     <div class="col-md-12">
-                      <div v-for="(post,index) in posts" :key="post" class="card mb-4">
+                      <div v-for="post in posts" :key="post" class="card mb-4">
                         <div class="card-header d-flex justify-content-between ">
 
                           <div class="d-flex align-items-center">
