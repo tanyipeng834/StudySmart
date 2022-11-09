@@ -124,7 +124,8 @@ export default {
 .login-button {
   margin-top: 5%;
   border-radius: 10px;
-  background-color: #000;
+  border-color: #253F63;
+  background-color: #253F63;
   color: #fff;
   font-family: Montserrat, sans-serif;
   font-weight: 700;

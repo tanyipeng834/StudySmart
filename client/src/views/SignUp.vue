@@ -23,10 +23,9 @@
                             type="text"
                             v-model="name"
                             class="form-control"
+                            placeholder="Your Name"
                           />
-                          <label class="form-label" for="form3Example1c"
-                            >Your Name</label
-                          >
+                          
                         </div>
                       </div>
                       <div class="d-flex flex-row align-items-center mb-4">
@@ -37,29 +36,27 @@
                             type="text"
                             v-model="email"
                             class="form-control"
+                            placeholder="Your Email"
                           />
-                          <label class="form-label" for="form3Example4cd"
-                            >Your email</label
-                          >
+                          
                         </div>
                       </div>
 
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-solid fa-lg fa-school me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
+                
                           <select v-model="grade" required class="form-control">
                             <option value="" disabled selected class="">
                               Please select your school grade
                             </option>
-                            <option value="Secondary 1">Secondary 1</option>
+                            <option value="Secondary 1" selected>Secondary 1</option>
                             <option value="Secondary 2">Secondary 2</option>
                             <option value="Secondary 3">Secondary 3</option>
                             <option value="Secondary 4">Secondary 4</option>
                             <option value="Secondary 5">Secondary 5</option>
                           </select>
-                          <label class="form-label" for="form3Example3c"
-                            >Your School Grade</label
-                          >
+                          
                         </div>
                       </div>
 
@@ -70,10 +67,9 @@
                             type="password"
                             class="form-control"
                             v-model="password"
+                            placeholder="Password"
                           />
-                          <label class="form-label" for="form3Example4c"
-                            >Password</label
-                          >
+                      
                         </div>
                       </div>
 
@@ -203,5 +199,8 @@ div {
 }
 select:invalid {
   color: gray;
+}
+.btn-primary {
+  background-color: #253F63 !important;
 }
 </style>
