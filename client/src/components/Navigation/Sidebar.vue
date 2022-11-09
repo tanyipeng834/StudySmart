@@ -295,9 +295,9 @@ body {
   /* padding: 6px 14px 0 14px; */
   z-index: 99;
   transition: all 0.5s ease;
-  animation: slideRight 1.5s ease-in;
+  /* animation: slideRight 1s ease-in; */
 }
-@keyframes slideRight{
+/* @keyframes slideRight{
   0%{
     transform: translateX(-200%);
     opacity: 0;
@@ -307,7 +307,7 @@ body {
     opacity: 1;
 
   }
-}
+} */
 .sidebar.open {
   width: 250px;
 }
@@ -316,7 +316,7 @@ body {
   display: flex;
   align-items: center;
   position: relative;
-  
+
 }
 .sidebar .logo-details .icon {
   opacity: 0;
