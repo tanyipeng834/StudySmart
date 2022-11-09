@@ -4,7 +4,7 @@
 
     
        <!-- <div class="container-fluid "> -->
-       <Topbar :tabs="tabs" />
+       <Topbar :tabs="tabs" menuTitle="Progress Tracker"/>
        <div class="col">
         
        </div>
