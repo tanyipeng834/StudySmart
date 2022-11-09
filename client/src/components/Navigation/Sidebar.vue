@@ -47,7 +47,7 @@
           <span v-for="(menuItem, index) in menuItems" :key="index">
             <li>
               <a :href="menuItem.link">
-                <i class="bx" :class="menuItem.icon || 'bx-square-rounded'" />
+                <i class="bx align-center" :class="menuItem.icon || 'bx-square-rounded'" />
                 <span class="links_name">{{ menuItem.name }}</span>
               </a>
               <span class="tooltip">{{
@@ -309,7 +309,7 @@ body {
   }
 } */
 .sidebar.open {
-  width: 250px;
+  width: 180px;
 }
 .sidebar .logo-details {
   height: 60px;
@@ -321,6 +321,7 @@ body {
 .sidebar .logo-details .icon {
   opacity: 0;
   transition: all 0.5s ease;
+  
 }
 .sidebar .logo-details .logo_name {
   color: var(--logo-title-color);
@@ -328,11 +329,13 @@ body {
   font-weight: 600;
   opacity: 0;
   transition: all 0.5s ease;
+  
 }
 .sidebar.open .logo-details .icon,
 .sidebar.open .logo-details .logo_name {
   opacity: 1;
   align-items: center;
+  
 }
 .sidebar .logo-details #btn {
   position: absolute;
@@ -354,8 +357,10 @@ body {
   height: 60px;
   min-width: 50px;
   font-size: 28px;
-  text-align: left;
+  text-align: center;
   line-height: 60px;
+  padding-left: 15px;
+
 }
 .sidebar .nav-list {
   margin-top: 20px;
