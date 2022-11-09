@@ -186,11 +186,11 @@ export default {
     //! Styles
     bgColor: {
       type: String,
-      default: "#ADD8E6",
+      default: "#FAFCFF",
     },
     secondaryColor: {
       type: String,
-      default: "#528AAE",
+      default: "#FAFCFF",
     },
     homeSectionColor: {
       type: String,
@@ -304,6 +304,7 @@ body {
   display: flex;
   align-items: center;
   position: relative;
+  
 }
 .sidebar .logo-details .icon {
   opacity: 0;
@@ -319,6 +320,7 @@ body {
 .sidebar.open .logo-details .icon,
 .sidebar.open .logo-details .logo_name {
   opacity: 1;
+  align-items: center;
 }
 .sidebar .logo-details #btn {
   position: absolute;
