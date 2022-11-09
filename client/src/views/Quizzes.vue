@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Topbar :tabs="tabs" menuTitle="Flashcards"></Topbar>
+    <Topbar :tabs="tabs" menuTitle="Quizzes"></Topbar>
     <div class="container-fluid quiz">
       <Sidebar :haveTopbar="true"></Sidebar>
       <div v-if="flashCards == false && this.multiChoiceQuiz == false">

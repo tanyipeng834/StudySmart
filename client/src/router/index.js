@@ -8,7 +8,7 @@ import CareerQuiz from "../views/CareerQuiz.vue";
 import MutipleChoiceTest from "@/views/MultipleChoiceTest.vue";
 
 // git
-import Quiz from "../views/Quiz.vue";
+import Quizzes from "../views/Quizzes.vue";
 const routes = [
   {
     path: "/login",
@@ -22,9 +22,9 @@ const routes = [
     component: Dashboard,
   },
   {
-    path: "/quiz",
-    name: "Quiz",
-    component: Quiz,
+    path: "/quizzes",
+    name: "Quizzes",
+    component: Quizzes,
   },
   {
     path: "/quiz/:id",
