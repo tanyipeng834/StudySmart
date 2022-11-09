@@ -27,7 +27,7 @@
         display: none;
 
     }
-@media(max-width:577px) {
+@media(max-width:992px) {
         .navbar {
             display: block;
 

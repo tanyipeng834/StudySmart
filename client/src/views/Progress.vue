@@ -1,8 +1,13 @@
 <template>
-   <div class="login container-fluid wrapper w-100">
+   <div class="login container-fluid wrapper w-100 ">
+    <div class="row">
 
+    
        <!-- <div class="container-fluid "> -->
        <Topbar :tabs="tabs" />
+       <div class="col">
+        
+       </div>
        <div class="row">
            <div class="col-4">
                <Sidebar :haveTopbar="true" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
@@ -14,7 +19,9 @@
 
            </div>
        </div>
+       <div class="row mx-3">
 
+       
        <div class="modal-box">
 
            <div class="modal fade" id="modalFormAdd" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -141,31 +148,37 @@
                            <option value="4" :selected="level === 4">Sec 4</option>
                            <option value="5" :selected="level === 5">Sec 5</option>
                        </select>
-                      
-                    </div>
+                       <div class="row">
+                        <div class="dotdropdown">
+                       <button class="btn btn-success me-3" type="button" 
+                           aria-expanded="true">
+                           <a  data-bs-toggle="modal" data-bs-target="#modalFormAdd">Add
+                                   Test Result</a>
+                       </button>
+                       <button class="btn btn-danger" type="button" data-bs-toggle="dropdown"
+                           aria-expanded="true">
+                        
+                           <a  data-bs-toggle="modal" data-bs-target="#modalFormDel">Delete
+                                   Test Result</a>
+                       </button>
+                       
+                    
+                   </div>
+
+                       </div>
+                       
                    
                    </div>
-                   
                     
+                    <div class="col">
+                      
+                    </div>
+                </div>
                    
-             
 
                  
                </div>
-               <div class="row">
-                <div class="col">
-                    <div class="row mt-2">
-                        <div class="col ms-4">
-                        <button class="btn" style="background-color: #632525"><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalFormAdd">Add
-                                   Test Result</a></button>
-                            <button class="btn" style="background-color: #256327"><a class="dropdown-item " data-bs-toggle="modal" data-bs-target="#modalFormDel">Delete
-                                   Test Result</a></button>
-                        </div>
-                    </div>
-                </div>
-            
-               </div>
-               <div class="line-chart " style="position:relative;">
+               <div class="line-chart1" style="position:relative;">
                
                    <div class="aspect-ratio chart">
                        <canvas id="progress-chart" class="shadow chart bg-white rounded" width="650"
@@ -206,7 +219,7 @@
                    </div>
                    <!-- <canvas id="bar-chart" width="700" height="550" class="p-4"></canvas> -->
                </div>
-               <div class="line-chart bar">
+               <div class="line-chart2 bar">
                    <div class=" aspect-ratio ">
                        <canvas id="bar-chart" width="600" height="400" class="p-4 shadow bg-white rounded me-3">
                        </canvas>
@@ -218,10 +231,13 @@
            </div>
 
        </div>
+    </div>
 
-       <BottomBar />
+       
        <!-- </div> -->
    </div>
+   <BottomBar />
+</div>
 </template>
 
 
@@ -700,12 +716,23 @@
    * {
        font-size: medium;
    }
-
-   .line-chart {
+   .line-chart1 {
     position: relative;
        animation: fadeIn 600ms cubic-bezier(.57, .25, .65, 1) 1 forwards;
        opacity: 0;
        width: 100%;
+     
+    
+       
+   }
+
+   .line-chart2 {
+    position: relative;
+       animation: fadeIn 600ms cubic-bezier(.57, .25, .65, 1) 1 forwards;
+       opacity: 0;
+       width: 100%;
+       margin-bottom: 100px;
+    
        
    }
 
@@ -745,6 +772,7 @@
        overflow-x: hidden;
        /* Center and scale the image nicely */
        padding: 0;
+       margin-right: 500px;
        background-position: center;
        background-repeat: no-repeat;
        background-size: cover;
@@ -765,6 +793,8 @@
        border-radius: 0;
        border: none;
        box-shadow: none;
+       max-width: 70%;
+       display: flex;
    }
 
    .modal-body {
@@ -801,7 +831,7 @@
        border: none
    }
 
-   @media (max-width: 991px) {
+   /* @media (max-width: 991px) {
        .dotdropdown {
            position: absolute;
            top: 16%;
@@ -837,8 +867,8 @@
            font-size: 13px;
        }
    }
-   .btn {
-    color: white;
-   }
+   .threedot{
+    position:absolute
+   } */
 </style>
 
