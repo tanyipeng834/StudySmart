@@ -113,21 +113,12 @@
 
 
 
-<<<<<<< HEAD
-                      </div>
-                      <div class="card-body">
-                        <div class="media-body me-3">
-                          <div class="d-flex profile-wrap align-items-center bg-secondary">
-                            <img class="profile-img" src="../assets/owl_face_svg.svg" alt="">
-                            <h5 class="m-0 ms-1">{{
-=======
                         </div>
                         <div class="card-body">
                           <div class="media-body me-3">
                             <div class="d-flex profile-wrap align-items-center bg-secondary">
                               <img class="profile-img" src="../assets/owl_face_svg.svg" alt="">
                               <h5 class="m-0 ms-1">{{
->>>>>>> 772e4352feabf1f36e8e9e62008a0cc0b32ed2ab
                               post.username
                             }}</h5>
                             </div>

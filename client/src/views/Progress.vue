@@ -148,14 +148,14 @@
                            <option value="4" :selected="level === 4">Sec 4</option>
                            <option value="5" :selected="level === 5">Sec 5</option>
                        </select>
-                       <div class="row">
+                       <div class="row mt-3">
                         <div class="dotdropdown">
-                       <button class="btn btn-success me-3" type="button" 
+                       <button class="btn btn-success me-3" type="button" style='background-color: #2A6325'
                            aria-expanded="true">
                            <a  data-bs-toggle="modal" data-bs-target="#modalFormAdd">Add
                                    Test Result</a>
                        </button>
-                       <button class="btn btn-danger" type="button" data-bs-toggle="dropdown"
+                       <button class="btn btn-danger" type="button" style='background-color: #632525' data-bs-toggle="dropdown"
                            aria-expanded="true">
                         
                            <a  data-bs-toggle="modal" data-bs-target="#modalFormDel">Delete
