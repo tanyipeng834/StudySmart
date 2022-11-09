@@ -184,7 +184,7 @@ const register = () => {
 
 <style scoped>
 div {
-  background-color: lightblue;
+  background-color: #D5E3EF;
 }
 select:invalid {
   color: gray;
