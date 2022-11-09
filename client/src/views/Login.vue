@@ -38,9 +38,9 @@
         </div>
       </div>
 
-      <div class="col-md-6 right-side mb-4 d-flex flex-column  justify-content-center">
+      <div class="col-md-6 right-side mb-4 d-flex flex-column justify-content-center">
         <div class="text-center">
-          <img src ="../assets/birb_icon.png" class="animate__animated animate__bounce" />
+          <img src ="../assets/birb_svg.svg" class="animate__animated animate__bounce" style="height: 200px; width: auto;"/>
             <TypeEffect/>
            
 
@@ -100,7 +100,7 @@ export default {
 .right-side{
     position:relative;
     height:100%;
-
+    background-color: white;
 }
 #hero{
     font-family:'Courier New', Courier, monospace;

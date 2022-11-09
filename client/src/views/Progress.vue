@@ -130,8 +130,9 @@
 
            <div class="col-1"></div>
            <div class="col-lg-6 col-12 d-flex flex-column justify-content-center p-0">
-               <div>
-                   <div class="float-start ps-4">
+               <div class="row">
+                <div class="col">
+                    <div class="float-start ps-4">
                        <select class="form-select form-select  mt-4 selectLevel mb-1 shadow"
                            aria-label=".form-select-sm " id="examType" v-model='level' @change="change">
                            <option value="1" :selected="level === 1">Sec 1</option>
@@ -140,30 +141,36 @@
                            <option value="4" :selected="level === 4">Sec 4</option>
                            <option value="5" :selected="level === 5">Sec 5</option>
                        </select>
+                      
+                    </div>
+                   
                    </div>
+                   
+                    
+                   
+             
 
-                   <div class="dotdropdown">
-                       <button class="btn dropdown-toggle other" type="button" data-bs-toggle="dropdown"
-                           aria-expanded="true">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                               class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                               <path
-                                   d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                           </svg>
-                       </button>
-                       <ul class="dropdown-menu">
-                           <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalFormAdd">Add
-                                   Test Result</a></li>
-                           <li><a class="dropdown-item " data-bs-toggle="modal" data-bs-target="#modalFormDel">Delete
-                                   Test Result</a></li>
-
-                       </ul>
-                   </div>
+                 
                </div>
-               <div class="line-chart ">
+               <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col ms-4">
+                        <button class="btn btn-danger"><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalFormAdd">Add
+                                   Test Result</a></button>
+                            <button class="btn btn-success"><a class="dropdown-item " data-bs-toggle="modal" data-bs-target="#modalFormDel">Delete
+                                   Test Result</a></button>
+                        </div>
+                    </div>
+                </div>
+            
+               </div>
+               <div class="line-chart " style="position:relative;">
+               
                    <div class="aspect-ratio chart">
                        <canvas id="progress-chart" class="shadow chart bg-white rounded" width="650"
-                           height="500"></canvas>
+                           height="500">
+                           </canvas>
                    </div>
                </div>
 
@@ -185,7 +192,7 @@
                    </div>
 
                    <div v-else class="text-center">
-                       <h1 class="display-6 text-primary" v-if="existingSubjects.length==1">Add more subjects</h1>
+                       <h1 class="display-6 text-primary" v-if="existingSubjects.length==1">Results Analysis</h1>
                        <h1 class="display-6 text-primary" v-else>Let's Start!</h1>
                        <h2 v-if="existingSubjects.length==1">Add your test results of other subjects for us to give you
                            more insights!</h2>
@@ -695,9 +702,11 @@
    }
 
    .line-chart {
+    position: relative;
        animation: fadeIn 600ms cubic-bezier(.57, .25, .65, 1) 1 forwards;
        opacity: 0;
        width: 100%;
+       
    }
 
    .aspect-ratio {
@@ -717,12 +726,13 @@
        box-shadow: 5px 5px 6px 7px #ccc;
    }
 
-   .dotdropdown {
+   /* .dotdropdown {
        position: absolute;
-       top: 25%;
-       left: 51%;
-       z-index: 1;
-   }
+       top: 15%;
+       left: 90%;
+       right: 10%;
+       z-index: 5;
+   } */
 
    .box {
        height: 165px;
@@ -826,6 +836,9 @@
        .insights {
            font-size: 13px;
        }
+   }
+   .threedot{
+    position:absolute
    }
 </style>
 

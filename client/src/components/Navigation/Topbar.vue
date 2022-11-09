@@ -10,6 +10,7 @@
             <i v-else class="bx icon" :class="menuIcon" />
             <div class="logo_name">
                 <h4 class="menuTitle"> {{ menuTitle }} </h4>
+                
             </div>
         </div>
 
@@ -25,7 +26,7 @@
         <div class="d-flex ">
 
         <img v-if="menuIcon" :src="menuIcon" class="menuIcon"/>
-            <div class="d-flex flex-column align-items-center align-content-start">
+            <div class="d-flex flex-column align-items-center align-content-start align-items justify-content-center">
 
                 {{ StudentName }}
 
@@ -102,15 +103,16 @@
             tabs: Array,
             menuTitle: {
                 type: String,
-                default: "StudySmart",
+                default: "",
             },
+       
             menuLogo: {
                 type: String,
-                default: require("@/assets/birb_icon.png"),
+                default: require("@/assets/birb_logo.svg"),
             },
             menuIcon: {
                 type: String,
-                default: require("@/assets/owl_head.png"),
+                default: require("@/assets/owl_face_svg.svg"),
             }
 
         },
@@ -129,7 +131,7 @@
         position: sticky;
         top: 0;
         width: 100%;
-        height: 4em;
+        height: 75px;
         color: white;
         padding: 1rem;
         background-color: #253F63;
@@ -156,14 +158,14 @@
         background-color: white;
         border-width: 5px;
         border-radius: 9px;
-        border-width: 5px;
+        border-width: 4px;
         border-style: solid;
-        height: 46px;
+        height: 60px;
         width: auto;
     }
 
     .menuTitle {
-        margin: 0;
+        margin-bottom: 10px;
         position: relative;
         top: 50%;
         -ms-transform: translateY(-50%);
@@ -177,7 +179,7 @@
         border-radius: 9px;
         border-color: #aac1ce ;
         color: #253F63;
+        
     }
-
 
 </style>

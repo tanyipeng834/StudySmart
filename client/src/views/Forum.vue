@@ -2,12 +2,12 @@
   <div>
 
     <div class="container-fluid p-0 main">
-      <Topbar :tabs="tabs" />
-      <div class="row">
-        <div class="col-4">
-          <Sidebar :haveTopbar="true" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
-        </div>
-        <div class="col-4 ">
+      <Topbar :tabs="tabs" menuTitle="Forum" />
+        <div class="row">
+            <div class="col-4">
+                <Sidebar :haveTopbar="true" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
+            </div>
+            <div class="col-4 ">
 
         </div>
         <div class="col-4 ">
@@ -26,25 +26,40 @@
         <div class="col-lg-5 mt-3 col-md-5 col-sm-5 order-5">
           <div class="row">
             <div class="col">
-              <div class="input-group rounded">
-                <input v-model="search" class="form-control rounded mb-3" placeholder="Search post by username!"
-                  aria-label="Search" aria-describedby="search-addon" />
-                <button @click="searchUserPost()" class="input-group-text border-0 mb-3" id="search-addon">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
+
+
               <!-- <div v-if="search!=''">
                 See all posts
               </div> -->
             </div>
           </div>
 
-          <div class="row">
+          <div class="row bg-white pt-3 mb-3">
+            <div class="input-group rounded">
+
+                <input
+                  v-model="search"
+                  class="form-control rounded mb-3"
+                  placeholder="Search post by username!"
+                  aria-label="Search"
+                  aria-describedby="search-addon"
+                />
+                <button @click="searchUserPost()" class="input-group-text border-0 mb-3" id="search-addon">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
             <div class="col mb-3">
               <div class="form-group mb-3">
-                <label for="exampleFormControlTextarea1">Enter a question!</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                  v-model="postContent"></textarea>
+
+                <label for="exampleFormControlTextarea1"
+                  >Enter a question!</label
+                >
+                <textarea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                  v-model="postContent"
+                ></textarea>
               </div>
             </div>
             <div class="col text-center mb-3">
@@ -78,8 +93,7 @@
                 </select>
               </div>
             </div>
-          </div>
-          <div class="row">
+            <div class="row">
             <div class="col d-flex justify-content-center mb-3">
               <div>
                 <button class="btn btn-primary px-4" @click="addPost()">
@@ -88,6 +102,8 @@
               </div>
             </div>
           </div>
+          </div>
+
 
           <div class="row">
             <div class="col">
@@ -182,7 +198,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 order-md-last order-1">
+        <div class="col-lg-4 col-md-4 col-sm-4 order-md-last order-2">
           <div class="row">
             <div class="col d-flex justify-content-center">
               <div class="card" style="width: 18rem; margin-top: 110px">
@@ -265,99 +281,77 @@
   import Topbar from "../components/Navigation/Topbar.vue";
   import BottomBar from "../components/Navigation/BottomBar.vue"
 
-  import {
-    auth,
-    db
-  } from "../main";
-  import {
-    getFirestore,
-    doc,
-    updateDoc,
-    getDoc,
-    getDocs,
-    setDoc,
-    collection,
-    addDoc,
-    deleteDoc,
-    deleteField,
-    arrayUnion,
-    arrayRemove,
-    onSnapshot,
-    query,
-    where,
-    increment
-  } from "firebase/firestore";
-  export default {
-    name: "Forum",
-    components: {
-      Sidebar,
-      Topbar,
-      BottomBar
-    },
-    mounted() {
-      this.init()
-    },
-    data() {
-      return {
-        tabs: [],
+import { auth, db } from "../main";
+import {
+  getFirestore,
+  doc,
+  updateDoc,
+  getDoc,
+  getDocs,
+  setDoc,
+  collection,
+  addDoc,
+  deleteDoc,
+  deleteField,
+  arrayUnion,
+  arrayRemove,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
+export default {
+  name: "Forum",
+  components: {
+    Sidebar,
+    Topbar,
+    BottomBar
+  },
+  data() {
+    return {
+      tabs: [],
 
-        posts: [
-          // {
-          //   postContent: "someone help me in ionic equations",
-          //   username: "Siyu",
-          //   date_added: "10/30/22",
-          //   subject: "",
-          //   level: "Secondary 4",
-          //   stream: "Express",
-          //   comments: [{
-          //       content: "heyyy u noob",
-          //       username: "rudeguy123"
-          //     },
-          //     {
-          //       content: "what kind of help do u need?",
-          //       username: "xmmhunter"
-          //     },
-          //     {
-          //       content: "be more specific leh walao",
-          //       username: "impatientwonderwoman",
-          //     },
-          //   ],
-          //   numLikes: 445,
+      posts: [
+        {
+          postContent: "someone help me in ionic equations",
+          username: "Siyu",
+          date_added: "10/30/22",
+          subject: "",
+          level: "Secondary 4",
+          stream: "Express",
+          comments: [
+            { content: "heyyy u noob", username: "rudeguy123" },
+            { content: "what kind of help do u need?", username: "xmmhunter" },
+            {
+              content: "be more specific leh walao",
+              username: "impatientwonderwoman",
+            },
+          ],
+          numLikes: 445,
 
-          // },
-          // {
-          //   postContent: "someone help me ",
-          //   username: "jay",
-          //   date_added: "10/30/22",
-          //   subject: "English",
-          //   level: "Secondary 4",
-          //   stream: "Normal Academic",
-          //   comments: [{
-          //     content: "heyyy u noob",
-          //     username: "rudeguy123"
-          //   }],
-          //   numLikes: 5,
-          // },
-        ],
-        postContent: "",
-        subject: "",
-        stream: "",
-        name: '',
-        commentContent: "",
-        search: "",
-        yearChosen: [],
-        subjectChosen: [],
-        streamChosen: "",
-        tabs: [],
-        level: '',
-        date: '',
-        postIDs: [],
-        email: '',
-        LikedPost: []
-
-
-      };
-    },
+        },
+        {
+          postContent: "someone help me ",
+          username: "jay",
+          date_added: "10/30/22",
+          subject: "English",
+          level: "Secondary 4",
+          stream: "Normal Academic",
+          comments: [{ content: "heyyy u noob", username: "rudeguy123" }],
+          numLikes: 5,
+        },
+      ],
+      postContent: "",
+      subject: "",
+      stream: "",
+      name:'',
+      commentContent: "",
+      search: "",
+      yearChosen: [],
+      subjectChosen: [],
+      streamChosen: "",
+      tabs:[]
+    };
+  },
 
     methods: {
       async init() {
