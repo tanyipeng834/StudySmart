@@ -12,7 +12,7 @@
           <div class="carousel-inner">
             <div class="carousel-item active">
               <img
-                src="../assets/collaboration.jpg"
+                src="../assets/study2.jpg"
                 class="d-block w-100 h-100"
                 alt="..."
               />
@@ -20,7 +20,7 @@
             </div>
             <div class="carousel-item">
               <img
-                src="../assets/graduation.jpg"
+                src="../assets/study3.jpg"
                 class="d-block w-100 h-100"
                 alt="..."
               />
@@ -28,7 +28,7 @@
             </div>
             <div class="carousel-item">
               <img
-                src="../assets/teacher.jpg"
+                src="../assets/study1.jpg"
                 class="d-block w-100 h-100"
                 alt="..."
               />
@@ -40,7 +40,7 @@
 
       <div class="col-md-6 right-side mb-4">
         <div class="text-center">
-          <img src ="../assets/logo.svg" class="animate__animated animate__bounce" />
+          <img src ="../assets/birb_icon.png" class="animate__animated animate__bounce" />
             <TypeEffect/>
            
 
@@ -91,7 +91,7 @@ export default {
 .left-side{
 
     height:100vh;
-    background-color:lightskyblue ;
+    background-color:#253F63 ;
     display:flex;
     text-align: center;
     align-items: center;
@@ -117,7 +117,5 @@ export default {
 
 
 }
-
-
 
 </style>
