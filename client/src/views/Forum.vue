@@ -552,4 +552,15 @@
   .profile-img {
     padding: .3em;
   }
+
+  .bg-secondary{
+    background-color: #F2F2F2 !important;
+    color: black !important;
+  }
+  .btn-primary{
+    background-color: #253F63 !important;
+    color: white !important;
+    border-color: #253F63 !important;
+  }
+  
 </style>
