@@ -10,6 +10,7 @@
             <i v-else class="bx icon" :class="menuIcon" />
             <div class="logo_name">
                 <h4 class="menuTitle"> {{ menuTitle }} </h4>
+                
             </div>
         </div>
 
@@ -102,8 +103,9 @@
             tabs: Array,
             menuTitle: {
                 type: String,
-                default: "StudySmart",
+                default: "",
             },
+       
             menuLogo: {
                 type: String,
                 default: require("@/assets/birb_svg.svg"),
@@ -163,7 +165,7 @@
     }
 
     .menuTitle {
-        margin: 0;
+        margin-bottom: 10px;
         position: relative;
         top: 50%;
         -ms-transform: translateY(-50%);

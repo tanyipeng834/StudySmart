@@ -2,7 +2,7 @@
   <div>
   
     <div class="container-fluid p-0 main">
-      <Topbar :tabs="tabs" />
+      <Topbar :tabs="tabs" menuTitle="Forum" />
         <div class="row">
             <div class="col-4">
                 <Sidebar :haveTopbar="true" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
@@ -26,7 +26,17 @@
         <div class="col-lg-5 mt-3 col-md-5 col-sm-5 order-5">
           <div class="row">
             <div class="col">
-              <div class="input-group rounded">
+             
+              
+              <!-- <div v-if="search!=''">
+                See all posts
+              </div> -->
+            </div>
+          </div>
+
+          <div class="row bg-white pt-3 mb-3">
+            <div class="input-group rounded">
+                
                 <input
                   v-model="search"
                   class="form-control rounded mb-3"
@@ -38,15 +48,9 @@
                   <i class="fas fa-search"></i>
                 </button>
               </div>
-              <!-- <div v-if="search!=''">
-                See all posts
-              </div> -->
-            </div>
-          </div>
-
-          <div class="row">
             <div class="col mb-3">
               <div class="form-group mb-3">
+               
                 <label for="exampleFormControlTextarea1"
                   >Enter a question!</label
                 >
@@ -95,8 +99,7 @@
                 </select>
               </div>
             </div>
-          </div>
-          <div class="row">
+            <div class="row">
             <div class="col d-flex justify-content-center mb-3">
               <div>
                 <button class="btn btn-primary px-4" @click="addPost()">
@@ -105,6 +108,8 @@
               </div>
             </div>
           </div>
+          </div>
+          
 
           <div class="row">
             <div class="col">
@@ -209,7 +214,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 order-md-last order-1">
+        <div class="col-lg-4 col-md-4 col-sm-4 order-md-last order-2">
           <div class="row">
             <div class="col d-flex justify-content-center">
               <div class="card" style="width: 18rem; margin-top: 110px">
@@ -365,7 +370,7 @@ export default {
       yearChosen: [],
       subjectChosen: [],
       streamChosen: "",
-      tabs:[]
+      tabs:['Forum']
     };
   },
 
