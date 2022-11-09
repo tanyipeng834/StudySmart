@@ -5,16 +5,16 @@
     :style="[haveTopbar ? 'height:92.5%' : '', cssVars]"
   >
     <div class="logo-details" style="margin: 6px 14px 0 14px">
-      <img
+      <!-- <img
         v-if="menuLogo"
         :src="menuLogo"
         alt="menu-logo"
         class="menu-logo icon"
-      />
-      <i v-else class="bx icon" :class="menuIcon" />
+      /> -->
+      <!-- <i v-else class="bx icon" :class="menuIcon" />
       <div class="logo_name">
         {{ menuTitle }}
-      </div>
+      </div> -->
       <i
         class="bx"
         :class="isOpened ? 'bx-menu-alt-right' : 'bx-menu'"
@@ -59,7 +59,7 @@
       </div>
 
       <div v-if="isLoggedIn" class="profile">
-        <div class="profile-details">
+        <!-- <div class="profile-details">
           <img v-if="profileImg" :src="profileImg" alt="profileImg" />
           <i v-else class="bx bxs-user-rectangle" />
           <div class="name_job">
@@ -70,7 +70,7 @@
               {{ profileRole }}
             </div>
           </div>
-        </div>
+        </div> -->
         <i
           v-if="isExitButton"
           class="bx bx-log-out"
@@ -275,10 +275,10 @@ export default {
 body {
   transition: all 0.5s ease;
 }
-.menu-logo {
+/* .menu-logo {
   width: 30px;
   margin: 0 10px 0 10px;
-}
+} */
 .sidebar {
   position: relative;
   display: flex;
