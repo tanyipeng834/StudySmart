@@ -764,7 +764,7 @@
    .login {
        background-color: #EAF1F5;
        height: 100vh;
-       overflow-x: hidden;
+       overflow-y: hidden;
        /* Center and scale the image nicely */
        padding: 0;
        margin-right: 500px;
