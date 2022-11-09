@@ -13,8 +13,6 @@
             </div>
         </div>
 
-
-
         <div class="d-flex justify-content-evenly">
 
             <a :href='tab.link' class="nav-item nav-link"
@@ -26,14 +24,22 @@
         </div>
         <div class="d-flex ">
 
-        <img v-if="menuIcon" :src="menuIcon" class="menuIcon" @click="logout" />
+        <img v-if="menuIcon" :src="menuIcon" class="menuIcon"/>
             <div class="d-flex flex-column align-items-center align-content-start">
 
                 {{ StudentName }}
 
                 <p class="small mb-0">{{StudentLevel}}</p>
             </div>
+            <div class="d-flex align-items-center ms-4">
+            <span @click="logout">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </span>
+                
         </div>
+        </div>
+
+        
         
     </nav>
 
@@ -86,10 +92,10 @@
             }
         },
         methods:{
-             logout() {
-        localStorage.removeItem("email");
-        window.location.href = "#/login"
-    }
+            logout() {
+                localStorage.removeItem("email");
+                window.location.href = "#/login"
+            }
 
         },
         props: {
@@ -155,7 +161,6 @@
         border-style: solid;
         height: 46px;
         width: auto;
-
     }
 
     .menuTitle {
