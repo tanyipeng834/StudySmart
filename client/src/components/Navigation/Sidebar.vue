@@ -259,7 +259,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 /* Google Font Link */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 @import url("https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css");
@@ -282,7 +282,7 @@ body {
   flex-direction: column;
   position: fixed;
   left: 0;
-  height: 92.5%;
+  height: 100vh;
   /* height: 92.5%; */
   min-height: min-content;
   /* overflow-y: auto; */
@@ -540,13 +540,13 @@ body {
 }
 #my-scroll::-webkit-scrollbar {
   display: none;
-  /* background-color: rgba(255, 255, 255, 0.2); 
+  /* background-color: rgba(255, 255, 255, 0.2);
       width: 10px;
       border-radius:5px  */
 }
 /* #my-scroll::-webkit-scrollbar-thumb{
       background-color: red;
-      border-radius:5px 
+      border-radius:5px
     }
     #my-scroll::-webkit-scrollbar-button:vertical:start:decrement{
       display:none;
@@ -557,6 +557,11 @@ body {
 @media (max-width: 420px) {
   .sidebar li .tooltip {
     display: none;
+  }
+}
+@media(max-width:577px){
+  .sidebar{
+    display:none;
   }
 }
 </style>

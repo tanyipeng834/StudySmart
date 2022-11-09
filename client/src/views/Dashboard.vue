@@ -1,34 +1,37 @@
 <template>
-  <div class="container-fluid login wrapper w-100">
-    <div class="row">
-      <div class="col-2">
-        <Sidebar
-          :haveTopbar="true"
-          profileName="Tan Yi Peng"
-          profileRole="Secondary 3 Student"
-        />
+  <div>
+    <div class="container-fluid login wrapper w-100">
+      <div class="row">
+        <div class="col-2">
+          <Sidebar
+            :haveTopbar="false"
+            profileName="Tan Yi Peng"
+            profileRole="Secondary 3 Student"
+          />
+        </div>
+        <div class="col-lg-4 col-md-6 col-12">
+          <CountDown
+            v-bind:tests="tests"
+            @add-test="addTest"
+            @delete-test="deleteTest"
+          />
+        </div>
+        <div class="col-lg-4 col-md-6 col-12 quote">
+          <div class="text"><Quote /></div>
+        </div>
+        <div class="col-md-2"></div>
       </div>
-      <div class="col-md-4 col-12">
-        <CountDown
-          v-bind:tests="tests"
-          @add-test="addTest"
-          @delete-test="deleteTest"
-        />
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-9 timetable">
+          <TimeTable />
+        </div>
+        <div class="col-1"></div>
       </div>
-      <div class="col-md-4 col-12 quote">
-        <div class="text"><Quote /></div>
-      </div>
-      <div class="col-md-2"></div>
     </div>
-
-    <div class="row">
-      <div class="col-2"></div>
-      <div class="col-9 timetable">
-        <TimeTable />
-      </div>
-      <div class="col-1"></div>
-    </div>
+     <BottomBar class= "bottomnav"/>
   </div>
+
 </template>
 
 <script>
@@ -37,6 +40,7 @@ import Topbar from "../components/Navigation/Topbar.vue";
 import CountDown from "../components/HomePage/CountDown.vue";
 import TimeTable from "../components/HomePage/TimeTable.vue";
 import Quote from "../components/HomePage/Quote.vue";
+import BottomBar from "../components/Navigation/BottomBar.vue"
 import { auth, db } from "../../src/main";
 import {
   getFirestore,
@@ -62,6 +66,7 @@ export default {
     CountDown,
     TimeTable,
     Quote,
+    BottomBar
   },
   data() {
     return {
@@ -89,7 +94,7 @@ export default {
               if (docSnapshot.id != 'ignore') {
                 let newdata = docSnapshot.data()
 newdata.id=docSnapshot.id
-        
+
                 data.push(newdata)
     }
       });
@@ -99,10 +104,10 @@ newdata.id=docSnapshot.id
       return c - d;
       });
 
-    
+
 
     });
-     
+
 
     } else {
       window.location.href='#/login'
@@ -112,7 +117,7 @@ newdata.id=docSnapshot.id
 
   created() {
     //this is preferably stored in backend
- 
+
 
   },
 };
@@ -131,6 +136,7 @@ newdata.id=docSnapshot.id
 }
 
 .login {
+      overflow: hidden;
   background-image: url("@/assets/cloud.jpg");
   height: 100%;
   background-position: center;
@@ -148,4 +154,6 @@ newdata.id=docSnapshot.id
   display: flex;
   align-items: center;
 }
+
+
 </style>

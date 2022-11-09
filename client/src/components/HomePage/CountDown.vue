@@ -34,31 +34,10 @@
         </div>
 
         <div class="col-4 ms-1">
-          <input v-model="date" type="text" class="form-control form-control-sm" placeholder="mm/dd/yyyy" />
+          <input v-model="date" type="date" class="form-control form-control-sm" placeholder="" />
         </div>
       </li>
-      <!-- <li v-for="index in 3" :key="index"
-        class="list-group-item d-flex justify-content-around align-items-start" :class="danger( daysLeft(test.date))">
-   
-       <div class="ms-2 me-auto col-7">
-          <div class="fw-bold">{{ tests[index-1].testName }}</div>
-          <p>
-            <small>{{ tests[index-1].subject }} . {{ tests[index-1].date }}</small>
-          </p>
-        </div>
 
-        <div class="col-4 d-flex justify-content-center">
-          <span class="p-2 badge bg-primary rounded-pill mx-auto" >{{
-            daysLeft(tests[index-1].date)
-          }}</span>
-        </div>
-
-        <div class="col-1">
-          <button type="button" class="btn position-absolute top-0 end-2" v-on:click="deleteTest(tests[index-1].id)">
-            <i class="fa-regular fa-trash-can"></i>
-          </button>
-        </div>
-           </li> -->
       <li v-if='currentPageData.length==0' class="list-group-item">
         <div>Add Your Upcoming Exams Here!</div>
       </li>
@@ -84,9 +63,9 @@
         </div>
       </li>
 
-    <li v-else v-for="index in 4" 
+    <li v-else v-for="index in 4"
         class="list-group-item d-flex justify-content-around align-items-start" :class="danger( daysLeft(currentPageData[index-1].date))">
-   
+
        <div class="ms-2 me-auto col-7">
           <div class="fw-bold">{{ currentPageData[index-1].test }}</div>
           <p>
@@ -106,7 +85,7 @@
           </button>
         </div>
            </li>
-      <li v-if="count>4" class="bg-white">
+      <li v-if="count>4" class="bg-white rounded-bottom ">
         <p class="d-inline-block p-2 small">Page {{currentPage}}</p>
         <nav aria-label="Page navigation example" class="float-end">
           <ul class="pagination">
@@ -183,7 +162,7 @@
             console.log(item)
           }
       }
-    
+
     },
 
     data() {
@@ -198,7 +177,7 @@
         pages: 0,
         currentPage: 1,
         currentPageData:[]
-        
+
 
       };
     },
@@ -208,7 +187,7 @@
         this.currentPage = this.currentPage - 1
          this.getPageData(this.currentPage)
       }
-        
+
     },
     next() {
           if (this.pages != this.currentPage) {
@@ -235,7 +214,7 @@
         var unnecData = (i - 1) * 4
         this.currentPageData = this.tests.slice(unnecData, unnecData + 5)
         console.log( this.currentPageData)
-        
+
       },
       daysLeft(date) {
         let testDate = new Date(date);

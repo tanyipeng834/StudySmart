@@ -163,10 +163,12 @@ const register = () => {
 
         await setDoc(doc(db, "users", email.value, "countDown", "ignore"), {});
         await setDoc(doc(db, "users", email.value, "timetable", "ignore"), {});
+        await setDoc(doc(db, 'posts', 'ignore'),{})
 
         // await setDoc(col, { 'ignore' :''});
 
         localStorage.setItem("email", email.value);
+        
 
         window.location.href = "/#";
       } catch (e) {
