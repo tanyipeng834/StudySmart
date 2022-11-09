@@ -3,7 +3,7 @@
     <Topbar :tabs="tabs"></Topbar>
     <div class="container-fluid login wrapper w-100">
       <div class="row">
-        <div class="col-2">
+        <div class="col-lg-2 col-md-2 col-0">
           <Sidebar
             :haveTopbar="false"
             profileName="Tan Yi Peng"
@@ -25,11 +25,6 @@
                 
           </div>
         </div>
-          
-    
-          
-       
-          
           
         </div>
         <div class="col-lg-4 col-md-6 col-12">

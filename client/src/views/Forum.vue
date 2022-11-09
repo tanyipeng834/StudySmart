@@ -139,7 +139,7 @@
                       <div class="card-body">
                         <div class="media-body me-3">
                           <div class="d-flex profile-wrap align-items-center bg-secondary">
-                            <img class="profile-img" src="../assets/owl_head.png" alt="">
+                            <img class="profile-img" src="../assets/owl_face_svg.svg" alt="">
                             <h5 class="m-0 ms-1">{{
                               post.username
                             }}</h5>

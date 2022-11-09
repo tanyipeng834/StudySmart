@@ -154,11 +154,11 @@
                </div>
                <div class="row">
                 <div class="col">
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col ms-4">
-                        <button class="btn btn-danger"><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalFormAdd">Add
+                        <button class="btn" style="background-color: #632525"><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalFormAdd">Add
                                    Test Result</a></button>
-                            <button class="btn btn-success"><a class="dropdown-item " data-bs-toggle="modal" data-bs-target="#modalFormDel">Delete
+                            <button class="btn" style="background-color: #256327"><a class="dropdown-item " data-bs-toggle="modal" data-bs-target="#modalFormDel">Delete
                                    Test Result</a></button>
                         </div>
                     </div>
@@ -787,10 +787,10 @@
        text-align: left;
    }
 
-   .enabled:hover {
+   /* .enabled:hover {
        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5) inset, 0 0 10px #959596;
-   }
+   } */
 
    .modal-box .modal-dialog .modal-content .modal-body .btn:focus {
        outline: none;
@@ -837,8 +837,8 @@
            font-size: 13px;
        }
    }
-   .threedot{
-    position:absolute
+   .btn {
+    color: white;
    }
 </style>
 

@@ -20,13 +20,8 @@
                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
                           <input
-<<<<<<< HEAD
-                            type="text" v-model="name"
-
-=======
                             type="text"
                             v-model="name"
->>>>>>> e02786ff23123c26842e5452589f515309dc2149
                             class="form-control"
                             placeholder="Your Name"
                           />
@@ -71,21 +66,13 @@
                           <input
                             type="password"
                             class="form-control"
-<<<<<<< HEAD
-                           v-model="password"
-=======
                             v-model="password"
                             placeholder="Password"
->>>>>>> e02786ff23123c26842e5452589f515309dc2149
                           />
                       
                         </div>
                       </div>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> e02786ff23123c26842e5452589f515309dc2149
                       <div
                         class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
                       >
@@ -115,11 +102,6 @@
         </div>
       </div>
     </section>
-<<<<<<< HEAD
-
-
-=======
->>>>>>> e02786ff23123c26842e5452589f515309dc2149
   </div>
 </template>
 
@@ -199,10 +181,6 @@ const register = () => {
         // await setDoc(col, { 'ignore' :''});
 
         localStorage.setItem("email", email.value);
-<<<<<<< HEAD
-
-=======
->>>>>>> e02786ff23123c26842e5452589f515309dc2149
 
         window.location.href = "/#";
       } catch (e) {
