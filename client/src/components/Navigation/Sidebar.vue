@@ -279,6 +279,9 @@ body {
   width: 30px;
   margin: 0 10px 0 10px;
 } */
+.bx-menu{
+  padding-right: 22px;
+}
 .sidebar {
   position: relative;
   display: flex;
