@@ -290,7 +290,8 @@ body {
   min-height: min-content;
   /* overflow-y: auto; */
   width: 95px;
-  background: var(--bg-color);
+  background-color: #FAFCFF ;
+  /* background: var(--bg-color); */
   /* padding: 6px 14px 0 14px; */
   z-index: 99;
   transition: all 0.5s ease;

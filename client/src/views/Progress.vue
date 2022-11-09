@@ -115,7 +115,7 @@
             <div class="row">
                 <div class="col-lg-2 col-"></div>
                 <div class="col-lg-5 section col-11 d-flex flex-column justify-content-center mt-3">
-
+                    <h1>Progress</h1>
                         <div class="float-start ">
                             <select class="form-select form-select w-50 mt-4 selectLevel mb-1 shadow"
                                 aria-label=".form-select-sm " id="examType" v-model='level' @change="change">
@@ -227,7 +227,7 @@
         arrayRemove,
         onSnapshot,
         query,
-        where
+        where   
     } from "firebase/firestore";
     export default {
         name: "Progress",
