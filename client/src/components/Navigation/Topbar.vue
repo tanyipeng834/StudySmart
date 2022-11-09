@@ -127,9 +127,10 @@
         color: white;
         padding: 1rem;
         background-color: #253F63;
+        /* animation: 1s sinkIn ease-in; */
 
     }
-    @keyframes sinkIn{
+    /* @keyframes sinkIn{
         0%{
             transform: translateY(-200%);
             opacity: 0;
@@ -138,7 +139,7 @@
             transform: translateY(0%);
             opacity: 1;
         }
-    }
+    } */
 
     a:has(+a) {
         margin-right: 2rem;
