@@ -2,7 +2,7 @@
     <div class="login container-fluid wrapper w-100">
 
         <!-- <div class="container-fluid "> -->
-            <Topbar :tabs="tabs" />
+        <Topbar :tabs="tabs" />
         <div class="row">
             <div class="col-4">
                 <Sidebar :haveTopbar="true" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
@@ -129,8 +129,8 @@
         <div class="row">
 
             <div class="col-1"></div>
-            <div class="col-lg-6 col-12 d-flex flex-column justify-content-center">
-                <div >
+            <div class="col-lg-6 col-12 d-flex flex-column justify-content-center p-0">
+                <div>
                     <div class="float-start ps-4">
                         <select class="form-select form-select  mt-4 selectLevel mb-1 shadow"
                             aria-label=".form-select-sm " id="examType" v-model='level' @change="change">
@@ -142,38 +142,35 @@
                         </select>
                     </div>
 
-                        <div class="dotdropdown">
-                            <button class="btn dropdown-toggle other" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="true">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                                    <path
-                                        d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                                </svg>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalFormAdd">Add
-                                        Test Result</a></li>
-                                <li><a class="dropdown-item " data-bs-toggle="modal"
-                                        data-bs-target="#modalFormDel">Delete Test Result</a></li>
+                    <div class="dotdropdown">
+                        <button class="btn dropdown-toggle other" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                <path
+                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                            </svg>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalFormAdd">Add
+                                    Test Result</a></li>
+                            <li><a class="dropdown-item " data-bs-toggle="modal" data-bs-target="#modalFormDel">Delete
+                                    Test Result</a></li>
 
-                            </ul>
-
-
-
+                        </ul>
                     </div>
                 </div>
                 <div class="line-chart ">
                     <div class="aspect-ratio chart">
-                        <canvas id="progress-chart" class="shadow chart bg-white rounded" width="650" height="500"
-                           ></canvas>
+                        <canvas id="progress-chart" class="shadow chart bg-white rounded" width="650"
+                            height="500"></canvas>
                     </div>
                 </div>
 
 
 
             </div>
-            <div class="col-lg-5 col-12  d-flex flex-column justify-content-start mt-4">
+            <div class="col-lg-5 col-12  d-flex flex-column justify-content-start mt-4 p-0">
 
                 <div class="shadow box me-3">
                     <div class="p-1 insights" v-if="existingSubjects.length>1">
@@ -192,19 +189,20 @@
                         <h1 class="display-6 text-primary" v-else>Let's Start!</h1>
                         <h2 v-if="existingSubjects.length==1">Add your test results of other subjects for us to give you
                             more insights!</h2>
-                        <h2 v-else>Start inputting your test scores using the <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                                    <path
-                                        d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                                </svg> button</h2>
+                        <h2 v-else>Start inputting your test scores using the <svg xmlns="http://www.w3.org/2000/svg"
+                                width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical"
+                                viewBox="0 0 16 16">
+                                <path
+                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                            </svg> button</h2>
 
                     </div>
                     <!-- <canvas id="bar-chart" width="700" height="550" class="p-4"></canvas> -->
                 </div>
-                <div class="line-chart ">
+                <div class="line-chart bar">
                     <div class=" aspect-ratio ">
-                        <canvas id="bar-chart" width="600" height="400" class="p-4 shadow bg-white rounded"
-                            > </canvas>
+                        <canvas id="bar-chart" width="600" height="400" class="p-4 shadow bg-white rounded me-3">
+                        </canvas>
                     </div>
                 </div>
                 <!-- <div class="shadow box">
@@ -214,7 +212,7 @@
 
         </div>
 
-
+        <BottomBar />
         <!-- </div> -->
     </div>
 </template>
@@ -227,8 +225,9 @@
     } from "../../src/main";
     import Sidebar from "../components/Navigation/Sidebar.vue";
     import Topbar from "../components/Navigation/Topbar.vue";
-    import ChartTest from "../components/ProgressPage/ChartTest.vue";
+    // import ChartTest from "../components/ProgressPage/ChartTest.vue";
     import Chart from 'chart.js/auto';
+    import BottomBar from '../components/Navigation/BottomBar.vue';
     import {
         getFirestore,
         doc,
@@ -250,7 +249,8 @@
         components: {
             Sidebar,
             Topbar,
-            ChartTest
+            BottomBar
+            // ChartTest
         },
         mounted() {
             if (localStorage.getItem("email")) {
@@ -258,8 +258,7 @@
                     type: 'line',
                     data: {
                         labels: ['CA1', 'SA1', 'CA2', 'SA2'],
-                        datasets: [
-                        ]
+                        datasets: []
                     },
                     options: {
                         responsive: true,
@@ -684,7 +683,7 @@
                 conSub: '',
                 conData: '',
                 validity: false,
-                tabs:[]
+                tabs: []
             }
         }
     }
@@ -694,64 +693,78 @@
     * {
         font-size: medium;
     }
+
     .line-chart {
         animation: fadeIn 600ms cubic-bezier(.57, .25, .65, 1) 1 forwards;
         opacity: 0;
         width: 100%;
     }
+
     .aspect-ratio {
         height: 0;
         padding-bottom: 50%;
         position: relative;
     }
+
     .chart {
         padding: 2vw;
         position: relative;
         width: 100%;
         height: auto;
     }
+
     .shadow {
         box-shadow: 5px 5px 6px 7px #ccc;
     }
+
     .dotdropdown {
         position: absolute;
         top: 25%;
         left: 51%;
         z-index: 1;
     }
+
     .box {
         height: 165px;
     }
+
     body {
         background-image: url("../assets/cloud.jpg") repeat 0 0;
         ;
     }
+
     .login {
         background-image: url("@/assets/cloud.jpg");
         height: 100vh;
+        overflow-x: hidden;
         /* Center and scale the image nicely */
-        padding:0;
+        padding: 0;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
     }
+
     #progres-chart {
         position: relative;
         z-index: 0;
     }
+
     .modal-box .modal-dialog {
         width: 500px;
         margin: 50px auto 0;
     }
+
     .modal-box .modal-dialog .modal-content {
         text-align: center;
         border-radius: 0;
         border: none;
         box-shadow: none;
     }
+
     .modal-body {
         padding: 40px
     }
+
     .modal-body .form-control,
     .modal-body .form-select {
         background: #cceaf6;
@@ -763,20 +776,25 @@
         box-shadow: none;
         border: none;
     }
+
     .modal-body p {
         text-align: left;
     }
+
     .enabled:hover {
         text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
         box-shadow: 0 0 10px rgba(255, 255, 255, 0.5) inset, 0 0 10px #959596;
     }
+
     .modal-box .modal-dialog .modal-content .modal-body .btn:focus {
         outline: none;
     }
+
     .other:after {
         display: none;
         border: none
     }
+
     @media (max-width: 991px) {
         .dotdropdown {
             position: absolute;
@@ -784,7 +802,12 @@
             left: 90%;
             z-index: 1;
         }
+
+        .bar {
+            margin-bottom: 9rem;
+        }
     }
+
     @media (max-width: 578px) {
         .dotdropdown {
             position: absolute;
