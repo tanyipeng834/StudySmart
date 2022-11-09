@@ -773,6 +773,7 @@
        background-position: center;
        background-repeat: no-repeat;
        background-size: cover;
+       margin-top: 60px;
    }
 
    #progres-chart {

@@ -85,13 +85,13 @@
 
             <div class="row">
               <div class="col">
-                <div class="container-fluid mt-100">
+                <div class="container-fluid mt-2">
                   <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 ms-2 ">
                       <div v-for="post in posts" :key="post" class="card mb-4">
                         <div class="card-header d-flex justify-content-between ">
 
-                          <div class="row d-flex align-items-center">
+                          <div class="row align-items-center">
                             <div class="col">
 
                             
@@ -182,7 +182,7 @@
           </div>
           
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4  order-2">
+        <div class="col-lg-4 col-md-4 col-sm-4 order-md-last order-2">
             <div class="row">
               <div class="col d-flex justify-content-center">
                 <div class="card" style="width: 18rem; margin-top: 110px">
@@ -318,6 +318,8 @@
     },
     mounted() {
       this.init().then()
+      
+      
     },
     methods: {
       async init() {
@@ -350,15 +352,19 @@
 
           })
           this.posts = posts
+          
 
 
         });
       },
       searchUserPost() {
         var resultPosts = []
+        console.log(this.search)
+        console.log(this.posts)
         this.init().then(() => {
 
           for (let post of this.posts) {
+            
             if (post.username == this.search) {
               console.log(`username: ${post.username}`)
               console.log(`search: ${this.search}`)
@@ -537,10 +543,15 @@
     margin-left: 282px;
   } */
 
+
   .main {
+    margin-top: 60px;
     background-color: #eaf1f5;
     height: 100%;
-    /* overflow-x: hidden; */
+    width:100%;
+    overflow-x:hidden;
+    overflow-y:hidden;
+
   }
 
   .profile-wrap {

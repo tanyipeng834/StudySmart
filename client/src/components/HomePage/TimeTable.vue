@@ -1,26 +1,28 @@
 <template>
   <div class="wrap">
-    <div class="content">
-      <h1 class="text-center">Drag and Hold to add a new class! <br>
-        Try dragging, hovering, clicking the classes to customise them! 
-        
+    <div class="content bg-white mt-2">
+      <h1 class="text-center">
+        Timetable
+       
       </h1>
+      <p class="text-center">Drag and Hold to add a new class! <br>
+        Try dragging, hovering, clicking the classes to customise them! </p>
       <DayPilotCalendar id="dp" :config="calendarConfig" ref="calendar" />
     </div>
   </div>
-</template>
-
-<script>
-import {
+ </template>
+  
+ <script>
+ import {
   DayPilot,
   DayPilotCalendar,
   DayPilotNavigator,
-} from "@daypilot/daypilot-lite-vue";
-
-// Database setup
-import { initializeApp } from "firebase/app";
-import { auth, db } from "../../main";
-import {
+ } from "@daypilot/daypilot-lite-vue";
+  
+ // Database setup
+ import { initializeApp } from "firebase/app";
+ import { auth, db } from "../../main";
+ import {
   getFirestore,
   doc,
   updateDoc,
@@ -36,11 +38,11 @@ import {
   onSnapshot,
   query,
   where,
-} from "firebase/firestore";
-
-export default {
+ } from "firebase/firestore";
+  
+ export default {
   name: "ResourceCalendar",
-
+  
   data: function () {
     return {
       calendarConfig: {
@@ -72,16 +74,15 @@ export default {
     }},
     onEventDeleted: (args) => {
           this.deleteEvent(args.e);
-  
-        },
+         },
         onEventResized: (args) => {
-        
+       
           console.log("Event resized", args.e);
         },
       },
-
+  
       eventlist: [
-        
+       
       ],
       eventid: [],
     };
@@ -99,13 +100,13 @@ export default {
   methods: {
     async deleteEvent(e){
       var email = localStorage.getItem("email");
-
-await deleteDoc(doc(db, "users", email,'timetable',e.data.id));
+  
+ await deleteDoc(doc(db, "users", email,'timetable',e.data.id));
     },
     async loadEvents() {
       // placeholder for an HTTP call
       var email = localStorage.getItem("email");
-
+  
       const querySnapshot = await getDocs(collection(db, "users", email, "timetable"));
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
@@ -114,7 +115,7 @@ await deleteDoc(doc(db, "users", email,'timetable',e.data.id));
         event.start = DayPilot.Date.today()
           .addHours(hour)
           .addMinutes(doc.data().startMinute);
-
+  
         event.end = DayPilot.Date.today()
           .addHours(doc.data().endHour)
           .addMinutes(doc.data().startMinute);
@@ -122,13 +123,13 @@ await deleteDoc(doc(db, "users", email,'timetable',e.data.id));
         event.id = doc.data().id;
         event.text = doc.data().subject;
         event.backColor = doc.data().backColor;
-
+  
         this.eventlist.push(event);
       });
       const events = this.eventlist;
       this.calendar.update({ events });
     },
-
+  
     loadResources() {
       var dp = document.getElementById("dp");
       dp.dayBeginsHour = 9;
@@ -137,7 +138,7 @@ await deleteDoc(doc(db, "users", email,'timetable',e.data.id));
     async editEvent(e) {
       const form = [
         { name: "Subject", id: "text" },
-
+  
         {
           name: "Day",
           id: "resource",
@@ -157,22 +158,22 @@ await deleteDoc(doc(db, "users", email,'timetable',e.data.id));
       const eventRef = doc(db, "users", email,'timetable',modal.result.id);
       var f=modal.result
       console.log(f.start.value)
-
-await updateDoc(eventRef, {
+  
+ await updateDoc(eventRef, {
   resource: modal.result.resource,
   startHour: f.start.value.slice(11, 13),
         endHour: f.end.value.slice(11, 13),
         startMinute: f.start.value.slice(14, 16),
         endMinute: f.end.value.slice(14, 16),
-
-});
-
-    
+  
+ });
+  
+   
     },
     async editEventDrag(e) {
       const form = [
         { name: "Subject", id: "text" },
-
+  
         {
           name: "Day",
           id: "resource",
@@ -191,16 +192,16 @@ await updateDoc(eventRef, {
       var email = localStorage.getItem("email");
       const eventRef = doc(db, "users", email,'timetable',modal.result.id);
       var f=modal.result
-
-await updateDoc(eventRef, {
+  
+ await updateDoc(eventRef, {
   resource: modal.result.resource,
   startHour: f.start.value.slice(11, 13),
         endHour: f.end.value.slice(11, 13),
         startMinute: f.start.value.slice(14, 16),
         endMinute: f.end.value.slice(14, 16),
-
-});
-    
+  
+ });
+   
     },
     async createEvent(start, end, resource) {
       const form = [
@@ -216,7 +217,14 @@ await updateDoc(eventRef, {
             { name: "Green", id: "#CAFFBF" },
             { name: "Blue", ID: "#9BF6FF" },
             { name: "Purple", id: "#BDB2FF" },
-            { name: "Pink", id: "#FFC6FF" },
+            { name: "Gold", id: "#EEC373" },
+            { name: "Grey", id: "#D1D1D1" },
+            { name: "Brown", id: "#665A48" },
+            { name: "Mint", id: "#CDFCF6" },
+            { name: "Peach", id: "#E97777" },
+            { name: "Navy", id: "#50577A" },
+            { name: "Burgundy", id: "#800020" },
+  
           ],
         },
         {
@@ -236,7 +244,7 @@ await updateDoc(eventRef, {
       if (modal.canceled) {
         return;
       }
-
+  
       var email = localStorage.getItem("email");
       const e = modal.result;
       e.backColor = modal.result.Color;
@@ -253,9 +261,9 @@ await updateDoc(eventRef, {
         subject: e.text,
       };
       this.calendar.events.add(e);
-
+  
       await setDoc(doc(db, "users", email, "timetable", id), eventData);
-
+  
       this.eventid.push(eventData.subject);
     },
   },
@@ -264,28 +272,27 @@ await updateDoc(eventRef, {
     this.loadEvents();
     console.log(this.eventlist);
   },
-};
-</script>
-
-<style>
-.wrap {
+ };
+ </script>
+  
+ <style>
+ .wrap {
   display: flex;
-}
-
-.left {
+ }
+  
+ .left {
   margin-right: 10px;
-}
-
-.content {
+ }
+  
+ .content {
   flex-grow: 1;
-}
-
-.calendar_default_event_inner {
+ }
+  
+ .calendar_default_event_inner {
   background: #2e78d6;
   color: black;
   text-decoration: solid;
   text-align: center;
   border-radius: 6px;
-}
-</style>
-
+ }
+ </style>

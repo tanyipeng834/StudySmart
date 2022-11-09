@@ -283,11 +283,12 @@ body {
   padding-right: 22px;
 }
 .sidebar {
-  position: relative;
+  position: fixed;
   display: flex;
   flex-direction: column;
   position: fixed;
   left: 0;
+  top: 75px;
   height: 100%;
   /* height: 92.5%; */
   min-height: min-content;
@@ -298,6 +299,7 @@ body {
   /* padding: 6px 14px 0 14px; */
   z-index: 99;
   transition: all 0.5s ease;
+  overflow: auto;
   /* animation: slideRight 1s ease-in; */
 }
 /* @keyframes slideRight{
