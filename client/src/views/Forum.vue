@@ -63,7 +63,7 @@
                 </div>
               </div>
               <div class="col-4 text-center">
-                <p>Choose a stream!</p>
+                <p>Choose a stream:</p>
                 <div>
                   <select class="bg-secondary rounded text-white mb-3" v-model="stream">
                     <option value="Express">Express</option>
@@ -72,7 +72,7 @@
                   </select>
                 </div>
               </div>
-              <div class="col-4 d-flex justify-content-center mb-3 align-middle">
+              <div class="col-4 d-flex justify-content-center mb-3 align-items-center align-content-start">
                   <div>
                     <button class="btn btn-primary px-4" @click="addPost()">
                       Post
@@ -598,5 +598,10 @@
     background-color: #253F63 !important;
     color: white !important;
     border-color: #253F63 !important;
+  }
+  .rounded-pill {
+    color: white !important;
+    background-color: #5B7BA6 !important;
+    font-weight: normal;
   }
 </style>
