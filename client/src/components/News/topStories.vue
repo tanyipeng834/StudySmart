@@ -11,7 +11,9 @@
       <a :href="story.url" target="_blank" class="btn btn-primary">Read More</a>
     </div>
     </div>
+
   </div>
+  
 
 </template>
 
@@ -51,9 +53,10 @@ export default {
           story.id = headline[1];
 
           story.url = data["url"];
-          story.image = data["urlToImage"];
-          if (story.image == null) {
-            story.image = "../../assets/news.jpg"
+          if (data["urlToImage"] == null) {         
+            story.image = "../../assets/news.jpg";  //does not work
+          } else {
+            story.image = data["urlToImage"];
           }
 
           if (data["content"] != null) {
