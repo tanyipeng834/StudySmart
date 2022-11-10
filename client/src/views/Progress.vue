@@ -3,11 +3,11 @@
     <Topbar :tabs="tabs" menuTitle="Progress Tracker"/>
     <div class="row">
 
-    
+
        <!-- <div class="container-fluid "> -->
-       
+
        <div class="col">
-        
+
        </div>
        <div class="row ">
            <div class="col-4">
@@ -22,7 +22,7 @@
        </div>
        <div class="row mx-auto">
 
-       
+
        <div class="modal-box">
 
            <div class="modal fade" id="modalFormAdd" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -158,29 +158,29 @@
                        </button>
                        <button class="btn btn-danger" type="button" style='background-color: #632525' data-bs-toggle="dropdown"
                            aria-expanded="true">
-                        
+
                            <a  data-bs-toggle="modal" data-bs-target="#modalFormDel">Delete
                                    Test Result</a>
                        </button>
-                       
-                    
+
+
                    </div>
 
                        </div>
-                       
-                   
+
+
                    </div>
-                    
+
                     <div class="col">
-                      
+
                     </div>
                 </div>
-                   
 
-                 
+
+
                </div>
                <div class="line-chart1" style="position:relative;">
-               
+
                    <div class="aspect-ratio chart">
                        <canvas id="progress-chart" class="shadow chart bg-white rounded" width="650"
                            height="500">
@@ -229,7 +229,7 @@
        </div>
     </div>
 
-       
+
        <!-- </div> -->
    </div>
    <BottomBar />
@@ -717,9 +717,9 @@
        animation: fadeIn 600ms cubic-bezier(.57, .25, .65, 1) 1 forwards;
        opacity: 0;
        width: 100%;
-     
-    
-       
+
+
+
    }
 
    .line-chart2 {
@@ -728,8 +728,8 @@
        opacity: 0;
        width: 100%;
        margin-bottom: 100px;
-    
-       
+
+
    }
 
    .aspect-ratio {
@@ -749,13 +749,7 @@
        box-shadow: 5px 5px 6px 7px #ccc;
    }
 
-   /* .dotdropdown {
-       position: absolute;
-       top: 15%;
-       left: 90%;
-       right: 10%;
-       z-index: 5;
-   } */
+
 
    .box {
        height: 165px;
@@ -770,8 +764,8 @@
        margin-right: 500px;
 
        margin-top: 60px;
-  
-    height: 150vh;
+
+    height: 101vh;
     width:100%;
     overflow-x:hidden;
     overflow-y:hidden;
@@ -819,10 +813,6 @@
        text-align: left;
    }
 
-   /* .enabled:hover {
-       text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
-       box-shadow: 0 0 10px rgba(255, 255, 255, 0.5) inset, 0 0 10px #959596;
-   } */
 
    .modal-box .modal-dialog .modal-content .modal-body .btn:focus {
        outline: none;
