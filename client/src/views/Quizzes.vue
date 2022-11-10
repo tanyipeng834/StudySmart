@@ -31,6 +31,7 @@
               <SummaryCard
                 v-for="item in summaryCards"
                 :title="item.title"
+                :key="item"
                 :description="item.description"
                 :id="item.id"
                 @click="redirect(item.id, item.type)"
