@@ -1,16 +1,17 @@
 <template>
-   <div class="login container-fluid wrapper w-100 ">
+   <div class="login container-fluid wrapper w-100">
+    <Topbar :tabs="tabs" menuTitle="Progress Tracker"/>
     <div class="row">
 
-    
+
        <!-- <div class="container-fluid "> -->
-       <Topbar :tabs="tabs" menuTitle="Progress Tracker"/>
+
        <div class="col">
-        
+
        </div>
-       <div class="row">
+       <div class="row ">
            <div class="col-4">
-               <Sidebar :haveTopbar="true" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
+               <Sidebar :haveTopbar="true" />
            </div>
            <div class="col-4 ">
 
@@ -19,9 +20,9 @@
 
            </div>
        </div>
-       <div class="row mx-3">
+       <div class="row mx-auto">
 
-       
+
        <div class="modal-box">
 
            <div class="modal fade" id="modalFormAdd" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -133,7 +134,7 @@
                </div>
            </div>
        </div>
-       <div class="row">
+       <div class="row mx-auto">
 
            <div class="col-1"></div>
            <div class="col-lg-6 col-12 d-flex flex-column justify-content-center p-0">
@@ -157,29 +158,29 @@
                        </button>
                        <button class="btn btn-danger" type="button" style='background-color: #632525' data-bs-toggle="dropdown"
                            aria-expanded="true">
-                        
+
                            <a  data-bs-toggle="modal" data-bs-target="#modalFormDel">Delete
                                    Test Result</a>
                        </button>
-                       
-                    
+
+
                    </div>
 
                        </div>
-                       
-                   
+
+
                    </div>
-                    
+
                     <div class="col">
-                      
+
                     </div>
                 </div>
-                   
 
-                 
+
+
                </div>
                <div class="line-chart1" style="position:relative;">
-               
+
                    <div class="aspect-ratio chart">
                        <canvas id="progress-chart" class="shadow chart bg-white rounded" width="650"
                            height="500">
@@ -192,7 +193,7 @@
            </div>
            <div class="col-lg-5 col-12  d-flex flex-column justify-content-start mt-4 p-0">
 
-               <div class="shadow box me-3">
+               <div class="shadow box">
                    <div class="p-1 insights" v-if="existingSubjects.length>1">
                        <p class="small"><span class="text-danger h5">Alert!</span> Your {{minSub}} has the lowest
                            average of {{minSubScore}}%</p>
@@ -216,7 +217,7 @@
                </div>
                <div class="line-chart2 bar">
                    <div class=" aspect-ratio ">
-                       <canvas id="bar-chart" width="600" height="400" class="p-4 shadow bg-white rounded me-3">
+                       <canvas id="bar-chart" width="600" height="400" class="p-4 shadow bg-white rounded">
                        </canvas>
                    </div>
                </div>
@@ -228,7 +229,7 @@
        </div>
     </div>
 
-       
+
        <!-- </div> -->
    </div>
    <BottomBar />
@@ -716,9 +717,9 @@
        animation: fadeIn 600ms cubic-bezier(.57, .25, .65, 1) 1 forwards;
        opacity: 0;
        width: 100%;
-     
-    
-       
+
+
+
    }
 
    .line-chart2 {
@@ -727,8 +728,8 @@
        opacity: 0;
        width: 100%;
        margin-bottom: 100px;
-    
-       
+
+
    }
 
    .aspect-ratio {
@@ -748,13 +749,7 @@
        box-shadow: 5px 5px 6px 7px #ccc;
    }
 
-   /* .dotdropdown {
-       position: absolute;
-       top: 15%;
-       left: 90%;
-       right: 10%;
-       z-index: 5;
-   } */
+
 
    .box {
        height: 165px;
@@ -763,15 +758,20 @@
 
    .login {
        background-color: #EAF1F5;
-       height: 100vh;
-       overflow-y: hidden;
-       overflow-x: hidden;
+
        /* Center and scale the image nicely */
        padding: 0;
        margin-right: 500px;
-       background-position: center;
-       background-repeat: no-repeat;
-       background-size: cover;
+
+       margin-top: 60px;
+
+    height: 101vh;
+    width:100%;
+    overflow-x:hidden;
+    overflow-y:hidden;
+
+
+
    }
 
    #progres-chart {
@@ -813,10 +813,6 @@
        text-align: left;
    }
 
-   /* .enabled:hover {
-       text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
-       box-shadow: 0 0 10px rgba(255, 255, 255, 0.5) inset, 0 0 10px #959596;
-   } */
 
    .modal-box .modal-dialog .modal-content .modal-body .btn:focus {
        outline: none;
@@ -826,6 +822,8 @@
        display: none;
        border: none
    }
+
+
 
    /* @media (max-width: 991px) {
        .dotdropdown {

@@ -1,48 +1,30 @@
 <template>
     <div>
-      <Topbar :tabs="tabs" menuTitle="Career Quiz"></Topbar>
+      <Topbar :tabs="tabs" menuTitle="Latest News"></Topbar>
       <div class="container-fluid login wrapper w-100">
         <div class="row">
           <div class="col-lg-2 col-md-2 col-0">
             <Sidebar
               :haveTopbar="false"
-              profileName="Tan Yi Peng"
-              profileRole="Secondary 3 Student"
             />
           </div>
           <div
-            class="col-lg-4 col-md-6 col-12 bg-white mt-3 mb-3 px-3 quote me-3"
-            style="height: 250px"
+            class="col-lg-8 col-md-6 col-12 mb-3 px-3 me-3"
+            style="margin-top: 65px;"
           >
           <div class="row py-5">
-            <div class="col-8">
-              <h2>Hi {{ StudentName }}!</h2>
-              <div class="text" style="text-align: left"><Quote /></div>            
-            </div>
+            
+              
+              <div class="text" style="text-align: left"><topStories /></div>            
+            
   
-            <div class="col-4 float-end">
-              <img src="../assets/owl_svg.svg"/>
-                  
-            </div>
+            
           </div>
             
           </div>
-          <div class="col-lg-4 col-md-6 col-12">
-            <CountDown
-              v-bind:tests="tests"
-              @add-test="addTest"
-              @delete-test="deleteTest"
-            />
-          </div>
-          <div class="col-md-2"></div>
+          
         </div>
-        <div class="row">
-          <div class="col-2"></div>
-          <div class="col-9 timetable">
-            <TimeTable />
-          </div>
-          <div class="col-1"></div>
-        </div>
+        
       </div>
       <BottomBar class="bottomnav" />
     </div>
@@ -51,11 +33,9 @@
   <script>
   import Sidebar from "../components/Navigation/Sidebar.vue";
   import Topbar from "../components/Navigation/Topbar.vue";
-  import CountDown from "../components/HomePage/CountDown.vue";
-  import TimeTable from "../components/HomePage/TimeTable.vue";
-  import Quote from "../components/HomePage/Quote.vue";
+  import topStories from "../components/News/topStories.vue";
   import BottomBar from "../components/Navigation/BottomBar.vue";
-  import { auth, db } from "../../src/main";
+  import { auth, db } from "../main";
   import {
     getFirestore,
     doc,
@@ -63,25 +43,21 @@
     getDoc,
     setDoc,
     collection,
-    addDoc,
-    deleteDoc,
-    deleteField,
     arrayUnion,
     arrayRemove,
     onSnapshot,
     query,
     where,
   } from "firebase/firestore";
-  
+
+
   export default {
     name: "Dashboard",
     components: {
       Sidebar,
       Topbar,
-      CountDown,
-      TimeTable,
-      Quote,
       BottomBar,
+      topStories
     },
     data() {
       return {
@@ -90,13 +66,7 @@
       };
     },
     methods: {
-      deleteTest(id) {
-        console.log("task", id);
-        this.tests = this.tests.filter((test) => test.id !== id);
-      },
-      addTest(test) {
-        this.tests = [...this.tests, test];
-      },
+      
     },
     mounted() {
       if (localStorage.getItem("email")) {
@@ -139,6 +109,14 @@
   </script>
   
   <style scoped>
-  
+  /* .login {
+    overflow: hidden;
+  margin-top: 60px;
+  background-color: #eaf1f5;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  } */
   </style>
   

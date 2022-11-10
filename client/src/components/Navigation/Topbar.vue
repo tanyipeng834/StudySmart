@@ -5,7 +5,7 @@
         <!-- <div class="collapse navbar-collapse" id="navbarCollapse"> -->
 
 
-        <div class="d-flex">
+        <div class="d-flex" @click="dashboard">
             <img v-if="menuLogo" :src="menuLogo" alt="menu_logo" class="menu_logo" />
             <i v-else class="bx icon" :class="menuIcon" />
             <div class="logo_name">
@@ -23,16 +23,16 @@
 
             <DropdownMenu v-for="(tab, index) in tabs.filter((tab)=> tab.dropdown===true)" :key="index" :tab="tab" />
         </div>
-        <div class="d-flex ">
+        <div class="d-flex align-items-center">
 
-        <img v-if="menuIcon" :src="menuIcon" class="menuIcon"/>
-            <div class="d-flex flex-column align-items-center align-content-start align-items justify-content-center">
+        <img v-if="menuIcon" :src="menuIcon" class="menuIcon me-2 d-none d-sm-block"/>
+            <div class="d-flex flex-column align-items-center align-content-start  justify-content-center mx-auto d-none d-sm-block">
 
                 {{ StudentName }}
 
                 <p class="small mb-0">{{StudentLevel}}</p>
             </div>
-            <div class="d-flex align-items-center ms-4">
+            <div class="d-flex align-items-center  ms-4">
             <span @click="logout">
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
             </span>
@@ -96,7 +96,10 @@
             logout() {
                 localStorage.removeItem("email");
                 window.location.href = "#/login"
-            }
+            },
+            dashboard() {
+                window.location.href = "#/"
+            },
 
         },
         props: {
@@ -112,7 +115,7 @@
             },
             menuIcon: {
                 type: String,
-                default: require("@/assets/owl_face_svg.svg"),
+                default: require("@/assets/cat.svg"),
             }
 
         },
@@ -128,12 +131,12 @@
 <style scoped>
 
     .topbar {
-        position: sticky;
+        position: fixed;
         top: 0;
         width: 100%;
         height: 75px;
         color: white;
-        padding: 1rem;
+        padding-left: 1rem;
         background-color: #253F63;
         /* animation: 1s sinkIn ease-in; */
 
@@ -179,7 +182,14 @@
         border-radius: 9px;
         border-color: #aac1ce ;
         color: #253F63;
-        
+        margin-right: 13px;
+    }
+
+    @media(max-width:576px) {
+        .profilepic {
+            display: hidden;
+
+        }
     }
 
 </style>

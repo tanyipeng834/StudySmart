@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Topbar :tabs="tabs" menuTitle="Flashcards"></Topbar>
+    <Topbar :tabs="tabs" menuTitle="Quizzes"></Topbar>
     <div class="container-fluid quiz">
       <Sidebar :haveTopbar="true"></Sidebar>
       <div v-if="flashCards == false && this.multiChoiceQuiz == false">
@@ -158,7 +158,7 @@ export default {
 
 <style scoped>
 .quiz {
-  background-image: url("@/assets/cloud.jpg");
+  background-color: #EAF1F5;
   height: 100vh;
 
   /* Center and scale the image nicely */

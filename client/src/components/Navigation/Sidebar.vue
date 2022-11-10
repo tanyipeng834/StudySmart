@@ -47,7 +47,7 @@
           <span v-for="(menuItem, index) in menuItems" :key="index">
             <li>
               <a :href="menuItem.link">
-                <i class="bx" :class="menuItem.icon || 'bx-square-rounded'" />
+                <i class="bx align-center" :class="menuItem.icon || 'bx-square-rounded'" />
                 <span class="links_name">{{ menuItem.name }}</span>
               </a>
               <span class="tooltip">{{
@@ -142,7 +142,7 @@ export default {
           icon: "bx-pie-chart-alt-2",
         },
         {
-          link: "/#/quiz",
+          link: "/#/quizzes",
           name: "Quizzes",
           tooltip: "Quizzes",
           icon: "bx bxs-edit-alt",
@@ -279,12 +279,16 @@ body {
   width: 30px;
   margin: 0 10px 0 10px;
 } */
+.bx-menu{
+  padding-right: 22px;
+}
 .sidebar {
-  position: relative;
+  position: fixed;
   display: flex;
   flex-direction: column;
   position: fixed;
   left: 0;
+  top: 75px;
   height: 100%;
   /* height: 92.5%; */
   min-height: min-content;
@@ -295,6 +299,7 @@ body {
   /* padding: 6px 14px 0 14px; */
   z-index: 99;
   transition: all 0.5s ease;
+  overflow: auto;
   /* animation: slideRight 1s ease-in; */
 }
 /* @keyframes slideRight{
@@ -309,7 +314,7 @@ body {
   }
 } */
 .sidebar.open {
-  width: 250px;
+  width: 180px;
 }
 .sidebar .logo-details {
   height: 60px;
@@ -321,6 +326,7 @@ body {
 .sidebar .logo-details .icon {
   opacity: 0;
   transition: all 0.5s ease;
+  
 }
 .sidebar .logo-details .logo_name {
   color: var(--logo-title-color);
@@ -328,11 +334,13 @@ body {
   font-weight: 600;
   opacity: 0;
   transition: all 0.5s ease;
+  
 }
 .sidebar.open .logo-details .icon,
 .sidebar.open .logo-details .logo_name {
   opacity: 1;
   align-items: center;
+  
 }
 .sidebar .logo-details #btn {
   position: absolute;
@@ -354,8 +362,10 @@ body {
   height: 60px;
   min-width: 50px;
   font-size: 28px;
-  text-align: left;
+  text-align: center;
   line-height: 60px;
+  padding-left: 15px;
+
 }
 .sidebar .nav-list {
   margin-top: 20px;
