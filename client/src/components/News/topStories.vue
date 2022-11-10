@@ -26,13 +26,13 @@
   </a>
 </div> -->
 
-  <div class="container" v-for="item in items">
-    <h2>{{ title }}</h2>
-    <h5>{{ id }}</h5>
+  <div class="container" v-for="story in news">
+    <h2>{{ story.title }}</h2>
+    <h5>{{  story.id }}</h5>
     <div>
-      <img :src="image" alt="image" />
+      <img :src="story.image" alt="image" />
     </div>
-    <p>{{ content }} <a :href="url" target="_blank">read more</a></p>
+    <p>{{ story.content }} <a :href="url" target="_blank">read more</a></p>
   </div>
 </template>
 
@@ -64,6 +64,7 @@ export default {
       .then((res) => {
         for (let i = 0; i < 2; i++) {
           var data = res.data["articles"][i];
+       
           var story = {}
 
           var headline = data["title"].split("- ");
@@ -80,7 +81,7 @@ export default {
           var contents = data["content"].split("[");
           this.content = contents[0];
           story.content = this.content;
-
+  
           this.news.push(story)
           console.log(this.news)
         }
