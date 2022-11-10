@@ -10,7 +10,7 @@
           </div>
           <div
             class="col-lg-8 col-md-6 col-12 mb-3 px-3 me-3"
-            style="height: 250px"
+            style="margin-top: 65px;"
           >
           <div class="row py-5">
             
