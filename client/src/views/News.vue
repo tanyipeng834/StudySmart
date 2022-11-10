@@ -20,29 +20,13 @@
               <div class="text" style="text-align: left"><Quote /></div>            
             </div>
   
-            <div class="col-4 float-end">
-              <img src="../assets/cat.svg"/>
-                  
-            </div>
+            
           </div>
             
           </div>
-          <div class="col-lg-4 col-md-6 col-12">
-            <CountDown
-              v-bind:tests="tests"
-              @add-test="addTest"
-              @delete-test="deleteTest"
-            />
-          </div>
-          <div class="col-md-2"></div>
+          
         </div>
-        <div class="row">
-          <div class="col-2"></div>
-          <div class="col-9 timetable">
-            <TimeTable />
-          </div>
-          <div class="col-1"></div>
-        </div>
+        
       </div>
       <BottomBar class="bottomnav" />
     </div>

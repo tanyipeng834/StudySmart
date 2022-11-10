@@ -4,7 +4,7 @@ import Dashboard from "../views/Dashboard.vue";
 import Progress from "../views/Progress.vue";
 import QuizTest from "../views/QuizTest.vue";
 import Forum from "../views/Forum.vue";
-import CareerQuiz from "../views/News.vue";
+import News from "../views/News.vue";
 import MutipleChoiceTest from "@/views/MultipleChoiceTest.vue";
 
 // git
@@ -48,7 +48,7 @@ const routes = [
     component: Forum,
   },
   {
-    path: "/news",
+    path: "/News",
     name: "News",
     component: News,
   },
