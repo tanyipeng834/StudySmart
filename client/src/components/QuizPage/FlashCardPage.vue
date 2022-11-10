@@ -117,7 +117,7 @@ export default {
     },
     updateCard() {
       this.$emit("add-summary-card", [this.title, this.description]);
-      this.submit = true;
+      this.$emit("toggle-page");
       this.addToDataBase();
     },
     deleteItem(id) {
