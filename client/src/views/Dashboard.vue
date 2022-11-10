@@ -18,10 +18,11 @@
           class="col-lg-4 col-md-12 col-12 bg-white mt-5 mb-3 px-3 quote me-3"
           style="height: 250px"
         >
-        <div class="row py-5">
+        <div class="row py-3" >
           <div class="col-8">
             <h2>Hi {{ StudentName }}!</h2>
-            <div class="text" style="text-align: left"><Quote /></div>           
+            <div class="text" style="text-align: left"><Quote /></div> 
+            <a href="#/news" class="btn btn-dark" role="button">Read Latest News</a>
           </div>
   
           <div class="col-4 float-end">
