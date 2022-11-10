@@ -3,37 +3,66 @@
     <div class="text-center mt-3">
       <h1>Create a new Study Set</h1>
     </div>
+    <div class="col-3"></div>
+    <div class="col-9">
+      <div class="row d-flex content">
+        <div class="col-4">
+          <button
+            type="button"
+            class="btn btn-outline-dark new-deck mb-4"
+            @click="updateCard()"
+          >
+            Create New Deck
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="row">
     <div class="col-3"></div>
-    <div class="col-6">
-      <div class="input-group mb-3">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Title"
-          aria-label="Username"
-          aria-describedby="basic-addon1"
-          v-model="title"
-        />
+    <div class="col-9">
+      <div class="row d-flex content">
+        <div class="col-4">
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Title"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+              v-model="title"
+            />
+          </div>
+        </div>
       </div>
-      <div class="input-group mb-3">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Description"
-          aria-label="Username"
-          aria-describedby="basic-addon1"
-          v-model="description"
-        />
+      <div class="row d-flex content">
+        <div class="col-4">
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Description"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+              v-model="description"
+            />
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="row">
       <div class="col-3"></div>
-      <div class="col-6">
-        <div v-for="(card, index) in this.flashCards" :key="index">
+      <div class="col-9">
+        <button
+          class="btn btn-outline-dark"
+          @click="addFlashCards({ term: '', defination: '' })"
+        >
+          +
+        </button>
+        <div class="row">
           <FlashCard
+            v-for="(card, index) in this.flashCards"
             v-if="this.submit != null"
             :cardNumber="card.id"
             :key="card.id"
@@ -42,17 +71,6 @@
           />
         </div>
       </div>
-    </div>
-    <div class="d-flex add-card pt-3">
-      <button
-        class="btn btn-primary"
-        @click="addFlashCards({ term: '', defination: '' })"
-      >
-        +
-      </button>
-      <button type="button" class="btn btn-primary add" @click="updateCard()">
-        Create
-      </button>
     </div>
   </div>
 </template>
@@ -89,7 +107,11 @@ export default {
   },
   methods: {
     addFlashCards(item) {
-      let newId = this.flashCards[this.flashCards.length - 1].id + 1;
+      if (this.flashCards.length >= 1) {
+        var newId = this.flashCards[this.flashCards.length - 1].id + 1;
+      } else {
+        newId = 1;
+      }
       item = { ...item, id: newId };
       this.flashCards.push(item);
     },
@@ -138,19 +160,21 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:ital,wght@0,300;1,500&display=swap");
 #flash-cards {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
 }
-.add {
-  border-radius: 50%;
-  float: right;
-}
+
 .add-card {
   justify-content: center;
 }
 .header {
   z-index: 100;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}
+.content {
+  justify-content: left;
 }
 </style>

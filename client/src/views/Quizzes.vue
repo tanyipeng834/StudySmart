@@ -7,20 +7,19 @@
         <div class="row">
           <div class="col d-flex justify-content-center mt-4">
             <div class="button">
-          <button class="btn add d-block" @click="addFlashCard()">
-            <i class="fa-regular fa-pen-to-square fa-lg text-right"></i>Add
-            Flash Card
-          </button>
+              <button class="btn add d-block" @click="addFlashCard()">
+                <i class="fa-regular fa-pen-to-square fa-lg text-right"></i>Add
+                Flash Card
+              </button>
 
-          <button class="btn add d-block" @click="addQuiz()">
-            <i class="fa-regular fa-pen-to-square fa-lg text-right"></i>Add
-            Mutiple Choice Quiz
-          </button>
-        </div>
+              <button class="btn add d-block" @click="addQuiz()">
+                <i class="fa-regular fa-pen-to-square fa-lg text-right"></i>Add
+                Mutiple Choice Quiz
+              </button>
+            </div>
           </div>
         </div>
 
-        
         <div class="row">
           <div class="col-4"></div>
           <div class="col-8">
@@ -155,13 +154,10 @@ export default {
 </script>
 
 <style scoped>
-
-
 .quiz {
-  background-color: #EAF1F5;
+  background-color: #eaf1f5;
   height: 100vh;
   margin-top: 65px;
-
 
   /* Center and scale the image nicely
   background-position: center;
