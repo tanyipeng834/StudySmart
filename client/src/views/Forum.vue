@@ -5,7 +5,7 @@
       <Topbar :tabs="tabs" menuTitle="Forum" />
       <div class="row">
         <div class="col-4">
-          <Sidebar :haveTopbar="true" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
+          <Sidebar :haveTopbar="true"/>
         </div>
         <div class="col-4 ">
 
@@ -23,7 +23,7 @@
         </div>
 
 
-        <div class="col-lg-5 mt-3 col-md-5 col-sm-5 order-5">
+        <div class="col-lg-5 mt-3 col-md-5 col-sm-5 order-5 pt-3">
           <div class="row">
             <div class="col">
               <!-- <div class="input-group rounded">
@@ -35,13 +35,14 @@
               </div> -->
               <div class="col mb-3">
                 <div class="form-group mb-3">
-                  <label for="exampleFormControlTextarea1">Enter a question!</label>
+                  <label for="exampleFormControlTextarea1">Enter a question:</label>
                   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
                     v-model="postContent"></textarea>
                 </div>
               </div>
-              <div class="col text-center mb-3">
-                <p>Choose a subject!</p>
+              <div class="row bg-white pt-2 mb-3">
+                <div class="col-4 text-center mb-3">
+                <p>Choose a subject:</p>
                 <div class="dropdown">
                   <select class="rounded bg-secondary text-white" v-model="subject">
                     <option value="English">English</option>
@@ -61,7 +62,7 @@
                   </select>
                 </div>
               </div>
-              <div class="col text-center">
+              <div class="col-4 text-center">
                 <p>Choose a stream!</p>
                 <div>
                   <select class="bg-secondary rounded text-white mb-3" v-model="stream">
@@ -71,8 +72,7 @@
                   </select>
                 </div>
               </div>
-              <div class="row">
-                <div class="col d-flex justify-content-center mb-3">
+              <div class="col-4 d-flex justify-content-center mb-3 align-middle">
                   <div>
                     <button class="btn btn-primary px-4" @click="addPost()">
                       Post
@@ -80,6 +80,7 @@
                   </div>
                 </div>
               </div>
+
             </div>
 
 
@@ -121,8 +122,7 @@
                         <div class="card-body">
                           <div class="media-body me-3">
                             <div class="d-flex  align-items-center justify-content-start ">
-                              <div class="profile-wrap bg-secondary"><img class="profile-img"
-                                  src="../assets/owl_face_svg.svg" alt=""></div>
+                              <div class="profile-wrap bg-secondary"><img class="profile-img" src="../assets/cat.svg" alt=""></div>
                               <h5 class="m-0 ms-1">{{
                               post.username
                             }}</h5>

@@ -11,8 +11,7 @@
         <div class="col-lg-2 col-md-2">
           <Sidebar
             :haveTopbar="false"
-            profileName="Tan Yi Peng"
-            profileRole="Secondary 3 Student"
+            
           />
         </div>
         <div
@@ -26,7 +25,7 @@
           </div>
   
           <div class="col-4 float-end">
-            <img src="../assets/owl_svg.svg"/>
+            <img src="../assets/cat_dash.svg"/>
                
           </div>
         </div>
@@ -152,7 +151,6 @@
  <style scoped>
  .quote {
   position: relative;
-  
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -177,6 +175,9 @@
   text-align: center;
   display: flex;
   align-items: center;
+ }
+ img {
+  max-height: 140px;
  }
  </style>
   

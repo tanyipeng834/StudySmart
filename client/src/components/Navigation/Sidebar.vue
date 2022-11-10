@@ -142,7 +142,7 @@ export default {
           icon: "bx-pie-chart-alt-2",
         },
         {
-          link: "/#/quiz",
+          link: "/#/quizzes",
           name: "Quizzes",
           tooltip: "Quizzes",
           icon: "bx bxs-edit-alt",
