@@ -16,11 +16,7 @@
         <div class="col-8">
           <div class="row mt-5">
             <div class="col-md-6 mt-3">
-              <div
-                class="card"
-                style="width: 18rem"
-                @click="redirect('flashcards')"
-              >
+              <div class="card" style="width: 18rem">
                 <div class="card-body">
                   <h5 class="card-title">FlashCards</h5>
                   <p class="card-text">
@@ -31,7 +27,7 @@
               </div>
             </div>
             <div class="col-md-6 mt-3">
-              <div class="card" style="width: 18rem" @click="redirect('multi')">
+              <div class="card" style="width: 18rem">
                 <div class="card-body">
                   <h5 class="card-title">Quizzes</h5>
                   <p class="card-text">
@@ -69,15 +65,7 @@ export default {
       tabs: [],
     };
   },
-  methods: {
-    redirect(link) {
-      if (link == "flashcards") {
-        window.location.href = "/#/quiz/flashcards";
-      } else {
-        window.location.href = "/#/quiz/multi";
-      }
-    },
-  },
+  methods: {},
 };
 </script>
 <style scoped>

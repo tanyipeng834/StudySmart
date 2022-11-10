@@ -6,6 +6,9 @@ import QuizTest from "../views/QuizTest.vue";
 import Forum from "../views/Forum.vue";
 import News from "../views/News.vue";
 import MutipleChoiceTest from "@/views/MultipleChoiceTest.vue";
+import Quiz from "@/views/Quiz.vue";
+import FlashCard from "@/views/FlashCard.vue";
+import MutipleChoiceQuiz from "@/views/MutipleChoiceQuiz.vue";
 
 // git
 import Quizzes from "../views/Quizzes.vue";
@@ -26,6 +29,22 @@ const routes = [
     name: "Quizzes",
     component: Quizzes,
   },
+  {
+    path: "/quiz",
+    name: "Quiz",
+    component: Quiz,
+  },
+  {
+    path: "/quiz/flashcards",
+    name: "flashcards",
+    component: FlashCard,
+  },
+  {
+    path: "/quiz/multi",
+    name: "multi",
+    component: MutipleChoiceQuiz,
+  },
+
   {
     path: "/quiz/:id",
     name: "QuizTest",

@@ -156,8 +156,10 @@ export default {
 <style scoped>
 .quiz {
   background-color: #eaf1f5;
-  height: 100vh;
+
   margin-top: 65px;
+  width: 100vw;
+  min-height: 100vh;
 
   /* Center and scale the image nicely
   background-position: center;
