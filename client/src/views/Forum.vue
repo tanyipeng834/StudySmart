@@ -94,7 +94,7 @@
                           <div class="row align-items-center">
                             <div class="col">
 
-                            
+
                             <span class="badge rounded-pill text-bg-info me-1">{{ post.subject }}
                             </span>
                             <span class="badge rounded-pill text-bg-info me-1">{{ post.level }}
@@ -120,8 +120,8 @@
                         </div>
                         <div class="card-body">
                           <div class="media-body me-3">
-                            <div class="d-flex profile-wrap align-items-center bg-secondary">
-                              <img class="profile-img" src="../assets/owl_face_svg.svg" alt="">
+                            <div class="d-flex  align-items-center justify-content-start ">
+                              <div class="profile-wrap bg-secondary"><img class="profile-img" src="../assets/owl_face_svg.svg" alt=""></div>
                               <h5 class="m-0 ms-1">{{
                               post.username
                             }}</h5>
@@ -136,14 +136,14 @@
                             {{ post.postContent }}
                           </p>
                           <div>
-                            <button class="btn btn-block" @click="addLike(post)">
-                              <span v-if="!LikedPost.includes(post.id)"><i class="fa fa-heart "></i> Like</span>
-                              <span v-else><i class="fa fa-heart text-danger"></i> Liked</span>
+                            <button class="btn btn-block p-0" @click="addLike(post)">
+                              <span v-if="!LikedPost.includes(post.id)" class="small"><i class="fa-regular fa-heart "></i> Like</span>
+                              <span v-else class="small"><i class="fa fa-heart text-danger"></i> Liked</span>
                             </button>
                           </div>
 
                           <div>
-                            <span class="ms-2">{{ post.numLikes }} have liked this</span>
+                            <span class="">{{ post.numLikes }} have liked this</span>
                           </div>
                         </div>
                         <div
@@ -180,7 +180,7 @@
               </div>
             </div>
           </div>
-          
+
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 order-md-last order-2">
             <div class="row">
@@ -318,8 +318,8 @@
     },
     mounted() {
       this.init().then()
-      
-      
+
+
     },
     methods: {
       async init() {
@@ -352,7 +352,7 @@
 
           })
           this.posts = posts
-          
+
 
 
         });
@@ -364,7 +364,7 @@
         this.init().then(() => {
 
           for (let post of this.posts) {
-            
+
             if (post.username == this.search) {
               console.log(`username: ${post.username}`)
               console.log(`search: ${this.search}`)
@@ -555,9 +555,12 @@
   }
 
   .profile-wrap {
-    width: 10%;
-    border-radius: 50%;
-
+    /* border-radius: 50%; */
+ display: inline-block;
+ border-radius: 50%;
+ aspect-ratio: 1;
+display: flex;
+transform: scale(.8);
   }
 
   .profile-img {
@@ -573,5 +576,5 @@
     color: white !important;
     border-color: #253F63 !important;
   }
-  
+
 </style>
