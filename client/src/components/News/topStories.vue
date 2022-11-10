@@ -1,8 +1,8 @@
 <template>
-    <div class="container d-flex ">
-        <div class="card" style="width: 23rem" v-for="story in news">
-    <img class="card-img-top" :src="story.image" alt="Card image cap" />
-    <div class="card-body">
+    <div class="container d-flex">
+        <div class="card col-md-4 col-4" style="min-width: 20rem" v-for="story in news">
+        <img class="card-img-top" :src="story.image" alt="Card image cap" />
+        <div class="card-body">
       <h5 class="card-title">{{ story.title }}</h5>
       <p class="card-text">
         <div id="id">{{ story.id }}</div>
@@ -56,6 +56,7 @@ export default {
 
           var contents = data["content"].split("[");
           story.content = contents[0];
+          console.log(story.content)
 
           this.news.push(story);
           console.log(this.news);
