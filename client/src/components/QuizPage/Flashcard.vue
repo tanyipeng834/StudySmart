@@ -1,28 +1,33 @@
 <template>
-  <div class="container-fluid">
-    <div class="card mt-4">
+  <div class="col-md-4">
+    <div class="card mt-4" style="width: 18rem">
       <div class="card-header">
-        {{ cardNumber }}
+        <span>{{ cardNumber }}</span>
         <button
+          id="btn-close"
           type="button"
           class="btn-close"
           aria-label="Close"
           @click="deleteItem()"
         ></button>
       </div>
-      <div class="card-body d-flex">
-        <input
-          v-model="this.term"
-          placeholder="Term"
-          type="text"
-          class="ml-4"
-        />
-        <input
-          v-model="this.defination"
-          placeholder="Definition"
-          type="text"
-          class="ml-4"
-        />
+      <div class="card-body">
+        <div>
+          <input
+            v-model="this.term"
+            placeholder="Term"
+            type="text"
+            class="mt-5 w-100"
+          />
+        </div>
+        <div>
+          <input
+            v-model="this.defination"
+            placeholder="Definition"
+            type="text"
+            class="mt-5 w-100"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -70,7 +75,7 @@ input:focus {
 .card-body {
   justify-content: space-around;
 }
-.delete {
-  float: right;
+#btn-close {
+  margin-left: 90%;
 }
 </style>
