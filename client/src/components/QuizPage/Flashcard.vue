@@ -1,16 +1,20 @@
 <template>
+  <div class="container-fluid">
+
+ 
   <div class="card mt-4">
     <div class="card-header">{{ cardNumber }}</div>
     <div class="card-body d-flex">
       <input v-model="this.term" placeholder="Term" type="text" class="ml-4" />
       <input
         v-model="this.defination"
-        placeholder="Defination"
+        placeholder="Definition"
         type="text"
         class="ml-4"
       />
     </div>
   </div>
+</div>
 </template>
 
 <script>

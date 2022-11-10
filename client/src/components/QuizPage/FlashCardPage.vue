@@ -1,6 +1,6 @@
 <template>
   <div class="row header">
-    <div class="text-center">
+    <div class="text-center mt-3">
       <h1>Create a new Study Set</h1>
     </div>
   </div>

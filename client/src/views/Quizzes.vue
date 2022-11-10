@@ -5,15 +5,8 @@
       <Sidebar :haveTopbar="true"></Sidebar>
       <div v-if="flashCards == false && this.multiChoiceQuiz == false">
         <div class="row">
-          <div class="col-md-4"></div>
-        </div>
-
-        <div class="row">
-          <div class="col-3"></div>
-          <div class="col-3 mt-5"><h3 id="flash-cards">Flashcards</h3></div>
-        </div>
-
-        <div class="button">
+          <div class="col d-flex justify-content-center mt-4">
+            <div class="button">
           <button class="btn add d-block" @click="addFlashCard()">
             <i class="fa-regular fa-pen-to-square fa-lg text-right"></i>Add
             Flash Card
@@ -24,6 +17,10 @@
             Mutiple Choice Quiz
           </button>
         </div>
+          </div>
+        </div>
+
+        
         <div class="row">
           <div class="col-4"></div>
           <div class="col-8">
@@ -158,14 +155,18 @@ export default {
 </script>
 
 <style scoped>
+
+
 .quiz {
   background-color: #EAF1F5;
   height: 100vh;
+  margin-top: 65px;
 
-  /* Center and scale the image nicely */
+
+  /* Center and scale the image nicely
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
 }
 #flash-cards {
   font-family: Arial, Helvetica, sans-serif;
