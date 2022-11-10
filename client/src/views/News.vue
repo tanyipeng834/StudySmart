@@ -1,6 +1,6 @@
 <template>
     <div>
-      <Topbar :tabs="tabs" menuTitle="Career Quiz"></Topbar>
+      <Topbar :tabs="tabs" menuTitle="Latest News"></Topbar>
       <div class="container-fluid login wrapper w-100">
         <div class="row">
           <div class="col-lg-2 col-md-2 col-0">
@@ -9,14 +9,14 @@
             />
           </div>
           <div
-            class="col-lg-4 col-md-6 col-12 bg-white mt-5 mb-3 px-3 topStories me-3"
+            class="col-lg-8 col-md-6 col-12 mb-3 px-3 me-3"
             style="height: 250px"
           >
           <div class="row py-5">
-            <div class="col-8">
-              <h2>Hi {{ StudentName }}!</h2>
+            
+              
               <div class="text" style="text-align: left"><topStories /></div>            
-            </div>
+            
   
             
           </div>
@@ -43,9 +43,6 @@
     getDoc,
     setDoc,
     collection,
-    addDoc,
-    deleteDoc,
-    deleteField,
     arrayUnion,
     arrayRemove,
     onSnapshot,
@@ -112,6 +109,14 @@
   </script>
   
   <style scoped>
-  
+  /* .login {
+    overflow: hidden;
+  margin-top: 60px;
+  background-color: #eaf1f5;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  } */
   </style>
   

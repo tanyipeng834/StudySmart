@@ -1,29 +1,43 @@
 <template>
-  <p>{{ quote }}</p>
+  <h2>{{ title }}</h2>
+  <div>
+    <img src= " {{ image }} " alt="image">
+  </div>
+  <p> {{ content }} <a href= "{{ url }}">read more</a></p>
+  
 </template>
 
 <script>
 import axios from "axios";
 
 export default {
-  name: "Quote",
+  name: "News",
 
   data() {
     return {
-      quote: "",
+      title: "",
+      url: "",
+      image: "",
+      content: "",
     };
   },
 
   mounted() {
     axios
-      .get("https://api.api-ninjas.com/v1/quotes?category=education", {
+      .get("https://newsapi.org/v2/top-headlines?country=sg&apiKey=796bf7e93e914141a649d4eadb2695a9", {
         headers: {
-          "X-Api-Key": "fjsi9Ri0Wh4IBEwwIdlqRg==vIg0o3IgilQ5HVJi",
+          
         },
       })
       .then((res) => {
-        var data = res.data[0]["quote"];
-        this.quote = data;
+        var data = res.data['articles'][0];
+        this.title = data['title'];
+        this.url = data['url'];
+        this.image = data['urlToImage'];
+        console.log(this.image)
+
+        var contents = data['content'].split('[');
+        this.content = contents[0];
       })
       .catch((err) => {
         alert(err.message);
