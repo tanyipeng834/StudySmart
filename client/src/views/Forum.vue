@@ -2,7 +2,7 @@
   <div>
 
     <div class="container-fluid p-0 main">
-      <Topbar :tabs="tabs" menuTitle="Forum"/>
+      <Topbar :tabs="tabs" menuTitle="Forum" />
       <div class="row">
         <div class="col-4">
           <Sidebar :haveTopbar="true"/>
@@ -26,13 +26,13 @@
         <div class="col-lg-5 mt-3 col-md-5 col-sm-5 order-5 pt-3">
           <div class="row">
             <div class="col">
-              <div class="input-group rounded">
+              <!-- <div class="input-group rounded">
                 <input v-model="search" class="form-control rounded mb-3" placeholder="Search post by username!"
                   aria-label="Search" aria-describedby="search-addon" />
                 <button @click="searchUserPost()" class="input-group-text border-0 mb-3" id="search-addon">
                   <i class="fas fa-search"></i>
                 </button>
-              </div>
+              </div> -->
               <div class="col mb-3">
                 <div class="form-group mb-3">
                   <label for="exampleFormControlTextarea1">Enter a question:</label>
@@ -80,7 +80,7 @@
                   </div>
                 </div>
               </div>
-           
+
             </div>
 
 
@@ -96,12 +96,12 @@
                             <div class="col">
 
 
-                            <span class="badge rounded-pill text-bg-info me-1">{{ post.subject }}
-                            </span>
-                            <span class="badge rounded-pill text-bg-info me-1">{{ post.level }}
-                            </span>
-                            <span class="badge rounded-pill text-bg-info me-1">{{ post.stream }}
-                            </span>
+                              <span class="badge rounded-pill text-bg-info me-1">{{ post.subject }}
+                              </span>
+                              <span class="badge rounded-pill text-bg-info me-1">{{ post.level }}
+                              </span>
+                              <span class="badge rounded-pill text-bg-info me-1">{{ post.stream }}
+                              </span>
                             </div>
                           </div>
 
@@ -138,7 +138,8 @@
                           </p>
                           <div>
                             <button class="btn btn-block p-0" @click="addLike(post)">
-                              <span v-if="!LikedPost.includes(post.id)" class="small"><i class="fa-regular fa-heart "></i> Like</span>
+                              <span v-if="!LikedPost.includes(post.id)" class="small"><i
+                                  class="fa-regular fa-heart "></i> Like</span>
                               <span v-else class="small"><i class="fa fa-heart text-danger"></i> Liked</span>
                             </button>
                           </div>
@@ -184,88 +185,88 @@
 
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 order-md-last order-2">
-            <div class="row">
-              <div class="col d-flex justify-content-center">
-                <div class="card" style="width: 18rem; margin-top: 110px">
-                  <div class="card">
-                    <div class="card-header">Filter by</div>
-                  </div>
-                  <ul class="list-group list-group-flush p-1">
-                       <!-- <li class="list-group-item">
+          <div class="row">
+            <div class="col d-flex justify-content-center">
+              <div class="card" style="width: 18rem; margin-top: 110px">
+                <div class="card">
+                  <div class="card-header">Filter by</div>
+                </div>
+                <ul class="list-group list-group-flush p-1">
+                  <li class="list-group-item">
                       <div class="input-group-sm">
                         <strong>Username</strong> <br />
                         <input type="text"  v-model="search" class="form-control ">
                       </div>
 
 
-                    </li> -->
-                    <li class="list-group-item">
-
-                      <strong>Year</strong> <br />
-                      <div class="dropdown">
-                        <select class="rounded bg-secondary text-white" v-model="yearChosen">
-                          <option value="Secondary 1">Secondary 1</option>
-                          <option value="Secondary 2">Secondary 2</option>
-                          <option value="Secondary 3">Secondary 3</option>
-                          <option value="Secondary 4">Secondary 4</option>
-                          <option value="Secondary 5">Secondary 5</option>
-                        </select>
-                      </div>
-
-
                     </li>
+                  <li class="list-group-item">
 
-                    <li class="list-group-item">
-                      <strong>Subject</strong> <br />
-
-                      <div class="dropdown">
-                        <select multiple class="rounded bg-secondary text-white" v-model="subjectChosen">
-                          <option value="English">English</option>
-                          <option value="Chinese">Chinese</option>
-                          <option value="Elementary Math">Elementary Math</option>
-                          <option value="Additional Math">Additional Math</option>
-                          <option value="Physics">Physics</option>
-                          <option value="Chemistry">Chemistry</option>
-                          <option value="Biology">Biology</option>
-                          <option value="History">History</option>
-                          <option value="Geography">Geography</option>
-                          <option value="Social Studies">Social Studies</option>
-                          <option value="Principles of Account">
-                            Principles of Account
-                          </option>
-                          <option value="Literature">Literature</option>
-                        </select>
-                      </div>
+                    <strong>Year</strong> <br />
+                    <div class="dropdown">
+                      <select class="rounded bg-secondary text-white" v-model="yearChosen">
+                        <option value="Secondary 1">Secondary 1</option>
+                        <option value="Secondary 2">Secondary 2</option>
+                        <option value="Secondary 3">Secondary 3</option>
+                        <option value="Secondary 4">Secondary 4</option>
+                        <option value="Secondary 5">Secondary 5</option>
+                      </select>
+                    </div>
 
 
+                  </li>
 
-                    </li>
-                    <li class="list-group-item">
-                      <strong>Stream</strong> <br>
-                      <div class="dropdown">
-                        <select class="rounded bg-secondary text-white" v-model="streamChosen">
-                          <option value="Express">Express</option>
-                          <option value="Normal Academic">Normal Academic</option>
-                          <option value="Normal Technical">Normal Technical</option>
-                        </select>
-                      </div>
+                  <li class="list-group-item">
+                    <strong>Subject</strong> <br />
+
+                    <div class="dropdown">
+                      <select multiple class="rounded bg-secondary text-white" v-model="subjectChosen">
+                        <option value="English">English</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Elementary Math">Elementary Math</option>
+                        <option value="Additional Math">Additional Math</option>
+                        <option value="Physics">Physics</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="Biology">Biology</option>
+                        <option value="History">History</option>
+                        <option value="Geography">Geography</option>
+                        <option value="Social Studies">Social Studies</option>
+                        <option value="Principles of Account">
+                          Principles of Account
+                        </option>
+                        <option value="Literature">Literature</option>
+                      </select>
+                    </div>
 
 
-                    </li>
-                    <li class="list-group-item text-center d-flex justify-content-between">
-                      <button class="btn btn-primary" @click="filter()">
-                        Submit
-                      </button>
-                      <button class="btn btn-primary" @click="init()">
-                        Clear
-                      </button>
-                      <div></div>
-                    </li>
-                  </ul>
-                </div>
+
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Stream</strong> <br>
+                    <div class="dropdown">
+                      <select class="rounded bg-secondary text-white" v-model="streamChosen">
+                        <option value="Express">Express</option>
+                        <option value="Normal Academic">Normal Academic</option>
+                        <option value="Normal Technical">Normal Technical</option>
+                      </select>
+                    </div>
+
+
+                  </li>
+                  <li class="list-group-item text-center d-flex justify-content-between">
+                    <button class="btn btn-primary" @click="filter()">
+                      Submit
+                    </button>
+                    <button class="btn btn-primary" @click="init()">
+                      Clear
+                    </button>
+                    <div></div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
     <BottomBar class="bottomnav" />
@@ -309,8 +310,7 @@
       return {
         tabs: [],
 
-        posts: [
-        ],
+        posts: [],
         postContent: "",
         subject: "",
         stream: "",
@@ -325,7 +325,7 @@
         postIDs: [],
         email: '',
         level: '',
-        allPosts:[],
+        allPosts: [],
       };
     },
     mounted() {
@@ -355,8 +355,8 @@
           const posts = [];
           querySnapshot.forEach((doc) => {
             if (doc.id != 'ignore') {
-             var newData = doc.data()
-              newData["id"]=doc.id
+              var newData = doc.data()
+              newData["id"] = doc.id
               posts.push(newData);
               this.postIDs.push(doc.id)
 
@@ -364,25 +364,25 @@
 
           })
           this.posts = posts
-          this.allPosts=posts
+          this.allPosts = posts
 
 
 
         });
       },
-     async searchUserPost() {
+      async searchUserPost() {
 
 
-      var resultPosts = []
-          for (let post of this.allPosts) {
+        var resultPosts = []
+        for (let post of this.allPosts) {
 
-            if (post.username == this.search) {
-              console.log(`username: ${post.username}`)
-              console.log(`search: ${this.search}`)
-              resultPosts.push(post)
-            }
-         }
-            this.posts = resultPosts
+          if (post.username == this.search) {
+            console.log(`username: ${post.username}`)
+            console.log(`search: ${this.search}`)
+            resultPosts.push(post)
+          }
+        }
+        this.posts = resultPosts
 
 
 
@@ -460,20 +460,27 @@
           newPost.postContent = this.postContent;
           newPost.subject = this.subject;
           newPost.stream = this.stream;
-          var date = new Date().toLocaleDateString();
+          // var date = new Date().toLocaleDateString();
 
-          var day = date.slice(0, 2);
-          var month = date.slice(3, 5);
-          date = month + "/" + day + date.slice(5);
-          this.date = date
+          // var day = date.slice(0, 2);
+          // var month = date.slice(3, 5);
+          // date = month + "/" + day + date.slice(5);
+          const date = new Date()
+          let day = date.getDate()
+          let month = date.getMonth() + 1
+          let year = date.getFullYear()
+          let dateStr = `${month}/${day}/${year}`
+          this.date = dateStr
           newPost.date_added = date;
           newPost.comments = [];
           newPost.numLikes = 0
           this.posts.unshift(newPost);
+
           await addDoc(collection(db, "posts"), {
             postContent: this.postContent,
             username: this.name,
-            date_added: new Date().toLocaleString().split(",")[0],
+            date_added: this.date,
+            // date_added: new Date().toLocaleString().split(",")[0],
             level: this.level,
             stream: this.stream,
             comments: [],
@@ -498,9 +505,9 @@
         await deleteDoc(doc(db, "posts", id)).then(() => {
           console.log('deleted')
         })
-         await updateDoc(doc(db, "users", this.email), {
-            LikedPost: arrayRemove(id)
-          })
+        await updateDoc(doc(db, "users", this.email), {
+          LikedPost: arrayRemove(id)
+        })
 
 
       },
@@ -514,12 +521,12 @@
             }
 
           }
-          // for (let username of this.search) {
-          //   if (post.username == username && resultPosts.indexOf(post) == -1) {
-          //     resultPosts.push(post)
-          //   }
+          for (let username of this.search) {
+            if (post.username == username && resultPosts.indexOf(post) == -1) {
+              resultPosts.push(post)
+            }
 
-          // }
+          }
           for (let year of this.yearChosen) {
             if (year == post.level && resultPosts.indexOf(post) == -1) {
               resultPosts.push(post)
@@ -563,33 +570,33 @@
     margin-top: 60px;
     background-color: #eaf1f5;
     height: 100%;
-    width:100%;
-    overflow-x:hidden;
-    overflow-y:hidden;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
 
   }
 
   .profile-wrap {
     /* border-radius: 50%; */
- display: inline-block;
- border-radius: 50%;
- aspect-ratio: 1;
-display: flex;
-transform: scale(.8);
+    display: inline-block;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    display: flex;
+    transform: scale(.8);
   }
 
   .profile-img {
     padding: .3em;
   }
 
-  .bg-secondary{
+  .bg-secondary {
     background-color: #F2F2F2 !important;
     color: black !important;
   }
-  .btn-primary{
+
+  .btn-primary {
     background-color: #253F63 !important;
     color: white !important;
     border-color: #253F63 !important;
   }
-
 </style>
