@@ -190,7 +190,16 @@
                     <div class="card-header">Filter by</div>
                   </div>
                   <ul class="list-group list-group-flush p-1">
+                       <!-- <li class="list-group-item">
+                      <div class="input-group-sm">
+                        <strong>Username</strong> <br />
+                        <input type="text"  v-model="search" class="form-control ">
+                      </div>
+
+
+                    </li> -->
                     <li class="list-group-item">
+
                       <strong>Year</strong> <br />
                       <div class="dropdown">
                         <select class="rounded bg-secondary text-white" v-model="yearChosen">
@@ -204,6 +213,7 @@
 
 
                     </li>
+
                     <li class="list-group-item">
                       <strong>Subject</strong> <br />
 
@@ -313,7 +323,8 @@
         LikedPost: [],
         postIDs: [],
         email: '',
-        level: ''
+        level: '',
+        allPosts:[],
       };
     },
     mounted() {
@@ -352,30 +363,28 @@
 
           })
           this.posts = posts
+          this.allPosts=posts
 
 
 
         });
       },
-      searchUserPost() {
-        var resultPosts = []
-        console.log(this.search)
-        console.log(this.posts)
-        this.init().then(() => {
+     async searchUserPost() {
 
-          for (let post of this.posts) {
+
+      var resultPosts = []
+          for (let post of this.allPosts) {
 
             if (post.username == this.search) {
               console.log(`username: ${post.username}`)
               console.log(`search: ${this.search}`)
               resultPosts.push(post)
             }
-          }
+         }
+            this.posts = resultPosts
 
 
-        })
-        this.posts = resultPosts
-        console.log(this.posts)
+
 
 
       },
@@ -497,15 +506,19 @@
 
       filter() {
         var resultPosts = []
-
-        for (let post of this.posts) {
-          console.log(post)
+        for (let post of this.allPosts) {
           for (let subject of this.subjectChosen) {
             if (post.subject == subject && resultPosts.indexOf(post) == -1) {
               resultPosts.push(post)
             }
 
           }
+          // for (let username of this.search) {
+          //   if (post.username == username && resultPosts.indexOf(post) == -1) {
+          //     resultPosts.push(post)
+          //   }
+
+          // }
           for (let year of this.yearChosen) {
             if (year == post.level && resultPosts.indexOf(post) == -1) {
               resultPosts.push(post)
@@ -517,6 +530,7 @@
           }
         }
         this.posts = resultPosts
+
 
       },
 
