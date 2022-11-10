@@ -1,7 +1,7 @@
 <template>
     <div class="container d-flex">
-        <div class="card col-md-4 col-4" style="min-width: 20rem" v-for="story in news">
-        <img class="card-img-top" :src="story.image" alt="Card image cap" />
+        <div class="card col-md-4 col-12" style="min-width: 20rem" v-for="story in news">
+        <img class="card-img-top" :src="story.image" alt="no image" />
         <div class="card-body">
       <h5 class="card-title">{{ story.title }}</h5>
       <p class="card-text">
@@ -11,7 +11,6 @@
       <a :href="story.url" target="_blank" class="btn btn-primary">Read More</a>
     </div>
     </div>
-  
   </div>
 
 </template>
@@ -53,26 +52,22 @@ export default {
 
           story.url = data["url"];
           story.image = data["urlToImage"];
+          if (story.image == null) {
+            story.image = "../../assets/news.jpg"
+          }
 
-          var contents = data["content"].split("[");
+          if (data["content"] != null) {
+            var contents = data["content"].split("[");
           story.content = contents[0];
-          console.log(story.content)
+          } else {
+            story.content = "";
+          }
+         
 
           this.news.push(story);
           console.log(this.news);
         }
 
-        // var data = res.data["articles"][0];
-
-        // var headline = data["title"].split("- ");
-        // this.title = headline[0];
-        // this.id = headline[1];
-
-        // this.url = data["url"];
-        // this.image = data["urlToImage"];
-
-        // var contents = data["content"].split("[");
-        // this.content = contents[0];
       })
       .catch((err) => {
         alert(err.message);

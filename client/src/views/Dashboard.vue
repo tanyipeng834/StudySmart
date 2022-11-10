@@ -15,7 +15,7 @@
           />
         </div>
         <div
-          class="col-lg-4 col-md-12 col-12 bg-white mt-3 mb-3 px-3 quote me-3"
+          class="col-lg-4 col-md-12 col-12 bg-white mt-5 mb-3 px-3 quote me-3"
           style="height: 250px"
         >
         <div class="row py-5">
