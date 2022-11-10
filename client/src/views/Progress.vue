@@ -11,7 +11,7 @@
        </div>
        <div class="row ">
            <div class="col-4">
-               <Sidebar :haveTopbar="true" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
+               <Sidebar :haveTopbar="true" />
            </div>
            <div class="col-4 ">
 

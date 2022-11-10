@@ -5,7 +5,7 @@
       <Topbar :tabs="tabs" menuTitle="Forum"/>
       <div class="row">
         <div class="col-4">
-          <Sidebar :haveTopbar="true" profileName="Tan Yi Peng" profileRole="Secondary 3 Student" />
+          <Sidebar :haveTopbar="true"/>
         </div>
         <div class="col-4 ">
 
@@ -23,7 +23,7 @@
         </div>
 
 
-        <div class="col-lg-5 mt-3 col-md-5 col-sm-5 order-5">
+        <div class="col-lg-5 mt-3 col-md-5 col-sm-5 order-5 pt-3">
           <div class="row">
             <div class="col">
               <div class="input-group rounded">

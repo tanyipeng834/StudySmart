@@ -11,8 +11,7 @@
         <div class="col-lg-2 col-md-2">
           <Sidebar
             :haveTopbar="false"
-            profileName="Tan Yi Peng"
-            profileRole="Secondary 3 Student"
+            
           />
         </div>
         <div
