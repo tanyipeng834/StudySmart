@@ -21,7 +21,7 @@
             </div>
   
             <div class="col-4 float-end">
-              <img src="../assets/owl_svg.svg"/>
+              <img src="../assets/cat.svg"/>
                   
             </div>
           </div>

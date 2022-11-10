@@ -121,7 +121,7 @@
                         <div class="card-body">
                           <div class="media-body me-3">
                             <div class="d-flex  align-items-center justify-content-start ">
-                              <div class="profile-wrap bg-secondary"><img class="profile-img" src="../assets/owl_face_svg.svg" alt=""></div>
+                              <div class="profile-wrap bg-secondary"><img class="profile-img" src="../assets/cat.svg" alt=""></div>
                               <h5 class="m-0 ms-1">{{
                               post.username
                             }}</h5>
