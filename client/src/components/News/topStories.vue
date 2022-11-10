@@ -1,9 +1,10 @@
 <template>
   <h2>{{ title }}</h2>
+  <h5>{{ id }}</h5>
   <div>
-    <img src= " {{ image }} " alt="image">
+    <img :src=image alt="image">
   </div>
-  <p> {{ content }} <a href= "{{ url }}">read more</a></p>
+  <p> {{ content }} <a :href= "url" target="_blank">read more</a></p>
   
 </template>
 
@@ -15,6 +16,7 @@ export default {
 
   data() {
     return {
+      id: "",
       title: "",
       url: "",
       image: "",
@@ -31,10 +33,13 @@ export default {
       })
       .then((res) => {
         var data = res.data['articles'][0];
-        this.title = data['title'];
+
+        var headline = data['title'].split('- ');
+        this.title = headline[0];
+        this.id = headline[1];
+        
         this.url = data['url'];
         this.image = data['urlToImage'];
-        console.log(this.image)
 
         var contents = data['content'].split('[');
         this.content = contents[0];
@@ -46,5 +51,12 @@ export default {
 };
 </script>
 <style scoped>
-
+img {
+    height: 425px;
+    width: auto;
+}
+h5 {
+    font-style: italic;
+    font-weight: 400;
+}
 </style> 
