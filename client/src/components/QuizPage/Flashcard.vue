@@ -1,20 +1,31 @@
 <template>
   <div class="container-fluid">
-
- 
-  <div class="card mt-4">
-    <div class="card-header">{{ cardNumber }}</div>
-    <div class="card-body d-flex">
-      <input v-model="this.term" placeholder="Term" type="text" class="ml-4" />
-      <input
-        v-model="this.defination"
-        placeholder="Definition"
-        type="text"
-        class="ml-4"
-      />
+    <div class="card mt-4">
+      <div class="card-header">
+        {{ cardNumber }}
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          @click="deleteItem()"
+        ></button>
+      </div>
+      <div class="card-body d-flex">
+        <input
+          v-model="this.term"
+          placeholder="Term"
+          type="text"
+          class="ml-4"
+        />
+        <input
+          v-model="this.defination"
+          placeholder="Definition"
+          type="text"
+          class="ml-4"
+        />
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -30,7 +41,11 @@ export default {
   props: {
     cardNumber: Number,
   },
-  methods: {},
+  methods: {
+    deleteItem() {
+      this.$emit("deleteItem", this.cardNumber);
+    },
+  },
   updated() {
     console.log(this.term);
     console.log(this.defination);
@@ -54,5 +69,8 @@ input:focus {
 }
 .card-body {
   justify-content: space-around;
+}
+.delete {
+  float: right;
 }
 </style>

@@ -38,6 +38,7 @@
             :cardNumber="card.id"
             :key="card.id"
             @update-flash-card="updateFlashCards"
+            @delete-item="deleteItem"
           />
         </div>
       </div>
@@ -97,6 +98,17 @@ export default {
       this.submit = true;
       this.addToDataBase();
     },
+    deleteItem(id) {
+      const results = this.flashCards.filter((card) => {
+        if (card.id == id) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+      this.flashCards = results;
+    },
+
     async addToDataBase() {
       let email = localStorage.getItem("email");
       console.log(email);
