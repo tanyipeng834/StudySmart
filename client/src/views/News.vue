@@ -55,7 +55,7 @@
   import TimeTable from "../components/HomePage/TimeTable.vue";
   import Quote from "../components/HomePage/Quote.vue";
   import BottomBar from "../components/Navigation/BottomBar.vue";
-  import { auth, db } from "../../src/main";
+  import { auth, db } from "../main";
   import {
     getFirestore,
     doc,
