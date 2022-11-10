@@ -151,7 +151,6 @@
  <style scoped>
  .quote {
   position: relative;
-  
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -176,6 +175,9 @@
   text-align: center;
   display: flex;
   align-items: center;
+ }
+ img {
+  max-height: 140px;
  }
  </style>
   

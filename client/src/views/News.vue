@@ -9,13 +9,13 @@
             />
           </div>
           <div
-            class="col-lg-4 col-md-6 col-12 bg-white mt-3 mb-3 px-3 quote me-3"
+            class="col-lg-4 col-md-6 col-12 bg-white mt-5 mb-3 px-3 topStories me-3"
             style="height: 250px"
           >
           <div class="row py-5">
             <div class="col-8">
               <h2>Hi {{ StudentName }}!</h2>
-              <div class="text" style="text-align: left"><Quote /></div>            
+              <div class="text" style="text-align: left"><topStories /></div>            
             </div>
   
             
@@ -33,9 +33,7 @@
   <script>
   import Sidebar from "../components/Navigation/Sidebar.vue";
   import Topbar from "../components/Navigation/Topbar.vue";
-  import CountDown from "../components/HomePage/CountDown.vue";
-  import TimeTable from "../components/HomePage/TimeTable.vue";
-  import Quote from "../components/HomePage/Quote.vue";
+  import topStories from "../components/News/topStories.vue";
   import BottomBar from "../components/Navigation/BottomBar.vue";
   import { auth, db } from "../main";
   import {
@@ -54,16 +52,15 @@
     query,
     where,
   } from "firebase/firestore";
-  
+
+
   export default {
     name: "Dashboard",
     components: {
       Sidebar,
       Topbar,
-      CountDown,
-      TimeTable,
-      Quote,
       BottomBar,
+      topStories
     },
     data() {
       return {
@@ -72,13 +69,7 @@
       };
     },
     methods: {
-      deleteTest(id) {
-        console.log("task", id);
-        this.tests = this.tests.filter((test) => test.id !== id);
-      },
-      addTest(test) {
-        this.tests = [...this.tests, test];
-      },
+      
     },
     mounted() {
       if (localStorage.getItem("email")) {
