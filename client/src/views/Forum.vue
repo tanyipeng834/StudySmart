@@ -5,7 +5,7 @@
       <Topbar :tabs="tabs" menuTitle="Forum" />
       <div class="row">
         <div class="col-4">
-          <Sidebar :haveTopbar="true"/>
+          <Sidebar :haveTopbar="true" />
         </div>
         <div class="col-4 ">
 
@@ -42,37 +42,37 @@
               </div>
               <div class="row bg-white pt-2 mb-3">
                 <div class="col-4 text-center mb-3">
-                <p>Choose a subject:</p>
-                <div class="dropdown">
-                  <select class="rounded bg-secondary text-white" v-model="subject">
-                    <option value="English">English</option>
-                    <option value="Chinese">Chinese</option>
-                    <option value="Elementary Math">Elementary Math</option>
-                    <option value="Additional Math">Additional Math</option>
-                    <option value="Physics">Physics</option>
-                    <option value="Chemistry">Chemistry</option>
-                    <option value="Biology">Biology</option>
-                    <option value="History">History</option>
-                    <option value="Geography">Geography</option>
-                    <option value="Social Studies">Social Studies</option>
-                    <option value="Principles of Account">
-                      Principles of Account
-                    </option>
-                    <option value="Literature">Literature</option>
-                  </select>
+                  <p>Choose a subject:</p>
+                  <div class="dropdown">
+                    <select class="rounded bg-secondary text-white" v-model="subject">
+                      <option value="English">English</option>
+                      <option value="Chinese">Chinese</option>
+                      <option value="Elementary Math">Elementary Math</option>
+                      <option value="Additional Math">Additional Math</option>
+                      <option value="Physics">Physics</option>
+                      <option value="Chemistry">Chemistry</option>
+                      <option value="Biology">Biology</option>
+                      <option value="History">History</option>
+                      <option value="Geography">Geography</option>
+                      <option value="Social Studies">Social Studies</option>
+                      <option value="Principles of Account">
+                        Principles of Account
+                      </option>
+                      <option value="Literature">Literature</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
-              <div class="col-4 text-center">
-                <p>Choose a stream!</p>
-                <div>
-                  <select class="bg-secondary rounded text-white mb-3" v-model="stream">
-                    <option value="Express">Express</option>
-                    <option value="Normal Academic">Normal Academic</option>
-                    <option value="Normal Technical">Normal Technical</option>
-                  </select>
+                <div class="col-4 text-center">
+                  <p>Choose a stream!</p>
+                  <div>
+                    <select class="bg-secondary rounded text-white mb-3" v-model="stream">
+                      <option value="Express">Express</option>
+                      <option value="Normal Academic">Normal Academic</option>
+                      <option value="Normal Technical">Normal Technical</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
-              <div class="col-4 d-flex justify-content-center mb-3 align-middle">
+                <div class="col-4 d-flex justify-content-center mb-3 align-middle">
                   <div>
                     <button class="btn btn-primary px-4" @click="addPost()">
                       Post
@@ -122,7 +122,8 @@
                         <div class="card-body">
                           <div class="media-body me-3">
                             <div class="d-flex  align-items-center justify-content-start ">
-                              <div class="profile-wrap bg-secondary"><img class="profile-img" src="../assets/cat.svg" alt=""></div>
+                              <div class="profile-wrap bg-secondary"><img class="profile-img" src="../assets/cat.svg"
+                                  alt=""></div>
                               <h5 class="m-0 ms-1">{{
                               post.username
                             }}</h5>
@@ -193,13 +194,13 @@
                 </div>
                 <ul class="list-group list-group-flush p-1">
                   <li class="list-group-item">
-                      <div class="input-group-sm">
-                        <strong>Username</strong> <br />
-                        <input type="text"  v-model="search" class="form-control ">
-                      </div>
+                    <div class="input-group-sm">
+                      <strong>Username</strong> <br />
+                      <input type="text" v-model="search" class="form-control ">
+                    </div>
 
 
-                    </li>
+                  </li>
                   <li class="list-group-item">
 
                     <strong>Year</strong> <br />
@@ -253,14 +254,14 @@
 
 
                   </li>
-                  <li class="list-group-item text-center d-flex justify-content-between">
+                  <li class="list-group-item text-center d-flex justify-content-start">
                     <button class="btn btn-primary" @click="filter()">
                       Submit
                     </button>
-                    <button class="btn btn-primary" @click="init()">
+                    <button class="btn btn-primary ms-2" @click="clearFilter()">
                       Clear
                     </button>
-                    <div></div>
+
                   </li>
                 </ul>
               </div>
@@ -317,7 +318,7 @@
         name: '',
         commentContent: "",
         search: "",
-        yearChosen: [],
+        yearChosen: '',
         subjectChosen: [],
         streamChosen: "",
         tabs: [],
@@ -334,6 +335,13 @@
 
     },
     methods: {
+      clearFilter() {
+        this.init()
+        this.search = ''
+        this.subjectChosen = []
+        this.streamChosen = ''
+        this.yearChosen = ''
+      },
       async init() {
 
         var email = localStorage.getItem("email");
@@ -513,33 +521,19 @@
       },
 
       filter() {
-        var resultPosts = []
-        for (let post of this.allPosts) {
-          for (let subject of this.subjectChosen) {
-            if (post.subject == subject && resultPosts.indexOf(post) == -1) {
-              resultPosts.push(post)
-            }
+        var allPosts = this.allPosts
+        var chosenFilters = [this.yearChosen, this.subjectChosen, this.streamChosen, this.search]
+        var postKeys = ['level', 'subject', 'stream', 'username']
+        for (let i = 0; i < postKeys.length; i++) {
+          if (chosenFilters[i].length != 0) {
+            const result = allPosts.filter(ele => {
+              return ele[postKeys[i]]==chosenFilters[i]
+            })
+            allPosts=result
+          }
 
-          }
-          for (let username of this.search) {
-            if (post.username == username && resultPosts.indexOf(post) == -1) {
-              resultPosts.push(post)
-            }
-
-          }
-          for (let year of this.yearChosen) {
-            if (year == post.level && resultPosts.indexOf(post) == -1) {
-              resultPosts.push(post)
-            }
-          }
-          if (post.stream == this.streamChosen && resultPosts.indexOf(post) == -1) {
-            resultPosts.push(post)
-
-          }
         }
-        this.posts = resultPosts
-
-
+        this.posts=allPosts
       },
 
       daysDifference(post) {
@@ -582,11 +576,12 @@
     border-radius: 50%;
     aspect-ratio: 1;
     display: flex;
-    transform: scale(.8);
+
   }
 
   .profile-img {
-    padding: .3em;
+    padding: 1em;
+
   }
 
   .bg-secondary {
