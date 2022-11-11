@@ -1,64 +1,63 @@
 <template>
- 
-  <div>   
-    <Topbar :tabs="tabs" menuTitle="Dashboard"></Topbar>
-  
+
   <div>
-  
-  
+    <Topbar :tabs="tabs" menuTitle="Dashboard"></Topbar>
+
+  <div>
+
+
     <div class="container-fluid login wrapper w-100">
       <div class="row">
         <div class="col-lg-2 col-md-2">
           <Sidebar
             :haveTopbar="false"
-            
+
           />
         </div>
         <div
-          class="col-lg-4 col-md-12 col-12 bg-white mt-5 mb-3 px-3 quote me-3"
+          class="col-lg-4 col-md-12 col-12 bg-white mt-5 mb-3 px-3 quote me-3 animate__animated animate__fadeInDown"
           style="height: 250px"
         >
-        <div class="row py-3" >
+        <div class="row py-3 " >
           <div class="col-8">
             <h2>Hi {{ StudentName }}!</h2>
-            <div class="text" style="text-align: left"><Quote /></div> 
+            <div class="text" style="text-align: left"><Quote /></div>
             <a href="#/news" class="btn btn-dark" role="button">Read Latest News</a>
           </div>
-  
+
           <div class="col-4 float-end">
             <img src="../assets/cat_dash.svg"/>
-               
+
           </div>
         </div>
-         
+
         </div>
         <div class="col-lg-4 col-md-12 col-12">
          <div class="row">
           <CountDown
             v-bind:tests="tests"
-            @add-test="addTest"
-            @delete-test="deleteTest"
+
           />
          </div>
-             
-        
-        
+
+
+
         </div>
         <div class="col-md-2"></div>
       </div>
       <div class="row">
         <div class="col-lg-2 "></div>
-        <div class="col-lg-9  d-flex justify-content-center timetable">
+        <div class="col-lg-9  d-flex justify-content-center timetable animate__fadeInUp  animate__animated ">
           <TimeTable />
         </div>
-       
+
       </div>
     </div>
   </div>
     <BottomBar class="bottomnav" />
   </div>
   </template>
-  
+
  <script>
  import Sidebar from "../components/Navigation/Sidebar.vue";
  import Topbar from "../components/Navigation/Topbar.vue";
@@ -83,7 +82,7 @@
   query,
   where,
  } from "firebase/firestore";
-  
+
  export default {
   name: "Dashboard",
   components: {
@@ -120,16 +119,16 @@
       } else {
           window.location.href = '#/login'
       }
-  
+
       const q = query(collection(db, "users", email, "countDown"));
-  
+
       onSnapshot(q, (querySnapshot) => {
         const data = [];
         querySnapshot.docs.forEach((docSnapshot) => {
           if (docSnapshot.id != "ignore") {
             let newdata = docSnapshot.data();
             newdata.id = docSnapshot.id;
-  
+
             data.push(newdata);
           }
         });
@@ -148,7 +147,7 @@
   },
  };
  </script>
-  
+
  <style scoped>
  .quote {
   position: relative;
@@ -156,7 +155,7 @@
   background-repeat: no-repeat;
   background-size: cover;
  }
-  
+
  .login {
   overflow: hidden;
   margin-top: 60px;
@@ -181,5 +180,4 @@
   max-height: 140px;
  }
  </style>
-  
- 
+

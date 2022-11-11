@@ -40,15 +40,15 @@
 
       <div class="col-md-6 col-sm-12 right-side mb-4 d-flex flex-column justify-content-center">
         <div class="text-center">
-          <img src ="../assets/birb_logo.svg" class="animate__animated animate__bounce" style="height: 200px; width: auto;"/>
+          <img src ="../assets/birb_logo.svg" class="animate__animated animate__bounce bird" style="height: 200px; width: auto;"/>
             <TypeEffect/>
-           
+
 
         </div>
         <div class="login-form">
           <LoginForm/>
 
-           
+
 
         </div>
 
@@ -116,6 +116,10 @@ export default {
     font-weight: 700;
 
 
+}
+.bird:hover{
+ animation-name: flip;
+    animation-duration: 1s;
 }
 
 @media (max-width: 768px) {
