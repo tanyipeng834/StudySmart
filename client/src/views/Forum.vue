@@ -594,4 +594,9 @@
     color: white !important;
     border-color: #253F63 !important;
   }
+  .rounded-pill {
+    color: white !important;
+    background-color: #5B7BA6 !important;
+    font-weight: normal;
+  }
 </style>

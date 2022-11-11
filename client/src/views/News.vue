@@ -1,33 +1,43 @@
 <template>
-    <div>
-      <Topbar :tabs="tabs" menuTitle="Career Quiz"></Topbar>
-      <div class="container-fluid login wrapper w-100">
-        <div class="row">
-          <div class="col-lg-2 col-md-2 col-0">
-            <Sidebar
-              :haveTopbar="false"
-            />
-          </div>
-          <div
-            class="col-lg-4 col-md-6 col-12 bg-white mt-5 mb-3 px-3 topStories me-3"
-            style="height: 250px"
-          >
-          <div class="row py-5">
-            <div class="col-8">
-              <h2>Hi {{ StudentName }}!</h2>
-              <div class="text" style="text-align: left"><topStories /></div>            
-            </div>
+  <div>
+
+  <div class="container-fluid main">
+
+  
+     <Topbar :tabs="tabs" menuTitle="Forum" />
+      <div class="row">
+        <div class="col-4">
+          <Sidebar :haveTopbar="true"/>
+        </div>
+        <div class="col-4 ">
+
+        </div>
+        <div class="col-4 ">
+
+        </div>
+      </div>
+      
+        
+             <div class="row">
+              <div class="col d-flex justify-content-center">
+                <div  style="text-align: left; margin-top: 65px; "><topStories /></div>    
+
+              </div>
+             </div>
+                     
+           
+                   
+            
   
             
-          </div>
-            
-          </div>
-          
-        </div>
         
-      </div>
-      <BottomBar class="bottomnav" />
-    </div>
+            
+              <BottomBar class="bottomnav" />
+            </div>
+  </div>
+       
+        
+          
   </template>
   
   <script>
@@ -43,9 +53,6 @@
     getDoc,
     setDoc,
     collection,
-    addDoc,
-    deleteDoc,
-    deleteField,
     arrayUnion,
     arrayRemove,
     onSnapshot,
@@ -112,6 +119,19 @@
   </script>
   
   <style scoped>
-  
+
+  .main {
+    margin-top: 65px;
+   padding-bottom: 65px;
+
+    display: flex;
+    justify-content: center;
+    background-color: #eaf1f5;
+    min-height: 100vh;
+    width:100vw;
+    overflow-x: hidden;
+    overflow-y:scroll;
+
+  }
   </style>
   

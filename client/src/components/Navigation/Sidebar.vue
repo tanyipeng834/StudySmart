@@ -47,7 +47,10 @@
           <span v-for="(menuItem, index) in menuItems" :key="index">
             <li>
               <a :href="menuItem.link">
-                <i class="bx align-center" :class="menuItem.icon || 'bx-square-rounded'" />
+                <i
+                  class="bx align-center"
+                  :class="menuItem.icon || 'bx-square-rounded'"
+                />
                 <span class="links_name">{{ menuItem.name }}</span>
               </a>
               <span class="tooltip">{{
@@ -142,8 +145,8 @@ export default {
           icon: "bx-pie-chart-alt-2",
         },
         {
-          link: "/#/quizzes",
-          name: "Quizzes",
+          link: "/#/quiz",
+          name: "Quiz",
           tooltip: "Quizzes",
           icon: "bx bxs-edit-alt",
         },
@@ -279,7 +282,7 @@ body {
   width: 30px;
   margin: 0 10px 0 10px;
 } */
-.bx-menu{
+.bx-menu {
   padding-right: 22px;
 }
 .sidebar {
@@ -294,7 +297,7 @@ body {
   min-height: min-content;
   /* overflow-y: auto; */
   width: 95px;
-  background-color: #FAFCFF ;
+  background-color: #fafcff;
   /* background: var(--bg-color); */
   /* padding: 6px 14px 0 14px; */
   z-index: 99;
@@ -321,12 +324,10 @@ body {
   display: flex;
   align-items: center;
   position: relative;
-
 }
 .sidebar .logo-details .icon {
   opacity: 0;
   transition: all 0.5s ease;
-  
 }
 .sidebar .logo-details .logo_name {
   color: var(--logo-title-color);
@@ -334,13 +335,11 @@ body {
   font-weight: 600;
   opacity: 0;
   transition: all 0.5s ease;
-  
 }
 .sidebar.open .logo-details .icon,
 .sidebar.open .logo-details .logo_name {
   opacity: 1;
   align-items: center;
-  
 }
 .sidebar .logo-details #btn {
   position: absolute;
@@ -365,7 +364,6 @@ body {
   text-align: center;
   line-height: 60px;
   padding-left: 15px;
-
 }
 .sidebar .nav-list {
   margin-top: 20px;

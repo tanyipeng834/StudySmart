@@ -1,5 +1,5 @@
 <template>
-  <div class="row header">
+  <div class="row header mt-5">
     <div class="text-center">
       <h1>Create a new Mutiple Choice Quiz</h1>
     </div>
@@ -75,7 +75,6 @@ export default {
     async addDatabase() {
       let email = localStorage.getItem("email");
       let collectionRef = collection(db, "users", email, "MutipleChoiceQuiz");
-      
 
       const docref = await addDoc(collectionRef, {
         title: this.title,
@@ -105,5 +104,9 @@ export default {
   position: fixed;
   bottom: 10%;
   left: 10%;
+}
+h1 {
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
 }
 </style>

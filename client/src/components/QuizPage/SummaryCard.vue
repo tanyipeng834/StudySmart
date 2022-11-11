@@ -1,10 +1,10 @@
 <template>
-  <div class="col-md-6">
+  <div class="col-md-6 col-lg-4 mt-2">
     <div class="card" style="width: 18rem">
       <div class="card-body">
-        <h5 class="card-title">Title:{{ title }}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">
-          Description:{{ description }}
+        <h5 class="card-title"><b>Title:</b> {{ title }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted mt-3">
+          <b>Description:</b> {{ description }}
         </h6>
       </div>
     </div>
@@ -21,4 +21,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.card {
+  font-family: "Roboto", sans-serif;
+}
+.card:hover {
+  cursor: pointer;
+}
+</style>

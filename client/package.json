@@ -16,6 +16,7 @@
     "chart.js": "^3.9.1",
     "core-js": "^3.8.3",
     "sass-loader": "^13.1.0",
+    "uuid": "^9.0.0",
     "vue": "^3.2.13",
     "vue-flip": "^3.0.2",
     "vue-router": "^4.0.3",

@@ -11,28 +11,33 @@
         <div class="col-4"></div>
         <div class="col-4"></div>
       </div>
-      <div class="row mt-4 d-flex align-center">
+      <div class="row mt-5">
         <div class="col-4"></div>
         <div class="col-8">
           <div class="row mt-5">
             <div class="col-md-6 mt-3">
-              <div class="row">
-                <div class="mt-4  jumbo text-white rounded" @click="redirect('flashcards')">
-                  <h1>Flashcards</h1>
-                  <p>  Click to create your own online flashcards to test your
-                    <b>memory!!</b></p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="mt-4 jumbo text-white rounded" @click="redirect('multi')">
-                  <h1>Quizzes</h1>
-                  <p> Click to create your own online Quiz to help with your
-                    <b>concepts!!</b></p>
+              <div class="card" style="width: 18rem">
+                <div class="card-body">
+                  <h5 class="card-title">FlashCards</h5>
+                  <p class="card-text">
+                    Create your own online flashcards to test your
+                    <b>memory!!</b>
+                  </p>
                 </div>
               </div>
             </div>
             <div class="col-md-6 mt-3">
+              <div class="card" style="width: 18rem">
+                <div class="card-body">
+                  <h5 class="card-title">Quizzes</h5>
+                  <p class="card-text">
+                    Create your own Quiz to help with your
+                    <b>concepts!!</b>
 
+                    <b></b>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -60,33 +65,20 @@ export default {
       tabs: [],
     };
   },
-  methods: {
-    redirect(link) {
-      if (link == "flashcards") {
-        window.location.href = "/#/quiz/flashcards";
-      } else {
-        window.location.href = "/#/quiz/multi";
-      }
-    },
-  },
+  methods: {},
 };
 </script>
 <style scoped>
 .quiz {
   width: 100vw;
   min-height: 100vh;
-
+  margin-top: 60px;
   background-color: #eaf1f5;
   font-family: "Roboto", sans-serif;
   overflow-x: hidden;
   overflow-y: hidden;
-
 }
 .card:hover {
   cursor: pointer;
-}
-.jumbo{
-  background-color: #253F63;
-  padding:100px;
 }
 </style>

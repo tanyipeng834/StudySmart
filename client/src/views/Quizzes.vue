@@ -5,25 +5,22 @@
       <Sidebar :haveTopbar="true"></Sidebar>
       <div v-if="flashCards == false && this.multiChoiceQuiz == false">
         <div class="row">
-          <div class="col-md-4"></div>
+          <div class="col d-flex justify-content-center mt-4">
+            <div class="button">
+              
+              <button class="btn add d-block" @click="addFlashCard()">
+                <i class="fa-regular fa-pen-to-square fa-lg text-right"></i>Add
+                Flash Card
+              </button>
+
+              <button class="btn add d-block" @click="addQuiz()">
+                <i class="fa-regular fa-pen-to-square fa-lg text-right"></i>Add
+                Mutiple Choice Quiz
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div class="row">
-          <div class="col-3"></div>
-          <div class="col-3 mt-5"><h3 id="flash-cards">Flashcards</h3></div>
-        </div>
-
-        <div class="button">
-          <button class="btn add d-block" @click="addFlashCard()">
-            <i class="fa-regular fa-pen-to-square fa-lg text-right"></i>Add
-            Flash Card
-          </button>
-
-          <button class="btn add d-block" @click="addQuiz()">
-            <i class="fa-regular fa-pen-to-square fa-lg text-right"></i>Add
-            Mutiple Choice Quiz
-          </button>
-        </div>
         <div class="row">
           <div class="col-4"></div>
           <div class="col-8">
@@ -31,6 +28,7 @@
               <SummaryCard
                 v-for="item in summaryCards"
                 :title="item.title"
+                :key="item"
                 :description="item.description"
                 :id="item.id"
                 @click="redirect(item.id, item.type)"
@@ -158,13 +156,16 @@ export default {
 
 <style scoped>
 .quiz {
-  background-color: #EAF1F5;
-  height: 100vh;
+  background-color: #eaf1f5;
 
-  /* Center and scale the image nicely */
+  margin-top: 65px;
+  width: 100vw;
+  min-height: 100vh;
+
+  /* Center and scale the image nicely
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
 }
 #flash-cards {
   font-family: Arial, Helvetica, sans-serif;

@@ -65,7 +65,6 @@ export default {
       for (let key in this.question) return key;
     },
     options() {
-      console.log("i am here");
       for (let key in this.question) {
         this.options = this.question[key];
         return this.question[key];
