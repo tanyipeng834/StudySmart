@@ -662,11 +662,8 @@
   .main {
     margin-top: 60px;
     background-color: #eaf1f5;
-    height: 100%;
-    width: 100%;
-    overflow-x: hidden;
-    overflow-y: hidden;
-
+min-height: 100vh;
+width: 100vw;
   }
 
   .profile-wrap {

@@ -776,10 +776,10 @@
 
         margin-top: 60px;
 
-        height: 101vh;
-        width: 100%;
-        overflow-x: hidden;
-        overflow-y: hidden;
+    min-height: 100vh;
+    width:100vw;
+    overflow-x:hidden;
+    overflow-y:hidden;
 
 
 
