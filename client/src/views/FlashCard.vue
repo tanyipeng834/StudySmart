@@ -37,16 +37,19 @@
         </div>
         <div class="row gx-2 mt-4">
           <div class="col-2"></div>
-
-          <SummaryCard
-            v-for="item in summaryCards"
-            :title="item.title"
-            :key="item"
-            :description="item.description"
-            :id="item.id"
-            @click="redirect(item.id, item.type)"
-          >
-          </SummaryCard>
+          <div class="col-10">
+            <div class="row">
+              <SummaryCard
+                v-for="item in summaryCards"
+                :title="item.title"
+                :key="item"
+                :description="item.description"
+                :id="item.id"
+                @click="redirect(item.id, item.type)"
+              >
+              </SummaryCard>
+            </div>
+          </div>
         </div>
       </div>
       <FlashcardPage v-if="this.toggle == true" @toggle-page="toggle_page" />
@@ -81,7 +84,8 @@ export default {
       toggle: false,
     };
   },
-  created() {
+  mounted() {
+    this.summaryCards = [];
     let email = localStorage.getItem("email");
     console.log(email);
     const q_flashcards = query(collection(db, "users", email, "Flashcards"));
@@ -100,6 +104,7 @@ export default {
   methods: {
     toggle_page() {
       this.toggle = !this.toggle;
+      this.summaryCards = [];
     },
     redirect(id, type) {
       if (type == "flashcards") {

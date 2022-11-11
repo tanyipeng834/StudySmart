@@ -27,6 +27,16 @@
             type="text"
             class="mt-5 w-100"
           />
+          <div class="mt-3">
+            <label for="formFile" class="form-label">Image File</label>
+
+            <input
+              class="form-control"
+              type="file"
+              id="formFile"
+              @change="uploadFile()"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -34,6 +44,8 @@
 </template>
 
 <script>
+import { getStorage, ref, uploadString } from "firebase/storage";
+
 export default {
   name: "Flashcard",
 
@@ -41,6 +53,7 @@ export default {
     return {
       term: "",
       defination: "",
+      file: null,
     };
   },
   props: {
@@ -49,6 +62,16 @@ export default {
   methods: {
     deleteItem() {
       this.$emit("deleteItem", this.cardNumber);
+    },
+    uploadFile() {
+      let file = event.target.files[0];
+     if(this.file==null){
+      return
+     }
+     else{
+      const imageRef = ref(storage,`images/${file.name}`)
+
+     }
     },
   },
   updated() {

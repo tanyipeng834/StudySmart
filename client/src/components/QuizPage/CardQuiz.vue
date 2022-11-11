@@ -13,7 +13,7 @@
           {{ this.progress }}
         </div>
       </div>
-      <div class="card">
+      <div class="card mt-5">
         <h3>Term</h3>
         <div class="card-body d-flex">
           <div v-if="this.cards[this.count - 1]" class="content text-center">
@@ -35,9 +35,9 @@
           {{ this.progress }}
         </div>
       </div>
-      <div class="card">
+      <div class="card mt-5">
         <h3>Definition</h3>
-        <div class="card-body d-flex">
+        <div class="card-body">
           <div v-if="this.cards[this.count - 1]" class="content text-center">
             {{ this.cards[this.count - 1]["defination"] }}
           </div>
@@ -45,17 +45,17 @@
       </div>
     </template>
   </vue-flip>
-  <div class="d-flex button-div">
+  <div class="d-flex button-div mt-5">
     <button
       type="button "
-      class="btn btn-outline-primary card-button-back"
+      class="btn btn-outline-dark card-button-back"
       @click="beforeCard()"
     >
       Back
     </button>
     <button
       type="button"
-      class="btn btn-outline-primary card-button-front"
+      class="btn btn-outline-dark card-button-front"
       @click="nextCard()"
     >
       Next
@@ -100,15 +100,17 @@ export default {
 <style scoped>
 .card {
   width: 50%;
-  height: 30%;
+  height: 50%;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  font-family: "Roboto", sans-serif;
 }
 .card-body {
   align-items: center;
   justify-content: center;
+  padding-bottom: 50%;
 }
 .button-div {
   justify-content: space-around;
@@ -116,11 +118,11 @@ export default {
 .card-button-back {
   border-radius: 50%;
   width: 100px;
-  height: 100px;
+  height: 40px;
 }
 .card-button-front {
   border-radius: 50%;
   width: 100px;
-  height: 100px;
+  height: 40px;
 }
 </style>
