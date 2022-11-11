@@ -15,7 +15,7 @@
     </div>
     <!-- <AddTest /> -->
     <ul class="list-group" id="example">
-      <li class="list-group-item d-flex justify-content-around align-items-start header bg-dark">
+      <li class="list-group-item d-flex justify-content-around align-items-start header ">
         <div class="col-7">
           <h6 class="text-white">Exam Count Down</h6>
         </div>
@@ -286,11 +286,15 @@
 
     margin-right: -8px;
   }
-
+.header{
+  background-color:#30507c   ;
+}
   .hide {
     display: none;
   }
-
+.list-group{
+  border-radius: 0;
+}
   .list-group-item {
     display: flex;
     justify-content: space-around;

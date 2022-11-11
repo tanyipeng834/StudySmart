@@ -194,7 +194,7 @@
             <div class="col d-flex justify-content-center">
               <div class="card" style="width: 18rem; ">
                 <div class="card">
-                  <div class="card-header">Filter by</div>
+                  <div class="card-header fs-5 fw-bold">Filter by</div>
                 </div>
                 <ul class="list-group list-group-flush p-1">
                   <li class="list-group-item">
@@ -280,7 +280,7 @@
             <div class="col d-flex justify-content-center">
               <div class="card" style="width: 18rem; margin-top: 110px">
                 <div class="card">
-                  <div class="card-header">Filter by</div>
+                  <div class="card-header fs-5 fw-bold">Filter by</div>
                 </div>
                 <ul class="list-group list-group-flush p-1">
                   <li class="list-group-item">
