@@ -42,6 +42,7 @@ export default {
         }
       )
       .then((res) => {
+        console.log(res);
         for (let i = 0; i < 3; i++) {
           var data = res.data["articles"][i];
 
