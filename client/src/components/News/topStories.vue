@@ -1,6 +1,9 @@
 <template>
     <div class="container d-flex">
-        <div class="card col-md-4 col-12" style="min-width: 20rem" v-for="story in news">
+      <div class="row">
+        
+        <div class="col-lg-4 col-md-12"  v-for="story in news" :key="story">
+          <div class="card" style="min-width: 20rem">
         <img class="card-img-top" :src="story.image" alt="no image" />
         <div class="card-body">
       <h5 class="card-title">{{ story.title }}</h5>
@@ -11,6 +14,9 @@
       <a :href="story.url" target="_blank" class="btn btn-primary">Read More</a>
     </div>
     </div>
+        </div>
+      </div>
+       
 
   </div>
   
@@ -92,6 +98,8 @@ img {
     background-color: #253F63 !important;
 }
 .card {
-    margin-right: 35px;
+    margin-left: 25px;
+    margin-right:25px;
+   
 }
 </style>

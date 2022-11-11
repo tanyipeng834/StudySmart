@@ -1,33 +1,43 @@
 <template>
-    <div>
-      <Topbar :tabs="tabs" menuTitle="Latest News"></Topbar>
-      <div class="container-fluid login wrapper w-100">
-        <div class="row">
-          <div class="col-lg-2 col-md-2 col-0">
-            <Sidebar
-              :haveTopbar="false"
-            />
-          </div>
-          <div
-            class="col-lg-8 col-md-6 col-12 mb-3 px-3 me-3"
-            style="margin-top: 65px;"
-          >
-          <div class="row py-5">
-            
-              
-              <div class="text" style="text-align: left"><topStories /></div>            
+  <div>
+
+  <div class="container-fluid main">
+
+  
+     <Topbar :tabs="tabs" menuTitle="Forum" />
+      <div class="row">
+        <div class="col-4">
+          <Sidebar :haveTopbar="true"/>
+        </div>
+        <div class="col-4 ">
+
+        </div>
+        <div class="col-4 ">
+
+        </div>
+      </div>
+      
+        
+             <div class="row">
+              <div class="col d-flex justify-content-center">
+                <div  style="text-align: left; margin-top: 65px; "><topStories /></div>    
+
+              </div>
+             </div>
+                     
+           
+                   
             
   
             
-          </div>
-            
-          </div>
-          
-        </div>
         
-      </div>
-      <BottomBar class="bottomnav" />
-    </div>
+            
+              <BottomBar class="bottomnav" />
+            </div>
+  </div>
+       
+        
+          
   </template>
   
   <script>
@@ -109,14 +119,19 @@
   </script>
   
   <style scoped>
-  /* .login {
-    overflow: hidden;
-  margin-top: 60px;
-  background-color: #eaf1f5;
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  } */
+
+  .main {
+    margin-top: 65px;
+   padding-bottom: 65px;
+
+    display: flex;
+    justify-content: center;
+    background-color: #eaf1f5;
+    min-height: 100vh;
+    width:100vw;
+    overflow-x: hidden;
+    overflow-y:scroll;
+
+  }
   </style>
   

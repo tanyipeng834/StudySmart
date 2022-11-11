@@ -7,6 +7,7 @@
         <div class="row">
           <div class="col d-flex justify-content-center mt-4">
             <div class="button">
+              
               <button class="btn add d-block" @click="addFlashCard()">
                 <i class="fa-regular fa-pen-to-square fa-lg text-right"></i>Add
                 Flash Card
