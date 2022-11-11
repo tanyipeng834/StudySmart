@@ -23,7 +23,7 @@
         </div>
 
 
-        <div class="col-lg-5 mt-3 col-md-5 col-sm-5 order-5 pt-3">
+        <div class="col-lg-5  col-md-5 col-sm-5 order-5 pt-3">
           <div class="row">
             <div class="col">
               <!-- <div class="input-group rounded">
@@ -33,15 +33,15 @@
                   <i class="fas fa-search"></i>
                 </button>
               </div> -->
-              <div class="col mb-3">
+              <div class="col m-3 ">
                 <div class="form-group mb-3">
                   <label for="exampleFormControlTextarea1">Enter a question:</label>
                   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
                     v-model="postContent"></textarea>
                 </div>
               </div>
-              <div class="row bg-white pt-2 mb-3  border border-secondary rounded d-flex align-items-end">
-                <div class="col-4 text-center mb-3">
+              <div class="row bg-white pt-2 m-3  border border-secondary rounded d-flex align-items-end">
+                <div class="col-5 text-center mb-3">
                   <p>Choose a subject:</p>
                   <div class="dropdown">
                     <select class="rounded bg-secondary text-white" v-model="subject">
@@ -72,7 +72,7 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-4 d-flex justify-content-center mb-3 align-middle">
+                <div class="col-3 d-flex justify-content-center mb-3 align-start">
                   <div>
                     <button class="btn btn-primary px-4" @click="addPost()">
                       Post
@@ -185,7 +185,97 @@
           </div>
 
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 order-md-last order-2">
+<div class="d-block d-md-none mt-4 ms-3">
+<button class="btn btn-primary " @click="showFilter">Filter</button>
+  <div :class="filterarea">
+          <!-- <button class="btn btn-primary filter-btn" @click="toggleShow">Filter</button> -->
+
+          <div class="row">
+            <div class="col d-flex justify-content-center">
+              <div class="card" style="width: 18rem; ">
+                <div class="card">
+                  <div class="card-header">Filter by</div>
+                </div>
+                <ul class="list-group list-group-flush p-1">
+                  <li class="list-group-item">
+                    <div class="input-group-sm">
+                      <strong>Username</strong> <br />
+                      <input type="text" v-model="search" class="form-control ">
+                    </div>
+
+
+                  </li>
+                  <li class="list-group-item">
+
+                    <strong>Year</strong> <br />
+                    <div class="dropdown">
+                      <select class="rounded bg-secondary text-white" v-model="yearChosen">
+                        <option value="Secondary 1">Secondary 1</option>
+                        <option value="Secondary 2">Secondary 2</option>
+                        <option value="Secondary 3">Secondary 3</option>
+                        <option value="Secondary 4">Secondary 4</option>
+                        <option value="Secondary 5">Secondary 5</option>
+                      </select>
+                    </div>
+
+
+                  </li>
+
+                  <li class="list-group-item">
+                    <strong>Subject</strong> <br />
+
+                    <div class="dropdown">
+                      <select multiple class="rounded bg-secondary text-white" v-model="subjectChosen">
+                        <option value="English">English</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Elementary Math">Elementary Math</option>
+                        <option value="Additional Math">Additional Math</option>
+                        <option value="Physics">Physics</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="Biology">Biology</option>
+                        <option value="History">History</option>
+                        <option value="Geography">Geography</option>
+                        <option value="Social Studies">Social Studies</option>
+                        <option value="Principles of Account">
+                          Principles of Account
+                        </option>
+                        <option value="Literature">Literature</option>
+                      </select>
+                    </div>
+
+
+
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Stream</strong> <br>
+                    <div class="dropdown">
+                      <select class="rounded bg-secondary text-white" v-model="streamChosen">
+                        <option value="Express">Express</option>
+                        <option value="Normal Academic">Normal Academic</option>
+                        <option value="Normal Technical">Normal Technical</option>
+                      </select>
+                    </div>
+
+
+                  </li>
+                  <li class="list-group-item text-center d-flex justify-content-start">
+                    <button class="btn btn-primary" @click="filter()">
+                      Submit
+                    </button>
+                    <button class="btn btn-primary ms-2" @click="clearFilter()">
+                      Clear
+                    </button>
+
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+</div>
+        <div class="col-lg-4 col-md-4 col-sm-4 order-md-last order-2 d-none d-md-block">
+          <!-- <button class="btn btn-primary filter-btn" @click="toggleShow">Filter</button> -->
+
           <div class="row">
             <div class="col d-flex justify-content-center">
               <div class="card" style="width: 18rem; margin-top: 110px">
@@ -327,6 +417,9 @@
         email: '',
         level: '',
         allPosts: [],
+        filterarea: 'col-lg-4 col-md-4 col-sm-4 order-md-last order-2 d-none',
+        // showorhide: 'd-block',
+
       };
     },
     mounted() {
@@ -335,6 +428,13 @@
 
     },
     methods: {
+      showFilter() {
+        if (this.filterarea.includes('d-none')) {
+          this.filterarea = 'col-lg-4 col-md-4 col-sm-4 order-md-last order-2 d-block'
+        } else {
+          this.filterarea = 'col-lg-4 col-md-4 col-sm-4 order-md-last order-2 d-none'
+        }
+      },
       clearFilter() {
         this.init()
         this.search = ''
@@ -513,13 +613,13 @@
         for (let i = 0; i < postKeys.length; i++) {
           if (chosenFilters[i].length != 0) {
             const result = allPosts.filter(ele => {
-              return ele[postKeys[i]]==chosenFilters[i]
+              return ele[postKeys[i]] == chosenFilters[i]
             })
-            allPosts=result
+            allPosts = result
           }
 
         }
-        this.posts=allPosts
+        this.posts = allPosts
       },
 
       daysDifference(post) {
@@ -545,6 +645,19 @@
     margin-left: 282px;
   } */
 
+  @media (min-width: 576) {
+    .filter-btn {
+      display: none;
+    }
+
+
+  }
+
+  @media (max-width: 576) {
+   .filter-area{
+
+   }
+  }
 
   .main {
     margin-top: 60px;
@@ -559,7 +672,7 @@ width: 100vw;
     border-radius: 50%;
     aspect-ratio: 1;
     display: flex;
-    width:3rem;
+    width: 3rem;
 
   }
 
@@ -578,6 +691,7 @@ width: 100vw;
     color: white !important;
     border-color: #253F63 !important;
   }
+
   .rounded-pill {
     color: white !important;
     background-color: #5B7BA6 !important;
