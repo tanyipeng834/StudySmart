@@ -87,6 +87,9 @@ export default {
   mounted() {
     this.summaryCards = [];
     let email = localStorage.getItem("email");
+    if (!email) {
+       window.location.href = '#/login'
+    }
     console.log(email);
     const q_flashcards = query(collection(db, "users", email, "Flashcards"));
     console.log(this.summaryCards);

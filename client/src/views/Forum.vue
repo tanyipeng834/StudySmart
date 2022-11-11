@@ -424,7 +424,6 @@
 
       },
       async addComment(post) {
-        // need to retrieve current's user username
         let id = post.id
         const ref = doc(db, "posts", id);
 
@@ -436,14 +435,6 @@
         });
 
 
-
-        // var index = this.posts.indexOf(post);
-        // var username = "hardcoded";
-        // var newComment = {
-        //   content: this.commentContent,
-        //   username: username
-        // };
-        // this.posts[index].comments.push(newComment);
         this.commentContent = "";
       },
       async addPost() {
@@ -468,11 +459,6 @@
           newPost.postContent = this.postContent;
           newPost.subject = this.subject;
           newPost.stream = this.stream;
-          // var date = new Date().toLocaleDateString();
-
-          // var day = date.slice(0, 2);
-          // var month = date.slice(3, 5);
-          // date = month + "/" + day + date.slice(5);
           const date = new Date()
           let day = date.getDate()
           let month = date.getMonth() + 1
@@ -488,7 +474,7 @@
             postContent: this.postContent,
             username: this.name,
             date_added: this.date,
-            // date_added: new Date().toLocaleString().split(",")[0],
+
             level: this.level,
             stream: this.stream,
             comments: [],
