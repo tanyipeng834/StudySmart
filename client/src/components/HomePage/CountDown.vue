@@ -57,8 +57,8 @@
         </div>
 
         <div class="col-1">
-          <button type="button" class="btn position-absolute top-0 end-2" v-on:click="deleteTest(currentPageData.id)">
-            <i v-on:click="deleteTest($event)" class="fa-regular fa-trash-can"></i>
+          <button type="button" class="btn position-absolute top-0 end-2" v-on:click="deleteTest(test.id)">
+            <i class="fa-regular fa-trash-can"></i>
           </button>
         </div>
       </li>

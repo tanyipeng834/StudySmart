@@ -33,15 +33,15 @@
                   <i class="fas fa-search"></i>
                 </button>
               </div> -->
-              <div class="col mb-3">
+              <div class="col m-3 ">
                 <div class="form-group mb-3">
                   <label for="exampleFormControlTextarea1">Enter a question:</label>
                   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
                     v-model="postContent"></textarea>
                 </div>
               </div>
-              <div class="row bg-white pt-2 mb-3  border border-secondary rounded d-flex align-items-end">
-                <div class="col-4 text-center mb-3">
+              <div class="row bg-white pt-2 m-3  border border-secondary rounded d-flex align-items-end">
+                <div class="col-5 text-center mb-3">
                   <p>Choose a subject:</p>
                   <div class="dropdown">
                     <select class="rounded bg-secondary text-white" v-model="subject">
@@ -72,7 +72,7 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-4 d-flex justify-content-center mb-3 align-middle">
+                <div class="col-3 d-flex justify-content-center mb-3 align-start">
                   <div>
                     <button class="btn btn-primary px-4" @click="addPost()">
                       Post
@@ -185,8 +185,12 @@
           </div>
 
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 order-md-last order-2">
-          <div class="row">
+
+        <div class="col-lg-4 col-md-4 col-sm-4 order-md-last order-2 ">
+     <button class="btn btn-primary" v-if="hideFilter">Show Filter</button>
+
+
+          <div :class="[filterarea, ]">
             <div class="col d-flex justify-content-center">
               <div class="card" style="width: 18rem; margin-top: 110px">
                 <div class="card">
@@ -327,6 +331,9 @@
         email: '',
         level: '',
         allPosts: [],
+        filterarea: 'row',
+        showorhide:'',
+
       };
     },
     mounted() {
@@ -545,7 +552,13 @@
     margin-left: 282px;
   } */
 
+@media (max-width: 991px) {
+       .filter-area {
+        display: none;
+       }
 
+
+   }
   .main {
     margin-top: 60px;
     background-color: #eaf1f5;
