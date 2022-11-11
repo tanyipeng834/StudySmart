@@ -2,7 +2,7 @@
   <div class="container-fluid login">
     <div class="row login">
 
-      <div class="col-md-6 left-side">
+      <div class="col-md-6 col-sm-12  left-side">
         <div
           id="carouselExampleSlidesOnly"
           class="carousel slide"
@@ -38,7 +38,7 @@
         </div>
       </div>
 
-      <div class="col-md-6 right-side mb-4 d-flex flex-column justify-content-center">
+      <div class="col-md-6 col-sm-12 right-side mb-4 d-flex flex-column justify-content-center">
         <div class="text-center">
           <img src ="../assets/birb_logo.svg" class="animate__animated animate__bounce" style="height: 200px; width: auto;"/>
             <TypeEffect/>
@@ -116,6 +116,25 @@ export default {
     font-weight: 700;
 
 
+}
+
+@media (max-width: 768px) {
+  .left-side{
+
+height:100vh;
+background-color:#253F63 ;
+display:flex;
+text-align: center;
+align-items: center;
+order:2;
+}
+
+   }
+   .right-side{
+    position:relative;
+    height:100%;
+    background-color: white;
+    order: 1;
 }
 
 </style>
