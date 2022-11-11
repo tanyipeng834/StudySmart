@@ -1,4 +1,7 @@
 <template>
+  <div class="alert alert-danger" role="alert" v-if="this.alert">
+    You need to select at least one option as the answer!!
+  </div>
   <div class="input-group flex-nowrap mt-5">
     <span class="input-group-text" id="addon-wrapping">Question</span>
     <input
@@ -17,15 +20,36 @@
     @update-mutiple-choice="updateMutipleChoice"
   />
 
-  <button type="button" class="btn btn-primary add-options" @click="addCards()">
-    Add Options
-  </button>
-  <button type="button" class="btn btn-primary" @click="addQuestion()">
-    New Question
-  </button>
-  <button type="button" class="btn btn-primary finish" @click="addDatabase()">
-    Finish Quiz
-  </button>
+  <div class="container-fluid">
+    <div class="row gx-5">
+      <div class="col-md-6">
+        <button
+          type="button"
+          class="btn btn-outline-dark mt-3"
+          @click="addCards()"
+        >
+          Add Mutiple Choice Option
+        </button>
+      </div>
+      <div class="col-md-6 d-flex question">
+        <button
+          type="button"
+          class="btn btn-outline-dark mt-5"
+          @click="addQuestion()"
+        >
+          New Question
+        </button>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-dark btn-lg finish"
+      @click="addDatabase()"
+    >
+      Create Quiz
+    </button>
+  </div>
 </template>
 
 <script>
@@ -36,6 +60,7 @@ export default {
     return {
       options: [],
       question: "",
+      alert: false,
     };
   },
 
@@ -59,6 +84,18 @@ export default {
       console.log(this.options);
     },
     addQuestion() {
+      var hasAnswer = false;
+      for (let option of this.options) {
+        if (option.answer == true) {
+          hasAnswer = true;
+          break;
+        }
+      }
+      if (!hasAnswer) {
+        this.alert = true;
+        return;
+      }
+      this.alert = false;
       this.$emit("new-question", [this.question, this.options]);
     },
     addDatabase() {
@@ -70,21 +107,12 @@ export default {
 };
 </script>
 <style scoped>
-.add-options {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  position: fixed;
-  bottom: 20%;
-  right: 10%;
+.question {
+  justify-content: right;
 }
-
-.add-question {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+.finish {
   position: fixed;
-  bottom: 20%;
-  right: 10%;
+  bottom: 10%;
+  left: 45%;
 }
 </style>

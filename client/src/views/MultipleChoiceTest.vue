@@ -105,7 +105,6 @@ export default {
 </script>
 <style scoped>
 .quiz {
-  
   height: 100vh;
 
   /* Center and scale the image nicely */

@@ -8,7 +8,7 @@ import News from "../views/News.vue";
 import MutipleChoiceTest from "@/views/MultipleChoiceTest.vue";
 import Quiz from "@/views/Quiz.vue";
 import FlashCard from "@/views/FlashCard.vue";
-import MutipleChoiceQuiz from "@/views/MutipleChoiceQuiz.vue";
+import MutipleChoicePage from "@/views/MutipleChoicePage.vue";
 
 // git
 import Quizzes from "../views/Quizzes.vue";
@@ -42,7 +42,7 @@ const routes = [
   {
     path: "/quiz/multi",
     name: "multi",
-    component: MutipleChoiceQuiz,
+    component: MutipleChoicePage,
   },
 
   {
