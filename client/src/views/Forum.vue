@@ -40,7 +40,7 @@
                     v-model="postContent"></textarea>
                 </div>
               </div>
-              <div class="row bg-white pt-2 mb-3">
+              <div class="row bg-white pt-2 mb-3  border border-secondary rounded d-flex align-items-end">
                 <div class="col-4 text-center mb-3">
                   <p>Choose a subject:</p>
                   <div class="dropdown">
@@ -576,11 +576,12 @@
     border-radius: 50%;
     aspect-ratio: 1;
     display: flex;
+    width:3rem;
 
   }
 
   .profile-img {
-    padding: 1em;
+    padding: .4em;
 
   }
 
