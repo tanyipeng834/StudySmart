@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <p>{{ quote }}</p>
 </template>
 
@@ -36,4 +36,4 @@ export default {
   display: flex;
   margin-left: 50px;
 }
-</style>  -->
+</style> 
