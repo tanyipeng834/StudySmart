@@ -32,7 +32,7 @@
               </div>
             </div>
             <div class="col-md-6 mt-3">
-              
+
             </div>
           </div>
         </div>
