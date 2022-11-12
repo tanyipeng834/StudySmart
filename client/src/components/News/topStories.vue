@@ -2,8 +2,8 @@
     <div class="container d-flex">
       <div class="row">
         
-        <div class="col-lg-4 col-md-12"  v-for="story in news" :key="story">
-          <div class="card" style="min-width: 20rem">
+        <div class="col-lg-4 col-md-6 mt-5"  v-for="story in news" :key="story" >
+          <div class="card" style="min-width: 20rem; max-width: 20em;">
         <img class="card-img-top" :src="story.image" alt="no image" />
         <div class="card-body">
       <h5 class="card-title">{{ story.title }}</h5>

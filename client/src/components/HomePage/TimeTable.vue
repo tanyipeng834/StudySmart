@@ -286,6 +286,10 @@
   
  .content {
   flex-grow: 1;
+  border-radius: 9px;
+  border-width: 30px;
+  border-style: solid;
+  border-color: white;
  }
   
  .calendar_default_event_inner {
