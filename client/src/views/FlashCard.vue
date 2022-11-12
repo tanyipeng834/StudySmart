@@ -121,14 +121,14 @@ export default {
       console.log(id);
       console.log(this.summaryCards);
       let email = localStorage.getItem("email");
-      const results = this.summaryCards.filter((card) => {
-        console.log(card);
-        if (card.id == id) {
-          return false;
-        } else {
-          return true;
-        }
-      });
+      //   const results = this.summaryCards.filter((card) => {
+      //     console.log(card);
+      //     if (card.id == id) {
+      //       return false;
+      //     } else {
+      //       return true;
+      //     }
+      //   });
 
       await deleteDoc(doc(db, "users", email, "Flashcards", id)).then(() => {
         this.summaryCards = results;
