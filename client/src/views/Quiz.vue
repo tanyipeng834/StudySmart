@@ -18,7 +18,7 @@
             <div class="col-md-6 mt-3">
               <div class="row">
                 <div
-                  class="mt-4 jumbo text-white rounded"
+                  class="mt-4 jumbo text-white rounded  animate__animated  animate__fadeInLeft"
                   @click="redirect('flashcards')"
                 >
                   <h1>Flashcards</h1>
@@ -30,7 +30,7 @@
               </div>
               <div class="row">
                 <div
-                  class="mt-4 jumbo text-white rounded"
+                  class="mt-4 jumbo text-white rounded animate__animated  animate__fadeInRight"
                   @click="redirect('multi')"
                 >
                   <h1>Quizzes</h1>
