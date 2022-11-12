@@ -17,23 +17,31 @@
           <div class="row mt-5">
             <div class="col-md-6 mt-3">
               <div class="row">
-                <div class="mt-4  jumbo text-white rounded" @click="redirect('flashcards')">
+                <div
+                  class="mt-4 jumbo text-white rounded"
+                  @click="redirect('flashcards')"
+                >
                   <h1>Flashcards</h1>
-                  <p>  Click to create your own online flashcards to test your
-                    <b>memory!!</b></p>
+                  <p>
+                    Click to create your own online flashcards to test your
+                    <b>memory!!</b>
+                  </p>
                 </div>
               </div>
               <div class="row">
-                <div class="mt-4 jumbo text-white rounded" @click="redirect('multi')">
+                <div
+                  class="mt-4 jumbo text-white rounded"
+                  @click="redirect('multi')"
+                >
                   <h1>Quizzes</h1>
-                  <p> Click to create your own online Quiz to help with your
-                    <b>concepts!!</b></p>
+                  <p>
+                    Click to create your own online Quiz to help with your
+                    <b>concepts!!</b>
+                  </p>
                 </div>
               </div>
             </div>
-            <div class="col-md-6 mt-3">
-
-            </div>
+            <div class="col-md-6 mt-3"></div>
           </div>
         </div>
       </div>
@@ -80,13 +88,12 @@ export default {
   font-family: "Roboto", sans-serif;
   overflow-x: hidden;
   overflow-y: hidden;
-
 }
-.card:hover {
+.jumbo:hover {
   cursor: pointer;
 }
-.jumbo{
-  background-color: #253F63;
-  padding:100px;
+.jumbo {
+  background-color: #253f63;
+  padding: 100px;
 }
 </style>

@@ -141,9 +141,7 @@ export default {
         description: this.description,
         data: this.flashCards,
       })
-        .then(() => {
-          alert("data have been added successfully");
-        })
+        .then(() => {})
         .catch((error) => {
           alert("Unsuccessful operation,error" + error);
         });

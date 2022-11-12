@@ -49,6 +49,7 @@ import {
 } from "firebase/firestore";
 export default {
   name: "MutipleChoicePage",
+  emits: ["toggle-mutiple"],
   data() {
     return {
       questionNumber: 1,
@@ -73,6 +74,10 @@ export default {
       console.log(this.questions);
     },
     async addDatabase() {
+      if (Object.keys(this.questions).length === 0) {
+        return;
+      }
+      this.$emit("add-summary-card", [this.title, this.description]);
       let email = localStorage.getItem("email");
       let collectionRef = collection(db, "users", email, "MutipleChoiceQuiz");
 
@@ -81,13 +86,10 @@ export default {
         description: this.description,
         data: this.questions,
       })
-        .then(() => {
-          alert("data have been added successfully");
-        })
+        .then(() => {})
         .catch((error) => {
           alert("Unsuccessful operation,error" + error);
         });
-
       this.$emit("toggle-mutiple");
     },
   },
