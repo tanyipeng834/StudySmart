@@ -205,14 +205,14 @@
 
                         <div class="shadow box">
                             <div class="p-1 insights" v-if="existingSubjects.length>1">
-                                <p class="small"><span class="text-danger h5">Alert!</span> Your {{minSub}} has the
+                                <p class="small"><span class="text-danger h6">Alert!</span>  {{minSub}} has the
                                     lowest
                                     average of {{minSubScore}}%</p>
-                                <p class="small"><span class="text-success h5">Good Work!</span> Your {{maxSub}} has the
+                                <p class="small"><span class="text-success h6">Good Work!</span>  {{maxSub}} has the
                                     highest average of {{maxSubScore}}%</p>
-                                <p class="small" v-if="conSub!=''"><span class="text-info h5">Keep it up!</span> Your
+                                <p class="small" v-if="conSub!=''"><span class="text-info h5">Keep it up!</span>
                                     {{conSub}} scores are the most consistent with {{conData}} standard deviation!</p>
-                                <p class="small" v-else><span class="text-info h5">More data required!</span> Please add
+                                <p class="small" v-else><span class="text-info h6">More data required!</span> Please add
                                     more test scores to see which is your most consistent subject.</p>
                             </div>
 
@@ -284,7 +284,9 @@
             BottomBar
             // ChartTest
         },
-        mounted() {
+    mounted() {
+        Chart.defaults.font.family = 'Roboto'
+            Chart.defaults.font.size = 15;
             if (localStorage.getItem("email")) {
                 const progressChart = new Chart(document.getElementById("progress-chart"), {
                     type: 'line',
@@ -729,8 +731,10 @@
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
     * {
         font-size: medium;
+        font-family: 'Roboto', sans-serif;
     }
 
     .line-chart1 {

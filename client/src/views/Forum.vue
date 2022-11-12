@@ -43,8 +43,8 @@
               <div class="row bg-white pt-2 m-3  border border-secondary rounded d-flex align-items-end">
                 <div class="col-5 text-center mb-3">
                   <p>Choose a subject:</p>
-                  <div class="dropdown">
-                    <select class="rounded bg-secondary text-white" v-model="subject">
+                  <div class="dropdown ">
+                    <select class="rounded bg-secondary text-white form-control" v-model="subject">
                       <option value="English">English</option>
                       <option value="Chinese">Chinese</option>
                       <option value="Elementary Math">Elementary Math</option>
@@ -65,7 +65,7 @@
                 <div class="col-4 text-center">
                   <p>Choose a stream!</p>
                   <div>
-                    <select class="bg-secondary rounded text-white mb-3" v-model="stream">
+                    <select class="bg-secondary rounded text-white mb-3 form-control" v-model="stream">
                       <option value="Express">Express</option>
                       <option value="Normal Academic">Normal Academic</option>
                       <option value="Normal Technical">Normal Technical</option>
@@ -74,7 +74,7 @@
                 </div>
                 <div class="col-3 d-flex justify-content-center mb-3 align-start">
                   <div>
-                    <button class="btn btn-primary px-4" @click="addPost()">
+                    <button class="btn btn-primary px-4  btn-sm" @click="addPost()">
                       Post
                     </button>
                   </div>
@@ -185,94 +185,94 @@
           </div>
 
         </div>
-<div class="d-block d-md-none mt-4 ms-3">
-<button class="btn btn-primary " @click="showFilter">Filter</button>
-  <div :class="filterarea">
-          <!-- <button class="btn btn-primary filter-btn" @click="toggleShow">Filter</button> -->
+        <div class="d-block d-md-none mt-4 ms-3">
+          <button class="btn btn-primary " @click="showFilter">Filter</button>
+          <div :class="filterarea">
+            <!-- <button class="btn btn-primary filter-btn" @click="toggleShow">Filter</button> -->
 
-          <div class="row">
-            <div class="col d-flex justify-content-center">
-              <div class="card" style="width: 18rem; ">
-                <div class="card">
-                  <div class="card-header fs-5 fw-bold">Filter by</div>
+            <div class="row">
+              <div class="col d-flex justify-content-center">
+                <div class="card" style="width: 18rem; ">
+                  <div class="card">
+                    <div class="card-header fs-5 fw-bold">Filter by</div>
+                  </div>
+                  <ul class="list-group list-group-flush p-1">
+                    <li class="list-group-item">
+                      <div class="input-group-sm">
+                        <strong>Username</strong> <br />
+                        <input type="text" v-model="search" class="form-control ">
+                      </div>
+
+
+                    </li>
+                    <li class="list-group-item">
+
+                      <strong>Year</strong> <br />
+                      <div class="dropdown">
+                        <select class="rounded bg-secondary text-white" v-model="yearChosen">
+                          <option value="Secondary 1">Secondary 1</option>
+                          <option value="Secondary 2">Secondary 2</option>
+                          <option value="Secondary 3">Secondary 3</option>
+                          <option value="Secondary 4">Secondary 4</option>
+                          <option value="Secondary 5">Secondary 5</option>
+                        </select>
+                      </div>
+
+
+                    </li>
+
+                    <li class="list-group-item">
+                      <strong>Subject</strong> <br />
+
+                      <div class="dropdown">
+                        <select multiple class="rounded bg-secondary text-white" v-model="subjectChosen">
+                          <option value="English">English</option>
+                          <option value="Chinese">Chinese</option>
+                          <option value="Elementary Math">Elementary Math</option>
+                          <option value="Additional Math">Additional Math</option>
+                          <option value="Physics">Physics</option>
+                          <option value="Chemistry">Chemistry</option>
+                          <option value="Biology">Biology</option>
+                          <option value="History">History</option>
+                          <option value="Geography">Geography</option>
+                          <option value="Social Studies">Social Studies</option>
+                          <option value="Principles of Account">
+                            Principles of Account
+                          </option>
+                          <option value="Literature">Literature</option>
+                        </select>
+                      </div>
+
+
+
+                    </li>
+                    <li class="list-group-item">
+                      <strong>Stream</strong> <br>
+                      <div class="dropdown">
+                        <select class="rounded bg-secondary text-white" v-model="streamChosen">
+                          <option value="Express">Express</option>
+                          <option value="Normal Academic">Normal Academic</option>
+                          <option value="Normal Technical">Normal Technical</option>
+                        </select>
+                      </div>
+
+
+                    </li>
+                    <li class="list-group-item text-center d-flex justify-content-start">
+                      <button class="btn btn-primary" @click="filter()">
+                        Submit
+                      </button>
+                      <button class="btn btn-primary ms-2" @click="clearFilter()">
+                        Clear
+                      </button>
+
+                    </li>
+                  </ul>
                 </div>
-                <ul class="list-group list-group-flush p-1">
-                  <li class="list-group-item">
-                    <div class="input-group-sm">
-                      <strong>Username</strong> <br />
-                      <input type="text" v-model="search" class="form-control ">
-                    </div>
-
-
-                  </li>
-                  <li class="list-group-item">
-
-                    <strong>Year</strong> <br />
-                    <div class="dropdown">
-                      <select class="rounded bg-secondary text-white" v-model="yearChosen">
-                        <option value="Secondary 1">Secondary 1</option>
-                        <option value="Secondary 2">Secondary 2</option>
-                        <option value="Secondary 3">Secondary 3</option>
-                        <option value="Secondary 4">Secondary 4</option>
-                        <option value="Secondary 5">Secondary 5</option>
-                      </select>
-                    </div>
-
-
-                  </li>
-
-                  <li class="list-group-item">
-                    <strong>Subject</strong> <br />
-
-                    <div class="dropdown">
-                      <select multiple class="rounded bg-secondary text-white" v-model="subjectChosen">
-                        <option value="English">English</option>
-                        <option value="Chinese">Chinese</option>
-                        <option value="Elementary Math">Elementary Math</option>
-                        <option value="Additional Math">Additional Math</option>
-                        <option value="Physics">Physics</option>
-                        <option value="Chemistry">Chemistry</option>
-                        <option value="Biology">Biology</option>
-                        <option value="History">History</option>
-                        <option value="Geography">Geography</option>
-                        <option value="Social Studies">Social Studies</option>
-                        <option value="Principles of Account">
-                          Principles of Account
-                        </option>
-                        <option value="Literature">Literature</option>
-                      </select>
-                    </div>
-
-
-
-                  </li>
-                  <li class="list-group-item">
-                    <strong>Stream</strong> <br>
-                    <div class="dropdown">
-                      <select class="rounded bg-secondary text-white" v-model="streamChosen">
-                        <option value="Express">Express</option>
-                        <option value="Normal Academic">Normal Academic</option>
-                        <option value="Normal Technical">Normal Technical</option>
-                      </select>
-                    </div>
-
-
-                  </li>
-                  <li class="list-group-item text-center d-flex justify-content-start">
-                    <button class="btn btn-primary" @click="filter()">
-                      Submit
-                    </button>
-                    <button class="btn btn-primary ms-2" @click="clearFilter()">
-                      Clear
-                    </button>
-
-                  </li>
-                </ul>
               </div>
             </div>
           </div>
         </div>
-</div>
         <div class="col-lg-4 col-md-4 col-sm-4 order-md-last order-2 d-none d-md-block">
           <!-- <button class="btn btn-primary filter-btn" @click="toggleShow">Filter</button> -->
 
@@ -653,17 +653,17 @@
 
   }
 
-  @media (max-width: 576) {
-   .filter-area{
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
-   }
+  * {
+    font-family: 'Roboto', sans-serif;
   }
 
   .main {
     margin-top: 60px;
     background-color: #eaf1f5;
-min-height: 100vh;
-width: 100vw;
+    min-height: 100vh;
+    width: 100vw;
   }
 
   .profile-wrap {

@@ -51,7 +51,7 @@
         </div>
 
         <div class="col-4 d-flex justify-content-center">
-          <span class="p-2 badge bg-primary rounded-pill mx-auto">{{
+          <span class="p-2 badge  mx-auto">{{
             daysLeft(test.date)
           }}</span>
         </div>
@@ -74,7 +74,7 @@
         </div>
 
         <div class="col-4 d-flex justify-content-center">
-          <span class="p-2 badge bg-primary rounded-pill mx-auto" >{{
+          <span class="p-2 badge  mx-auto" >{{
             daysLeft(currentPageData[index-1].date)
           }}</span>
         </div>
@@ -277,7 +277,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+
   }
 
   button {
@@ -298,5 +298,9 @@
   .list-group-item {
     display: flex;
     justify-content: space-around;
+  }
+  .badge{
+    background-color: #5B7BA6 !important;
+    border-radius: 40%;
   }
 </style>
