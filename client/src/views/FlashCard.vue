@@ -130,9 +130,7 @@ export default {
       //     }
       //   });
 
-      await deleteDoc(doc(db, "users", email, "Flashcards", id)).then(() => {
-        this.summaryCards = results;
-      });
+      await deleteDoc(doc(db, "users", email, "Flashcards", id));
     },
   },
 };

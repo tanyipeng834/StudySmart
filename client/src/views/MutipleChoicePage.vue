@@ -42,7 +42,7 @@
               <SummaryCard
                 v-for="item in summaryCards"
                 :title="item.title"
-                :key="item"
+                :key="item.id"
                 :description="item.description"
                 :id="item.id"
                 :type="item.type"
@@ -55,7 +55,7 @@
       </div>
       <MultipleChoicePageComponent
         v-if="this.toggle == true"
-        @toggle-mutiple="toggle_page()"
+        @toggle-mutiple="toggle_mutiple"
       />
       <BottomBar class="bottomnav" />
     </div>
@@ -92,7 +92,6 @@ export default {
     };
   },
   mounted() {
-    this.summaryCards = [];
     let email = localStorage.getItem("email");
     console.log(email);
     const q_multiquiz = query(
@@ -109,10 +108,16 @@ export default {
         });
       });
     });
+    this.summaryCards = [...new Set(this.summaryCards)];
   },
   methods: {
     toggle_page() {
       this.toggle = !this.toggle;
+      this.summaryCards = [];
+    },
+    toggle_mutiple() {
+      this.toggle = !this.toggle;
+      window.location.href = `/#/quiz/multi`;
     },
     redirect(id, type) {
       if (type == "flashcards") {

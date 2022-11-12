@@ -1,5 +1,6 @@
 <template>
   <div class="row header mt-5">
+    <Sidebar :haveTopbar="true" />
     <div class="text-center">
       <h1>Create a new Mutiple Choice Quiz</h1>
     </div>
@@ -38,7 +39,9 @@
 
 <script>
 import MutipleChoice from "../QuizPage/MutipleChoice.vue";
+
 import { db } from "@/main.js";
+import Sidebar from "@/components/Navigation/Sidebar.vue";
 import {
   addDoc,
   collection,
@@ -64,6 +67,7 @@ export default {
 
   components: {
     MutipleChoice,
+    Sidebar,
   },
   methods: {
     addQuestion(array) {
