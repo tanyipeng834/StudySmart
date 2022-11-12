@@ -16,7 +16,7 @@
         </div>
         <div
           class="col-lg-4 col-md-12 col-12 bg-white mt-5 mb-3 px-3 quote me-3 animate__animated animate__fadeInDown"
-          style="height: 250px"
+          style="height: 250px; border-radius: 9px;"
         >
         <div class="row py-3 " >
           <div class="col-8">
@@ -177,7 +177,10 @@
   align-items: center;
  }
  img {
-  max-height: 140px;
+  max-height: 200px;
+ }
+ .btn {
+  background-color: #253F63 !important;
  }
  </style>
 
