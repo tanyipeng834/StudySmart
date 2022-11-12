@@ -45,6 +45,7 @@
       </div>
     </template>
   </vue-flip>
+
   <div class="d-flex button-div mt-5">
     <button
       type="button "
@@ -114,6 +115,7 @@ export default {
 }
 .button-div {
   justify-content: space-around;
+  margin-top: 20%;
 }
 .card-button-back {
   border-radius: 50%;

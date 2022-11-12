@@ -99,16 +99,17 @@ export default {
     );
     console.log(this.summaryCards);
     const mulitquiz = onSnapshot(q_multiquiz, (querySnapshot) => {
+      const result = [];
       querySnapshot.forEach((doc) => {
-        this.summaryCards.push({
+        result.push({
           id: doc.id,
           title: doc.data().title,
           description: doc.data().description,
           type: "multi-choice",
         });
       });
+      this.summaryCards = result;
     });
-    this.summaryCards = [...new Set(this.summaryCards)];
   },
   methods: {
     toggle_page() {
@@ -129,20 +130,8 @@ export default {
     async deleteItem(id) {
       console.log(id);
       let email = localStorage.getItem("email");
-      const results = this.summaryCards.filter((card) => {
-        console.log(card);
-        if (card.id == id) {
-          return false;
-        } else {
-          return true;
-        }
-      });
 
-      await deleteDoc(doc(db, "users", email, "MutipleChoiceQuiz", id)).then(
-        () => {
-          this.summaryCards = results;
-        }
-      );
+      await deleteDoc(doc(db, "users", email, "MutipleChoiceQuiz", id));
     },
   },
 };
