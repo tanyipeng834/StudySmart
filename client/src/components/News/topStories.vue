@@ -4,7 +4,7 @@
         
         <div class="col-lg-4 col-md-6 mt-5"  v-for="story in news" :key="story" >
           <div class="card" style="min-width: 20rem; max-width: 20em;">
-        <img class="card-img-top" :src="story.image" alt="no image" />
+        <img class="card-img-top" :src="story.image" alt="no image available" />
         <div class="card-body">
       <h5 class="card-title">{{ story.title }}</h5>
       <p class="card-text">
@@ -31,10 +31,6 @@ export default {
 
   data() {
     return {
-      id: "",
-      title: "",
-      url: "",
-      image: "",
       content: "",
       news: [],
     };
@@ -61,7 +57,8 @@ export default {
 
           story.url = data["url"];
           if (data["urlToImage"] == null) {         
-            story.image = "../../assets/news.jpg";  //does not work
+            story.image = "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
+            console.log(story.image)
           } else {
             story.image = data["urlToImage"];
           }
