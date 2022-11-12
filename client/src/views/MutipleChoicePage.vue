@@ -42,19 +42,20 @@
               <SummaryCard
                 v-for="item in summaryCards"
                 :title="item.title"
-                :key="item"
+                :key="item.id"
                 :description="item.description"
                 :id="item.id"
-                @click="redirect(item.id, item.type)"
+                :type="item.type"
+                @delete-card="deleteItem"
               >
               </SummaryCard>
             </div>
           </div>
         </div>
       </div>
-      <MultipleChoicePage
+      <MultipleChoicePageComponent
         v-if="this.toggle == true"
-        @toggle-page="toggle_page"
+        @toggle-mutiple="toggle_mutiple"
       />
       <BottomBar class="bottomnav" />
     </div>
@@ -65,11 +66,12 @@
 import Sidebar from "../components/Navigation/Sidebar.vue";
 import Topbar from "../components/Navigation/Topbar.vue";
 import BottomBar from "../components/Navigation/BottomBar.vue";
-import { collection, onSnapshot, query } from "@firebase/firestore";
+import { collection, onSnapshot, query, doc } from "@firebase/firestore";
 import FlashcardPage from "../components/QuizPage/FlashCardPage.vue";
 import SummaryCard from "../components/QuizPage/SummaryCard.vue";
 import { db } from "@/main.js";
-import MultipleChoicePage from "../components/QuizPage/MutipleChoicePage.vue";
+import MultipleChoicePageComponent from "../components/QuizPage/MutipleChoicePage.vue";
+import { deleteDoc } from "@firebase/firestore";
 
 export default {
   name: "Quiz",
@@ -80,7 +82,7 @@ export default {
     BottomBar,
     FlashcardPage,
     SummaryCard,
-    MultipleChoicePage,
+    MultipleChoicePageComponent,
   },
   data() {
     return {
@@ -106,11 +108,16 @@ export default {
         });
       });
     });
+    this.summaryCards = [...new Set(this.summaryCards)];
   },
   methods: {
     toggle_page() {
       this.toggle = !this.toggle;
       this.summaryCards = [];
+    },
+    toggle_mutiple() {
+      this.toggle = !this.toggle;
+      window.location.href = `/#/quiz/multi`;
     },
     redirect(id, type) {
       if (type == "flashcards") {
@@ -118,6 +125,24 @@ export default {
       } else {
         window.location.href = `/#/quiz/multi/${id}`;
       }
+    },
+    async deleteItem(id) {
+      console.log(id);
+      let email = localStorage.getItem("email");
+      const results = this.summaryCards.filter((card) => {
+        console.log(card);
+        if (card.id == id) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+
+      await deleteDoc(doc(db, "users", email, "MutipleChoiceQuiz", id)).then(
+        () => {
+          this.summaryCards = results;
+        }
+      );
     },
   },
 };

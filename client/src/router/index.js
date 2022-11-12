@@ -24,11 +24,7 @@ const routes = [
     name: "Dashboard",
     component: Dashboard,
   },
-  {
-    path: "/quizzes",
-    name: "Quizzes",
-    component: Quizzes,
-  },
+
   {
     path: "/quiz",
     name: "Quiz",

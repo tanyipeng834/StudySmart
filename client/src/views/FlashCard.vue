@@ -45,7 +45,8 @@
                 :key="item"
                 :description="item.description"
                 :id="item.id"
-                @click="redirect(item.id, item.type)"
+                :type="item.type"
+                @delete-card="deleteItem"
               >
               </SummaryCard>
             </div>
@@ -62,7 +63,13 @@
 import Sidebar from "../components/Navigation/Sidebar.vue";
 import Topbar from "../components/Navigation/Topbar.vue";
 import BottomBar from "../components/Navigation/BottomBar.vue";
-import { collection, onSnapshot, query } from "@firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  onSnapshot,
+  query,
+  doc,
+} from "@firebase/firestore";
 import FlashcardPage from "../components/QuizPage/FlashCardPage.vue";
 import SummaryCard from "../components/QuizPage/SummaryCard.vue";
 import { db } from "@/main.js";
@@ -88,7 +95,7 @@ export default {
     this.summaryCards = [];
     let email = localStorage.getItem("email");
     if (!email) {
-       window.location.href = '#/login'
+      window.location.href = "#/login";
     }
     console.log(email);
     const q_flashcards = query(collection(db, "users", email, "Flashcards"));
@@ -109,12 +116,21 @@ export default {
       this.toggle = !this.toggle;
       this.summaryCards = [];
     },
-    redirect(id, type) {
-      if (type == "flashcards") {
-        window.location.href = `/#/quiz/${id}`;
-      } else {
-        window.location.href = `/#/quiz/multi/${id}`;
-      }
+
+    async deleteItem(id) {
+      console.log(id);
+      console.log(this.summaryCards);
+      let email = localStorage.getItem("email");
+      //   const results = this.summaryCards.filter((card) => {
+      //     console.log(card);
+      //     if (card.id == id) {
+      //       return false;
+      //     } else {
+      //       return true;
+      //     }
+      //   });
+
+      await deleteDoc(doc(db, "users", email, "Flashcards", id));
     },
   },
 };

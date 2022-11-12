@@ -1,11 +1,12 @@
 <template>
   <div class="row header">
-    <div class="text-center mt-3">
+    <Sidebar :haveTopbar="true" />
+    <div class="text-center mt-5">
       <h1>Create a new Study Set</h1>
     </div>
     <div class="col-3"></div>
     <div class="col-9">
-      <div class="row d-flex content">
+      <div class="row d-flex content-text">
         <div class="col-4">
           <button
             type="button"
@@ -21,7 +22,7 @@
   <div class="row">
     <div class="col-3"></div>
     <div class="col-9">
-      <div class="row d-flex content">
+      <div class="row d-flex content-text">
         <div class="col-4">
           <div class="input-group mb-3">
             <input
@@ -35,7 +36,7 @@
           </div>
         </div>
       </div>
-      <div class="row d-flex content">
+      <div class="row d-flex content-text">
         <div class="col-4">
           <div class="input-group mb-3">
             <input
@@ -85,6 +86,7 @@ import {
   query,
   orderBy,
 } from "firebase/firestore";
+import Sidebar from "@/components/Navigation/Sidebar.vue";
 export default {
   name: "FlashCardPage",
   created() {
@@ -104,6 +106,7 @@ export default {
   },
   components: {
     FlashCard,
+    Sidebar,
   },
   methods: {
     addFlashCards(item) {
@@ -141,9 +144,7 @@ export default {
         description: this.description,
         data: this.flashCards,
       })
-        .then(() => {
-          alert("data have been added successfully");
-        })
+        .then(() => {})
         .catch((error) => {
           alert("Unsuccessful operation,error" + error);
         });
@@ -174,7 +175,7 @@ export default {
   font-family: "Roboto", sans-serif;
   font-weight: bold;
 }
-.content {
+.content-text {
   justify-content: left;
 }
 </style>
