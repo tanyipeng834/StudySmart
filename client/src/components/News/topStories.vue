@@ -2,7 +2,7 @@
     <div class="container d-flex">
       <div class="row">
 
-        <div class="col-lg-4 col-md-6 mt-5"  v-for="story in news" :key="story" >
+        <div class="col-lg-4 col-md-6 mt-5 animate__animated animate__fadeInUp"  v-for="story in news" :key="story"  >
           <div class="card" style="min-width: 20rem; max-width: 20em;">
         <img class="card-img-top" :src="story.image" alt="no image" v-if="story.image!=null"/>
         <img class="card-img-top" src="../../assets/news.jpg" alt="no image" v-else />
@@ -26,7 +26,8 @@
 </template>
 
 <script>
-  import axios from "axios";
+import axios from "axios";
+  import 'animate.css';
 
   export default {
     name: "News",
