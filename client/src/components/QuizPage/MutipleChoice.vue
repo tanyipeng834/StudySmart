@@ -11,6 +11,7 @@
       aria-label="Username"
       aria-describedby="addon-wrapping"
       v-model="this.question"
+      id="question"
     />
   </div>
   <Options
@@ -18,6 +19,7 @@
     :key="item.id"
     :id="item.id"
     @update-mutiple-choice="updateMutipleChoice"
+    @delete-option="deleteOption"
   />
 
   <div class="container-fluid">
@@ -69,6 +71,16 @@ export default {
   },
 
   methods: {
+    deleteOption(id) {
+      const results = this.options.filter((card) => {
+        if (card.id == id) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+      this.options = results;
+    },
     addCards() {
       this.options.push({
         id: this.options.length + 1,
@@ -114,5 +126,9 @@ export default {
   position: fixed;
   bottom: 10%;
   left: 45%;
+}
+#addon-wrapping {
+  background-color: #253f63;
+  color: white;
 }
 </style>

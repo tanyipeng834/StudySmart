@@ -11,7 +11,6 @@ import FlashCard from "@/views/FlashCard.vue";
 import MutipleChoicePage from "@/views/MutipleChoicePage.vue";
 
 // git
-import Quizzes from "../views/Quizzes.vue";
 const routes = [
   {
     path: "/login",

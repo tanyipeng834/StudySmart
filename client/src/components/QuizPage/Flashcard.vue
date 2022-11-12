@@ -6,7 +6,7 @@
         <button
           id="btn-close"
           type="button"
-          class="btn-close"
+          class="btn-close btn-close-white"
           aria-label="Close"
           @click="deleteItem()"
         ></button>
@@ -53,14 +53,6 @@ export default {
     deleteItem() {
       this.$emit("deleteItem", this.cardNumber);
     },
-    uploadFile() {
-      let file = event.target.files[0];
-      if (this.file == null) {
-        return;
-      } else {
-        const imageRef = ref(storage, `images/${file.name}`);
-      }
-    },
   },
   updated() {
     console.log(this.term);
@@ -88,5 +80,10 @@ input:focus {
 }
 #btn-close {
   margin-left: 90%;
+  border-color: #ffffff !important;
+}
+.card-header {
+  background-color: #253f63;
+  color: white;
 }
 </style>
