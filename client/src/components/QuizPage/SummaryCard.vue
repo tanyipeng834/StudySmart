@@ -24,7 +24,7 @@ export default {
   props: {
     title: String,
     description: String,
-    id: Number,
+    id: String,
     type: String,
   },
   methods: {

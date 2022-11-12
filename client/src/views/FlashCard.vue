@@ -92,24 +92,30 @@ export default {
     };
   },
   mounted() {
-    this.summaryCards = [];
+
     let email = localStorage.getItem("email");
     if (!email) {
       window.location.href = "#/login";
     }
+
     console.log(email);
     const q_flashcards = query(collection(db, "users", email, "Flashcards"));
     console.log(this.summaryCards);
-    const flashCards = onSnapshot(q_flashcards, (querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        this.summaryCards.push({
+     onSnapshot(q_flashcards, (querySnapshot) => {
+         const result=[]
+       querySnapshot.forEach((doc) => {
+        console.log(doc.data())
+        result.push({
           id: doc.id,
           title: doc.data().title,
           description: doc.data().description,
           type: "flashcards",
         });
       });
+    this.summaryCards = result
+    console.log(result)
     });
+
   },
   methods: {
     toggle_page() {
