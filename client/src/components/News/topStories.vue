@@ -1,20 +1,20 @@
 <template>
-  <div class="container d-flex">
-    <div class="row">
+    <div class="container d-flex">
+      <div class="row">
 
-      <div class="col-lg-4 col-md-6 mt-5" v-for="story in news" :key="story">
-        <div class="card" style="min-width: 20rem; max-width: 20em;">
-          <img class="card-img-top" :src="story.image" alt="no image" v-if="story.image!=null" />
-          <img class="card-img-top" src="../../assets/news.jpg" alt="no image" v-else />
-          <div class="card-body">
-            <h5 class="card-title">{{ story.title }}</h5>
-            <p class="card-text">
-              <div id="id">{{ story.id }}</div>
-              {{ story.content }}
-            </p>
-            <a :href="story.url" target="_blank" class="btn btn-primary">Read More</a>
+        <div class="col-lg-4 col-md-6 mt-5"  v-for="story in news" :key="story" >
+          <div class="card" style="min-width: 20rem; max-width: 20em;">
+        <img class="card-img-top" :src="story.image" alt="no image" v-if="story.image!=null"/>
+        <img class="card-img-top" src="../../assets/news.jpg" alt="no image" v-else />
+        <div class="card-body">
+      <h5 class="card-title">{{ story.title }}</h5>
+      <p class="card-text">
+        <div id="id">{{ story.id }}</div>
+        {{ story.content }}
+      </p>
+      <a :href="story.url" target="_blank" class="btn btn-primary">Read More</a>
+    </div>
 
-          </div>
         </div>
       </div>
     </div>
@@ -31,16 +31,12 @@
   export default {
     name: "News",
 
-    data() {
-      return {
-        id: "",
-        title: "",
-        url: "",
-
-        content: "",
-        news: [],
-      };
-    },
+  data() {
+    return {
+      content: "",
+      news: [],
+    };
+  },
 
 
     mounted() {
@@ -61,10 +57,10 @@
             story.title = headline[0];
             story.id = headline[1];
 
-            story.url = data["url"];
-            // if (data["urlToImage"] == null) {
-            //   image = "../../assets/news.jpg";  //does not work
-            // } else {
+          story.url = data["url"];
+          // if (data["urlToImage"] == null) {
+          //   story.image = "../../assets/news.jpg";  //does not work
+          // } else {
             story.image = data["urlToImage"];
 
 
