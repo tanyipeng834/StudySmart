@@ -103,7 +103,7 @@ export default {
     background-color: white;
 }
 #hero{
-    font-family:'Courier New', Courier, monospace;
+
     font-weight:bold;
     text-align: center;
     font-size: 80px;
@@ -112,7 +112,7 @@ export default {
 }
 .carousel-text{
     color:white;
-    font-family: 'Times New Roman', Times, serif;
+
     font-weight: 700;
 
 

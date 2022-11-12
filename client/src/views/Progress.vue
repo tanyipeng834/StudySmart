@@ -731,10 +731,10 @@
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
     * {
         font-size: medium;
-        font-family: 'Roboto', sans-serif;
+
     }
 
     .line-chart1 {
