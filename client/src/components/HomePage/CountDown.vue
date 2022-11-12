@@ -26,7 +26,7 @@
       <!-- class="list-group-item d-flex justify-content-around align-items-center" -->
       <li :class="[addTest ? 'list-group-item' : 'hide']" @keyup.enter="onSubmit()">
         <div class="me-auto col-5 ms-1">
-          <input v-model="test" type="text" class="form-control form-control-sm" placeholder="Test Name" />
+          <input v-model="test" type="text" class="form-control form-control-sm" placeholder="Test Name"  id="testTooltip" title="Please enter a test name" />
         </div>
 
         <div class="col-3 d-flex justify-content-center ms-1">
@@ -34,7 +34,7 @@
         </div>
 
         <div class="col-4 ms-1">
-          <input v-model="date" type="date" class="form-control form-control-sm" placeholder="" />
+          <input v-model="date" type="date"  @change="validateDate"  id="dateTooltip" title="Date cannot be in the past" class="form-control form-control-sm" placeholder="" />
         </div>
       </li>
 
@@ -228,14 +228,30 @@
         var ref = doc(db, 'users', this.email, 'countDown', id);
         await deleteDoc(ref);
 
+    },
+    validateDate() {
+
       },
 
       async onSubmit(e) {
         if (!this.test) {
-          alert("Please add a test");
+        $(document).ready(function(){
+
+                $("#testTooltip").tooltip("show");
+
+          });
+
           return;
         }
+       const daysLeft = this.daysLeft(this.date)
+      if (daysLeft < 0) {
+          $(document).ready(function(){
 
+                $("#dateTooltip").tooltip("show");
+
+          });
+        return;
+        }
         const newData = {
 
 
@@ -300,7 +316,7 @@
     justify-content: space-around;
   }
   .badge{
-    background-color: #5B7BA6 !important;
+    background-color: #5B7BA6 ;
     border-radius: 40%;
   }
 </style>

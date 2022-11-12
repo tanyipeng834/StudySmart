@@ -3,7 +3,7 @@
 
   <div class="container-fluid main">
 
-  
+
      <Topbar :tabs="tabs" menuTitle="Forum" />
       <div class="row">
         <div class="col-4">
@@ -16,30 +16,24 @@
 
         </div>
       </div>
-      
-        
+
+
              <div class="row">
               <div class="col d-flex justify-content-center">
-                <div  style="text-align: left; margin-top: 65px; "><topStories /></div>    
+                <div  style="text-align: left; margin-top: 65px; "><topStories /></div>
 
               </div>
              </div>
                      
-           
-                   
-            
-  
-            
-        
-            
+
               <BottomBar class="bottomnav" />
             </div>
   </div>
-       
-        
-          
+
+
+
   </template>
-  
+
   <script>
   import Sidebar from "../components/Navigation/Sidebar.vue";
   import Topbar from "../components/Navigation/Topbar.vue";
@@ -76,7 +70,7 @@
       };
     },
     methods: {
-      
+
     },
     mounted() {
       if (localStorage.getItem("email")) {
@@ -89,16 +83,16 @@
         } else {
             window.location.href = '#/login'
         }
-  
+
         const q = query(collection(db, "users", email, "countDown"));
-  
+
         onSnapshot(q, (querySnapshot) => {
           const data = [];
           querySnapshot.docs.forEach((docSnapshot) => {
             if (docSnapshot.id != "ignore") {
               let newdata = docSnapshot.data();
               newdata.id = docSnapshot.id;
-  
+
               data.push(newdata);
             }
           });
@@ -114,10 +108,10 @@
     },
     created() {
       //this is preferably stored in backend
-    }, 
+    },
   };
   </script>
-  
+
   <style scoped>
 
   .main {
@@ -134,4 +128,3 @@
 
   }
   </style>
-  
