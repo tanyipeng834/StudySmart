@@ -49,11 +49,13 @@
                                             <label class="form-label">Exam Type</label>
                                             <select class="form-select form-select" aria-label=".form-select-sm example"
                                                 id="examType" v-model='examType'>
-                                                <option value="CA1" selected>CA1</option>
+                                                <option value="CA1">CA1</option>
                                                 <option value="SA1">SA1</option>
                                                 <option value="CA2">CA2</option>
                                                 <option value="SA2">SA2</option>
                                             </select>
+                                            <!-- <p v-if="subject==''" class="text-danger small mt-0">Please input the
+                                                exam</p> -->
                                         </div>
                                     </div>
                                     <div class="row">
@@ -143,7 +145,8 @@
                 <div class="row mx-auto">
 
                     <div class="col-1"></div>
-                    <div class="col-lg-6 col-12 d-flex flex-column justify-content-center p-0 animate__animated animate__fadeInLeft">
+                    <div
+                        class="col-lg-6 col-12 d-flex flex-column justify-content-center p-0 animate__animated animate__fadeInLeft">
                         <div class="row">
                             <div class="col">
                                 <div class="float-start ps-4">
@@ -163,8 +166,7 @@
                                                     Test Result</a>
                                             </button>
                                             <button class="btn btn-danger" type="button"
-                                                style='background-color: #632525' data-bs-toggle="dropdown"
-                                                aria-expanded="true">
+                                                style='background-color: #632525' aria-expanded="true">
 
                                                 <a data-bs-toggle="modal" data-bs-target="#modalFormDel">Delete
                                                     Test Result</a>
@@ -198,7 +200,8 @@
 
 
                     </div>
-                    <div class="col-lg-5 col-12  d-flex flex-column justify-content-start mt-4 p-0 animate__animated animate__fadeInRight">
+                    <div
+                        class="col-lg-5 col-12  d-flex flex-column justify-content-start mt-4 p-0 animate__animated animate__fadeInRight">
 
                         <div class="shadow box">
                             <div class="p-1 insights" v-if="existingSubjects.length>1">
@@ -371,7 +374,7 @@
                 let level = this.getLevel()
                 var email = localStorage.getItem("email");
                 this.email = email
-                console.log(email)
+                // console.log(email)
                 progressChart.options.plugins.title['text'] = `Secondary ${level} Progress`
                 progressChart.update()
                 const q = query(collection(db, "users", email, 'progressResults' + level))
@@ -396,14 +399,22 @@
                     BarChart.data.datasets[0].data = avgList
                     BarChart.data.datasets[0].backgroundColor = colorList
                     BarChart.update()
+                    // console.log(data)
                     //  console.log(cardData)
                     this.getMax(cardData)
                     this.getMin(cardData)
                     this.getStd(cardData)
-                    if (data.length != 0) {
-                        progressChart.data.datasets = data
-                        progressChart.update()
+                    let order = ["CA1", "SA1", "CA2", 'SA2']
+                    for (let doc of data) {
+                       doc.data.sort(function (a, b) {
+                            return order.indexOf(a.x) - order.indexOf(b.x)
+                        })
+
                     }
+
+                    progressChart.data.datasets = data
+                    progressChart.update()
+
                     this.existingSubjects = existingSubjects
                     this.count = existingSubjects.length
                 });
@@ -416,46 +427,47 @@
                 e.preventDefault();
                 var ref = doc(db, 'users', this.email, 'progressResults' + this.level, this.delSubject);
                 let score = 0
+                var count = 0
                 this.cardData.forEach(data => {
                     for (let key in data) {
                         if (key == this.delSubject) {
-                            let count = 0
+                            count = Object.keys(data[key]).length
+                            // console.log(count)
                             let sets = data[key]
                             sets.forEach(set => {
-                                count++
-                                console.log(set)
-                                console.log(count)
-                                if (count == 1) {
-                                    this.delDoc(ref).then(() => {
-                                        console.log(hi)
-                                    });
-                                } else if (set.x == this.examTypeDel) {
-                                    // console.log(set.x==examType)
+                                if (set.x == this.examTypeDel) {
                                     score = set.y
                                 }
                             })
                         }
                     }
                 })
-                await updateDoc(ref, {
-                    data: arrayRemove({
-                        x: this.examTypeDel,
-                        y: score
+
+                if (count == 1) {
+                    this.delDoc(ref).then(() => {
+                        console.log('deleted')
+                    });
+
+                } else {
+                    await updateDoc(ref, {
+                        data: arrayRemove({
+                            x: this.examTypeDel,
+                            y: score
+                        })
+                    }).then(() => {
+                        this.examTypeDel = ''
+                        this.delSubject = ''
+                    }).catch((e) => {
+                        console.log(e)
                     })
-                }).then(() => {
-                    this.examTypeDel = ''
-                    this.delSubject = ''
-                }).catch((e) => {
-                    console.log(e)
-                })
+                }
             },
             async delDoc(ref) {
                 await deleteDoc(ref);
                 console.log('delete')
             },
             checkExist(examType, subject) {
-                // console.log(subject)
-                // console.log(examType)
+
                 var allAreTruthy = false;
                 let oldScore = 0
                 this.cardData.forEach(data => {
@@ -463,9 +475,7 @@
                         if (key == subject) {
                             let sets = data[key]
                             sets.forEach(set => {
-                                //  console.log(set)
                                 if (set.x == examType) {
-                                    // console.log(set.x==examType)
                                     oldScore = set.y
                                     allAreTruthy = true;
                                 }
@@ -478,7 +488,7 @@
             getColors(data) {
                 const colorList = []
                 data.forEach(set => {
-                    console.log(set.borderColor)
+                    // console.log(set.borderColor)
                     colorList.push(set.borderColor)
                 })
                 return colorList
@@ -519,7 +529,7 @@
                     this.conSub = conSub
                     this.conData = std.toFixed(1)
                 })
-                console.log(`most consistent is ${conSub} at ${conData}`)
+                // console.log(`most consistent is ${conSub} at ${conData}`)
             },
             getAvg(cardData) {
                 const avgList = []
@@ -567,7 +577,7 @@
                         }
                     }
                 })
-                console.log(`${minSubject} has score of ${minScore}`)
+                // console.log(`${minSubject} has score of ${minScore}`)
                 this.minSub = minSubject
                 this.minSubScore = minScore.toFixed(1)
             },
@@ -632,7 +642,7 @@
                         }],
                         borderColor: "hsla(" + ~~(360 * Math.random()) + "," +
                             "70%," +
-                            "80%,1)",
+                            "50%,1)",
                         label: this.subject,
                         tension: 0.4
                     }
@@ -672,7 +682,7 @@
                 }
                 this.score = ''
                 this.subject = ''
-                this.examType = ''
+
             },
             async removed(exam, score, ref) {
                 await updateDoc(ref, {
@@ -776,10 +786,10 @@
 
         margin-top: 60px;
 
-    min-height: 100vh;
-    width:100vw;
-    overflow-x:hidden;
-    overflow-y:hidden;
+        min-height: 100vh;
+        width: 100vw;
+        overflow-x: hidden;
+        overflow-y: hidden;
 
 
 

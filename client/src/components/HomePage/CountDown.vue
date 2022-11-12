@@ -292,9 +292,9 @@
   .hide {
     display: none;
   }
-.list-group{
+/* .list-group{
   border-radius: 0;
-}
+} */
   .list-group-item {
     display: flex;
     justify-content: space-around;
