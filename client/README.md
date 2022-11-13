@@ -158,7 +158,7 @@ After cloning, change directory into the local repository
   
 <br>
   <br>
-  <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/4c8cf801398bc87bb70840b6a72c5be8cc7c6847/client/public/Screenshot%202022-11-13%20at%205.06.12%20PM.png" width="900" height="650"/>
+  <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/fc9f0b3244c6909926e5e4129cbac74b3c6e1ffc/client/public/Screenshot%202022-11-13%20at%204.14.32%20PM.png" width="900" height="650"/>
 
 <br>
 <hr>
