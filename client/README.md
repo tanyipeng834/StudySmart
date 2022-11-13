@@ -132,7 +132,7 @@ After cloning, change directory into the local repository
 <br>
   
  
-**4. The timetable below is customisable where users drag and hold the desired time slot, a modal appears for them to input a certain activity during that timeframe. A popup will be displayed for the users to input the subject and day that the selected time frame is for and colour in which they want the timetable section to be.**
+**4. The timetable below is customisable where users drag and hold the desired time slot, a modal appears for them to input a certain activity during that timeframe. The users can input the subject and day that the selected time frame is for and colour in which they want the timetable section to be.**
   <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/148474a8276569a374c0ac9043b2b8fca1899576/client/public/timetable%20modal.png" width="900" height="650"/>
 <br>
   <br>
@@ -142,11 +142,11 @@ After cloning, change directory into the local repository
   
 <br>
   
-**4. But first, let's add some ingredients. You can click on "View Inventory" on the top Navigation Bar and you will be headed to the Inventory page. On this page, you can search for your ingredients and sort them based on category by clicking on the category icons or by expiry date using the sort button.**
+**6. Users can use the sidebar (which can be expanded) to navigate between the pages**
   
 <br>
   <br>
-  <img src="https://user-images.githubusercontent.com/89062054/141657871-4dd02742-3191-4be1-a869-65dbf6cb664e.png" width="900" height="650"/>
+  <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/4c8cf801398bc87bb70840b6a72c5be8cc7c6847/client/public/Screenshot%202022-11-13%20at%205.06.12%20PM.png" width="900" height="650"/>
 
 <br>
 <hr>
