@@ -1,7 +1,7 @@
 <template>
-  <div class="card border-info mb-4">
+  <div class="card outer mb-4">
     <div
-      class="d-flex justify-content-between align-items-center card-header bg-info text-white"
+      class="d-flex justify-content-between align-items-center card-header change text-white"
       id="h1"
     >
       <span>{{ this.number + 1 }}</span>
@@ -30,7 +30,7 @@
         />
       </div>
     </div>
-    <button type="button" class="btn btn-primary" @click="checkAnswer()">
+    <button type="button" class="btn another" @click="checkAnswer()">
       Check Answer
     </button>
   </div>
@@ -102,4 +102,18 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.change{
+  background-color: #5B7BA6;
+}
+
+.another{
+  background-color: #8F9FBF;
+  color: white;
+}
+
+.outer{
+  outline-color:  #5B7BA6;
+}
+
+</style>

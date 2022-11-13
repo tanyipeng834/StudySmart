@@ -215,7 +215,7 @@
             { name: "Orange", id: "#FFD6A5" },
             { name: "Yellow", id: "#FDFFB6" },
             { name: "Green", id: "#CAFFBF" },
-            { name: "Blue", ID: "#9BF6FF" },
+            { name: "White", ID: "#9BF6FF" },
             { name: "Purple", id: "#BDB2FF" },
             { name: "Gold", id: "#EEC373" },
             { name: "Grey", id: "#D1D1D1" },

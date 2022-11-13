@@ -85,27 +85,7 @@ export default {
       alert: false,
       tabs: [
         // example on how to implement the tabs
-        {
-          link: "",
-          name: "subject",
-          dropdown: true,
-          dropdownTabs: [
-            {
-              name: "math",
-              link: "#",
-            },
-            {
-              name: "science",
-              link: "#",
-            },
-          ],
-        },
-        {
-          link: "#",
-          name: "test",
-          dropdown: false,
-          dropdownTabs: [],
-        },
+        
       ],
     };
   },
