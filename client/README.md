@@ -121,22 +121,23 @@ After cloning, change directory into the local repository
 <hr>
 <br>
   
-**3. Once your account has been succesfully registered, you will be brought to the dashboard. In the dashboard page, there will be a section that provides a radomly generated fun fact and button which redirects users to a page to view the headline news (this can only work locally as accessing the news API from the browser requires payment)**
+**3. Once your account has been succesfully registered, you will be brought to the dashboard. In the dashboard page, there will be a section that provides a radomly generated fun fact and button which redirects users to a page to view the headline news (this can only work locally as accessing the news API from the browser requires payment)There is also an examination countdown and timetable feature which the student can utilise.**
   
 <br>
   <br>
 <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/da3a1d0edd163e32e15baa1b7046c1eddec4a5e9/client/public/Count%20down,%20fun%20fact,%20news.png" width="900" height="650"/>
  <br><br>
+<img src="https://user-images.githubusercontent.com/89062054/141668899-efccb54c-20cd-4fb2-b72d-291a5dd607db.png" width="900" height="650"/>
 <br>
 <hr>
 <br>
   
  
-**4. Additionally, the dashboard provides a exam coutdown table where users can input their exams and its date. The table will compute and display the number of days left before the exam. If they exam is within 7 days, it will display a red background**
+**3.**
   
 <br>
   <br>
-  <img src="https://user-images.githubusercontent.com/89062054/141657850-7450783f-0fbe-43ca-875d-781882a5fa5b.png" width="900" height="650"/>
+  <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/c35113e742f13d770bb15aede5cb4a326a8ae2f8/client/public/Screenshot%202022-11-13%20at%204.53.49%20PM.png" width="900" height="650"/>
 <br>
 <hr>
   
