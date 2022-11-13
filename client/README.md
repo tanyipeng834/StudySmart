@@ -76,24 +76,29 @@ Press **Enter** to clone into your local machine
   
 ### Now you have to install the node modules used in this repository
   
-* Note that the screens below may defer from yours
+
   
 1.Ensure that you are in the WAD2---PROJECT
-2. Type ```npm install``` or ```npm i``` for short to install all the node modules used in main folder
+2.Type ```npm install``` or ```npm i``` for short to install all the node modules used in main folder
 
-![image](https://user-images.githubusercontent.com/85747511/141517779-fdc358b2-9cc3-4c1f-987b-667718c05de7.png)
+![image](./public/main-npm.jpg)
+### Followed by that please install the packages in the client subfolder
+1. Ensure that you are in the WAD2---PROJECT/client
+2. Type ```npm install``` or ```npm i``` for short to install all the node modules used in client folder
+  
+![image](./public/client-npm.jpg)
 
 
 ### You are done with the set-up! Now lets run our application on your localhost
 
 1. Type ```npm run serve```  to start both the front and database together in your local server
   
-![image](https://user-images.githubusercontent.com/85747511/141519621-c0669095-7532-45ec-a3a7-d5ac06e0e7a6.png)
+![image](./public/run-serve.jpg)
 
 2. Wait for around 10 to 20 seconds for the [webpack.Progress] to compile successfully
 3. Click on http://localhost:8080/ to open our application locally
   
-![image](https://user-images.githubusercontent.com/85747511/141519518-39d93ea8-b29a-499c-9ee7-928cca8610f5.png)
+![image](./public/client-npm.jpg)
 
 
   
