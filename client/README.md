@@ -59,7 +59,7 @@ Before the coding process, we came up with rough Figma design prototypes and a W
 1. On the '<> Code' page, click on the green 'code' button and a dropdown will appear.
 2. Make sure you're under the 'HTTPS' tab, and copy the URL.
 
-![image](https://user-images.githubusercontent.com/85747511/141513139-b5bc1f69-10a2-463f-ace2-0aca05978cd3.png)
+![image](./public/git_clone.png)
 
 ### Open git bash if you have it, otherwise any Command Line Interface that you use.
 
