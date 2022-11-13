@@ -16,24 +16,21 @@ In Singapore, students are taught to study hard but not study smart. The root ca
 
 **How do we solve it?**
 
-Introducing,StudySmart, this web application helps students study smart with effective studying strategies such as Active recall with flashcards and quizes. Furthrermore, we also have a forum for students who seek to learn from each other when they face homework problems. We also have the progress tracker for students to identify their strenghs and weakness to finetune their studying strategy.Lastly , we have other studying resources for our students such as timetable and examtracker to allow students to be more organized about their studying and new feature for them to stay updated about current affairs.
+Introducing, Food-Ful, designed for anyone in the ages between 20-40 years old who are keen on reducing their food wastage. Our team has come up with a web application that aims to reduce food wastage - some features are for users to track the expiry date, and recommending recipes based on their inventory. 
+
 <br>
 <hr>
 <br>
 
 **Before Implementation**
 
-Before the coding process, we came up with rough Figma design prototypes and a Web Navigation Diagram to give us a better idea on how our application will work.
+Before the coding process, we came up with rough Figma design prototypes to give us a better idea on how our application will work.
 <br><br>
 
-**Below is our navigation diagram where we show the different functions and pages of our web application:**
 
-![FoodSaver Nav diagram drawio](https://user-images.githubusercontent.com/89062054/141675096-8d02a90a-484c-45cd-bc38-46763e36e66c.png)
-
-<br><br>
 **Below is our Architecture diagram to show the interactions between our application components:**
 
-![architecture](https://user-images.githubusercontent.com/89062054/141675612-60b75e85-d3fa-403c-b98b-5c6e6db038bf.png)
+![architecture](https://github.com/tanyipeng834/WAD-2---PROJECT/blob/a1686217ab28532bc919f3304f4e593973abe295/client/public/Screenshot%202022-11-13%20at%206.49.39%20PM.png)
 
 
 <br><br>
@@ -257,6 +254,6 @@ The bar chart will also update to show the average score for each subject. Addit
 
   
 
-## 🤓 Thank You and Enjoy Learning!##
+## 🤓 Thank You and Enjoy Learning!
 
 
