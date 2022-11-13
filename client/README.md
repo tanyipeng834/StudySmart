@@ -245,7 +245,7 @@ After cloning, change directory into the local repository
  <hr>
   
 
-## 🤓 Other Things ##
+## 🤓 Forum ##
   Explore our Learn More page and get to know our roles and the goals of Food-Ful!
 ![image](https://user-images.githubusercontent.com/89062054/141658136-97c41703-77bc-4ee4-9ba3-85bbeba42992.png)
 ![image](https://user-images.githubusercontent.com/89062054/141658100-efdafada-b37c-4b8c-8844-e9c8b69ea69e.png)
