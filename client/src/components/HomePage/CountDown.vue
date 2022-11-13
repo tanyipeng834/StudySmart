@@ -15,18 +15,19 @@
     </div>
     <!-- <AddTest /> -->
     <ul class="list-group" id="example">
-      <li class="list-group-item d-flex justify-content-around align-items-start header ">
+      <li class="list-group-item d-flex justify-content-around align-items-center header ">
         <div class="col-7">
-          <h6 class="text-white">Exam Count Down</h6>
+          <h6 class="text-white ">Exam Count Down</h6>
         </div>
         <div class="col-4">
-          <h6 class="float-start text-white"> Days Left</h6>
+          <h6 class="float-start align-self-end text-white"> Days Left</h6>
         </div>
       </li>
       <!-- class="list-group-item d-flex justify-content-around align-items-center" -->
       <li :class="[addTest ? 'list-group-item' : 'hide']" @keyup.enter="onSubmit()">
         <div class="me-auto col-5 ms-1">
-          <input v-model="test" type="text" class="form-control form-control-sm" placeholder="Test Name"  id="testTooltip" title="Please enter a test name" />
+          <input v-model="test" type="text" class="form-control form-control-sm" placeholder="Test Name"
+            id="testTooltip" title="Please enter a test name" />
         </div>
 
         <div class="col-3 d-flex justify-content-center ms-1">
@@ -34,14 +35,15 @@
         </div>
 
         <div class="col-4 ms-1">
-          <input v-model="date" type="date"  @change="validateDate"  id="dateTooltip" title="Date cannot be in the past" class="form-control form-control-sm" placeholder="" />
+          <input v-model="date" type="date" @change="validateDate" id="dateTooltip" title="Date cannot be in the past"
+            class="form-control form-control-sm" placeholder="" />
         </div>
       </li>
 
       <li v-if='currentPageData.length==0' class="list-group-item">
         <div>Add Your Upcoming Exams Here!</div>
       </li>
-      <li v-else-if="currentPageData.length<4" v-for="(test,index) in currentPageData" :key="index"
+      <li v-else-if="currentPageData.length<4" v-for="(test,j) in currentPageData" :key="j"
         class="list-group-item d-flex justify-content-around align-items-start" :class="danger( daysLeft(test.date))">
         <div class="ms-2 me-auto col-7">
           <div class="fw-bold">{{ test.test }}</div>
@@ -63,10 +65,10 @@
         </div>
       </li>
 
-    <li v-else v-for="index in 4"
-        class="list-group-item d-flex justify-content-around align-items-start" :class="danger( daysLeft(currentPageData[index-1].date))">
+      <li v-else v-for="index in 4" :key="index" class="list-group-item d-flex justify-content-around align-items-start"
+        :class="danger( daysLeft(currentPageData[index-1].date))">
 
-       <div class="ms-2 me-auto col-7">
+        <div class="ms-2 me-auto col-7">
           <div class="fw-bold">{{ currentPageData[index-1].test }}</div>
           <p>
             <small>{{ currentPageData[index-1].subject }} . {{ currentPageData[index-1].date }}</small>
@@ -74,17 +76,18 @@
         </div>
 
         <div class="col-4 d-flex justify-content-center">
-          <span class="p-2 badge  mx-auto" >{{
+          <span class="p-2 badge  mx-auto">{{
             daysLeft(currentPageData[index-1].date)
           }}</span>
         </div>
 
         <div class="col-1">
-          <button type="button" class="btn position-absolute top-0 end-2" v-on:click="deleteTest(currentPageData[index-1].id)">
+          <button type="button" class="btn position-absolute top-0 end-2"
+            v-on:click="deleteTest(currentPageData[index-1].id)">
             <i class="fa-regular fa-trash-can"></i>
           </button>
         </div>
-           </li>
+      </li>
       <li v-if="count>4" class="bg-white rounded-bottom ">
         <p class="d-inline-block p-2 small">Page {{currentPage}}</p>
         <nav aria-label="Page navigation example" class="float-end">
@@ -94,7 +97,8 @@
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
-            <li class="page-item" v-for="i in pages"><a class="page-link" @click="getPageData(i)">{{i}}</a></li>
+            <li class="page-item" v-for="i in pages" :key="i"><a class="page-link" @click="getPageData(i)">{{i}}</a>
+            </li>
 
             <li class="page-item">
               <a class="page-link" aria-label="Next" @click="next()">
@@ -159,8 +163,8 @@
         this.getPageData(this.currentPage)
         console.log(this.currentPageData)
         for (let item of this.currentPageData) {
-            console.log(item)
-          }
+          console.log(item)
+        }
       }
 
     },
@@ -176,24 +180,24 @@
         email: '',
         pages: 0,
         currentPage: 1,
-        currentPageData:[]
+        currentPageData: []
 
 
       };
     },
-  methods: {
-    previous() {
-      if (this.currentPage != 1) {
-        this.currentPage = this.currentPage - 1
-         this.getPageData(this.currentPage)
-      }
+    methods: {
+      previous() {
+        if (this.currentPage != 1) {
+          this.currentPage = this.currentPage - 1
+          this.getPageData(this.currentPage)
+        }
 
-    },
-    next() {
-          if (this.pages != this.currentPage) {
-            this.currentPage = this.currentPage + 1
-        this.getPageData(this.currentPage)
-      }
+      },
+      next() {
+        if (this.pages != this.currentPage) {
+          this.currentPage = this.currentPage + 1
+          this.getPageData(this.currentPage)
+        }
 
       },
       async getData() {
@@ -209,11 +213,11 @@
         }
       },
       getPageData(i) {
-        this.currentPage=i
+        this.currentPage = i
         console.log('hi')
         var unnecData = (i - 1) * 4
         this.currentPageData = this.tests.slice(unnecData, unnecData + 5)
-        console.log( this.currentPageData)
+        console.log(this.currentPageData)
 
       },
       daysLeft(date) {
@@ -228,29 +232,29 @@
         var ref = doc(db, 'users', this.email, 'countDown', id);
         await deleteDoc(ref);
 
-    },
-    validateDate() {
+      },
+      validateDate() {
 
       },
 
       async onSubmit(e) {
         if (!this.test) {
-        $(document).ready(function(){
+          $(document).ready(function () {
 
-                $("#testTooltip").tooltip("show");
+            $("#testTooltip").tooltip("show");
 
           });
 
           return;
         }
-       const daysLeft = this.daysLeft(this.date)
-      if (daysLeft < 0) {
-          $(document).ready(function(){
+        const daysLeft = this.daysLeft(this.date)
+        if (daysLeft < 0) {
+          $(document).ready(function () {
 
-                $("#dateTooltip").tooltip("show");
+            $("#dateTooltip").tooltip("show");
 
           });
-        return;
+          return;
         }
         const newData = {
 
@@ -286,9 +290,6 @@
   };
 </script>
 <style scoped>
-  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
-  @import url("https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css");
-
   * {
     margin: 0;
     padding: 0;
@@ -302,21 +303,28 @@
 
     margin-right: -8px;
   }
-.header{
-  background-color:#30507c   ;
-}
+
+  .header {
+    background-color: #30507c;
+  }
+
   .hide {
     display: none;
   }
-/* .list-group{
+
+  /* .list-group{
   border-radius: 0;
 } */
   .list-group-item {
     display: flex;
     justify-content: space-around;
+    padding: 6px !important;
+
+
   }
-  .badge{
-    background-color: #5B7BA6 ;
+
+  .badge {
+    background-color: #5B7BA6;
     border-radius: 40%;
   }
 </style>

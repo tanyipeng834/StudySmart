@@ -8,6 +8,12 @@
   },
   "dependencies": {
     "@daypilot/daypilot-lite-vue": "^3.10.1",
+    "@fortawesome/fontawesome-free": "^6.2.0",
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-brands-svg-icons": "^6.2.0",
+    "@fortawesome/free-regular-svg-icons": "^6.2.0",
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@fortawesome/vue-fontawesome": "^2.0.8",
     "@popperjs/core": "^2.11.6",
     "add": "^2.0.6",
     "animate.css": "^4.1.1",
@@ -27,6 +33,7 @@
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
-    "sass": "^1.55.0"
+    "sass": "^1.55.0",
+    "@fortawesome/fontawesome-free": "^6.2.0"
   }
 }

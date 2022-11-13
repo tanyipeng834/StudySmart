@@ -21,14 +21,13 @@
 
                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0 username">
-                          <input type="text" v-model="name" class="form-control" @change="checkExist"
+                          <input type="text" v-model="name" class="form-control"
                             placeholder="Your Username" />
                           <p v-if="name.includes(' ')" class="text-danger small mt-1 mb-0 d-block form-validation">Your
                             username should
                             not include
                             any spaces</p>
-                          <p v-if="unique== false" class="text-danger small mt-1 mb-0 d-block form-validation">Your
-                            username has been taken</p>
+
                         </div>
 
 
@@ -37,10 +36,11 @@
                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
 
                         <div class="form-outline flex-fill mb-0 email">
-                          <input type="text" v-model="email" class="form-control" placeholder="Your Email" />
+                          <input type="text" v-model="email" class="form-control" placeholder="Your Email" @change="checkExist"/>
                           <p v-if="email!=''&&(!email.includes('@')||!email.includes('.'))"
                             class="text-danger small mt-1 mb-0 d-block form-validation">
                             Please enter a valid email</p>
+                              <p v-if="unique== false" class="text-danger small mt-1 mb-0 d-block form-validation">This email has an existing account.</p>
                         </div>
                       </div>
 
@@ -96,7 +96,7 @@
     data() {
       return {
         unique: true,
-        name: '',
+        email: '',
       }
     },
 
@@ -105,10 +105,10 @@
         window.location.href = "#/login";
       },
       async checkExist() {
-        const ref = doc(db, 'users', this.name.toLowerCase())
+        const ref = doc(db, 'users', this.email)
         let docSnapshot = await getDoc(ref);
         console.log(docSnapshot)
-        console.log(this.name.toLowerCase())
+        console.log(this.email)
         if (docSnapshot.exists()) {
           // return true;
           this.unique = false
@@ -162,7 +162,7 @@ const register = () => {
       .then(async (data) => {
         console.log("Successfully registered!");
         try {
-          const docRef = await setDoc(doc(db, "users", name.value), {
+          const docRef = await setDoc(doc(db, "users", email.value), {
             profile: {
               fullName: name.value,
               schoolGrade: grade.value,
@@ -192,7 +192,7 @@ const register = () => {
 
           // await setDoc(col, { 'ignore' :''});
 
-          localStorage.setItem("email", name.value);
+          localStorage.setItem("email", email.value);
 
           window.location.href = "/#";
         } catch (e) {
