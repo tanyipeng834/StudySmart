@@ -76,30 +76,21 @@ After cloning, change directory into the local repository
   
 ![image](https://user-images.githubusercontent.com/85747511/141515431-16ae78aa-ea41-4eda-a791-1a910f2c6515.png)
 
-* Note that is216-project-group-1 is the **root** folder, containing the main sub-folders - **backend** and **front-end**
+* Note that WAD2--PROJECT is the **root** folder, containing the main  **front-end** and **database**
   
 ### Now you have to install the node modules used in this repository
   
 * Note that the screens below may defer from yours
   
-1. Change directory into the front-end folder
+1. Change directory into the front-end folder by using  ``` cd client```
 2. Type ```npm install``` or ```npm i``` for short to install all the node modules used in the front-end folder
 
 ![image](https://user-images.githubusercontent.com/85747511/141517779-fdc358b2-9cc3-4c1f-987b-667718c05de7.png)
 
-1. Change directory into the backend folder
-2. Type ```npm install``` or ```npm i``` for short to install all the node modules used in the backend folder
-  
-![image](https://user-images.githubusercontent.com/85747511/141518546-aa6ceffc-d7e4-42c6-ac7b-feb54590362f.png)
-
-1. Change directory into the root folder
-2. Type ```npm install``` or ```npm i``` for short to install all the node modules used in the root folder
-  
-![image](https://user-images.githubusercontent.com/85747511/141518749-1053730a-e7b2-4d82-91d2-4c799e431596.png)
 
 ### You are done with the set-up! Now lets run our application on your localhost
 
-1. Type ```npm run dev```  to start both the front and back end together in your local server
+1. Type ```npm run serve```  to start both the front and database together in your local server
   
 ![image](https://user-images.githubusercontent.com/85747511/141519621-c0669095-7532-45ec-a3a7-d5ac06e0e7a6.png)
 
@@ -108,11 +99,7 @@ After cloning, change directory into the local repository
   
 ![image](https://user-images.githubusercontent.com/85747511/141519518-39d93ea8-b29a-499c-9ee7-928cca8610f5.png)
 
-### Remember to end the servers before you close your Command Line Terminal
-  
-1. In the Command Line Terminal, press **Ctrl** + **C**. It will end both servers
-  
-![image](https://user-images.githubusercontent.com/85747511/141520455-c8831dc7-34b1-402a-ba04-d1e2dd206a4d.png)
+
   
 
 
