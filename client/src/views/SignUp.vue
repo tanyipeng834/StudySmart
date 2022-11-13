@@ -21,26 +21,26 @@
 
                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0 username">
-                          <input type="text" v-model="name" class="form-control"
-                            placeholder="Your Username" />
+                          <input type="text" v-model="name" class="form-control" placeholder="Your Username"
+                            @change="checkExist" />
                           <p v-if="name.includes(' ')" class="text-danger small mt-1 mb-0 d-block form-validation">Your
                             username should
                             not include
                             any spaces</p>
-
+                          <p v-if="unique== false" class="text-danger small mt-1 mb-0 d-block form-validation">This
+                            username has been taken.</p>
                         </div>
-
 
                       </div>
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
 
                         <div class="form-outline flex-fill mb-0 email">
-                          <input type="text" v-model="email" class="form-control" placeholder="Your Email" @change="checkExist"/>
+                          <input type="text" v-model="email" class="form-control" placeholder="Your Email" />
                           <p v-if="email!=''&&(!email.includes('@')||!email.includes('.'))"
                             class="text-danger small mt-1 mb-0 d-block form-validation">
                             Please enter a valid email</p>
-                              <p v-if="unique== false" class="text-danger small mt-1 mb-0 d-block form-validation">This email has an existing account.</p>
+
                         </div>
                       </div>
 
@@ -71,7 +71,7 @@
                       </div>
 
                       <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                        <button type="button" @click="register" class="btn btn-primary btn-lg" >
+                        <button type="button" @click="register" class="btn btn-primary btn-lg">
                           Register
                         </button>
                       </div>
@@ -96,7 +96,7 @@
     data() {
       return {
         unique: true,
-        email: '',
+        name: '',
       }
     },
 
@@ -105,10 +105,9 @@
         window.location.href = "#/login";
       },
       async checkExist() {
-        const ref = doc(db, 'users', this.email)
+        const ref = doc(db, 'username', this.name)
         let docSnapshot = await getDoc(ref);
-        console.log(docSnapshot)
-        console.log(this.email)
+
         if (docSnapshot.exists()) {
           // return true;
           this.unique = false
@@ -156,7 +155,7 @@
   const grade = ref("");
 
   // const router = useRouter() // get a reference to our vue router
-const register = () => {
+  const register = () => {
 
     createUserWithEmailAndPassword(auth, email.value, password.value) // need .value because ref()
       .then(async (data) => {
@@ -172,6 +171,9 @@ const register = () => {
           });
           await setDoc(
             doc(db, "users", email.value, "progressResults1", "ignore"), {}
+          );
+          await setDoc(
+            doc(db, "username", name.value), {}
           );
           await setDoc(
             doc(db, "users", email.value, "progressResults2", "ignore"), {}
@@ -207,7 +209,7 @@ const register = () => {
             message: `Please check your inputs.`,
             // details: "You will not able to recover this action",
 
-          right: "Ok",
+            right: "Ok",
 
           })
           .then(() => {
@@ -247,3 +249,4 @@ const register = () => {
     position: relative;
   }
 </style>
+
