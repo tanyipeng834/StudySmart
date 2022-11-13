@@ -2,7 +2,7 @@
 * Group members:
 * Lim Qi Qing (qiqing.lim.2021@scis.smu.edu.sg)
 * Lee Chia Min Michelle (.2020@scis.smu.edu.sg)
-* Tan Yi Peng (.2021@scis.smu.edu.sg)
+* Tan Yi Peng (yipeng.tan.2021@scis.smu.edu.sg)
 * Lim Si Yu(siyu.lim.2021@scis.smu.edu.sg)
 
 
@@ -252,24 +252,3 @@ After cloning, change directory into the local repository
  ![image](https://user-images.githubusercontent.com/89062054/141658247-2394138c-65cb-43f6-a492-830f25843c68.png)
 
 
-
-
-# client
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
