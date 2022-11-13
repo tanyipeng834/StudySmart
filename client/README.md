@@ -177,17 +177,13 @@ After cloning, change directory into the local repository
   
 <br>  
   
-**6. Once you have added your items, you can see that your items are reflected on the Inventory page. You can delete any items by clicking on the "Delete" icon on the card. Remember to update the quantity left by clicking on the "Edit" icon on the card. On each ingredient card, you can also see which category it belongs too, the number of days till the expiry date and a progress bar on how much you have used up.**
+**8. In the progress tracker page, users can input their test results for their different subjects. A line chart will be updated based on user input to show the user's academic progress.
+The bar chart will also update to show the average score for each subject. Additionally, some analytics will be done and displayed for the user to keep track of which subject is their best, is the most consistent, and which they need to improve on.**
   
 <br>
   <br>
-  <img src="https://user-images.githubusercontent.com/89062054/141610124-b46c95fa-66c6-4d8f-b639-998b127e9785.png" width="900" height="650"/>
+  <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/524fb688c29345664f618a7328ff0e1c58bff374/client/public/Screenshot%202022-11-13%20at%204.17.57%20PM.png" width="900" height="650"/>
 
-<br><br>
-  <img src="https://user-images.githubusercontent.com/89062054/141610093-2a60412b-0090-45a6-a3e1-fcb21d738631.png" width="900" height="650"/>
-
-<br><br>
-  <img src="https://user-images.githubusercontent.com/89062054/141668766-61619546-fb01-4eac-ad15-d011371b466b.png" width="900" height="650"/>
 
 <br>
 <hr>
@@ -195,14 +191,12 @@ After cloning, change directory into the local repository
   
 <br>
   
-**7. After adding, you can search for new recipes based on your inventory list. Click on "Browse Recipes" on the top Navigation bar and you will be brought to the Recipe page. On this page, you can Must Try recipes, recipes according to your Inventory list or watch fun cooking videos.**
+**9. For self-directed learning, the Quiz page provides users to DIY their own flashcards or multiple choice quiz**
   
 <br>
   <br>
-   <img src="https://user-images.githubusercontent.com/89062054/141668887-06e58cc9-d9ef-400f-ac9b-7c8342b10262.png" width="900" height="650"/>
+   <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/a9a78bcc33b8e809f916653eb2420474d6c4e5f1/client/public/Screenshot%202022-11-13%20at%204.18.21%20PM.png" width="900" height="650"/>
 
-<br><br>
-   <img src="https://user-images.githubusercontent.com/89062054/141610139-2bdf72d0-fd85-49a2-848d-846366dda0e4.png" width="900" height="650"/>
 
 <br>
 <hr>
