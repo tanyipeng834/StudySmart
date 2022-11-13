@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <Topbar :tabs="tabs" menuTitle="Quiz" />
+      <Topbar :tabs="tabs" menuTitle="Test Yourself" />
     </div>
     <div class="container-fluid p-0 quiz">
       <div class="row">
