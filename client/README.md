@@ -68,7 +68,7 @@ Before the coding process, we came up with rough Figma design prototypes and a W
 
 It should look something like this:
 
-![image](https://user-images.githubusercontent.com/85747511/141514944-db05911e-c410-4766-9971-0966f1f878ce.png)
+![image](./public/git-clone-command.jpg)
   
 Press **Enter** to clone into your local machine
   
