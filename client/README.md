@@ -105,20 +105,27 @@ After cloning, change directory into the local repository
 
 ## 🤓 How to Use Our Web Application (for Visitors to our Website) ##
 
-
-**1. Click on "Sign Up"**
+**1. The first page is the login page. Click on "Sign Up".**
 <br>
 <br>
 <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/48c0912ec94b9a1cdcb1d287f9addf7be2ff4c5d/client/public/Login.png" width="900" height="650"/>
 <br>
 <hr>
 <br>
+
+**2. Enter your details in the sign up page.**
+<br>
+<br>
+<img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/da3a1d0edd163e32e15baa1b7046c1eddec4a5e9/client/public/Sign%20Up.png" width="900" height="650"/>
+<br>
+<hr>
+<br>
   
-**2. Create a new account by clicking on "Sign Up". Once your account has been succesfully registered, you will be brought to the login page. Now login into Food-Ful.**
+**3. Once your account has been succesfully registered, you will be brought to the dashboard. In the dashboard page, there will be a section that provides a radomly generated fun fact and button which redirects users to a page to view the headline news (this can only work locally as accessing the news API from the browser requires payment)**
   
 <br>
   <br>
-<img src="https://user-images.githubusercontent.com/89062054/141668896-b163c1c0-60a6-456e-b8ca-1bd9bd0858da.png" width="900" height="650"/>
+<img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/da3a1d0edd163e32e15baa1b7046c1eddec4a5e9/client/public/Count%20down,%20fun%20fact,%20news.png" width="900" height="650"/>
  <br><br>
 <img src="https://user-images.githubusercontent.com/89062054/141668899-efccb54c-20cd-4fb2-b72d-291a5dd607db.png" width="900" height="650"/>
 <br>
@@ -126,7 +133,7 @@ After cloning, change directory into the local repository
 <br>
   
  
-**3. Once you have successfully login, you are brought to an overview. On this page, you can see how many ingredients you have, the number of items that are still good or expired. You can also see which items are expiring and browse through new recipes to try!**
+**3.**
   
 <br>
   <br>
