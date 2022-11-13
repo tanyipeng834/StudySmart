@@ -109,7 +109,7 @@ After cloning, change directory into the local repository
 **1. Click on "Sign Up"**
 <br>
 <br>
-<img src="client/public/Login.png" width="900" height="650"/>
+<img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/48c0912ec94b9a1cdcb1d287f9addf7be2ff4c5d/client/public/Login.png" width="900" height="650"/>
 <br>
 <hr>
 <br>
