@@ -1,7 +1,7 @@
 ## 🤓 IS216 Project: StudySmart
 * Group members:
 * Lim Qi Qing (qiqing.lim.2021@scis.smu.edu.sg)
-* Lee Chia Min Michelle (.2020@scis.smu.edu.sg)
+* Lee Chia Min Michelle (michellelee.2020@scis.smu.edu.sg)
 * Tan Yi Peng (yipeng.tan.2021@scis.smu.edu.sg)
 * Lim Si Yu(siyu.lim.2021@scis.smu.edu.sg)
 
@@ -16,7 +16,20 @@ In Singapore, students are taught to study hard but not study smart. The root ca
 
 **How do we solve it?**
 
-Introducing, Food-Ful, designed for anyone in the ages between 20-40 years old who are keen on reducing their food wastage. Our team has come up with a web application that aims to reduce food wastage - some features are for users to track the expiry date, and recommending recipes based on their inventory. 
+Introducing, StudySmart a platform for secondary school students to have interactive learning. Our web application will empower students to take charge of their own learning and continuously motivate them to use this website through our user-friendly UI. 
+This website has 4 features:
+ - Dashboard
+     - Exam date countdown
+     - Fun facts and headline news
+     - Customisable timetable
+ - Forum
+    - Shared learning by posting questions and answering other users' questions
+- Progress tracker
+    - Track exam result progress
+    - Charts for progress visualisation
+- Flashcard & Quizzes
+    - DIY flashcards
+    - DIY multiple choice quizzes
 
 <br>
 <hr>
