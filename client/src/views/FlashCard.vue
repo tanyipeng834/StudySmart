@@ -152,6 +152,10 @@ export default {
   overflow-x: hidden;
   overflow-y: scroll;
 }
+.btn {
+  color: white;
+  background-color: #253F63;
+}
 
 
 

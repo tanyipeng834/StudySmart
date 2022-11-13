@@ -11,58 +11,50 @@
         <div class="col-4"></div>
         <div class="col-4"></div>
       </div>
-    
-          <div class="row mt-4">
-            <div class="col-2"></div>
-            <div class="col-8">
-              <div class="row">
-                <div class="col">
-                  <div
-                  class="mt-4 jumbo text-white rounded  animate__animated  animate__fadeInLeft"
-                  @click="redirect('flashcards')"
-                >
+
+      <div class="row mt-4">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <div class="row">
+            <div class="col">
+              <div
+                class="mt-4 jumbo text-white rounded animate__animated animate__fadeInLeft"
+                @click="redirect('flashcards')"
+              >
                 <div class="row">
                   <h1>Flashcards</h1>
                   <p>
                     Click to create your own online flashcards to test your
                     <b>memory!</b>
                   </p>
-                  
                 </div>
-                  
-                </div>
-
-                </div>
-              </div>
-            
-            <div class="row">
-              <div class="col">
-                <div class="row">
-                <div
-                  class="mt-4 jumbo text-white rounded animate__animated  animate__fadeInRight"
-                  @click="redirect('multi')"
-                >
-                <div class="row">
-                  <h1>Quizzes</h1>
-                  <p>
-                    Click to create your own online Quiz to help with your
-                    <b>concepts!</b>
-                  </p>
-                </div>
-                  
-                </div>
-     
-    </div>
-  </div>
-
               </div>
             </div>
-            <div class="col-2"></div>
           </div>
-                
-                
+
+          <div class="row">
+            <div class="col">
+              <div class="row">
+                <div
+                  class="mt-4 jumbo text-white rounded animate__animated animate__fadeInRight"
+                  @click="redirect('multi')"
+                >
+                  <div class="row">
+                    <h1>Quizzes</h1>
+                    <p>
+                      Click to create your own online Quiz to help with your
+                      <b>concepts!</b>
+                    </p>
+                  </div>
+                </div>
               </div>
-             
+            </div>
+          </div>
+        </div>
+        <div class="col-2"></div>
+      </div>
+    </div>
+
     <BottomBar class="bottomnav" />
   </div>
 </template>
