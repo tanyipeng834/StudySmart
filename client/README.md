@@ -98,7 +98,7 @@ Press **Enter** to clone into your local machine
 2. Wait for around 10 to 20 seconds for the [webpack.Progress] to compile successfully
 3. Click on http://localhost:8080/ to open our application locally
   
-![image](./public/client-npm.jpg)
+![image](./public/run-local.jpg)
 
 
   
