@@ -249,16 +249,11 @@ The bar chart will also update to show the average score for each subject. Addit
   <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/b967e477daeaec2642e4df69f817fc12ee834db3/client/public/Screenshot%202022-11-13%20at%204.27.40%20PM.png" width="900" height="650"/>
  <br><br>
   <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/e876de400fd93560f610c6e995391480a94d197e/client/public/Screenshot%202022-11-13%20at%204.28.35%20PM.png" width="900" height="650"/>
+<br><br>
+  <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/3163e5deece182bf53e6972105c3ee21efd0086f/client/public/Screenshot%202022-11-13%20at%204.29.05%20PM.png" width="900" height="650"/>
 
 
- <hr>
 
-  **12. Users have to input the quiz name, description and questions. For each question, users can generate as many options as they want and tick those that are the correct answer (there must be at least one correct answer).**
-  
- <br>
- <br>
- <br>
- <hr>
 
   
 
