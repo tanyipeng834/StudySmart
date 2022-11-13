@@ -72,18 +72,14 @@ It should look something like this:
   
 Press **Enter** to clone into your local machine
   
-After cloning, change directory into the local repository
-  
-![image](https://user-images.githubusercontent.com/85747511/141515431-16ae78aa-ea41-4eda-a791-1a910f2c6515.png)
 
-* Note that WAD2--PROJECT is the **root** folder, containing the main  **front-end** and **database**
   
 ### Now you have to install the node modules used in this repository
   
 * Note that the screens below may defer from yours
   
-1. Change directory into the front-end folder by using  ``` cd client```
-2. Type ```npm install``` or ```npm i``` for short to install all the node modules used in the front-end folder
+1.Ensure that you are in the WAD2---PROJECT
+2. Type ```npm install``` or ```npm i``` for short to install all the node modules used in main folder
 
 ![image](https://user-images.githubusercontent.com/85747511/141517779-fdc358b2-9cc3-4c1f-987b-667718c05de7.png)
 
