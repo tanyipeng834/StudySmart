@@ -127,7 +127,6 @@ After cloning, change directory into the local repository
   <br>
 <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/da3a1d0edd163e32e15baa1b7046c1eddec4a5e9/client/public/Count%20down,%20fun%20fact,%20news.png" width="900" height="650"/>
  <br><br>
-<img src="https://user-images.githubusercontent.com/89062054/141668899-efccb54c-20cd-4fb2-b72d-291a5dd607db.png" width="900" height="650"/>
 <br>
 <hr>
 <br>
