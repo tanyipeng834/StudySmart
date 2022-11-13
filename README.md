@@ -1,4 +1,4 @@
-# WAD-2---PROJECT
+# IS216 Project: StudySmart
 
 # client
 
