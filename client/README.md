@@ -131,6 +131,16 @@ After cloning, change directory into the local repository
 <hr>
 <br>
   
+ **5. By pressing on "Read Latest News" button, you are brought to the news page with today's latest local news.**
+  <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/1cbd9250735e7979850e58dfbf633e0e0a900adb/client/public/Unknown-3" width="900" height="650"/>
+<br>
+  <br>
+  
+<br>
+<hr>
+  
+<br>
+  
  
 **4. The timetable below is customisable where users drag and hold the desired time slot, a modal appears for them to input a certain activity during that timeframe. The users can input the subject and day that the selected time frame is for and colour in which they want the timetable section to be.**
   <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/148474a8276569a374c0ac9043b2b8fca1899576/client/public/timetable%20modal.png" width="900" height="650"/>
@@ -142,7 +152,8 @@ After cloning, change directory into the local repository
   
 <br>
   
-**6. Users can use the sidebar (which can be expanded) to navigate between the pages**
+  
+**5. Users can use the sidebar (which can be expanded) to navigate between the pages**
   
 <br>
   <br>
@@ -154,7 +165,7 @@ After cloning, change directory into the local repository
   
 <br>
   
-**5. Add your items using our auto filled form. Feel free to change the the category and metrics to what seems fit. You also have to input the original quantity of your ingredient when you just bought it and the current quantity that is left now. Do not forget to add an expiry date!**
+**7. In the forum page, users can upload posts, like, unlike and comment on posts and filter the posts according to the selected filters. Users are also given the choice to delete their own posts.**
   
 <br>
   <br>
