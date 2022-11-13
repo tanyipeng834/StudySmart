@@ -68,7 +68,7 @@ Before the coding process, we came up with rough Figma design prototypes and a W
 
 It should look something like this:
 
-![image](./public/git-clone-command.jpg)
+![image](https://user-images.githubusercontent.com/85747511/141514944-db05911e-c410-4766-9971-0966f1f878ce.png)
   
 Press **Enter** to clone into your local machine
   
@@ -239,7 +239,7 @@ The bar chart will also update to show the average score for each subject. Addit
   
  <br>
   
-  **12. Users have to input the quiz name, description and questions. For each question, users can generate as many options as they want and tick those that are the correct answer (there must be at least one correct answer).**
+  **12. Users have to input the quiz name, description and questions. For each question, users can generate as many options as they want and tick those that are the correct answer (there must be at least one correct answer). They can test themselves after they have created the quiz!**
   
 <br>
   <br><br>
@@ -257,10 +257,6 @@ The bar chart will also update to show the average score for each subject. Addit
 
   
 
-## 🤓 Forum ##
-  Explore our Learn More page and get to know our roles and the goals of Food-Ful!
-![image](https://user-images.githubusercontent.com/89062054/141658136-97c41703-77bc-4ee4-9ba3-85bbeba42992.png)
-![image](https://user-images.githubusercontent.com/89062054/141658100-efdafada-b37c-4b8c-8844-e9c8b69ea69e.png)
- ![image](https://user-images.githubusercontent.com/89062054/141658247-2394138c-65cb-43f6-a492-830f25843c68.png)
+## 🤓 Thank You and Enjoy Learning!##
 
 
