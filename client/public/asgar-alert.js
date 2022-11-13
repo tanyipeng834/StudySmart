@@ -1,3 +1,4 @@
+//File taken from https://www.cssscript.com/notification-dialog-asgaralert/#google_vignette
 function formatString(str, ...params) {
   for (let i = 0; i < params.length; i++) {
     var reg = new RegExp("\\{" + i + "\\}", "gm");
