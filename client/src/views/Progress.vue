@@ -20,7 +20,7 @@
 
                 </div>
             </div>
-            <div class="row mx-auto">
+            <div class="row mx-auto mt-3">
 
 
                 <div class="modal-box">
