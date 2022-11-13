@@ -1,9 +1,9 @@
 ## 🤓 IS216 Project: StudySmart
 * Group members:
 * Lim Qi Qing (qiqing.lim.2021@scis.smu.edu.sg)
-* Lee Chia Min Michelle (.2020@scis.smu.edu.sg)
+* Lee Chia Min Michelle Faith (michellelee.2020@scis.smu.edu.sg)
 * Tan Yi Peng (yipeng.tan.2021@scis.smu.edu.sg)
-* Lim Si Yu(siyu.lim.2021@scis.smu.edu.sg)
+* Lim Si Yu (siyu.lim.2021@scis.smu.edu.sg)
 
 
 ## 🤓 Project Overview ##
