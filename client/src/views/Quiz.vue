@@ -11,7 +11,7 @@
         <div class="col-4"></div>
         <div class="col-4"></div>
       </div>
-    
+
           <div class="row mt-4">
             <div class="col-2"></div>
             <div class="col-8">
@@ -27,17 +27,17 @@
                     Click to create your own online flashcards to test your
                     <b>memory!</b>
                   </p>
-                  
+
                 </div>
-                  
+
                 </div>
 
                 </div>
               </div>
-            
+
             <div class="row">
               <div class="col">
-                <div class="row">
+
                 <div
                   class="mt-4 jumbo text-white text-center rounded animate__animated  animate__fadeInRight"
                   @click="redirect('multi')"
@@ -49,9 +49,9 @@
                     <b>concepts!</b>
                   </p>
                 </div>
-                  
-                </div>
-     
+
+               
+
     </div>
   </div>
 
@@ -59,10 +59,10 @@
             </div>
             <div class="col-2"></div>
           </div>
-                
-                
+
+
               </div>
-             
+
     <BottomBar class="bottomnav" />
   </div>
 </template>
