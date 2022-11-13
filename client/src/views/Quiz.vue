@@ -18,7 +18,7 @@
               <div class="row">
                 <div class="col">
                   <div
-                  class="mt-4 jumbo text-white rounded  animate__animated  animate__fadeInLeft"
+                  class="mt-4 jumbo text-white rounded text-center animate__animated  animate__fadeInLeft"
                   @click="redirect('flashcards')"
                 >
                 <div class="row">
@@ -39,7 +39,7 @@
               <div class="col">
 
                 <div
-                  class="mt-4 jumbo text-white rounded animate__animated  animate__fadeInRight"
+                  class="mt-4 jumbo text-white text-center rounded animate__animated  animate__fadeInRight"
                   @click="redirect('multi')"
                 >
                 <div class="row">
@@ -114,5 +114,6 @@ export default {
 .jumbo {
   background-color: #253f63;
   padding: 100px;
+
 }
 </style>
