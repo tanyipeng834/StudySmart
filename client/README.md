@@ -24,7 +24,7 @@ Introducing, Food-Ful, designed for anyone in the ages between 20-40 years old w
 
 **Before Implementation**
 
-Before the coding process, we came up with rough Figma design prototypes to give us a better idea on how our application will work.
+Before the coding process, we came up with rough Figma design prototypes to give us a better idea on how our application will work and also the overal design. Our team member, Michelle has designed the owl logo and profile photo that we have added in our web pages.
 <br><br>
 
 
