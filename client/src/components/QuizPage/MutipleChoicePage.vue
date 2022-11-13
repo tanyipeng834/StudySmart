@@ -78,9 +78,6 @@ export default {
       console.log(this.questions);
     },
     async addDatabase() {
-      if (Object.keys(this.questions).length === 0) {
-        return;
-      }
       this.$emit("add-summary-card", [this.title, this.description]);
       let email = localStorage.getItem("email");
       let collectionRef = collection(db, "users", email, "MutipleChoiceQuiz");
