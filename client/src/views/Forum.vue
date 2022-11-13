@@ -17,11 +17,9 @@
 
       <div class="row">
 
-
         <div class="col-2">
 
         </div>
-
 
         <div class="col-lg-6  col-md-6 col-sm-11 order-5 pt-3 d-flex mx-auto">
           <div class="row">
@@ -83,7 +81,6 @@
 
             </div>
 
-
             <div class="row">
               <div class="col">
                 <div class="container-fluid mt-2">
@@ -95,7 +92,6 @@
                           <div class="row align-items-center">
                             <div class="col">
 
-
                               <span class="badge rounded-pill text-bg-info me-1">{{ post.subject }}
                               </span>
                               <span class="badge rounded-pill text-bg-info me-1">{{ post.level }}
@@ -104,7 +100,6 @@
                               </span>
                             </div>
                           </div>
-
 
                           <button v-if="post.username==name" class="btn" @click="deletePost(post)">
                             <i class="fa-regular fa-trash-can"></i>
@@ -115,7 +110,6 @@
                                     </span> -->
                             <!-- </button> -->
                           </button>
-
 
 
                         </div>
@@ -174,7 +168,6 @@
                             </div>
                           </div>
 
-
                         </div>
                       </div>
                     </div>
@@ -203,7 +196,6 @@
                         <input type="text" v-model="search" class="form-control ">
                       </div>
 
-
                     </li>
                     <li class="list-group-item">
 
@@ -217,7 +209,6 @@
                           <option value="Secondary 5">Secondary 5</option>
                         </select>
                       </div>
-
 
                     </li>
 
@@ -244,7 +235,6 @@
                       </div>
 
 
-
                     </li>
                     <li class="list-group-item">
                       <strong>Stream</strong> <br>
@@ -255,7 +245,6 @@
                           <option value="Normal Technical">Normal Technical</option>
                         </select>
                       </div>
-
 
                     </li>
                     <li class="list-group-item text-center d-flex justify-content-start">
@@ -289,7 +278,6 @@
                       <input type="text" v-model="search" class="form-control ">
                     </div>
 
-
                   </li>
                   <li class="list-group-item">
 
@@ -303,7 +291,6 @@
                         <option value="Secondary 5">Secondary 5</option>
                       </select>
                     </div>
-
 
                   </li>
 
@@ -330,7 +317,6 @@
                     </div>
 
 
-
                   </li>
                   <li class="list-group-item">
                     <strong>Stream</strong> <br>
@@ -341,7 +327,6 @@
                         <option value="Normal Technical">Normal Technical</option>
                       </select>
                     </div>
-
 
                   </li>
                   <li class="list-group-item text-center d-flex justify-content-start">
@@ -425,7 +410,6 @@
     mounted() {
       this.init().then()
 
-
     },
     methods: {
       showFilter() {
@@ -450,7 +434,6 @@
           const q = doc(db, "users", email)
           onSnapshot(q, (doc) => {
 
-
             this.name = doc.data().profile.fullName
             this.level = doc.data().profile.schoolGrade
             this.LikedPost = doc.data().LikedPost
@@ -471,15 +454,17 @@
             }
 
           })
-          this.posts = posts
-          this.allPosts = posts
+          var sortedPosts = posts.sort(
+            (objA, objB) => new Date(objB.date_added) - new Date(objA.date_added),
+          );
 
+          this.posts = sortedPosts
+          this.allPosts = sortedPosts
 
 
         });
       },
       async searchUserPost() {
-
 
         var resultPosts = []
         for (let post of this.allPosts) {
@@ -495,14 +480,12 @@
 
 
 
-
       },
       async addLike(post) {
         let id = post.id
         const ref = doc(db, "posts", id);
         console.log(this.LikedPost)
         if (!this.LikedPost.includes(id)) {
-
 
           await updateDoc(ref, {
             numLikes: increment(1)
@@ -521,7 +504,6 @@
           });
         }
 
-
       },
       async addComment(post) {
         let id = post.id
@@ -534,11 +516,9 @@
           })
         });
 
-
         this.commentContent = "";
       },
       async addPost() {
-
 
         var newPost = {};
         var errorMsg = ''
@@ -554,7 +534,6 @@
         if (this.stream == '' || this.subject == '' || this.postContent == '') {
           alert(errorMsg)
         } else {
-
 
           newPost.postContent = this.postContent;
           newPost.subject = this.subject;
@@ -603,7 +582,6 @@
           LikedPost: arrayRemove(id)
         })
 
-
       },
 
       filter() {
@@ -650,9 +628,7 @@
       display: none;
     }
 
-
   }
-
 
 
   .main {
@@ -660,7 +636,7 @@
     background-color: #eaf1f5;
     min-height: 100vh;
     min-width: 100%;
-    overflow-x:hidden ;
+    overflow-x: hidden;
   }
 
   .profile-wrap {
@@ -695,3 +671,4 @@
     font-weight: normal;
   }
 </style>
+
