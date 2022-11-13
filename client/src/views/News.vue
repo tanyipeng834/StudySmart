@@ -4,7 +4,7 @@
   <div class="container-fluid main">
 
 
-     <Topbar :tabs="tabs" menuTitle="Forum" />
+     <Topbar :tabs="tabs" menuTitle="News" />
       <div class="row">
         <div class="col-4">
           <Sidebar :haveTopbar="true"/>
