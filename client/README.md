@@ -1,9 +1,9 @@
 ## 🤓 IS216 Project: StudySmart
 * Group members:
 * Lim Qi Qing (qiqing.lim.2021@scis.smu.edu.sg)
-* Lee Chia Min Michelle Faith (michellelee.2020@scis.smu.edu.sg)
+* Lee Chia Min Michelle (.2020@scis.smu.edu.sg)
 * Tan Yi Peng (yipeng.tan.2021@scis.smu.edu.sg)
-* Lim Si Yu (siyu.lim.2021@scis.smu.edu.sg)
+* Lim Si Yu(siyu.lim.2021@scis.smu.edu.sg)
 
 
 ## 🤓 Project Overview ##
@@ -24,32 +24,19 @@ Introducing, Food-Ful, designed for anyone in the ages between 20-40 years old w
 
 **Before Implementation**
 
-Before the coding process, we came up with rough Figma design prototypes and a Web Navigation Diagram to give us a better idea on how our application will work.
+Before the coding process, we came up with rough Figma design prototypes to give us a better idea on how our application will work and also the overal design. Our team member, Michelle has designed the owl logo and profile photo that we have added in our web pages.
 <br><br>
 
-**Below is our navigation diagram where we show the different functions and pages of our web application:**
 
-![FoodSaver Nav diagram drawio](https://user-images.githubusercontent.com/89062054/141675096-8d02a90a-484c-45cd-bc38-46763e36e66c.png)
-
-<br><br>
 **Below is our Architecture diagram to show the interactions between our application components:**
 
-![architecture](https://user-images.githubusercontent.com/89062054/141675612-60b75e85-d3fa-403c-b98b-5c6e6db038bf.png)
+![architecture](https://github.com/tanyipeng834/WAD-2---PROJECT/blob/a1686217ab28532bc919f3304f4e593973abe295/client/public/Screenshot%202022-11-13%20at%206.49.39%20PM.png)
 
 
 <br><br>
 
 **To view our prototype, click on the links below:**
 <br>
-
-<ul>
-  <li>iPad Pro Design:</li>
-      https://www.figma.com/proto/rOnBkJ2nJiV2vXNKnXYVoE/WAD2-Project-wireframe?node-id=464%3A78&scaling=scale-down&page-id=459%3A19&starting-point-node-id=500%3A794&show-proto-sidebar=1
-  <li>iPhone X Design:</li>
-      https://www.figma.com/proto/rOnBkJ2nJiV2vXNKnXYVoE/WAD2-Project-wireframe?node-id=536%3A1542&scaling=scale-down&page-id=459%3A20&starting-point-node-id=536%3A1542&show-proto-sidebar=1
-      
- </ul>
-
 
 ## 🤓 How to Install and Run Our Web Application (for Developers) ##
 * This method is applicable to both Mac OS and Windows OS
