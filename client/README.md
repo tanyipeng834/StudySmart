@@ -158,7 +158,7 @@ After cloning, change directory into the local repository
   
 <br>
   <br>
-  <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/4c8cf801398bc87bb70840b6a72c5be8cc7c6847/client/public/Screenshot%202022-11-13%20at%205.06.12%20PM.png" width="900" height="650"/>
+  <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/f272d89a019406167b234763843096deb223b2aa/client/public/Screenshot%202022-11-13%20at%205.06.12%20PM.png" width="900" height="650"/>
 
 <br>
 <hr>
@@ -204,7 +204,7 @@ The bar chart will also update to show the average score for each subject. Addit
 
 <br>  
   
-**8. When you click on a recipe card, you can view the ingredients needed and follow the step-by-step instructions. You can choose to view the recipe as a whole page too!**
+**10. To create a flashcard set, users have to click Flashcards and click the + button which redirects them to another page. In this page, users should input the relevant fields and can click + to add a new flashcard. Once done, they should click on Create New Deck.**
   
 <br>  
   <br>
@@ -222,7 +222,7 @@ The bar chart will also update to show the average score for each subject. Addit
   
 <br>
   
-**9. If you are not up to reading, you can always click on the "Videos" tab and click on any video that might interest you. You can follow along as you cook!**
+**11. To test themselves, users just need to select a previously created flashcard deck. Users will be presented the term/question and then need to click to flip the flashcard to view the answer. Further, users can user the next and back button to toggle between the flashcard and see their progress from the progress bar.**
   
 <br>
   <br><br>
@@ -236,12 +236,20 @@ The bar chart will also update to show the average score for each subject. Addit
   
  <br>
   
-  **10. That is all you have to know about Food-Ful. We hope that with this application, you are one step closer to reducing your food wastage! Afterall, food taste best when it is fresh!**
+  **12. Users have to input the quiz name, description and questions. For each question, users can generate as many options as they want and tick those that are the correct answer (there must be at least one correct answer).**
   
  <br>
  <br>
  <br>
  <hr>
+
+  **12. Users have to input the quiz name, description and questions. For each question, users can generate as many options as they want and tick those that are the correct answer (there must be at least one correct answer).**
+  
+ <br>
+ <br>
+ <br>
+ <hr>
+
   
 
 ## 🤓 Forum ##
