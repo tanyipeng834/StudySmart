@@ -121,7 +121,7 @@ After cloning, change directory into the local repository
 <hr>
 <br>
   
-**3. You will now be brought to the dashboard. In the dashboard page, there will be a section that provides a radomly generated fun fact and button which redirects users to a page to view the headline news (this can only work locally as accessing the news API from the browser requires payment) There is also an examination countdown table where users can input their exams and its date. The table will compute and display the number of days left before the exam. If they exam is within 7 days, it will display a red backgroundand timetable feature which the student can utilise.**
+**3. You will now be brought to the dashboard. In the dashboard page, there will be a section that provides a radomly generated fun fact and button which redirects users to a page to view the headline news (this can only work locally as accessing the news API from the browser requires payment) There is also an examination countdown table where users can input their exams and its date. The table will compute and display the number of days left before the exam. If their exam is within 7 days, it will display a red backgroundand timetable feature which the student can utilise.**
   
 <br>
   <br>
@@ -131,7 +131,7 @@ After cloning, change directory into the local repository
 <hr>
 <br>
   
- **5. By pressing on "Read Latest News" button, you are brought to the news page with today's latest local news.**
+ **4. By pressing on "Read Latest News" button, you are brought to the news page with today's latest local news.**
   <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/1cbd9250735e7979850e58dfbf633e0e0a900adb/client/public/Unknown-3" width="900" height="650"/>
 <br>
   <br>
@@ -142,8 +142,9 @@ After cloning, change directory into the local repository
 <br>
   
  
-**4. The timetable below is customisable where users drag and hold the desired time slot, a modal appears for them to input a certain activity during that timeframe. The users can input the subject and day that the selected time frame is for and colour in which they want the timetable section to be.**
+**5. The timetable in the dashboard  is customisable where users drag and hold the desired time slot, a modal appears for them to input a certain activity during that timeframe. The users can input the subject and day that the selected time frame is for and colour in which they want the timetable section to be.**
   <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/148474a8276569a374c0ac9043b2b8fca1899576/client/public/timetable%20modal.png" width="900" height="650"/>
+   <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/ad3e1dd4fff1c30976259f89c04f0d8ee14e534d/client/public/Timetable.png" width="900" height="650"/>
 <br>
   <br>
   
@@ -153,7 +154,7 @@ After cloning, change directory into the local repository
 <br>
   
   
-**5. Users can use the sidebar (which can be expanded) to navigate between the pages**
+**6. Users can use the sidebar (which can be expanded) to navigate between the pages**
   
 <br>
   <br>
@@ -169,7 +170,7 @@ After cloning, change directory into the local repository
   
 <br>
   <br>
-  <img src="https://user-images.githubusercontent.com/89062054/141610112-f5816670-dd01-4fa4-b20f-79d82739025a.png" width="900" height="650"/>
+  <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/cbf13adc5574abc564c4b00ce1bbad8b4fd4eadc/client/public/Screenshot%202022-11-13%20at%204.14.32%20PM.png" width="900" height="650"/>
 
 <br>
 <hr>
