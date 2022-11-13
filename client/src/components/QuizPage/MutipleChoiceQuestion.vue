@@ -118,7 +118,7 @@ export default {
 .alert-info {
   background-color: #beebbe !important;
 }
-.alert-secondart {
+.alert-secondary {
   background-color: #ebbec1 !important;
 }
 </style>

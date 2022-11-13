@@ -104,22 +104,7 @@
       back: () => {
         window.location.href = "#/login";
       },
-      async checkExist() {
-        let username=this.name.toLowerCase()
-        const ref = doc(db, 'username', username)
-        let docSnapshot = await getDoc(ref);
 
-        if (docSnapshot.exists()) {
-          // return true;
-          this.unique = false
-          console.log(true)
-        } else {
-          // return false;
-          this.unique = true
-          console.log(false)
-        }
-
-      }
     },
   };
 </script>
@@ -150,13 +135,35 @@
   } from "../main";
 
   const email = ref("");
-
   const password = ref("");
   const name = ref("");
   const grade = ref("");
+  var unique = ref(true)
 
   // const router = useRouter() // get a reference to our vue router
+  const checkExist = async () => {
+
+    let username = name.value.toLowerCase()
+    console.log(username)
+    const ref = doc(db, 'username', username)
+    let docSnapshot = await getDoc(ref)
+
+    if (docSnapshot.exists()) {
+      // return true;
+      unique.value = false
+      console.log(false)
+
+    } else {
+      // return false;
+     unique.value  = true
+      console.log(true)
+
+    }
+
+  }
   const register = () => {
+
+    if (unique.value != false) {
 
     createUserWithEmailAndPassword(auth, email.value, password.value) // need .value because ref()
       .then(async (data) => {
@@ -219,6 +226,25 @@
           })
 
       });
+    }
+    else {
+             asgar({
+            title: `Error in creating an account.`,
+            message: `Please check your inputs.`,
+            // details: "You will not able to recover this action",
+
+            right: "Ok",
+
+          })
+          .then(() => {
+            console.log("ok");
+
+          })
+       }
+    return {
+unique
+    }
+
   };
 </script>
 
