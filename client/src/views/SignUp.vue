@@ -105,7 +105,8 @@
         window.location.href = "#/login";
       },
       async checkExist() {
-        const ref = doc(db, 'username', this.name)
+        let username=this.name.toLowerCase()
+        const ref = doc(db, 'username', username)
         let docSnapshot = await getDoc(ref);
 
         if (docSnapshot.exists()) {
