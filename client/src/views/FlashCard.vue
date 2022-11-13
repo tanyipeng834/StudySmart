@@ -3,7 +3,7 @@
     <div>
       <Topbar :tabs="tabs" menuTitle="Quiz" />
     </div>
-    <div class="container-fluid p-0 quiz">
+    <div class="container-fluid pb-5 quiz">
       <div class="row" v-if="this.toggle == false">
         <div class="col-4">
           <Sidebar :haveTopbar="true" />
@@ -12,8 +12,8 @@
         <div class="col-4"></div>
 
         <div class="row mt-5">
-          <div class="col-2"></div>
-          <div class="col-6 d-flex">
+          <div class="col-1"></div>
+          <div class="col-11 d-flex">
             <div class="card">
               <div class="card-body">Flashcards</div>
             </div>
@@ -27,8 +27,8 @@
           </div>
         </div>
         <div class="row mt-5" v-if="this.toggle == true">
-          <div class="col-2"></div>
-          <div class="col-6 d-flex">
+          <div class="col-1"></div>
+          <div class="col-11 d-flex">
             <div class="card">
               <div class="card-body">Flashcards</div>
             </div>
@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="row gx-2 mt-4">
-          <div class="col-2"></div>
+          <div class="col-1"></div>
           <div class="col-10">
             <div class="row">
               <SummaryCard
@@ -146,11 +146,13 @@ export default {
   width: 100vw;
   min-height: 100vh;
   margin-top: 60px;
+
   background-color: #eaf1f5;
   font-family: "Roboto", sans-serif;
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: scroll;
 }
-.card {
-}
+
+
+
 </style>
