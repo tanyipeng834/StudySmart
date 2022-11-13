@@ -38,15 +38,6 @@ Before the coding process, we came up with rough Figma design prototypes to give
 **To view our prototype, click on the links below:**
 <br>
 
-<ul>
-  <li>iPad Pro Design:</li>
-      https://www.figma.com/proto/rOnBkJ2nJiV2vXNKnXYVoE/WAD2-Project-wireframe?node-id=464%3A78&scaling=scale-down&page-id=459%3A19&starting-point-node-id=500%3A794&show-proto-sidebar=1
-  <li>iPhone X Design:</li>
-      https://www.figma.com/proto/rOnBkJ2nJiV2vXNKnXYVoE/WAD2-Project-wireframe?node-id=536%3A1542&scaling=scale-down&page-id=459%3A20&starting-point-node-id=536%3A1542&show-proto-sidebar=1
-      
- </ul>
-
-
 ## 🤓 How to Install and Run Our Web Application (for Developers) ##
 * This method is applicable to both Mac OS and Windows OS
 
