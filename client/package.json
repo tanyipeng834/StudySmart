@@ -7,6 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "-": "^0.0.1",
     "@daypilot/daypilot-lite-vue": "^3.10.1",
     "@fortawesome/fontawesome-free": "^6.2.0",
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
@@ -30,10 +31,10 @@
     "vue-typed-js": "^0.1.2"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^6.2.0",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
-    "sass": "^1.55.0",
-    "@fortawesome/fontawesome-free": "^6.2.0"
+    "sass": "^1.55.0"
   }
 }
