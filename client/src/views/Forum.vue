@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="main">
 
-    <div class="container-fluid p-0 main">
+    <div class="container-fluid p-0 ">
       <Topbar :tabs="tabs" menuTitle="Forum" />
       <div class="row">
         <div class="col-4">
@@ -23,7 +23,7 @@
         </div>
 
 
-        <div class="col-lg-5  col-md-5 col-sm-5 order-5 pt-3">
+        <div class="col-lg-6  col-md-6 col-sm-11 order-5 pt-3 d-flex mx-auto">
           <div class="row">
             <div class="col">
               <!-- <div class="input-group rounded">
@@ -659,7 +659,8 @@
     margin-top: 60px;
     background-color: #eaf1f5;
     min-height: 100vh;
-    width: 100vw;
+    min-width: 100%;
+    overflow-x:hidden ;
   }
 
   .profile-wrap {

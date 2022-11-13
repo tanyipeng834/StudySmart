@@ -585,7 +585,7 @@ body {
     display: none;
   }
 }
-@media (max-width: 992px) {
+@media (max-width: 767px) {
   .sidebar {
     display: none;
   }
