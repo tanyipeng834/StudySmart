@@ -258,6 +258,6 @@ The bar chart will also update to show the average score for each subject. Addit
 
   
 
-## 🤓 Thank You and Enjoy Learning!##
+## 🤓 Thank You and Enjoy Learning!
 
 
