@@ -103,17 +103,22 @@ export default {
 </script>
 
 <style scoped>
-.change{
-  background-color: #5B7BA6;
+.change {
+  background-color: #5b7ba6;
 }
 
-.another{
-  background-color: #8F9FBF;
+.another {
+  background-color: #8f9fbf;
   color: white;
 }
 
-.outer{
-  outline-color:  #5B7BA6;
+.outer {
+  outline-color: #5b7ba6;
 }
-
+.alert-info {
+  background-color: #beebbe !important;
+}
+.alert-secondart {
+  background-color: #ebbec1 !important;
+}
 </style>

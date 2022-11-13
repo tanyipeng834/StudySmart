@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="card mt-5">
-        <h3>Term</h3>
+        <h3 class="card-content">Term</h3>
         <div class="card-body d-flex">
           <div v-if="this.cards[this.count - 1]" class="content text-center">
             {{ this.cards[this.count - 1]["term"] }}
@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="card mt-5">
-        <h3>Definition</h3>
+        <h3 class="card-content">Definition</h3>
         <div class="card-body">
           <div v-if="this.cards[this.count - 1]" class="content text-center">
             {{ this.cards[this.count - 1]["defination"] }}
@@ -127,5 +127,11 @@ export default {
   width: 100px;
   height: 40px;
 }
-
+.card-content {
+  margin-top: 1%;
+  margin-left: 5%;
+}
+.card {
+  font-family: "Roboto", sans-serif;
+}
 </style>

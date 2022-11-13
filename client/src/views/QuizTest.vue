@@ -7,7 +7,7 @@
       <div class="col-2">
         <Sidebar :haveTopbar="true"></Sidebar>
       </div>
-      <div class="col-4 mt-3">
+      <div class="col-4 mt-5">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">
