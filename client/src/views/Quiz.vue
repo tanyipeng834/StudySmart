@@ -25,7 +25,7 @@
                   <h1>Flashcards</h1>
                   <p>
                     Click to create your own online flashcards to test your
-                    <b>memory!!</b>
+                    <b>memory!</b>
                   </p>
                   
                 </div>
@@ -46,7 +46,7 @@
                   <h1>Quizzes</h1>
                   <p>
                     Click to create your own online Quiz to help with your
-                    <b>concepts!!</b>
+                    <b>concepts!</b>
                   </p>
                 </div>
                   

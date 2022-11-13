@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <Topbar :tabs="tabs" menuTitle="Quiz" />
+      <Topbar :tabs="tabs" menuTitle="Flashcards" />
     </div>
     <div class="container-fluid pb-5 quiz">
       <div class="row" v-if="this.toggle == false">
