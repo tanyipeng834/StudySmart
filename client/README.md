@@ -208,13 +208,13 @@ The bar chart will also update to show the average score for each subject. Addit
   
 <br>  
   <br>
-  <img src="https://user-images.githubusercontent.com/89062054/141657945-a5eeeba9-411a-4627-8350-6349281e2558.png" width="900" height="650"/>
+  <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/8d4a09c94ba1d51d3d0f315a9101a03759cab665/client/public/photo_2022-11-13_17-55-03.jpg" width="900" height="650"/>
 
 <br><br>
-  <img src="https://user-images.githubusercontent.com/89062054/141657970-a04a7970-b3ae-42c5-9695-0dd08f331864.png" width="900" height="650"/>
+  <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/eda1b3147ca3d6d212315eb848935819344323fa/client/public/2.jpg" width="900" height="650"/>
 
 <br><br>
-  <img src="https://user-images.githubusercontent.com/89062054/141657979-f46f2dea-1d24-445a-a296-37eddff092a8.png" width="900" height="650"/>
+
 
 <br>
 <hr>  
@@ -226,10 +226,13 @@ The bar chart will also update to show the average score for each subject. Addit
   
 <br>
   <br><br>
-  <img src="https://user-images.githubusercontent.com/89062054/141610163-82985a46-f50b-4579-8a1b-6adc510bedb0.png" width="900" height="650"/>
+  <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/eda1b3147ca3d6d212315eb848935819344323fa/client/public/3.jpg" width="900" height="650"/>
 
 <br><br>
-  <img src="https://user-images.githubusercontent.com/89062054/141658046-39207f47-dc59-41e4-98ac-4d84f9777705.png" width="900" height="650"/>
+  <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/b967e477daeaec2642e4df69f817fc12ee834db3/client/public/Screenshot%202022-11-13%20at%204.29.42%20PM.png" width="900" height="650"/>
+ <br><br>
+  <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/b967e477daeaec2642e4df69f817fc12ee834db3/client/public/Screenshot%202022-11-13%20at%204.29.55%20PM.png" width="900" height="650"/>
+
 
 <br>
 <hr>
@@ -238,9 +241,16 @@ The bar chart will also update to show the average score for each subject. Addit
   
   **12. Users have to input the quiz name, description and questions. For each question, users can generate as many options as they want and tick those that are the correct answer (there must be at least one correct answer).**
   
- <br>
- <br>
- <br>
+<br>
+  <br><br>
+  <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/b967e477daeaec2642e4df69f817fc12ee834db3/client/public/Screenshot%202022-11-13%20at%204.21.49%20PM.png" width="900" height="650"/>
+
+<br><br>
+  <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/b967e477daeaec2642e4df69f817fc12ee834db3/client/public/Screenshot%202022-11-13%20at%204.27.40%20PM.png" width="900" height="650"/>
+ <br><br>
+  <img src="https://github.com/tanyipeng834/WAD-2---PROJECT/blob/e876de400fd93560f610c6e995391480a94d197e/client/public/Screenshot%202022-11-13%20at%204.28.35%20PM.png" width="900" height="650"/>
+
+
  <hr>
 
   **12. Users have to input the quiz name, description and questions. For each question, users can generate as many options as they want and tick those that are the correct answer (there must be at least one correct answer).**
