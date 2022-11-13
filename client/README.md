@@ -106,10 +106,10 @@ After cloning, change directory into the local repository
 ## 🤓 How to Use Our Web Application (for Visitors to our Website) ##
 
 
-**1. Click on "Get Started"**
+**1. Click on "Sign Up"**
 <br>
 <br>
-<img src="https://user-images.githubusercontent.com/89062054/141610208-140205a2-03c3-40cb-b7c4-21fc92dc5805.png" width="900" height="650"/>
+<img src="client/public/Login.png" width="900" height="650"/>
 <br>
 <hr>
 <br>
