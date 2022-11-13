@@ -121,7 +121,7 @@ After cloning, change directory into the local repository
 <hr>
 <br>
   
-**3. Once your account has been succesfully registered, you will be brought to the dashboard. In the dashboard page, there will be a section that provides a radomly generated fun fact and button which redirects users to a page to view the headline news (this can only work locally as accessing the news API from the browser requires payment)There is also an examination countdown and timetable feature which the student can utilise. **
+**3. Once your account has been succesfully registered, you will be brought to the dashboard. In the dashboard page, there will be a section that provides a radomly generated fun fact and button which redirects users to a page to view the headline news (this can only work locally as accessing the news API from the browser requires payment)There is also an examination countdown and timetable feature which the student can utilise.**
   
 <br>
   <br>
