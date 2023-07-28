@@ -59,7 +59,7 @@ Before the coding process, we came up with rough Figma design prototypes to give
 1. On the '<> Code' page, click on the green 'code' button and a dropdown will appear.
 2. Make sure you're under the 'HTTPS' tab, and copy the URL.
 
-![image](./public/git_clone.jpg)
+![image](./client/public/git_clone.jpg)
 
 ### Open git bash if you have it, otherwise any Command Line Interface that you use.
 
@@ -68,7 +68,7 @@ Before the coding process, we came up with rough Figma design prototypes to give
 
 It should look something like this:
 
-![image](./public/git-clone-command.jpg)
+![image](./client/public/git-clone-command.jpg)
   
 Press **Enter** to clone into your local machine
   
@@ -81,24 +81,24 @@ Press **Enter** to clone into your local machine
 1.Ensure that you are in the WAD2---PROJECT
 2.Type ```npm install``` or ```npm i``` for short to install all the node modules used in main folder
 
-![image](./public/main-npm.jpg)
+![image](./client/public/main-npm.jpg)
 ### Followed by that please install the packages in the client subfolder
 1. Ensure that you are in the WAD2---PROJECT/client
 2. Type ```npm install``` or ```npm i``` for short to install all the node modules used in client folder
   
-![image](./public/client-npm.jpg)
+![image](./client/public/client-npm.jpg)
 
 
 ### You are done with the set-up! Now lets run our application on your localhost
 
 1. Type ```npm run serve```  to start both the front and database together in your local server
   
-![image](./public/run-serve.jpg)
+![image](./client/public/run-serve.jpg)
 
 2. Wait for around 10 to 20 seconds for the [webpack.Progress] to compile successfully
 3. Click on http://localhost:8080/ to open our application locally
   
-![image](./public/run-local.jpg)
+![image](./client/public/run-local.jpg)
 
 
   
