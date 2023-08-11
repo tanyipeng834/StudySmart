@@ -49,7 +49,9 @@ Before the coding process, we came up with rough Figma design prototypes to give
 <br><br>
 
 **To view our prototype, click on the links below:**
-<br>
+
+
+[Project Link](https://wad2-project-625b0.web.app/#/login)
 
 ## 🤓 How to Install and Run Our Web Application (for Developers) ##
 * This method is applicable to both Mac OS and Windows OS
